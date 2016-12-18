@@ -33,7 +33,7 @@ angular.module('besties', ['ionic','ngCordova','ngAnimate'])
   $ionicPlatform.on("pause",function(){
       setTimeout(function(){
           ionic.Platform.exitApp();
-      },30000);
+      },300000);
   });
 })
 

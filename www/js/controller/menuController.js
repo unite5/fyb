@@ -1,5 +1,5 @@
 angular.module('besties')
-.controller('menuController',function($scope,$log,$cordovaActionSheet,$state,$ionicModal,$ionicGesture,$ionicPlatform,$ionicSideMenuDelegate,$ionicHistory){
+.controller('menuController',function($scope,$log,$cordovaToast,$cordovaSocialSharing,$cordovaActionSheet,$state,$ionicModal,$ionicGesture,$ionicPlatform,$ionicSideMenuDelegate,$ionicHistory){
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
@@ -19,14 +19,45 @@ angular.module('besties')
     androidEnableCancelButton:true,
     winphoneEnableCancelButton:true
   };
+  var image = "img/ionic.png";
+  var link1 = "mydomain.com";
+  var link2 = "mydomain.com";
+  var message = "Sharing to social media the besties";
   $scope.shareapp = function(){
     $cordovaActionSheet.show(options)
       .then(function(btnIndex){
         var index = btnIndex;
         if(index == 0) {
-          $log.info("Shared with FB");
+          //$log.info("Shared with FB");
+          $cordovaSocialSharing
+          .shareViaFacebook(message, image, link1)
+          .then(function(result) {
+            // Success!
+            $cordovaToast
+            .show('Shared with Facebook', 'long', 'bottom')
+            .then(function(success) {
+              // success
+            }, function (error) {
+              // error
+            });
+          }, function(err) {
+            // An error occurred. Show a message to the user
+          });
         }else if(index == 1){
-          $log.info("Shared with Twitter");
+          //$log.info("Shared with Twitter");
+          $cordovaSocialSharing
+          .shareViaTwitter(message, image, link2)
+          .then(function(result) {
+            $cordovaToast
+            .show('Shared with Twitter', 'long', 'bottom')
+            .then(function(success) {
+              // success
+            }, function (error) {
+              // error
+            });
+          }, function(err) {
+            // An error occurred. Show a message to the user
+          });
         }
       });
     $log.warn("shareapp called");
