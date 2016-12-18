@@ -40,13 +40,13 @@ angular.module('besties')
 		$cordovaSocialSharing
 	    .shareViaWhatsApp("Hello ionic", "img/ionic.png", "mydomain.com")
 	    .then(function(result) {
-	      $cordovaToast
+	      /*$cordovaToast
             .show('Shared with Whatsapp', 'long', 'bottom')
             .then(function(success) {
               // success
             }, function (error) {
               // error
-            });
+            });*/
 	    }, function(err) {
 	      // An error occurred. Show a message to the user
 	    });
