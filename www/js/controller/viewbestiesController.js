@@ -17,7 +17,8 @@ angular.module('besties')
       android: {
         intent: 'INTENT'  // send SMS with the default SMS app
       //intent: ''        // send SMS without open any other app
-      };
+      }
+  		}
 		$cordovaSms
       .send('8433488040', 'Hello Ionic From JP', options)
       .then(function() {
