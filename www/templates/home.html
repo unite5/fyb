@@ -20,14 +20,14 @@
       <div class="row">
         <div class="col">
           <div class="item item-avatar">
-            <img src="img/ionic.png" class="animated fadeIn" ng-click="viewbesties('Marty McFly')">
-            <h2  ng-click="viewbesties('Marty McFly')"><b>Marty McFly</b> <span class="icon ion-eye"  ng-click="viewbesties('Marty McFly')"></span></h2>
-            <p  ng-click="viewbesties('Marty McFly')">2m ago, Nov 05,'55</p>
-
+            <img src="img/ionic.png" class="animated fadeIn" width="50" height="50"><!--  ng-click="viewbesties('Marty McFly')" -->
+            <h2><b>Marty McFly</b> 
+            <a href="#/app/viewbesties:{{'Marty McFly'}}"><span class="icon ion-eye"></span></a></h2>
+            <p>2m ago, Nov 05,'55</p>
           </div>
         </div>
         <div class="col" style="text-align:right;">
-          <a class="icon ion-wineglass navigateinvite animated fadeIn"></a>
+          <a class="icon ion-wineglass navigateinvite animated fadeIn" ng-click="callforinvite()"></a>
           <a class="icon ion-chatbox-working navigatechat animated fadeIn" ng-href="#/app/chat:{{'p0id'}}"></a>
           <!-- <a class="subdued icon ion-code-working" style="font-size:36px;position:absolute;right:0;margin-right:4%;"></a> -->
         </div>
@@ -56,14 +56,14 @@
       <div class="row">
         <div class="col">
           <div class="item item-avatar">
-            <img src="img/ionic.png" class="animated fadeIn" ng-click="viewbesties('Helery Watson')">
-            <h2  ng-click="viewbesties('Helery Watson')"><b>Helery Watson</b> <span class="icon ion-eye"  ng-click="viewbesties('Helery Watson')"></span></h2>
-            <p  ng-click="viewbesties('Helery Watson')">2m ago, Nov 05,'55</p>
+            <img src="img/ionic.png" class="animated fadeIn"><!--  ng-click="viewbesties('Helery Watson')" -->
+            <h2><b>Helery Watson</b> <a href="#/app/viewbesties:{{'Helery Watson'}}"><span class="icon ion-eye"></span></a></h2>
+            <p>2m ago, Nov 05,'55</p>
 
           </div>
         </div>
         <div class="col" style="text-align:right;">
-          <a class="icon ion-wineglass navigateinvite animated fadeIn"></a>
+          <a class="icon ion-wineglass navigateinvite animated fadeIn" ng-click="callforinvite()"></a>
           <a class="icon ion-chatbox-working navigatechat animated fadeIn" ng-href="#/app/chat:{{'p1id'}}"></a>
           <!-- <a class="subdued icon ion-code-working" style="font-size:36px;position:absolute;right:0;margin-right:4%;"></a> -->
         </div>
@@ -79,7 +79,7 @@
               <a href="#" class="subdued">60m @ distance</a>
             </div>
             <div class="col">
-              <a class="icon ion-location navigatelocation animated rotateInUpRight" ng-click="navigatethis('02id')"></a>
+              <a class="icon ion-location navigatelocation animated rotateInUpRight" href="#/app/viewinmap:{{'02id'}}"></a><!-- ng-click="navigatethis('02id')" -->
             </div>
           </div>
         </p>

@@ -1,5 +1,5 @@
 angular.module('besties')
-.controller('homeController',function($scope,$ionicPopup,$location,$timeout,$interval,$log,$state,$ionicLoading){
+.controller('homeController',function($scope,$ionicPopup,$cordovaToast,$cordovaDialogs,$location,$timeout,$interval,$log,$state,$ionicLoading){
 	$scope.navigatethis = function(id){
 		location.href = "/#/app/viewinmap"+id;
     };
@@ -30,4 +30,17 @@ angular.module('besties')
     	//$log.warn(name);
     	location.href = "/#/app/viewbesties"+name;
     };
+
+    $scope.callforinvite = function(){
+    	$cordovaDialogs.alert('For a breakfast', 'Approach a event', 'Invite')
+	    .then(function() {
+	      $cordovaToast
+		    .show('Here is a Invitation', 'long', 'center')
+		    .then(function(success) {
+		      // success
+		    }, function (error) {
+		      // error
+		    });
+	    });
+    }
 })
