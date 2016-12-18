@@ -1,10 +1,18 @@
 <!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>FYB</title>
+  
+  <link rel="icon" href="img/ionic.png">
+</head>
+
+<body>
+
 <html>
   <head>
-    <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>FYB</title>
-
     <link rel="manifest" href="manifest.json">
 
     <!-- un-comment this code to enable service worker
@@ -17,6 +25,7 @@
     </script>-->
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <!-- <link href="lib/ionic/css/ionicnightly.css" rel="stylesheet"> -->
     <link href="css/style.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
@@ -25,41 +34,48 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <!-- <script type="text/javascript" src="lib/other/jquery.min.js"></script>
-    <script type="text/javascript" src="lib/other/jquery.lettering.js"></script>
-    <script type="text/javascript" src="lib/other/circleType.min.js"></script> -->
+    <!-- <script src="lib/ionic/js/ionicnightly.bundle.js"></script> -->
     <!-- cordova script (this will be a 404 during development) -->
+    <script type="text/javascript" src="lib/angular-animate/angular-animate.min.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+
+    <!-- Route Url's -->
+    <script type="text/javascript" src="js/routes.js"></script>
+
+    <!-- Controller's C files -->
+    <script type="text/javascript" src="js/controller/menuController.js"></script>
+    <script type="text/javascript" src="js/controller/splashController.js"></script>
+    <script type="text/javascript" src="js/controller/contactsController.js"></script>
+    <script type="text/javascript" src="js/controller/homeController.js"></script>
+    <script type="text/javascript" src="js/controller/nearbyController.js"></script>
+    <script type="text/javascript" src="js/controller/aboutController.js"></script>
+    <script type="text/javascript" src="js/controller/allmeetsController.js"></script>
+    <script type="text/javascript" src="js/controller/commentsController.js"></script>
+    <script type="text/javascript" src="js/controller/privacyController.js"></script>
+    <script type="text/javascript" src="js/controller/profileController.js"></script>
+    <script type="text/javascript" src="js/controller/viewbestiesController.js"></script>
+    <script type="text/javascript" src="js/controller/viewinmapController.js"></script>
+    <script type="text/javascript" src="js/controller/chatController.js"></script>
+    <!-- Services's M files -->
+
+    <!-- Other's files -->
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/ng-animation.css">
+    <script type="text/javascript" src="lib/other/d3/d3.min.js"></script>
+    <!-- <script type="text/javascript" src="lib/other/googlemap.js"></script> -->
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyAtn58xfBoEEIHWH8_Zm7EPRo_KnI-cF3s"></script>
   </head>
   <body ng-app="besties">
-
-    <ion-pane>
-      <!-- <ion-header-bar class="bar-stable">
-        <h1 class="title">Find Your Besties</h1>
-      </ion-header-bar> -->
-      <ion-content style="background-color: #e5baba " scroll="false">
-        <div class="card">
-          <div class="item item-divider text-center">
-            <h1 class="title ">Find Your Besties</h1>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col col-100 text-center"><img src="img/SpinningEarth.gif"></div>
-        </div>
-      </ion-content>
-      <div style="position: absolute;bottom: 0;"><img src="img/starterimage.png"></div>
-    </ion-pane>
-    <!-- <h1 class="title">Find Your Besties</h1> -->
-        <!-- <div class="badge" ng-controller="scan">
-          <h1>Established 2012</h1>
-        </div>
-        <h2 id="yourStyle">MARC THOMAS.</h2> -->
-        <!-- <div ng-view></div> -->
-
+      <ion-nav-view></ion-nav-view>
 
   </body>
+</html>
+
+
+
+</body>
 </html>

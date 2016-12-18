@@ -1,6 +1,6 @@
-angular.module('besties', ['ionic','ngCordova'])
+angular.module('besties', ['ionic','ngCordova','ngAnimate'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$cordovaStatusbar) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -13,11 +13,27 @@ angular.module('besties', ['ionic','ngCordova'])
       cordova.plugins.Keyboard.disableScroll(true);
     }
     if(window.StatusBar) {
-      StatusBar.styleDefault();
+      //StatusBar.styleDefault();
+      if (cordova.platformId == 'android') {
+          $cordovaStatusbar.overlaysWebView(true);
+          $cordovaStatusbar.styleHex('#699cfa');
+        //$cordovaStatusbar.hide();
+          $cordovaStatusbar.show();
+          //StatusBar.backgroundColorByHexString("#699cfa");
+      }else{
+        $cordovaStatusbar.overlaysWebView(true);
+          $cordovaStatusbar.styleHex('#699cfa');
+        //$cordovaStatusbar.hide();
+          $cordovaStatusbar.show();
+      }
     }
   });
+  ionic.Platform.isFullScreen = true;
+    
+  $ionicPlatform.on("pause",function(){
+      setTimeout(function(){
+          ionic.Platform.exitApp();
+      },30000);
+  });
 })
-.controller('scan',function(){
-  //$("h1").lettering();
-  $('#yourStyle').circleType({radius: 800});
-})
+

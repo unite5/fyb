@@ -1,0 +1,52 @@
+<ion-view view-title="{{name}}">
+  <ion-content scroll="false">
+    
+    <div class="row">
+        <div class="col colviewbestiesimage">
+            <img src="img/ionic.png" class="item-avatar animated fadeIn">
+        </div>
+        <div class="col colviewbestiesname">
+        	<h2><b>{{name}}</b> </h2>
+            <p>2m ago, November 05, 1955</p>
+            <div ng-click="navigatethis('01id')"><h3><span class="icon ion-location navigatelocationview animated fadeIn"></span></h3></div>
+        </div>
+    </div>
+
+    <hr id="ionviewbestiesdivider">
+    <div class="row">
+      <div class="col col-25 mediabanner" ng-click="bestiescall()"><img src="img/phone.png" width="50" height="50"><br>Call</div>
+      <div class="col col-25 mediabanner" ng-click="bestiessms()"><img src="img/sms.png" width="50" height="50"><br>SMS</div>
+      <div class="col col-25 mediabanner"><a class="viewbestieschatanchor" ng-href="#/app/chat:{{'p0id'}}"><img src="img/chat.png" width="50" height="50"><br>Chat</a></div>
+      <div class="col col-25 mediabanner" ng-click="bestieswhatsapp()"><img src="img/whatsapp.png" width="50" height="50"><br>Whatsapp</div>
+    </div>
+
+    <div class="list">
+      <div class="item item-divider">
+        <p><b>Detail</b></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        P Name<br>
+        Member Since, Aug 19 ,1980
+      </div>
+    </div>
+    
+    <div class="list">
+      <div class="item item-divider">
+        <p><b>Last Meet</b></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <span class="icon ion-location"></span> 23 Dec, 1999 at Kurla Phoneix Mall.
+      </div>
+    </div><br><br>
+    <div class="card">
+	    <div class="item item-text-wrap cardnotmeet">
+	      No besties founded ago 28 days.
+	    </div>
+	</div>
+
+  </ion-content>
+</ion-view>

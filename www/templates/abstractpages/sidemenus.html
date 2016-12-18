@@ -1,0 +1,49 @@
+<ion-side-menus enable-menu-with-back-views="false" style="background-color:#699cfa">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-android-home" ng-click="callHome()">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content> 
+
+  <ion-side-menu side="left" style="background-color:#699cfa">
+    <ion-content>
+      <ul class="list constColor">
+        <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
+        <!-- <ion-item class="item item-thumbnail-left constColor" menu-close>  
+          <img style="background-image:url('../img/person.png'); border-radius:80%; background-position:center center; background-size:cover; width:100%; height:100%;">                
+          <p><h2>{{'My Name'}}</h2></p>
+        </ion-item> -->
+        <div class="img-circular"></div>
+        <p style="margin-left: 10%"><b>The Name</b></p>
+        <a href="#/app/home" class="item constColor" menu-close style="color: #ffffff"><span class="icon ion-home"></span>&nbsp;&nbsp;Home</a>
+        <a href="#/app/searchfriends" class="item constColor" style="color: #ffffff" menu-close><span class="icon ion-ios-search-strong"></span>&nbsp;&nbsp;Search Friends</a>
+        <a href="#/app/nearby" class="item constColor" style="color: #ffffff" menu-close><span class="icon ion-android-people"></span>&nbsp;&nbsp;Near By Friends</a>
+        <a href="#/app/contacts" class="item constColor" style="color: #ffffff" menu-close><span class="icon ion-android-list"></span>&nbsp;&nbsp;Contacts</a>
+        <a href="#/app/allmeets" class="item constColor" style="color: #ffffff" menu-close><span class="icon ion-social-freebsd-devil"></span>&nbsp;&nbsp;All Meets</a>
+        <a href="#/app/profile" class="item constColor" style="color: #ffffff" menu-close><span class="icon ion-person"></span>&nbsp;&nbsp;Me</a>
+        <!-- <a href="#/event/attendees" class="item constColor" style="color: #ffffff" menu-close><span class="icon ion-android-globe"></span>&nbsp;&nbsp;Contact Us</a> -->
+        
+        <a href="#" ng-click="shareapp()" class="item constColor" style="color: #ffffff" menu-close><span class="icon ion-paper-airplane"></span>&nbsp;&nbsp;Share App</a>
+        <a href="#/app/comments" class="item constColor" style="color: #ffffff" menu-close><span class="icon ion-chatboxes"></span>&nbsp;&nbsp;Comments</a>
+        <a href="#/app/about" class="item constColor" style="color: #ffffff" menu-close><span class="icon ion-at"></span>&nbsp;&nbsp;About</a>
+        <a href="#/app/privacy" class="item constColor" style="color: #ffffff" menu-close><i class="icon ion-android-cloud-circle"></i>&nbsp;&nbsp;Privacy Policy</a>
+        <a class="item constColor" style="color: #ffffff" menu-close>&nbsp;</a>
+        <a class="item constColor" style="color: #ffffff" menu-close>&nbsp;</a>
+      </ul>
+    </ion-content>
+  </ion-side-menu>
+
+</ion-side-menus>

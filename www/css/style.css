@@ -111,3 +111,474 @@ h1 span {
   transform: rotate(144deg);
 }
     
+.sidemenu-button {
+  width: 24px; 
+  height: 32px;
+}
+/*.sidemenu-button:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.menu-open .sidemenu-button:before {
+  left: -2px;
+}
+
+.modal-open.menu-open ion-nav-view ion-nav-bar {
+  pointer-events: auto;
+}
+
+.modal-backdrop.sidemenu-modal {
+  top: 0;
+  z-index:999;
+}
+.swipemenumodel {
+}*/
+
+.animate-hide{
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 3s;
+    -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 3s;
+    -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 3s;
+    transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 3s;
+  line-height:20px;
+  opacity:1;
+  padding:10px;
+  background:white;
+  position: absolute;
+  left: 0;
+}
+.animate-hide.ng-hide {
+  left: -100%;
+  opacity:0;
+  padding:0 10px;
+}
+
+.sideMenubarcolor{
+  background-color: #e5baba ;
+}
+.sideMenuButtons{
+  background-color: #ffffff;
+}
+
+
+/*********************************************************
+  {
+    SideMenu CSS Styles*****
+  }
+**********************************************************/
+.inactive {
+    cursor: pointer;
+    -webkit-transform: translate3d(160px, 0px, 0px) scale(0.5);
+    -moz-transform: translate3d(160px, 0px, 0px) scale(0.5);
+    -ms-transform: translate3d(160px, 0px, 0px) scale(0.5);
+    transform: translate3d(160px, 0px, 0px) scale(0.5);
+}
+.menu {
+    -webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+    -webkit-backface-visibility: hidden;
+}
+.menu.menu-left{
+  transition: all 300ms ease-in-out;
+}
+.menu.menu-left .list {
+    transition: all 300ms ease-in-out;
+    transform: scale(.2);
+}
+.menu.menu-left.active{
+  top: 110px;
+}
+.menu.menu-left.active .list{
+  transform: scale(1);
+}
+.menu.menu-left.active {
+    top: 110px;
+    left: 40px;
+}
+.menu.menu-left, .list a {
+border-color: transparent;
+}
+/****************************END*******************************/
+
+.constColor {
+  background-color:#699cfa;
+}
+.constText {
+  color: #ffffff;
+}
+.img-circular{
+ width: 160px;
+ height: 160px;
+ background-image: url('../img/person.png');
+ background-size: cover;
+ display: block;
+ border-radius: 100px;
+ -webkit-border-radius: 100px;
+ -moz-border-radius: 100px;
+}
+
+/*searchhead*/
+div.searchhead{
+  /*border-bottom-left-radius: 50px;
+  border-top-right-radius:  50px;*/
+  border-radius: 40px;
+  border: solid 1.8px #011f68;
+}
+
+/*cardcc*/
+.cardcc{
+  border-radius: 20px;
+  border: solid 1.0px green; 
+  border-color:#ffd3d3
+}
+
+/*d3*/
+.bod {
+  margin: 0;
+  background: #fff;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+rect {
+  fill: none;
+  pointer-events: all;
+}
+
+circle {
+  fill: none;
+  stroke-width: 1.5px;
+}
+
+
+/*aboutdiv*/
+.aboutdiv{
+  text-align: center;
+  margin-top: 6%;
+}
+.aboutimg{
+  /*margin-top: 6%;*/
+}
+.aboutweb{
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;position: absolute;
+}
+/*mediabanner for viewbesties*/
+.mediabanner{
+  text-align: center;
+}
+
+/*ionviewbestiesdivider*/
+hr#ionviewbestiesdivider{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+/* viewbesties header colviewbestiesimage*/
+.colviewbestiesimage{
+  margin-top: 5%;
+}
+.colviewbestiesname{
+  margin-top: 5%;
+  text-align: center;
+  margin-right: 6%;
+}
+
+/*google map*/
+#map {
+  width: 100%;
+  height: 100%;
+}
+/*#map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}*/
+
+#floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+
+/*navigatelocation on home*/
+.navigatelocation{
+  font-size:36px;
+  position:absolute;
+  right:0;
+  margin-right:10%;
+  text-shadow: 7px 7px 5px grey;
+  cursor:pointer;
+  color: #ff7373;
+}
+.navigatelocation.animated.rotateInUpRight {
+  animation-delay: 0.5s;
+}
+a.navigatechat {
+  color: #f4bd97;
+  font-size:36px;
+  position:relative;
+  cursor: pointer;
+  animation-delay: 1.2s;
+}
+a.navigateinvite {
+  color: #4d78a7;
+  font-size:36px;
+  margin-right: 10px;
+  position:relative;
+  cursor: pointer;
+  animation-delay: 1.5s;
+}
+
+/*error animation css*/
+.error1{
+  max-width: 70%;
+  margin-left: 12%;
+  align-items: center;
+  animation-delay: 0.8s;
+}
+.error2{
+  align-items: center;
+  max-width: 45%;
+  max-height: 20%;
+  margin-left: 10%;
+  animation-delay: 1.0s;
+}
+
+
+.navigatelocationview{
+  font-size:36px;
+  text-align: left;
+  align-items: left;
+  align-self: left;
+  left:0;
+  text-shadow: 7px 7px 5px grey;
+  cursor:pointer;
+  color: #ff7373;
+}
+.navigatelocationview.animated.fadeIn{
+  animation-delay: 0.5s;
+}
+
+/*cardnotmeet for allmeets*/
+.cardnotmeet{
+  border-radius: 40px;
+  /*border-top-left-radius: 50px;  */
+}
+div.cardnotmeet{
+  border-radius: 40px;
+  background: #ff7373; 
+  color: #fff;
+}
+
+/*allmeets model*/
+.colviewbestiesimagemodel{
+  margin-top: 5%;
+  text-align: center;
+}
+.colviewbestiesnamemodel{
+  margin-top: 5%;
+  text-align: center;
+}
+
+/*chat view chattextnbtn*/
+.chatdiv{
+  max-height: 100%;
+}
+.chattexts{
+  max-height: 100%;
+}
+.chattextnbtn{
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+.chatfrom{/*sending the user*/
+  margin-left: 30%;
+  margin-top: 2%;
+  right: 0;
+  background: #8ac5ea;
+  padding-top: 1%;
+  padding-left: 4%;
+  padding-right: 8%;
+  padding-bottom: 1%;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 50px;
+  animation-delay: 0.5s;
+}
+.chatto{/*receving from other*/
+  margin-right: 30%;
+  margin-top: 2%;
+  left: 0;
+  background: #d3ffce;
+  padding-top: 1%;
+  padding-right: 4%;
+  padding-left: 8%;
+  padding-bottom: 1%;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 50px;
+  animation-delay: 0.5s;
+}
+.chattextbox{
+  width: 100%;
+}
+.chatbtn{
+  background: none;
+  border-radius: 40px;
+}
+.chatbtndiv{
+  text-align: right;
+}
+
+/*privacy*/
+.firstcharacter { 
+  float: left; 
+  color: #903; 
+  font-size: 75px; 
+  line-height: 60px; 
+  padding-top: 4px; 
+  padding-right: 8px; 
+  padding-left: 3px; 
+  font-family: Georgia; 
+}
+.privacyp1,.privacyp2{
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/*viewbestieschatanchor*/
+a.viewbestieschatanchor{
+  color: #000;
+  text-decoration: none;
+}
+a.hover{
+  text-decoration: none;
+  color: #000;
+}
+
+
+
+/*floating button bottom right*/
+button#btnround{
+  bottom: 0;
+  right: 0;
+}
+button.button-icon.round-overlay-button {
+  position: absolute;
+  height: 56px;;
+  width: 56px;;
+  border-radius: 50%;
+  min-height: 56px;;
+  padding: 0;
+  border: none;
+
+  background-color: #ff7373;
+  color: white;
+
+  box-shadow:  0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26) !default;
+  transition: all linear 220ms;
+  transform: translate3d(0,0,0);
+  backface-visibility: hidden;
+
+  &.energized {
+    background-color: #ff7373;
+    color: white;
+
+    &.activated {
+      background-color: darken(#ff7373, 15%);
+    }
+  }
+  
+  &.assertive {
+    background-color: #ef473a !default;
+    color: white;
+
+    &.activated {
+      background-color: darken(#ef473a !default, 15%);
+    }
+  }
+
+  &.positive {
+    background-color: #387ef5 !default;
+    color: white;
+
+    &.activated {
+      background-color: darken(#387ef5 !default, 15%);
+    }
+  }
+
+  &.stable {
+    background-color: rgba(black, 0.26) !default;
+    color: rgba(black, 0.26) !default;
+
+    &.activated {
+      background-color: darken(rgba(black, 0.26) !default, 15%);
+    }
+  }
+
+  &.icon {
+    &:before {
+      font-size: 24px;
+    }
+  }
+
+  &.small {
+    height: 40px;
+    width: 40px;
+    min-height: 40px;
+    padding: 0;
+    border: none;
+
+    &.icon {
+      &:before {
+        line-height: 40px;
+      }
+    }
+  }
+
+  &.activated {
+    opacity: 1;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2) !default;
+  }
+
+  &.left {
+    left: 1px;
+    top: 16px;
+  }
+
+  &.bottom-edge-right {
+    bottom: -24px;
+    right: 16px;
+    z-index: 12;
+  }
+
+  &.bottom-right {
+    bottom: 0;
+    margin-bottom: 16px;
+    right: 16px;
+    z-index: 2;
+
+    &.slide-down {
+      transform: translate3d(0,88px,0);
+    }
+
+  }
+}
