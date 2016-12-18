@@ -24,7 +24,22 @@ angular.module('besties')
   var link2 = "mydomain.com";
   var message = "Sharing to social media the besties";
   $scope.shareapp = function(){
-    $cordovaActionSheet.show(options)
+    $cordovaSocialSharing
+    .share(message, "Share", file, link1) // Share via native share sheet
+    .then(function(result) {
+      // Success!
+      $cordovaToast
+            .show('Shared with social', 'long', 'bottom')
+            .then(function(success) {
+              // success
+            }, function (error) {
+              // error
+            });
+    }, function(err) {
+      // An error occured. Show a message to the user
+    });
+
+    /*$cordovaActionSheet.show(options)
       .then(function(btnIndex){
         var index = btnIndex;
         if(index == 0) {
@@ -60,7 +75,7 @@ angular.module('besties')
           });
         }
       });
-    $log.warn("shareapp called");
+    $log.warn("shareapp called");*/
   };
 });
 
