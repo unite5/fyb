@@ -1,5 +1,5 @@
 angular.module('besties')
-.controller('viewbestiesController',function($scope,$log,$cordovaSms,$stateParams,$cordovaSocialSharing,$cordovaToast){
+.controller('viewbestiesController',function($scope,$log,$ionicPopup,$cordovaSms,$stateParams,$cordovaSocialSharing,$cordovaToast){
 	$scope.name = $stateParams.name;
 	$log.info("current view for "+$stateParams.name);
 
@@ -37,28 +37,51 @@ angular.module('besties')
 	}
 
 	$scope.bestieswhatsapp = function(){
-    if(ionic.Platform.isIOS()) {
-      $cordovaSocialSharing
-      .shareViaWhatsApp(null, null, file, link) // Share via native share sheet
-      .then(function(result) {
-              // Success!
-      }, function(err) {
-              // An error occured. Show a message to the user
-      });
-    } else {
-		  $cordovaSocialSharing
-	    .shareViaWhatsApp(null, "www/img/ionic.png", "mydomain.com")
-	    .then(function(result) {
-	      /*$cordovaToast
-            .show('Shared with Whatsapp', 'long', 'bottom')
-            .then(function(success) {
-              // success
-            }, function (error) {
-              // error
-            });*/
-	    }, function(err) {
-	      // An error occurred. Show a message to the user
-	    });
-    }
+    $scope.data = {};
+
+    // An elaborate, custom popup
+    var myPopup = $ionicPopup.show({
+      template: '<input type="text" ng-model="data.msg">',
+      title: 'Your message...',
+      subTitle: 'Please use normal words!',
+      scope: $scope,
+      buttons: [
+        { text: 'No' },
+        {
+          text: '<b>Send</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            if (!$scope.data.msg) {
+              //don't allow the user to close unless he enters wifi password
+              e.preventDefault();
+            } else {
+              return $scope.data.msg;
+            }
+          }
+        }
+      ]
+    });
+    myPopup.then(function(res) {
+      console.log('Tapped!', res);
+      if(ionic.Platform.isIOS()) {
+        var abid = "";
+        $cordovaSocialSharing
+        .shareViaWhatsAppToReceiver(abid,res, null, file, link) // Share via native share sheet
+        .then(function(result) {
+                // Success!
+        }, function(err) {
+                // An error occured. Show a message to the user
+        });
+      } else {
+        var tel = "+919768431024";
+        $cordovaSocialSharing
+        .shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
+        .then(function(result) {
+          
+        }, function(err) {
+          // An error occurred. Show a message to the user
+        });
+      }
+    });
 	}
 })

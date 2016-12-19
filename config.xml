@@ -32,6 +32,7 @@
   <allow-intent href="https://*/*" />
   <allow-intent href="tel:*" />
   <access origin="tel:*" launch-external="yes"/>
+  <access origin="whatsapp:*" launch-external="yes" />
   <allow-intent href="sms:*" />
   <allow-intent href="mailto:*" />
   <allow-intent href="geo:*" />
