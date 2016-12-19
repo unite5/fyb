@@ -25,7 +25,7 @@ angular.module('besties')
   var message = "Sharing to social media the besties";
   $scope.shareapp = function(){
     $cordovaSocialSharing
-    .share(message, "Share", file, link1) // Share via native share sheet
+    .share(message, "Share", image, link1) // Share via native share sheet
     .then(function(result) {
       // Success!
       $cordovaToast
