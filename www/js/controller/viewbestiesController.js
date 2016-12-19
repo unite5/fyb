@@ -37,8 +37,17 @@ angular.module('besties')
 	}
 
 	$scope.bestieswhatsapp = function(){
-		$cordovaSocialSharing
-	    .shareViaWhatsApp("Hello ionic", "img/ionic.png", "mydomain.com")
+    if(ionic.Platform.isIOS()) {
+      $cordovaSocialSharing
+      .shareViaWhatsApp(null, null, file, link) // Share via native share sheet
+      .then(function(result) {
+              // Success!
+      }, function(err) {
+              // An error occured. Show a message to the user
+      });
+    } else {
+		  $cordovaSocialSharing
+	    .shareViaWhatsApp(null, "www/img/ionic.png", "mydomain.com")
 	    .then(function(result) {
 	      /*$cordovaToast
             .show('Shared with Whatsapp', 'long', 'bottom')
@@ -50,5 +59,6 @@ angular.module('besties')
 	    }, function(err) {
 	      // An error occurred. Show a message to the user
 	    });
+    }
 	}
 })

@@ -19,7 +19,7 @@ angular.module('besties')
     androidEnableCancelButton:true,
     winphoneEnableCancelButton:true
   };
-  var image = "img/ionic.png";
+  var image = "www/img/ionic.png";
   var link1 = "mydomain.com";
   var link2 = "mydomain.com";
   var message = "Sharing to social media the besties";
