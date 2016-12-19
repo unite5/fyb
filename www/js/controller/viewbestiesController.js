@@ -37,6 +37,7 @@ angular.module('besties')
 	}
 
 	$scope.bestieswhatsapp = function(){
+    //https://codepen.io/rossmartin/pen/XJmpQr
     $scope.data = {};
 
     // An elaborate, custom popup
@@ -73,7 +74,7 @@ angular.module('besties')
                 // An error occured. Show a message to the user
         });
       } else {
-        var tel = "9768431024";
+        var tel = "+91 9768431024";
         $cordovaSocialSharing
         .shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
         .then(function(result) {
