@@ -13,7 +13,7 @@ angular.module('besties')
           tilt:10
         });
         //for identify distance
-        var iconBase = '/img/ic/';
+        var iconBase = 'img/ic/';
         var icons = {
           parking: {
             icon: iconBase + 'parking_lot_maps.png'
