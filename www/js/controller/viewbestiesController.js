@@ -73,7 +73,7 @@ angular.module('besties')
                 // An error occured. Show a message to the user
         });
       } else {
-        var tel = "+919768431024";
+        var tel = "9768431024";
         $cordovaSocialSharing
         .shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
         .then(function(result) {
@@ -82,6 +82,7 @@ angular.module('besties')
           // An error occurred. Show a message to the user
         });
       }
+      alert(res);
     });
 	}
 })
