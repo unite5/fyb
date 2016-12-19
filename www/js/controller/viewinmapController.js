@@ -5,7 +5,7 @@ angular.module('besties')
       //for map
         var map = new google.maps.Map(document.getElementById('map'), {
           backgroundColor:'#63d0ff',
-          zoom: 24,
+          zoom: 22,
           center: uluru,
           fullscreenControl:true,
           maxZoom:24,
@@ -13,7 +13,7 @@ angular.module('besties')
           tilt:10
         });
         //for identify distance
-        var iconBase = '../img/ic/';
+        var iconBase = '/img/ic/';
         var icons = {
           parking: {
             icon: iconBase + 'parking_lot_maps.png'
@@ -68,7 +68,7 @@ angular.module('besties')
       var marker = new google.maps.Marker({
         position: uluru,
         map: map,
-        icon:'../img/ic/nav.png',
+        icon:'img/ic/nav.png',
          animation: google.maps.Animation.DROP,
         title: 'Person Name'
       });
