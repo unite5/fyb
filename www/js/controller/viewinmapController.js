@@ -5,24 +5,24 @@ angular.module('besties')
       //for map
         var map = new google.maps.Map(document.getElementById('map'), {
           backgroundColor:'#63d0ff',
-          zoom: 4,
+          zoom: 24,
           center: uluru,
           fullscreenControl:true,
-          maxZoom:4,
+          maxZoom:24,
           mapTypeId:google.maps.MapTypeId.SATELLITE,
           tilt:10
         });
         //for identify distance
-        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var iconBase = '../img/ic/';
         var icons = {
           parking: {
             icon: iconBase + 'parking_lot_maps.png'
           },
           foundfriend:{
-            icon:'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png'
+            icon:iconBase + 'user2.png'
           },
           me: {
-            icon:"http://www.libarts.up.ac.th/v2/marjorthai/admin/userfiles/image/avatar(2).png"
+            icon:iconBase + "user1.png"
           },
           library: {
             icon: iconBase + 'library_maps.png'
@@ -68,9 +68,9 @@ angular.module('besties')
       var marker = new google.maps.Marker({
         position: uluru,
         map: map,
-        icon:'http://www.enterprisingfairs.in/images/map-icon.png',
+        icon:'../img/ic/nav.png',
          animation: google.maps.Animation.DROP,
-        title: 'Uluru (Ayers Rock)'
+        title: 'Person Name'
       });
       marker.addListener('click', function() {
         infowindow.open(map, marker);
