@@ -14,19 +14,26 @@
                   <p>{{ email.value }}</p>
                 </div>
               </div>
-  		<!-- <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+        </div>
+        New eseet
+  		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
-           <ion-item ng-repeat="item in items"
+           <ion-item ng-repeat="contact in phoneContacts"
                      item="item"
-                     href="#/item/{{item.id}}" class="item-remove-animate">
+                     href="#" class="item-remove-animate">
 
                      <div class="row">
                        <div class="col">
                        <img src="img/ionic.png" width="45" height="45">
                      </div>
                       <div class="col col-75" style="left:0">
-                       <h2>Venkman</h2>
-                       <p>Back off, man. I'm a scientist.  {{ item.id }}</p>
+                       <h2>{{ contact.name.formatted }}</h2>
+                       <div ng-repeat="number in contact.phoneNumbers">
+                          <p><i class="icon ion-ios-telephone-outline"></i>{{ number.value }}</p>
+                       </div>
+                       <div ng-repeat="email in contact.emails">
+                        <p><i class="icon ion-ios-pricetags-outline"></i>{{ email.value }}</p>
+                       </div>
                        </div>
                      </div>
              <ion-delete-button class="ion-minus-circled"
@@ -44,6 +51,6 @@
            </ion-item>
 
          </ion-list>
- -->
+
   </ion-content>
 </ion-view>
