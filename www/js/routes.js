@@ -150,5 +150,5 @@ angular.module('besties')
   })
 
   $urlRouterProvider.otherwise('/app/home');
-
+  //$urlRouterProvider.otherwise('/login');
 })
