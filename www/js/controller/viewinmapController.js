@@ -1,7 +1,7 @@
 angular.module('besties')
 .controller('viewinmapController',function($log,$http,$scope,$compile,$stateParams,$cordovaGeolocation,$ionicLoading){
 	//googlemap
-      var uluru = {lat: 19.018044, lng: 72.843620};//19.018044,72.843620
+      var uluru = {lat: 19.018044, lng: 72.843120};//19.018044,72.843620
       //for map
         var map = new google.maps.Map(document.getElementById('map'), {
           backgroundColor:'#63d0ff',
@@ -36,6 +36,7 @@ angular.module('besties')
          var marker = new google.maps.Marker({
            position: feature.position,
            icon: icons[feature.type].icon,
+           animation: google.maps.Animation.DROP,
            map: map
          });
        }
@@ -43,11 +44,11 @@ angular.module('besties')
          {
            position: new google.maps.LatLng(19.018044, 72.843620),
            type: 'me'
-         },
+         }/*,
         {
            position: new google.maps.LatLng(19.018044, 72.843120),
            type: 'foundfriend'
-         }
+         }*/
        ];
 
       for (var i = 0, feature; feature = features[i]; i++) {

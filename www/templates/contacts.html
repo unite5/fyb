@@ -1,6 +1,20 @@
 <ion-view view-title="All Contacts">
   <ion-content>
-  		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+      <div class="card" ng-repeat="contact in phoneContacts">
+              <div class="item item-divider">
+                {{ contact.name.formatted }}
+              </div>
+              <div class="item item-text-wrap">
+                <p><strong>Phone(s)</strong></p>
+                <div ng-repeat="number in contact.phoneNumbers">
+                  <p>{{ number.value }}</p>
+                </div>
+                <p><strong>Email(s)</strong></p>
+                <div ng-repeat="email in contact.emails">
+                  <p>{{ email.value }}</p>
+                </div>
+              </div>
+  		<!-- <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
            <ion-item ng-repeat="item in items"
                      item="item"
@@ -30,6 +44,6 @@
            </ion-item>
 
          </ion-list>
-
+ -->
   </ion-content>
 </ion-view>
