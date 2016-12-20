@@ -40,13 +40,13 @@ angular.module('besties')
          });
        }
        var features = [
-        //  {
-        //    position: new google.maps.LatLng(19.018044, 72.843620),
-        //    type: 'info'
-        //  },
+         {
+           position: new google.maps.LatLng(19.018044, 72.843620),
+           type: 'me'
+         },
         {
            position: new google.maps.LatLng(19.018044, 72.843120),
-           type: 'library'
+           type: 'foundfriend'
          }
        ];
 
