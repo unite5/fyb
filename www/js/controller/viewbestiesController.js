@@ -70,16 +70,19 @@ angular.module('besties')
         .shareViaWhatsAppToReceiver(abid,res, null, file, link) // Share via native share sheet
         .then(function(result) {
                 // Success!
+                alert("ios>"+result);
         }, function(err) {
+          alert("ios>"+err);
                 // An error occured. Show a message to the user
         });
       } else {
-        var tel = "+91 9768431024";
+        var tel = "+91-9768431024";
         $cordovaSocialSharing
         .shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
         .then(function(result) {
-          
+          alert("android>"+result);
         }, function(err) {
+          alert("android>"+err);
           // An error occurred. Show a message to the user
         });
       }
