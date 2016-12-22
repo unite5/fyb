@@ -11,7 +11,7 @@ angular.module('besties')
 			location.href="/#/app/home";
 		},2000);
 	};
-	$scope.staydelay = function(){
+	$scope.staydelay2 = function(){
 		$timeout(function(){
 			alert('going via go ');
 			$state.go('app.home');
