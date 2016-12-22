@@ -11,7 +11,8 @@ angular.module('besties')
   
   .state('login',{
     url:'/login',
-    templateUrl:'login.html'
+    templateUrl:'login.html',
+    controller:'loginController'
   })
   
   .state('app',{

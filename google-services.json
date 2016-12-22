@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "221413666147",
+    "firebase_url": "https://besties2-153017.firebaseio.com",
+    "project_id": "besties2-153017",
+    "storage_bucket": "besties2-153017.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221413666147:android:756ec55aea965ff1",
+        "android_client_info": {
+          "package_name": "com.jp.besties"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221413666147-7kn508a6678v00gdioifrt9jbuugt8tf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx-f_o1pyivHEAg_jqvG4XYi30s7L2pio"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
