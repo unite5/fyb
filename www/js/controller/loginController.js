@@ -2,7 +2,8 @@ angular.module('besties')
 .controller('loginController',function($scope,$log,$state,$timeout){
 	$log.warn('in loginController');
 	$scope.home = function(){
-		$state.go('app.home');
+		//$state.go('app.home');
+		window.location = "index.html";
 	};
 
 	$scope.staydelay = function(){
