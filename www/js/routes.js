@@ -150,6 +150,6 @@ angular.module('besties')
     }
   })
 
-  //$urlRouterProvider.otherwise('/app/home');
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/app/home');
+  //$urlRouterProvider.otherwise('/login');
 })
