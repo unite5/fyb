@@ -50,7 +50,7 @@
       <button class="button button-positive" ng-click="staydelay()">staydelay</button>
       <button class="button button-positive" ng-click="staydelay2()">staydelay2</button> -->
     
-    <div id="firstdiv" class="firstdiv" style="display: none">
+    <div id="firstdiv" class="firstdiv" style="display: block;">
       <p class="fybp1 animated fadeInUp">
             Find Your Besties
       </p>
@@ -60,8 +60,8 @@
         <!-- <div style="m"><img src="img/starterimage.png"></div> -->
         <p class="fybplast animated bounceInUp">www.mydomain.com</p>
     </div>
-    <form>
-    <div id="seconddiv" class="seconddiv" style="display: block;">
+    <form name="login">
+    <div id="seconddiv" class="seconddiv" style="display: none;">
       <p class="fybplogin animated zoomInDown">
             Join Us
       </p>
@@ -72,12 +72,43 @@
             <input type="text" ng-keyup="creatego1(uname)" ng-model="uname" ng-minlength="3" ng-maxlength="20" class="seconddivinput" id="seconddivinput" placeholder="Your Good Name">
           </label>
         </div>
-        <div class="seconddivbtngo1">
-            <button id="btngo1" class="button btngo1 animated flipInX"><!-- flipOutX -->
+        <div class="seconddivbtngo1 text-center">
+            <button id="btngo1" ng-click="createcontactdiv()" class="button btngo1 animated flipInX"><!-- flipOutX -->
               <img src="img/go1.png" width="60" height="60">
             </button>
         </div>
       </div>
+    </div>
+
+    <div id="thirddiv" class="thirddiv" style="display: none;">
+      <p class="fybpcontact animated zoomInUp">
+            & Your Contact
+      </p>
+      <div id="thirddivinputdiv" class="thirddivinputdiv">
+        <div class="list thirddivinputdivlist animated rubberBand">
+          <label class="item item-input item-floating-label text-center tdlabel">
+            <span class="input-label tdspan">Contact Number</span>
+            <input type="text" ng-keyup="submit(uphone)" ng-model="uphone" ng-minlength="10" ng-maxlength="20" class="thirddivinput" id="thirddivinput" placeholder="Contact Number">
+          </label>
+        </div>
+        <div class="thirddivbtngo1">
+            <button id="btngo2" ng-click="callsubmit()" class="button btngo2 animated flipInX">
+              <img src="img/go2.png">
+            </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="forthdiv" class="forthdiv" style="display: none;">
+      <p class="fybpdone animated zoomInUp">
+            Done!!
+      </p>
+      <div class="forthdivbtngo1">
+          <img src="img/go4.png" class="forthimg animated fadeIn">
+      </div>
+      <p class="fybpcomplete animated fadeIn">
+            www.mydomain.com
+      </p>
     </div>
     </form>
     </ion-content>

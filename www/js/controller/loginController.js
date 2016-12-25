@@ -1,5 +1,5 @@
 angular.module('besties')
-.controller('loginController',function($scope,$log,$state,$timeout){
+.controller('loginController',function($scope,$log,$state,$timeout,$ionicLoading){
 	$log.warn('in loginController');
 	$scope.home = function(){
 		//$state.go('app.home');
@@ -21,6 +21,8 @@ angular.module('besties')
 	//main
 	var firstdiv = document.getElementById("firstdiv");
 	var seconddiv = document.getElementById("seconddiv");
+	var thirddiv = document.getElementById("thirddiv");
+	var forthdiv = document.getElementById("forthdiv");
 	$timeout(function(){
 		firstdiv.style.display = "none";
 		seconddiv.style.display = "block";
@@ -33,6 +35,7 @@ angular.module('besties')
 		  var name = inputtxt;  
 		  var d = $scope.uname;
 		  console.log("called "+name+" "+d+" fddf");
+		  btngo1.style.display = "block";
 	      /*if(inputtxt.value.match(numbers))  
 	      {  
 		      console.log("if called");
@@ -51,5 +54,28 @@ angular.module('besties')
 		      return true;  
 		  	}
 	      }  */
+	}
+
+	$scope.createcontactdiv = function(){
+		  seconddiv.style.display = "none";
+		  thirddiv.style.display = "block";
+
+	}
+
+	$scope.callsubmit = function(){
+		$timeout(function() {
+			thirddiv.style.display = "none";
+			forthdiv.style.display = "block";
+			$timeout(function() {
+				$ionicLoading.show({
+				  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>',
+				  duration: 3000
+				}).then(function(){
+				   	$timeout(function() {
+						$state.go("app.home");
+					}, 1200);
+				});
+			}, 3000);
+		}, 1500);
 	}
 })

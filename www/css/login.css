@@ -2,7 +2,7 @@
 	background-color: #699cfa; 
 }
 /*******************First Div For Logo************************/
-.firstdiv, .seconddiv{
+.firstdiv, .seconddiv, .thirddiv{
 	width: 100%;
 	/*height: 100%;
   position: absolute;*/
@@ -69,7 +69,9 @@
 	animation-duration:1.0s;
 }
 .seconddivbtngo1{
+	margin: 35%;
 	background: none;
+	text-align: center;
 }
 .btngo1{
 	background: none;
@@ -97,6 +99,86 @@
 
 
 /*******************Third Div For Contact************************/
+.thirddiv{
+	/*animation-delay: 4.0s;
+	-webkit-animation-duration:0.3s;
+	animation-duration: 0.3s;*/
+	margin-top: 22%;
+}
+.fybpcontact{
+	font-size: 42px;
+	font-weight: 500;
+	animation-delay: 0.1s;
+	-webkit-animation-duration:1.0s;
+	animation-duration:1.0s;
+}
+.thirddivinputdiv{
+	margin-left: 18%;
+	margin-right: 18%;
+	margin-top: 25%;
+}
+.thirddivinputdivlist{
+	background-color: #fff;
+	border-radius: 40px;
+  border: solid 1.8px #011f68;
+  animation-delay: 1.2s;
+	-webkit-animation-duration:1.6s;
+	animation-duration:1.6s;
+}
+.thirddivbtngo1{
+	background-color: #699cfa;
+}
+.thirddivbtngo1.btngo2 img{
+	background-color: #699cfa;
+}
+.btngo2{
+	background: #699cfa;
+	cursor: pointer;
+	background-color: #699cfa;
+	margin-top: 20%;
+	animation-delay: 2.0s;
+	-webkit-animation-duration:1.0s;
+	animation-duration:1.0s;
+}
+.list,.tdlabel{
+	border:none;
+}
+.tdlabel,.tdspan{
+	text-align: center;
+}
+.tdspan{
+	margin-left: 25%;
+	align-content: center;
+	text-align: center;
+}
+.thirddivinput{
+	background-color: #000;
+	text-align: center;
+}
+
+/*******************Forth Div For Contact************************/
+.forthdiv{
+	color: #fff;
+	margin-top: 22%;
+	text-align: center;
+}
+.fybpdone{
+	font-size: 46px;
+	font-weight: 500;
+	animation-delay: 0.1s;
+	-webkit-animation-duration:1.0s;
+	animation-duration:1.0s;
+}
+.forthdivbtngo1{
+}
+.forthimg{
+	margin:15%;
+	width: 55%;
+	border-radius: 650px;
+	margin:20%;
+	background-color: blue;
+}
+
 
 
 
