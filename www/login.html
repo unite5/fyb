@@ -18,6 +18,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
@@ -41,21 +42,24 @@
     <!-- your services's js -->
   </head>
   <body ng-app="besties" ng-controller="loginController">
-    <ion-content class="loginpane">
+    <ion-content class="loginpane" scroll="false">
         
-      <h1 class="title">Find Your Besties</h1>
+      <!-- <h1 class="title">Find Your Besties</h1>
       <button class="button button-positive" ng-click="home()">Home</button>
       <a class="utton button-assertive"  href="/#/app/home">HomeLink</a>
       <button class="button button-positive" ng-click="staydelay()">staydelay</button>
-      <button class="button button-positive" ng-click="staydelay2()">staydelay2</button>
-    </ion-content>
-    <!-- <h1 class="title">Find Your Besties</h1> -->
-        <!-- <div class="badge" ng-controller="scan">
-          <h1>Established 2012</h1>
+      <button class="button button-positive" ng-click="staydelay2()">staydelay2</button> -->
+    
+    <div class="firstdiv">
+      <p class="fybp1 animated fadeInUp">
+            Find Your Besties
+      </p>
+        <div class="row fybprow">
+          <div class="col col-100 text-center"><img src="img/SpinningEarth.gif"></div>
         </div>
-        <h2 id="yourStyle">MARC THOMAS.</h2> -->
-        <!-- <div ng-view></div> -->
-
-
+        <!-- <div style="m"><img src="img/starterimage.png"></div> -->
+        <p class="fybplast animated bounceInUp">www.mydomain.com</p>
+    </div>
+    </ion-content>
   </body>
 </html>
