@@ -67,26 +67,28 @@ angular.module('besties')
       if(ionic.Platform.isIOS()) {
         var abid = "";
         $cordovaSocialSharing
-        .shareViaWhatsAppToReceiver(abid,res, null, file, link) // Share via native share sheet
+        //.shareViaWhatsAppToReceiver(abid,res, null, file, link) // Share via native share sheet
+        .shareViaWhatsApp(res,null,"mydomain.com")
         .then(function(result) {
                 // Success!
-                alert("ios>"+result);
+                //alert("ios>"+result);
         }, function(err) {
-          alert("ios>"+err);
+          //alert("ios>"+err);
                 // An error occured. Show a message to the user
         });
       } else {
         var tel = "+91-9768431024";
         $cordovaSocialSharing
-        .shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
+        //.shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
+        .shareViaWhatsApp(res,null,"mydomain.com")
         .then(function(result) {
-          alert("android>"+result);
+          //alert("android>"+result);
         }, function(err) {
-          alert("android>"+err);
+          //alert("android>"+err);
           // An error occurred. Show a message to the user
         });
       }
-      alert(res);
+      //alert(res);
     });
 	}
 })
