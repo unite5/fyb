@@ -18,4 +18,38 @@ angular.module('besties')
 			$state.go('app.home');
 		},2000);
 	};
+	//main
+	var firstdiv = document.getElementById("firstdiv");
+	var seconddiv = document.getElementById("seconddiv");
+	$timeout(function(){
+		firstdiv.style.display = "none";
+		seconddiv.style.display = "block";
+	},4500);
+	$scope.uname = "";
+	var btngo1 = document.getElementById("btngo1");
+	btngo1.style.display = "none";
+	$scope.creatego1 = function(inputtxt){
+		  var numbers = /^[0-9]+$/;
+		  var name = inputtxt;  
+		  var d = $scope.uname;
+		  console.log("called "+name+" "+d+" fddf");
+	      /*if(inputtxt.value.match(numbers))  
+	      {  
+		      console.log("if called");
+		      btngo1.style.display = "none"; 
+		      return false;  
+	      }  
+	      else  
+	      {  
+	      	if(inputtxt.value.length <= 3){
+	      		console.log("elseif called");
+		      btngo1.style.display = "none";
+		      return false;  
+	      	}else{
+		      console.log("else2 called");
+		      btngo1.style.display = "block";
+		      return true;  
+		  	}
+	      }  */
+	}
 })

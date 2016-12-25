@@ -50,16 +50,36 @@
       <button class="button button-positive" ng-click="staydelay()">staydelay</button>
       <button class="button button-positive" ng-click="staydelay2()">staydelay2</button> -->
     
-    <div class="firstdiv">
+    <div id="firstdiv" class="firstdiv" style="display: none">
       <p class="fybp1 animated fadeInUp">
             Find Your Besties
       </p>
         <div class="row fybprow">
-          <div class="col col-100 text-center"><img src="img/SpinningEarth.gif"></div>
+          <div class="col col-100 text-center"><img class="worldimagelogin animated zoomOut" src="img/SpinningEarth.gif"></div>
         </div>
         <!-- <div style="m"><img src="img/starterimage.png"></div> -->
         <p class="fybplast animated bounceInUp">www.mydomain.com</p>
     </div>
+    <form>
+    <div id="seconddiv" class="seconddiv" style="display: block;">
+      <p class="fybplogin animated zoomInDown">
+            Join Us
+      </p>
+      <div id="seconddivinputdiv" class="seconddivinputdiv">
+        <div class="list seconddivinputdivlist animated zoomIn">
+          <label class="item item-input item-floating-label text-center sdlabel">
+            <span class="input-label sdspan">Your Good Name</span>
+            <input type="text" ng-keyup="creatego1(uname)" ng-model="uname" ng-minlength="3" ng-maxlength="20" class="seconddivinput" id="seconddivinput" placeholder="Your Good Name">
+          </label>
+        </div>
+        <div class="seconddivbtngo1">
+            <button id="btngo1" class="button btngo1 animated flipInX"><!-- flipOutX -->
+              <img src="img/go1.png" width="60" height="60">
+            </button>
+        </div>
+      </div>
+    </div>
+    </form>
     </ion-content>
   </body>
 </html>

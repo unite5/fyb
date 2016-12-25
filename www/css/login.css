@@ -1,7 +1,8 @@
 .loginpane{
 	background-color: #699cfa; 
 }
-.firstdiv{
+/*******************First Div For Logo************************/
+.firstdiv, .seconddiv{
 	width: 100%;
 	/*height: 100%;
   position: absolute;*/
@@ -18,7 +19,8 @@
 	font-size: 42px;
 	font-weight: 500;
 	animation-delay: 1.2s;
-	-webkit-animation-duration:4s;
+	-webkit-animation-duration:2.0s;
+	animation-duration:2.0s;
 	-webkit-animation-iteration-count: 1;
 	-webkit-animation-fill-mode: both; 
 }
@@ -32,9 +34,75 @@
 	left: 0;
 	right: 0;
 }
+.worldimagelogin{
+	animation-delay: 3.0s;
+	-webkit-animation-duration:1.2s;
+	animation-duration: 1.2s;
+}
+
+
+/*******************Second Div For Name************************/
+.seconddiv{
+	/*animation-delay: 4.0s;
+	-webkit-animation-duration:0.3s;
+	animation-duration: 0.3s;*/
+	margin-top: 22%;
+}
+.fybplogin{
+	font-size: 42px;
+	font-weight: 500;
+	animation-delay: 0.1s;
+	-webkit-animation-duration:1.0s;
+	animation-duration:1.0s;
+}
+.seconddivinputdiv{
+	margin-left: 18%;
+	margin-right: 18%;
+	margin-top: 25%;
+}
+.seconddivinputdivlist{
+	background-color: #fff;
+	border-radius: 40px;
+  border: solid 1.8px #011f68;
+  animation-delay: 1.2s;
+	-webkit-animation-duration:1.0s;
+	animation-duration:1.0s;
+}
+.seconddivbtngo1{
+	background: none;
+}
+.btngo1{
+	background: none;
+	cursor: pointer;
+	margin-top: 20%;
+	animation-delay: 2.0s;
+	-webkit-animation-duration:1.0s;
+	animation-duration:1.0s;
+}
+.list,.sdlabel{
+	border:none;
+}
+.sdlabel,.sdspan{
+	text-align: center;
+}
+.sdspan{
+	margin-left: 25%;
+	align-content: center;
+	text-align: center;
+}
+.seconddivinput{
+	background-color: #000;
+	text-align: center;
+}
+
+
+/*******************Third Div For Contact************************/
+
+
+
 .conteneur
 {
-  background-color:#f8b334;
+  background-color:#699cfa;
   width: 100%;
   height: 100%;
   position: absolute;
