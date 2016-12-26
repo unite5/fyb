@@ -156,6 +156,10 @@
 }
 .thirddivbtngo1{
 	background-color: #699cfa;
+  margin: 40%;
+  padding-bottom: 20%;
+  background: none;
+  text-align: center;
 }
 .thirddivbtngo1.btngo2 img{
 	background-color: #699cfa;

@@ -34,12 +34,17 @@
     <script src="js/app.js"></script>
     <script src="js/routes.js"></script>
 
+    <!-- your directive's js -->
+    <!-- <script src="js/directive/charsOnly.js"></script>
+    <script src="js/directive/numbersOnly.js"></script> -->
+
     <!-- your controller's js -->
     <script src="js/controller/loginController.js"></script>
     <script type="text/javascript" src="js/controller/menuController.js"></script>
     <script src="js/controller/homeController.js"></script>
 
     <!-- your services's js -->
+
   </head>
   <body ng-app="besties" ng-controller="loginController">
     <ion-content class="loginpane" scroll="false">
@@ -48,7 +53,8 @@
       <button class="button button-positive" ng-click="home()">Home</button>
       <a class="utton button-assertive"  href="/#/app/home">HomeLink</a>
       <button class="button button-positive" ng-click="staydelay()">staydelay</button>
-      <button class="button button-positive" ng-click="staydelay2()">staydelay2</button> -->
+      <button class="butt
+    n button-positive" ng-click="staydelay2()">staydelay2</button> -->
     
     <div id="firstdiv" class="firstdiv" style="display: block;">
       <p class="fybp1 animated fadeInUp">
@@ -69,7 +75,7 @@
         <div class="list seconddivinputdivlist animated zoomIn">
           <label class="item item-input item-floating-label text-center sdlabel">
             <span class="input-label sdspan">Your Good Name</span>
-            <input type="text" ng-keyup="creatego1(uname)" ng-model="uname" ng-minlength="3" ng-maxlength="20" class="seconddivinput" id="seconddivinput" placeholder="Your Good Name">
+            <input type="text" class="seconddivinput" id="seconddivinput" ng-model="formdata.uname" chars-only placeholder="Your Good Name"><!-- ng-keyup="creatego1(uname)" -->
           </label>
         </div>
         <div class="seconddivradiodiv" id="seconddivradiodiv">
@@ -78,10 +84,10 @@
           <p class="sdrp animated flipInX">Are You</p>
           <div class="row">
             <div class="col col-50 sdr1div">
-              <ion-radio ng-model="gender" ng-click="callsubmitdivsecond()" class="sdr1 animated bounceInLeft" ng-value="'Male'">He</ion-radio>
+              <ion-radio ng-model="formdata.gender" ng-click="callsubmitdivsecond()" class="sdr1 animated bounceInLeft" ng-value="'Male'">He</ion-radio>
             </div>
             <div class="col col-50 sdr2div">
-              <ion-radio ng-model="gender" ng-click="callsubmitdivsecond()" class="sdr2 animated bounceInRight" ng-value="'Female'">She</ion-radio>
+              <ion-radio ng-model="formdata.gender" ng-click="callsubmitdivsecond()" class="sdr2 animated bounceInRight" ng-value="'Female'">She</ion-radio>
             </div>
           </div>
         </div>
@@ -101,12 +107,12 @@
         <div class="list thirddivinputdivlist animated rubberBand">
           <label class="item item-input item-floating-label text-center tdlabel">
             <span class="input-label tdspan">Contact Number</span>
-            <input type="text" ng-keyup="submit(uphone)" ng-model="uphone" ng-minlength="10" ng-maxlength="20" class="thirddivinput" id="thirddivinput" placeholder="Contact Number">
+            <input type="text" ng-model="formdata.uphone" ng-minlength="10" ng-maxlength="10" class="thirddivinput" id="thirddivinput" numbers-only placeholder="10 Digit Contact Number">
           </label>
         </div>
         
       </div>
-      <div class="thirddivbtngo1">
+      <div class="thirddivbtngo1 text-center">
             <button id="btngo2" ng-click="callsubmitotp()" class="button btngo2 animated flipInX">
               <img src="img/go1.png" width="70" height="70">
             </button>
@@ -122,7 +128,7 @@
             <div class="list otpdivinputdivlist animated jello">
               <label class="item item-input item-floating-label text-center tdlabel">
                 <span class="input-label tdspan">6 digit OTP</span>
-                <input type="text" ng-keyup="submit(otp)" ng-model="otp" ng-minlength="10" ng-maxlength="20" class="thirddivinput" id="thirddivinput" placeholder="6 digit OTP">
+                <input type="text" ng-keyup="submit(otp)" ng-model="formdata.otp" ng-minlength="6" ng-maxlength="6" class="thirddivinput" id="thirddivinput" placeholder="6 digit OTP">
               </label>
             </div>
             

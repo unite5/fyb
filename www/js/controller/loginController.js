@@ -19,6 +19,13 @@ angular.module('besties')
 		},2000);
 	};
 	//main
+	$scope.formdata = {
+		'uname':'',
+		'gender':'',
+		'uphone':'',
+		'otp':''
+	}
+
 	var firstdiv = document.getElementById("firstdiv");
 	var seconddiv = document.getElementById("seconddiv");
 	var thirddiv = document.getElementById("thirddiv");
@@ -31,13 +38,15 @@ angular.module('besties')
 	},4500);
 	$scope.uname = "";
 	var btngo1 = document.getElementById("btngo1");
+	var btngo2 = document.getElementById("btngo2");
 	btngo1.style.display = "none";
+	btngo2.style.display = "none";
 	seconddivradiodiv.style.display = "none";
-	$scope.creatego1 = function(inputtxt){
+	$scope.creatego1 = function(inputtxt){//unused
 		  var numbers = /^[0-9]+$/;
 		  var name = inputtxt;  
 		  var d = $scope.uname;
-		  console.log("called "+name+" "+d+" fddf");
+		  //console.log("called "+name+" "+d+" fddf");
 		  seconddivradiodiv.style.display = "block";
 	      /*if(inputtxt.value.match(numbers))  
 	      {  
@@ -93,4 +102,70 @@ angular.module('besties')
 			}, 3000);
 		}, 1500);
 	}
+})
+
+.directive('charsOnly', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, element, attr, ngModelCtrl) {
+            var seconddiv = document.getElementById("seconddiv");
+			var thirddiv = document.getElementById("thirddiv");
+			var seconddivradiodiv = document.getElementById('seconddivradiodiv');
+			
+            function fromUser(text) {
+                console.log("directivecalled");
+                if (text) {
+                    var transformedInput = text.replace(/[^a-zA-Z ]/g, '');
+
+                    if (transformedInput !== text) {
+                        ngModelCtrl.$setViewValue(transformedInput);
+                        ngModelCtrl.$render();
+                    }
+                    if(text.length<3){
+                        console.log("less than 3");
+                        seconddivradiodiv.style.display = "none";
+                        document.getElementById("btngo1").style.display = "none";
+                    }
+                    if(text.length>3){
+                        console.log("greater than 3");
+                        seconddivradiodiv.style.display = "block";
+                    }
+                    //console.log(text+" less than 3 "+text.length+" "+transformedInput);
+                    return transformedInput;
+                }
+                return undefined;
+            }            
+            ngModelCtrl.$parsers.push(fromUser);
+        }
+    };
+})
+
+.directive('numbersOnly', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, element, attr, ngModelCtrl) {
+        	var btngo2 = document.getElementById('btngo2');
+            function fromUser(text) {
+                if (text) {
+                    var transformedInput = text.replace(/[^0-9]/g, '');
+
+                    if (transformedInput !== text) {
+                        ngModelCtrl.$setViewValue(transformedInput);
+                        ngModelCtrl.$render();
+                    }
+                    if(text.length<10){
+                    	btngo2.style.display = "none";
+                        console.log("less than 10");
+                    }
+                    if(text.length == 10){
+                    	btngo2.style.display = "block";
+                        console.log("equals 10");
+                    }
+                    return transformedInput;
+                }
+                return undefined;
+            }            
+            ngModelCtrl.$parsers.push(fromUser);
+        }
+    };
 })
