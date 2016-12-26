@@ -23,19 +23,21 @@ angular.module('besties')
 	var seconddiv = document.getElementById("seconddiv");
 	var thirddiv = document.getElementById("thirddiv");
 	var forthdiv = document.getElementById("forthdiv");
+	var seconddivradiodiv = document.getElementById('seconddivradiodiv');
 	$timeout(function(){
 		firstdiv.style.display = "none";
-		seconddiv.style.display = "block";
+		//seconddiv.style.display = "block";
 	},4500);
 	$scope.uname = "";
 	var btngo1 = document.getElementById("btngo1");
 	btngo1.style.display = "none";
+	seconddivradiodiv.style.display = "none";
 	$scope.creatego1 = function(inputtxt){
 		  var numbers = /^[0-9]+$/;
 		  var name = inputtxt;  
 		  var d = $scope.uname;
 		  console.log("called "+name+" "+d+" fddf");
-		  btngo1.style.display = "block";
+		  seconddivradiodiv.style.display = "block";
 	      /*if(inputtxt.value.match(numbers))  
 	      {  
 		      console.log("if called");
@@ -56,6 +58,10 @@ angular.module('besties')
 	      }  */
 	}
 
+	$scope.callsubmitdivsecond = function(){
+		btngo1.style.display = "block";
+	}
+
 	$scope.createcontactdiv = function(){
 		  seconddiv.style.display = "none";
 		  thirddiv.style.display = "block";
@@ -72,7 +78,8 @@ angular.module('besties')
 				  duration: 3000
 				}).then(function(){
 				   	$timeout(function() {
-						$state.go("app.home");
+						//$state.go("app.home");
+						window.location = "index.html";
 					}, 1200);
 				});
 			}, 3000);

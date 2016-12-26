@@ -50,7 +50,7 @@
       <button class="button button-positive" ng-click="staydelay()">staydelay</button>
       <button class="button button-positive" ng-click="staydelay2()">staydelay2</button> -->
     
-    <div id="firstdiv" class="firstdiv" style="display: block;">
+    <div id="firstdiv" class="firstdiv" style="display: none;">
       <p class="fybp1 animated fadeInUp">
             Find Your Besties
       </p>
@@ -72,6 +72,19 @@
             <input type="text" ng-keyup="creatego1(uname)" ng-model="uname" ng-minlength="3" ng-maxlength="20" class="seconddivinput" id="seconddivinput" placeholder="Your Good Name">
           </label>
         </div>
+        <div class="seconddivradiodiv" id="seconddivradiodiv">
+              <!-- <ion-radio ng-model="choice" ng-value="'A'">Choose A</ion-radio>
+              <ion-radio ng-model="choice" ng-value="'B'">Choose B</ion-radio> -->
+          <p class="sdrp animated flipInX">Are You</p>
+          <div class="row">
+            <div class="col col-50 sdr1div">
+              <ion-radio ng-model="gender" ng-click="callsubmitdivsecond()" class="sdr1 animated bounceInLeft" ng-value="'Male'">He</ion-radio>
+            </div>
+            <div class="col col-50 sdr2div">
+              <ion-radio ng-model="gender" ng-click="callsubmitdivsecond()" class="sdr2 animated bounceInRight" ng-value="'Female'">She</ion-radio>
+            </div>
+          </div>
+        </div>
         <div class="seconddivbtngo1 text-center">
             <button id="btngo1" ng-click="createcontactdiv()" class="button btngo1 animated flipInX"><!-- flipOutX -->
               <img src="img/go1.png" width="60" height="60">
@@ -91,12 +104,33 @@
             <input type="text" ng-keyup="submit(uphone)" ng-model="uphone" ng-minlength="10" ng-maxlength="20" class="thirddivinput" id="thirddivinput" placeholder="Contact Number">
           </label>
         </div>
-        <div class="thirddivbtngo1">
-            <button id="btngo2" ng-click="callsubmit()" class="button btngo2 animated flipInX">
-              <img src="img/go2.png">
-            </button>
-        </div>
+        
       </div>
+      <div class="thirddivbtngo1">
+            <button id="btngo2" ng-click="callsubmit()" class="button btngo2 animated flipInX">
+              <img src="img/go1.png" width="70" height="70">
+            </button>
+      </div>
+    </div>
+
+    <div id="otpdiv" class="otpdiv" style="display: block;">
+      <p class="fybpotp animated zoomInUp">
+            Requesting OTP
+      </p>
+      <div class="otpdivtext">
+          <div id="otpdivinputdiv" class="otpdivinputdiv">
+            <div class="list otpdivinputdivlist animated jello">
+              <label class="item item-input item-floating-label text-center tdlabel">
+                <span class="input-label tdspan">6 digit OTP</span>
+                <input type="text" ng-keyup="submit(otp)" ng-model="otp" ng-minlength="10" ng-maxlength="20" class="thirddivinput" id="thirddivinput" placeholder="6 digit OTP">
+              </label>
+            </div>
+            
+          </div>
+      </div>
+      <p class="fybpcomplete animated fadeIn">
+            <img src="img/go5.png" width="180" height="180">
+      </p>
     </div>
 
     <div id="forthdiv" class="forthdiv" style="display: none;">

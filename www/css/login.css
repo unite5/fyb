@@ -76,8 +76,9 @@
 .btngo1{
 	background: none;
 	cursor: pointer;
-	margin-top: 20%;
-	animation-delay: 2.0s;
+	margin-top: 2%;
+	margin-bottom: 30%;
+	animation-delay: 0.8s;
 	-webkit-animation-duration:1.0s;
 	animation-duration:1.0s;
 }
@@ -96,7 +97,35 @@
 	background-color: #000;
 	text-align: center;
 }
-
+.sdrp{
+	animation-delay: 1s;
+	font-size: 20px;
+	font-weight: 500;
+}
+.seconddivradiodiv{
+	margin-top: 10%;
+	margin-bottom: 8%;
+}
+.sdr1div,.sdr2div{
+	background:none;
+	border:none;
+		background-color: #699cfa;
+}
+.sdr1,.sdr2{
+	background:none;
+	background-color: #699cfa;	
+	border-radius: 30px;
+}
+.sdr1div{
+	animation-delay: 1.2s;
+	-webkit-animation-duration:1.5s;
+	animation-duration:1.5s;
+}
+.sdr2div{
+	animation-delay: 1.8s;
+	-webkit-animation-duration:1.5s;
+	animation-duration:1.5s;
+}
 
 /*******************Third Div For Contact************************/
 .thirddiv{
@@ -155,6 +184,37 @@
 	background-color: #000;
 	text-align: center;
 }
+
+/*******************otp Div For Contact************************/
+.otpdiv{
+	color: #fff;
+	margin-top: 22%;
+	text-align: center;
+}
+.fybpotp{
+	font-size: 28px;
+	font-weight: 500;
+	animation-delay: 0.1s;
+	-webkit-animation-duration:1.0s;
+	animation-duration:1.0s;
+}
+.otpdivinputdiv{
+	margin-left: 18%;
+	margin-right: 18%;
+	margin-top: 25%;
+}
+.otpdivinputdivlist{
+	background-color: #fff;
+	border-radius: 40px;
+  border: solid 1.8px #011f68;
+  animation-delay: 1.2s;
+	-webkit-animation-duration:1.6s;
+	animation-duration:1.6s;
+}
+.fybpcomplete{
+	margin-top: 5%;
+}
+
 
 /*******************Forth Div For Contact************************/
 .forthdiv{
