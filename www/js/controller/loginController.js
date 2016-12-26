@@ -23,10 +23,11 @@ angular.module('besties')
 	var seconddiv = document.getElementById("seconddiv");
 	var thirddiv = document.getElementById("thirddiv");
 	var forthdiv = document.getElementById("forthdiv");
+	var otpdiv = document.getElementById("otpdiv");
 	var seconddivradiodiv = document.getElementById('seconddivradiodiv');
 	$timeout(function(){
 		firstdiv.style.display = "none";
-		//seconddiv.style.display = "block";
+		seconddiv.style.display = "block";
 	},4500);
 	$scope.uname = "";
 	var btngo1 = document.getElementById("btngo1");
@@ -68,9 +69,16 @@ angular.module('besties')
 
 	}
 
-	$scope.callsubmit = function(){
+	$scope.callsubmitotp = function(){
 		$timeout(function() {
 			thirddiv.style.display = "none";
+			otpdiv.style.display = "block";
+		}, 1500);
+	}
+
+	$scope.callsubmit = function(){
+		$timeout(function() {
+			otpdiv.style.display = "none";
 			forthdiv.style.display = "block";
 			$timeout(function() {
 				$ionicLoading.show({

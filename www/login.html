@@ -50,7 +50,7 @@
       <button class="button button-positive" ng-click="staydelay()">staydelay</button>
       <button class="button button-positive" ng-click="staydelay2()">staydelay2</button> -->
     
-    <div id="firstdiv" class="firstdiv" style="display: none;">
+    <div id="firstdiv" class="firstdiv" style="display: block;">
       <p class="fybp1 animated fadeInUp">
             Find Your Besties
       </p>
@@ -107,13 +107,13 @@
         
       </div>
       <div class="thirddivbtngo1">
-            <button id="btngo2" ng-click="callsubmit()" class="button btngo2 animated flipInX">
+            <button id="btngo2" ng-click="callsubmitotp()" class="button btngo2 animated flipInX">
               <img src="img/go1.png" width="70" height="70">
             </button>
       </div>
     </div>
 
-    <div id="otpdiv" class="otpdiv" style="display: block;">
+    <div id="otpdiv" class="otpdiv" style="display: none;">
       <p class="fybpotp animated zoomInUp">
             Requesting OTP
       </p>
@@ -129,7 +129,9 @@
           </div>
       </div>
       <p class="fybpcomplete animated fadeIn">
+          <button id="btngo3" ng-click="callsubmit()" class="button btngo2 animated flipInX">
             <img src="img/go5.png" width="180" height="180">
+          </button>
       </p>
     </div>
 
