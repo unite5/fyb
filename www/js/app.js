@@ -1,6 +1,6 @@
 angular.module('besties', ['ionic','ngCordova','ngAnimate'])
 
-.run(function($ionicPlatform,$cordovaStatusbar,$location,$cordovaToast) {
+.run(function($ionicPlatform,$cordovaStatusbar,$location,$timeout,$cordovaToast) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -35,10 +35,29 @@ angular.module('besties', ['ionic','ngCordova','ngAnimate'])
           backbutton++;
           $cordovaToast.showLongBottom('Press again to exit');
           //alert('Press again to exit');
+          $timeout(function(){
+            backbutton=0;
+          },5000);
         }else{
+          $cordovaToast.showLongBottom('See You Again');
           navigator.app.exitApp();
         }
-      }else{
+      }else if($location.path() === "/app/searchfriends" || 
+               $location.path() === "/app/contacts" || 
+               $location.path() === "/app/nearby" || 
+               $location.path() === "/app/about" || 
+               $location.path() === "/app/allmeets" || 
+               $location.path() === "/app/comments" || 
+               $location.path() === "/app/privacy" || 
+               $location.path() === "/app/profile"  ){
+         $ionicHistory.nextViewOptions({
+            historyRoot: true,
+            disableAnimate: true
+        });
+        $state.go("app.home");
+      }
+      else{
+        //$cordovaToast.showLongBottom('Pressed Back');
         $ionicHistory.goBack();
       }
   }, 100);
