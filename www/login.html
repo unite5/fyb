@@ -91,12 +91,21 @@
             </div>
           </div>
         </div>
-        <div class="seconddivbtngo1 text-center">
-            <button id="btngo1" ng-click="createcontactdiv()" class="button btngo1 animated flipInX"><!-- flipOutX -->
-              <img src="img/go1.png" width="60" height="60">
-            </button>
-        </div>
       </div>
+        <div class="seconddivbtngo1 text-center">
+            <div class="row">
+              <div class="col col-20"></div>
+              <div class="col col-20"></div>
+              <div class="col col-20">
+                <button id="btngo1" ng-click="createcontactdiv()" class="button btngo1 animated flipInX"><!-- flipOutX -->
+              <img src="img/go1.png" width="60" height="60">
+                </button>
+              </div>
+              <div class="col col-20"></div>
+              <div class="col col-20"></div>
+            </div>
+            
+        </div>
     </div>
 
     <div id="thirddiv" class="thirddiv" style="display: none;">
@@ -113,9 +122,17 @@
         
       </div>
       <div class="thirddivbtngo1 text-center">
+        <div class="row">
+              <div class="col col-20"></div>
+              <div class="col col-20"></div>
+              <div class="col col-20">
             <button id="btngo2" ng-click="callsubmitotp()" class="button btngo2 animated flipInX">
               <img src="img/go1.png" width="70" height="70">
             </button>
+              </div>
+              <div class="col col-20"></div>
+              <div class="col col-20"></div>
+        </div>
       </div>
     </div>
 
@@ -128,17 +145,23 @@
             <div class="list otpdivinputdivlist animated jello">
               <label class="item item-input item-floating-label text-center tdlabel">
                 <span class="input-label tdspan">6 digit OTP</span>
-                <input type="text" ng-keyup="submit(otp)" ng-model="formdata.otp" ng-minlength="6" ng-maxlength="6" class="thirddivinput" id="thirddivinput" placeholder="6 digit OTP">
+                <input type="text" ng-keyup="submit(otp)" ng-model="formdata.otp" ng-minlength="6" ng-maxlength="6" class="thirddivinput" id="thirddivinput" validate-otp placeholder="6 digit OTP">
               </label>
             </div>
             
           </div>
       </div>
-      <p class="fybpcomplete animated fadeIn">
-          <button id="btngo3" ng-click="callsubmit()" class="button btngo2 animated flipInX">
-            <img src="img/go5.png" width="180" height="180">
+      <div class="fybpcompleteotp animated fadeIn">
+        <div class="row">
+              <div class="col col-100 text-center">
+              <center>
+          <button id="btngo3" ng-click="callsubmit()" class="button btngo3 animated flipInX">
+            <img src="img/go5.png" width="100" height="100">
           </button>
-      </p>
+            </center>
+            </div>
+        </div>
+      </div>
     </div>
 
     <div id="forthdiv" class="forthdiv" style="display: none;">

@@ -42,6 +42,7 @@ angular.module('besties')
 	btngo1.style.display = "none";
 	btngo2.style.display = "none";
 	seconddivradiodiv.style.display = "none";
+	document.getElementById('btngo3').style.display = "none";
 	$scope.creatego1 = function(inputtxt){//unused
 		  var numbers = /^[0-9]+$/;
 		  var name = inputtxt;  
@@ -160,6 +161,43 @@ angular.module('besties')
                     if(text.length == 10){
                     	btngo2.style.display = "block";
                         console.log("equals 10");
+                    }else{
+                    	btngo2.style.display = "none";
+                        console.log("more than 10");
+                    }
+                    return transformedInput;
+                }
+                return undefined;
+            }            
+            ngModelCtrl.$parsers.push(fromUser);
+        }
+    };
+})
+
+.directive('validateOtp', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, element, attr, ngModelCtrl) {
+        	var btngo3 = document.getElementById('btngo3');
+            function fromUser(text) {
+                if (text) {
+                    var transformedInput = text.replace(/[^0-9]/g, '');
+
+                    if (transformedInput !== text) {
+                        ngModelCtrl.$setViewValue(transformedInput);
+                        ngModelCtrl.$render();
+                    }
+                    if(text.length<6){
+                    	btngo3.style.display = "none";
+                        console.log("less than 6");
+                    }
+                    if(text.length == 6){
+                    	btngo3.style.display = "block";
+                        console.log("equals 6 and validateOtp");
+                    }
+                    if(text.length > 6){
+                    	btngo3.style.display = "none";
+                        console.log("more than 6");
                     }
                     return transformedInput;
                 }

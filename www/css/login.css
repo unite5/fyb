@@ -56,8 +56,8 @@
 	animation-duration:1.0s;
 }
 .seconddivinputdiv{
-	margin-left: 18%;
-	margin-right: 18%;
+	margin-left: 10%;
+	margin-right: 10%;
 	margin-top: 25%;
 }
 .seconddivinputdivlist{
@@ -69,15 +69,17 @@
 	animation-duration:1.0s;
 }
 .seconddivbtngo1{
-	margin: 35%;
+  width: 100%;
+  align-content: center;
 	background: none;
 	text-align: center;
 }
 .btngo1{
 	background: none;
 	cursor: pointer;
-	margin-top: 2%;
-	margin-bottom: 30%;
+  text-align: center;
+	margin-top: 2%;  
+  width: 100%;
 	animation-delay: 0.8s;
 	-webkit-animation-duration:1.0s;
 	animation-duration:1.0s;
@@ -89,7 +91,7 @@
 	text-align: center;
 }
 .sdspan{
-	margin-left: 25%;
+	margin-left: 30%;
 	align-content: center;
 	text-align: center;
 }
@@ -112,6 +114,8 @@
 		background-color: #699cfa;
 }
 .sdr1,.sdr2{
+  width: 100%;
+  height: 100%;
 	background:none;
 	background-color: #699cfa;	
 	border-radius: 30px;
@@ -156,9 +160,9 @@
 }
 .thirddivbtngo1{
 	background-color: #699cfa;
-  margin: 40%;
   vertical-align: center;
   padding-bottom: 20%;
+  margin-top: 15%;
   background: none;
   text-align: center;
 }
@@ -169,7 +173,8 @@
 	background: #699cfa;
 	cursor: pointer;
 	background-color: #699cfa;
-	margin-top: 20%;
+	margin-top: 10%;
+  width: 100%;
 	animation-delay: 2.0s;
 	-webkit-animation-duration:1.0s;
 	animation-duration:1.0s;
@@ -181,7 +186,7 @@
 	text-align: center;
 }
 .tdspan{
-	margin-left: 25%;
+	margin-left: 28%;
 	align-content: center;
 	text-align: center;
 }
@@ -218,6 +223,22 @@
 }
 .fybpcomplete{
 	margin-top: 5%;
+  text-align: center;
+  align-content: center;
+}
+.btngo3{
+  background: #699cfa;
+  cursor: pointer;
+  background-color: #699cfa;
+  margin-top: 20%;
+  animation-delay: 2.0s;
+  -webkit-animation-duration:1.0s;
+  animation-duration:1.0s;
+}
+.fybpcompleteotp{
+  margin-top: 5%;
+  text-align: center;
+  align-content: center;
 }
 
 
