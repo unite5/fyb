@@ -1,4 +1,4 @@
-angular.module('besties')
-.controller('splashController',function($scope){
+//angular.module('besties')
+besties.controller('splashController',function($scope){
 
-})
+});

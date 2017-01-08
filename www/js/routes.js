@@ -1,5 +1,5 @@
-angular.module('besties')
-.config(function($stateProvider,$urlRouterProvider){
+//angular.module('besties')
+besties.config(function($stateProvider,$urlRouterProvider){
   
   $stateProvider
   
@@ -152,4 +152,4 @@ angular.module('besties')
 
   $urlRouterProvider.otherwise('/app/home');
   //$urlRouterProvider.otherwise('/login');
-})
+});

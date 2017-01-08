@@ -1,4 +1,4 @@
-angular.module('besties')
-.controller('nearbyController',function(){
+//angular.module('besties')
+besties.controller('nearbyController',function(){
 	
-})
+});

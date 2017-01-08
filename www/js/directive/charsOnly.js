@@ -1,5 +1,5 @@
-angular.module('besties')
-.directive('charsOnly', function () {
+//angular.module('besties')
+besties.directive('charsOnly', function () {
     return {
         require: 'ngModel',
         link: function (scope, element, attr, ngModelCtrl) {
@@ -24,4 +24,4 @@ angular.module('besties')
             ngModelCtrl.$parsers.push(fromUser);
         }
     };
-})
+});

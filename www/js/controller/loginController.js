@@ -1,6 +1,6 @@
-angular.module('besties')
-.controller('loginController',function($scope,$log,$state,$timeout,$ionicLoading){
-	$log.warn('in loginController');
+//angular.module('besties')
+besties.controller('loginController',['$scope',"$log","$state","$timeout","$ionicLoading","meloginfact","$http",function($scope,$log,$state,$timeout,$ionicLoading,meloginfact,$http){
+	$scope.regex = '\\d+[0-9]{10}';///^[0-9]+$/
 	$scope.home = function(){
 		//$state.go('app.home');
 		window.location = "index.html";
@@ -34,7 +34,8 @@ angular.module('besties')
 	var seconddivradiodiv = document.getElementById('seconddivradiodiv');
 	$timeout(function(){
 		firstdiv.style.display = "none";
-		seconddiv.style.display = "block";
+		//seconddiv.style.display = "block";
+		thirddiv.style.display = "block";
 	},4500);
 	$scope.uname = "";
 	var btngo1 = document.getElementById("btngo1");
@@ -73,22 +74,11 @@ angular.module('besties')
 		btngo1.style.display = "block";
 	}
 
-	$scope.createcontactdiv = function(){
-		  seconddiv.style.display = "none";
-		  thirddiv.style.display = "block";
-
-	}
-
-	$scope.callsubmitotp = function(){
-		$timeout(function() {
-			thirddiv.style.display = "none";
-			otpdiv.style.display = "block";
-		}, 1500);
-	}
-
-	$scope.callsubmit = function(){
-		$timeout(function() {
-			otpdiv.style.display = "none";
+	$scope.createcontactdiv = function(){//third name and gender
+		  //seconddiv.style.display = "none";
+		  //forthdiv.style.display = "block";
+		  $timeout(function() {
+			seconddiv.style.display = "none";
 			forthdiv.style.display = "block";
 			$timeout(function() {
 				$ionicLoading.show({
@@ -103,7 +93,33 @@ angular.module('besties')
 			}, 3000);
 		}, 1500);
 	}
-})
+
+	$scope.callsubmitotp = function(){//first in contact
+		$http.post("http://api.clickatell.com/http/sendmsg?user=jitendrapatwa&password=bLMdgWZRdKYEOc&api_id=3583397&to=919768431024&text=hello")
+        	.success(function(response){
+        		
+				$timeout(function() {
+					// thirddiv.style.display = "none";
+					// otpdiv.style.display = "block";
+
+					thirddiv.style.display = "none";
+					otpdiv.style.display = "block";
+				}, 1500);
+        	})
+        	.error(function(error){
+        		console.log("An error occur");
+        	});
+	}
+
+	$scope.callsubmit = function(){//second for otp
+		meloginfact.callotp(otpdiv,seconddiv,forthdiv,$scope,$timeout,$ionicLoading,$http);
+		/*$timeout(function() {
+			otpdiv.style.display = "none";
+			seconddiv.style.display = "block";
+		}, 1500);*/
+		/**/
+	}
+}])
 
 .directive('charsOnly', function () {
     return {
@@ -123,12 +139,12 @@ angular.module('besties')
                         ngModelCtrl.$render();
                     }
                     if(text.length<3){
-                        console.log("less than 3");
+                        //console.log("less than 3");
                         seconddivradiodiv.style.display = "none";
                         document.getElementById("btngo1").style.display = "none";
                     }
                     if(text.length>3){
-                        console.log("greater than 3");
+                        //console.log("greater than 3");
                         seconddivradiodiv.style.display = "block";
                     }
                     //console.log(text+" less than 3 "+text.length+" "+transformedInput);
@@ -146,26 +162,40 @@ angular.module('besties')
         require: 'ngModel',
         link: function (scope, element, attr, ngModelCtrl) {
         	var btngo2 = document.getElementById('btngo2');
+        	var thirddivinput = angular.element(document.getElementById('thirddivinput'));
             function fromUser(text) {
                 if (text) {
+                	// /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/; 
+                	// /[^0-9]/g
                     var transformedInput = text.replace(/[^0-9]/g, '');
 
                     if (transformedInput !== text) {
                         ngModelCtrl.$setViewValue(transformedInput);
                         ngModelCtrl.$render();
                     }
-                    if(text.length<10){
-                    	btngo2.style.display = "none";
-                        console.log("less than 10");
-                    }
-                    if(text.length == 10){
-                    	btngo2.style.display = "block";
-                        console.log("equals 10");
+                    if(text.charAt(0) == "7" || text.charAt(0) == "8" || text.charAt(0) == "9"){
+                    	if(text.length<10){
+	                    	btngo2.style.display = "none";
+	                        //console.log("less than 10");
+	                    }
+	                    if(text.length == 10){
+	                    	btngo2.style.display = "block";
+	                        //console.log("equals 10");
+	                    }
+	                    if(text.length > 10){
+	                    	/*var d = document.getElementById('thirddivinput').value;
+	                    	console.log("val is:"+d);
+	                    	thirddivinput.val(d.substr(0, d.length - 1));
+	                    	console.log("after val is:"+d.substr(0, d.length - 1));*/
+	                    	btngo2.style.display = "none";
+	                        //console.log("more than 10");
+	                    }
+	                    return transformedInput;
                     }else{
-                    	btngo2.style.display = "none";
-                        console.log("more than 10");
+                    	thirddivinput.val("");
+                    	return false;
                     }
-                    return transformedInput;
+                    
                 }
                 return undefined;
             }            
@@ -189,15 +219,15 @@ angular.module('besties')
                     }
                     if(text.length<6){
                     	btngo3.style.display = "none";
-                        console.log("less than 6");
+                        //console.log("less than 6");
                     }
                     if(text.length == 6){
                     	btngo3.style.display = "block";
-                        console.log("equals 6 and validateOtp");
+                        //console.log("equals 6 and validateOtp");
                     }
                     if(text.length > 6){
                     	btngo3.style.display = "none";
-                        console.log("more than 6");
+                        //console.log("more than 6");
                     }
                     return transformedInput;
                 }
@@ -206,4 +236,4 @@ angular.module('besties')
             ngModelCtrl.$parsers.push(fromUser);
         }
     };
-})
+});

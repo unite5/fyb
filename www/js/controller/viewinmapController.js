@@ -1,5 +1,5 @@
-angular.module('besties')
-.controller('viewinmapController',function($log,$http,$scope,$compile,$stateParams,$cordovaGeolocation,$ionicLoading){
+//angular.module('besties')
+besties.controller('viewinmapController',function($log,$http,$scope,$compile,$stateParams,$cordovaGeolocation,$ionicLoading){
 	//googlemap
       var uluru = {lat: 19.018044, lng: 72.843120};//19.018044,72.843620
       //for map
@@ -146,4 +146,4 @@ angular.module('besties')
       .error(function(err){
         $log.error(err);
       });
-})
+});

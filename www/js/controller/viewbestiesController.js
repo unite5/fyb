@@ -1,5 +1,5 @@
-angular.module('besties')
-.controller('viewbestiesController',function($scope,$log,$ionicPopup,$cordovaSms,$stateParams,$cordovaSocialSharing,$cordovaToast){
+//angular.module('besties')
+besties.controller('viewbestiesController',function($scope,$log,$ionicPopup,$cordovaSms,$stateParams,$cordovaSocialSharing,$cordovaToast){
 	$scope.name = $stateParams.name;
 	$log.info("current view for "+$stateParams.name);
 
@@ -91,4 +91,4 @@ angular.module('besties')
       //alert(res);
     });
 	}
-})
+});

@@ -1,5 +1,5 @@
-angular.module('besties')
-.directive('numbersOnly', function () {
+//angular.module('besties')
+besties.directive('numbersOnly', function () {
     return {
         require: 'ngModel',
         link: function (scope, element, attr, ngModelCtrl) {

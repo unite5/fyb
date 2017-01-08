@@ -1,5 +1,5 @@
-angular.module('besties')
-.controller('menuController',function($scope,$log,$cordovaToast,$cordovaSocialSharing,$cordovaActionSheet,$state,$ionicModal,$ionicGesture,$ionicPlatform,$ionicSideMenuDelegate,$ionicHistory){
+//angular.module('besties')
+besties.controller('menuController',function($scope,$log,$cordovaToast,$cordovaSocialSharing,$cordovaActionSheet,$state,$ionicModal,$ionicGesture,$ionicPlatform,$ionicSideMenuDelegate,$ionicHistory){
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
@@ -88,8 +88,8 @@ var extend = angular.extend,
   isString = angular.isString,
   jqLite = angular.element,
   PLATFORM_BACK_BUTTON_PRIORITY_SIDE_MENU = 150;
-angular.module('besties')
-.directive('ionSideMenuContent', [
+//angular.module('besties')
+besties.directive('ionSideMenuContent', [
   '$timeout',
   '$ionicGesture',
   '$window',
@@ -288,8 +288,8 @@ function($timeout, $ionicGesture, $window) {
     }
   };
 }]);
-angular.module('besties')
-.controller('$ionicSideMenus', [
+//angular.module('besties')
+besties.controller('$ionicSideMenus', [
   '$scope',
   '$attrs',
   '$ionicSideMenuDelegate',

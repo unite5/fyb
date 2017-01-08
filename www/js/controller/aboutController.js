@@ -1,10 +1,18 @@
-angular.module('besties')
-.directive('aboutbod',function(){
+//angular.module('besties')
+besties.directive('aboutbod',function(){
 	var directive = {};
 	directive.restrict = 'E';
 	return directive;
 })
-.controller('aboutController',function($scope){
+.factory("me",function(){
+	return {
+		call: function(){
+			console.warn("in aboutController factory");
+		}
+	}
+})
+.controller('aboutController',function($scope,me){
+	me.call();
 	var width = Math.max(560, innerWidth),
     height = Math.max(400, innerHeight);
 
@@ -38,4 +46,4 @@ angular.module('besties')
 	  d3.event.preventDefault();
 	}
 
-})
+});

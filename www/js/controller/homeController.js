@@ -1,5 +1,5 @@
-angular.module('besties')
-.controller('homeController',function($scope,$ionicPopup,$cordovaToast,$cordovaDialogs,$location,$timeout,$interval,$log,$state,$ionicLoading){
+//angular.module('besties')
+besties.controller('homeController',function($scope,$ionicPopup,$cordovaToast,$cordovaDialogs,$location,$timeout,$interval,$log,$state,$ionicLoading){
 	$scope.navigatethis = function(id){
 		location.href = "/#/app/viewinmap"+id;
     };
@@ -43,4 +43,4 @@ angular.module('besties')
 		    });
 	    });
     }
-})
+});

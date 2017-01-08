@@ -1,5 +1,5 @@
-angular.module('besties')
-.controller('contactsController',function($scope,$cordovaContacts){
+//angular.module('besties')
+besties.controller('contactsController',function($scope,$cordovaContacts){
     //fetch
     $scope.phoneContacts = [];
           function onSuccess(contacts) {

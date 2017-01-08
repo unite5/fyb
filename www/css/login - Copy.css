@@ -145,17 +145,10 @@
 	-webkit-animation-duration:1.0s;
 	animation-duration:1.0s;
 }
-.fybpcontacth2{
-  font-size: 32px;
-  font-weight: 500;
-  animation-delay: 0.9s;
-  -webkit-animation-duration:1.0s;
-  animation-duration:1.0s;
-}
 .thirddivinputdiv{
 	margin-left: 18%;
 	margin-right: 18%;
-	margin-top: 15%;
+	margin-top: 25%;
 }
 .thirddivinputdivlist{
 	background-color: #fff;

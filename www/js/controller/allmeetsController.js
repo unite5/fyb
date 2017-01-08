@@ -1,5 +1,5 @@
-angular.module('besties')
-.controller('allmeetsController',function($scope,$ionicModal){
+//angular.module('besties')
+besties.controller('allmeetsController',function($scope,$ionicModal){
 	$ionicModal.fromTemplateUrl('templates/allmeetsmodel.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -24,4 +24,4 @@ angular.module('besties')
   $scope.$on('modal.removed', function() {
     // Execute action
   });
-})
+});

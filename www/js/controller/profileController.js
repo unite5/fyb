@@ -1,4 +1,4 @@
-angular.module('besties')
-.controller('profileController',function($scope){
+//angular.module('besties')
+besties.controller('profileController',function($scope){
 
-})
+});
