@@ -1,8 +1,12 @@
 //angular.module('besties')
-besties.controller('homeController',function($scope,$ionicPopup,$cordovaToast,$cordovaDialogs,$location,$timeout,$interval,$log,$state,$ionicLoading){
+besties.controller('homeController',function($scope,trackusers,$interval,$ionicPopup,$cordovaToast,$cordovaDialogs,$location,$timeout,$interval,$log,$state,$ionicLoading,$http){
 	$scope.navigatethis = function(id){
 		location.href = "/#/app/viewinmap"+id;
     };
+
+    $interval(function(){
+        trackusers.trackeverymoment($scope,$timeout,$ionicLoading,$http)
+    },4000);
 
     $scope.searchfun = function(e){
     	if(e.which == 13 || e.keyCode == 13){
@@ -13,6 +17,7 @@ besties.controller('homeController',function($scope,$ionicPopup,$cordovaToast,$c
     };
 
     $scope.findmore = function(){
+        trackusers.track($scope,$timeout,$ionicLoading,$http);
     	$timeout(function() {
     		$ionicLoading.show({ template: 'Wait Just a seconds!!! <ion-spinner icon="lines"></ion-spinner>', noBackdrop: true, duration: 2000 });	
     	}, 10);
@@ -43,4 +48,6 @@ besties.controller('homeController',function($scope,$ionicPopup,$cordovaToast,$c
 		    });
 	    });
     }
+
+    
 });
