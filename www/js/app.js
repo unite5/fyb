@@ -1,7 +1,11 @@
 var besties = angular.module('besties', ['ionic','ngCordova','ngAnimate']);
 
-besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$timeout,$cordovaToast,$state) {
+besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$timeout,$cordovaToast,$state,$cordovaSQLite,makedb) {
   $ionicPlatform.ready(function() {
+
+    //load db
+    makedb.init($cordovaSQLite);
+
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)

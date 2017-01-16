@@ -7,7 +7,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts){
               var contact = contacts[i];
               $scope.phoneContacts.push(contact);
             }
-            alert($scope.phoneContacts.length);
+            //alert($scope.phoneContacts.length);
           };
           function onError(contactError) {
             alert(contactError);
