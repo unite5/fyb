@@ -6,7 +6,6 @@ besties.controller('loginController',['$scope',"$ionicPopup","$log","$state","$t
 		window.location = "index.html";
 	};
 	var token = '';
-	var header = {'Content-Type':'application/x-www-form-urlencoded','X-CSRF-Token': token};
 	
 
 
