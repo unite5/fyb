@@ -1,5 +1,5 @@
 //angular.module('besties')
-besties.controller('loginController',['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http","$httpParamSerializerJQLike",function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$httpParamSerializerJQLike){
+besties.controller('loginController',['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http){
 	$scope.regex = '\\d+[0-9]{10}';///^[0-9]+$/
 	$scope.home = function(){
 		//$state.go('app.home');
