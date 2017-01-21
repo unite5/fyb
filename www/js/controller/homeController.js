@@ -1,12 +1,15 @@
 //angular.module('besties')
-besties.controller('homeController',function($scope,trackusers,$interval,$ionicPopup,$cordovaToast,$cordovaDialogs,$location,$timeout,$interval,$log,$state,$ionicLoading,$http){
-	$scope.navigatethis = function(id){
+besties.controller('homeController',function($scope,trackusers,availableisOffline,$interval,$ionicPopup,$cordovaToast,$cordovaDialogs,$location,$timeout,$interval,$log,$state,$ionicLoading,$http){
+	
+    console.log("available:"+availableisOffline.check());
+    
+    $scope.navigatethis = function(id){
 		location.href = "/#/app/viewinmap"+id;
     };
 
-    $interval(function(){
+    /*$interval(function(){
         trackusers.trackeverymoment($scope,$timeout,$ionicLoading,$http)
-    },4000);
+    },4000);*/
 
     $scope.searchfun = function(e){
     	if(e.which == 13 || e.keyCode == 13){

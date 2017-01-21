@@ -24,6 +24,7 @@
   <preference name="StatusBarBackgroundColor" value="#699cfa" />
   <preference name="StatusBarStyle" value="lightcontent" />
 
+  <allow-navigation href="*" />
   <allow-navigation href="http://*/*" />
   <allow-navigation href="https://*/*" />
   <allow-navigation href="data:*" />

@@ -6,6 +6,8 @@ besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$t
     //load db
     makedb.init($cordovaSQLite);
 
+    localStorage.myURL = "http://test.dr-ambedkar.in";
+
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)

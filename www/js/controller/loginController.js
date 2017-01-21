@@ -1,10 +1,14 @@
 //angular.module('besties')
-besties.controller('loginController',['$scope',"$log","$state","$timeout","$ionicLoading","meloginfact","$http",function($scope,$log,$state,$timeout,$ionicLoading,meloginfact,$http){
+besties.controller('loginController',['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http","$httpParamSerializerJQLike",function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$httpParamSerializerJQLike){
 	$scope.regex = '\\d+[0-9]{10}';///^[0-9]+$/
 	$scope.home = function(){
 		//$state.go('app.home');
 		window.location = "index.html";
 	};
+	var token = '';
+	var header = {'Content-Type':'application/x-www-form-urlencoded','X-CSRF-Token': token};
+	
+
 
 	$scope.staydelay = function(){
 		$timeout(function(){
@@ -74,50 +78,45 @@ besties.controller('loginController',['$scope',"$log","$state","$timeout","$ioni
 		btngo1.style.display = "block";
 	}
 
+	
+	///////////////////////////////////////S Urls
+	/*
+	*
+	* Get otp to enter in app
+	*
+	*/
+	$scope.callsubmitotp = function(event){//first in contact
+		var phone =document.getElementById("thirddivinput").value;
+		console.log(phone);
+		var lat = 19.235234, lon = 73.1275884;
+		var datas = {
+			phone:phone,
+			lat:lat,
+			lon:lon,
+			deviceid:'12332434'
+		};//lat lon deviceid
+		meloginfact.registerforOtp(phone,$scope,datas,thirddiv,otpdiv,$http,$timeout,$ionicPopup,$ionicLoading);
+	}
+
+	/*
+	*
+	* Check otp 
+	*
+	*/
+	$scope.callsubmit = function(){//second for otp to check
+		var otptxtdivinput = $scope.formdata.otp;
+		meloginfact.callotp(otpdiv,seconddiv,forthdiv,$scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput);
+	}
+
+	/*
+	*
+	* Add user Info name gender 
+	*
+	*/
 	$scope.createcontactdiv = function(){//third name and gender
 		  //seconddiv.style.display = "none";
 		  //forthdiv.style.display = "block";
-		  $timeout(function() {
-			seconddiv.style.display = "none";
-			forthdiv.style.display = "block";
-			$timeout(function() {
-				$ionicLoading.show({
-				  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>',
-				  duration: 3000
-				}).then(function(){
-				   	$timeout(function() {
-						//$state.go("app.home");
-						window.location = "index.html";
-					}, 1200);
-				});
-			}, 3000);
-		}, 1500);
-	}
-
-	$scope.callsubmitotp = function(){//first in contact
-		$http.post("http://api.clickatell.com/http/sendmsg?user=jitendrapatwa&password=bLMdgWZRdKYEOc&api_id=3583397&to=919768431024&text=hello")
-        	.success(function(response){
-        		
-				$timeout(function() {
-					// thirddiv.style.display = "none";
-					// otpdiv.style.display = "block";
-
-					thirddiv.style.display = "none";
-					otpdiv.style.display = "block";
-				}, 1500);
-        	})
-        	.error(function(error){
-        		console.log("An error occur");
-        	});
-	}
-
-	$scope.callsubmit = function(){//second for otp
-		meloginfact.callotp(otpdiv,seconddiv,forthdiv,$scope,$timeout,$ionicLoading,$http);
-		/*$timeout(function() {
-			otpdiv.style.display = "none";
-			seconddiv.style.display = "block";
-		}, 1500);*/
-		/**/
+		meloginfact.addmyDetails(seconddiv,forthdiv,$scope,$http,$ionicPopup,$timeout,$ionicLoading);
 	}
 }])
 
@@ -130,7 +129,7 @@ besties.controller('loginController',['$scope',"$log","$state","$timeout","$ioni
 			var seconddivradiodiv = document.getElementById('seconddivradiodiv');
 			
             function fromUser(text) {
-                console.log("directivecalled");
+                //console.log("directivecalled");
                 if (text) {
                     var transformedInput = text.replace(/[^a-zA-Z ]/g, '');
 

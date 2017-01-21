@@ -58,7 +58,9 @@
       <button class="button button-positive" ng-click="staydelay()">staydelay</button>
       <button class="butt
     n button-positive" ng-click="staydelay2()">staydelay2</button> -->
-    
+    <!-- 
+          firstdiv (title and logo)
+     -->
     <div id="firstdiv" class="firstdiv" style="display: block;">
       <p class="fybp1 animated fadeInUp">
             Find Your Besties
@@ -69,6 +71,10 @@
         <!-- <div style="m"><img src="img/starterimage.png"></div> -->
         <p class="fybplast animated bounceInUp">www.mydomain.com</p>
     </div>
+
+    <!-- 
+          thirddiv (contact number)
+     -->
     <form name="login">
     <div id="thirddiv" class="thirddiv" style="display: none;">
       <p class="fybpcontact animated zoomInUp">
@@ -89,7 +95,7 @@
               <div class="col col-20"></div>
               <div class="col col-20"></div>
               <div class="col col-20">
-            <button id="btngo2" ng-click="callsubmitotp()" class="button btngo2 animated flipInX">
+            <button id="btngo2" ng-click="callsubmitotp($event)" class="button btngo2 animated flipInX">
               <img src="img/go1.png" width="70" height="70">
             </button>
               </div>
@@ -99,7 +105,12 @@
       </div>
       
     </div>
+    </form>
 
+    <!-- 
+          otpdiv (6digit)
+     -->
+    <form name="loginOtp">
     <div id="otpdiv" class="otpdiv" style="display: none;">
       <p class="fybpotp animated zoomInUp">
             Requesting OTP
@@ -109,7 +120,7 @@
             <div class="list otpdivinputdivlist animated jello">
               <label class="item item-input item-floating-label text-center tdlabel">
                 <span class="input-label tdspan">6 digit OTP</span>
-                <input type="text" ng-keyup="submit(otp)" ng-model="formdata.otp" ng-minlength="6" ng-maxlength="6" class="thirddivinput" id="thirddivinput" validate-otp placeholder="6 digit OTP">
+                <input type="text" ng-keyup="submit(otp)" ng-model="formdata.otp" ng-minlength="6" ng-maxlength="6" class="thirddivinput" id="otptxtdivinput" validate-otp placeholder="6 digit OTP">
               </label>
             </div>
             
@@ -128,8 +139,13 @@
         </div>
       </div>
     </div>
-
+    </form>
     
+
+    <!-- 
+          seconddiv (name gender)
+     -->
+     <form name="login">
     <div id="seconddiv" class="seconddiv" style="display: none;">
       <p class="fybplogin animated zoomInDown">
             &
@@ -170,9 +186,11 @@
             
         </div>
     </div>
-
+    </form>
     
-
+    <!-- 
+          forthdiv (done!!!)
+     -->
     <div id="forthdiv" class="forthdiv" style="display: none;">
       <p class="fybpdone animated zoomInUp">
             Done!!
@@ -184,7 +202,6 @@
             www.mydomain.com
       </p>
     </div>
-    </form>
     </ion-content>
   </body>
 </html>
