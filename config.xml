@@ -29,6 +29,7 @@
   <allow-navigation href="https://*/*" />
   <allow-navigation href="data:*" />
   <access origin="content:///*" />
+  <allow-intent href="*" />
   <allow-intent href="http://*/*" />
   <allow-intent href="https://*/*" />
   <allow-intent href="tel:*" />
