@@ -2,12 +2,12 @@
 besties.controller('loginController',
 	['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
 	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http){
-	$scope.regex = '\\d+[0-9]{10}';///^[0-9]+$/
+	
+	//scope.regex = '\\d+[0-9]{10}';///^[0-9]+$/
 	$scope.home = function(){
 		//$state.go('app.home');
 		window.location = "index.html";
 	};
-	var token = '';
 	
 
 
@@ -37,12 +37,15 @@ besties.controller('loginController',
 	var forthdiv = document.getElementById("forthdiv");
 	var otpdiv = document.getElementById("otpdiv");
 	var seconddivradiodiv = document.getElementById('seconddivradiodiv');
+
 	$timeout(function(){
 		firstdiv.style.display = "none";
 		//seconddiv.style.display = "block";
 		thirddiv.style.display = "block";
 	},4500);
+	
 	$scope.uname = "";
+	
 	var btngo1 = document.getElementById("btngo1");
 	var btngo2 = document.getElementById("btngo2");
 	btngo1.style.display = "none";
@@ -55,24 +58,6 @@ besties.controller('loginController',
 		  var d = $scope.uname;
 		  //console.log("called "+name+" "+d+" fddf");
 		  seconddivradiodiv.style.display = "block";
-	      /*if(inputtxt.value.match(numbers))  
-	      {  
-		      console.log("if called");
-		      btngo1.style.display = "none"; 
-		      return false;  
-	      }  
-	      else  
-	      {  
-	      	if(inputtxt.value.length <= 3){
-	      		console.log("elseif called");
-		      btngo1.style.display = "none";
-		      return false;  
-	      	}else{
-		      console.log("else2 called");
-		      btngo1.style.display = "block";
-		      return true;  
-		  	}
-	      }  */
 	}
 
 	$scope.callsubmitdivsecond = function(){
