@@ -38,11 +38,16 @@ besties.controller('loginController',
 	var otpdiv = document.getElementById("otpdiv");
 	var seconddivradiodiv = document.getElementById('seconddivradiodiv');
 
-	$timeout(function(){
+	/*$timeout(function(){
 		firstdiv.style.display = "none";
 		//seconddiv.style.display = "block";
 		thirddiv.style.display = "block";
-	},4500);
+	},4000);*/
+
+	$timeout(function() {
+		firstdiv.style.display = "none";
+		forthdiv.style.display = "block";
+	}, 4000);
 	
 	$scope.uname = "";
 	
