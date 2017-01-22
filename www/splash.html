@@ -6,6 +6,8 @@
     <title>FYB</title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
@@ -26,11 +28,27 @@
     <script src="js/app.js"></script>
     <script src="js/routes.js"></script>
     <script src="js/controller/splashController.js"></script>
+        <script src="js/service/loginService.js"></script>
+
+    <!-- your controller's js -->
+    <script src="js/controller/loginController.js"></script>
+    <script type="text/javascript" src="js/controller/menuController.js"></script>
+    <script src="js/controller/homeController.js"></script>
   </head>
   <body ng-app="besties">
-      <ion-pane>
-  <ion-content>
-    <div class="conteneur" align="center">
+  <ion-content  class="loginpane" scroll="false">
+    <div id="firstdiv" class="firstdiv" style="display: block;">
+      <p class="fybp1 animated fadeInUp">
+            Find Your Besties Splsh
+      </p>
+        <div class="row fybprow">
+          <div class="col col-100 text-center"><img class="worldimagelogin animated zoomOut" src="img/SpinningEarth.gif"></div>
+        </div>
+        <!-- <div style="m"><img src="img/starterimage.png"></div> -->
+        <p class="fybplast animated bounceInUp">www.mydomain.com</p>
+    </div>
+
+    <!-- <div class="conteneur" align="center">
     <div class="css3_div">
       <img width="90%" ng-src="img/ionic.png"/>
         <div class="txtcss">
@@ -57,9 +75,8 @@
           <br />
         <font style="font-size: 18px;">;)</font>
     </div>
-  </div>
+  </div> -->
   </ion-content>
-</ion-pane>
   </body>
 </html>
 

@@ -7,7 +7,7 @@
   <author email="jitendrapatwa135@gmail.com" href="https://jitendrahpatwa.github.io/">
       Jitendra H Patwa
     </author>
-  <content src="login.html"/>
+  <content src="splash.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
