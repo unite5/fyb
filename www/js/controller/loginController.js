@@ -45,7 +45,7 @@ besties.controller('loginController',
 	},4000);*/
 
 	$timeout(function() {
-		//alert("forthdiv called");
+		alert("forthdiv called");
 		firstdiv.style.display = "none";
 		forthdiv.style.display = "block";
 	}, 4000);
