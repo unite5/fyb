@@ -40,7 +40,7 @@ besties.controller('loginController',
 	  }
 
 	//scope.regex = '\\d+[0-9]{10}';///^[0-9]+$/
-	$scope.home = function(){
+	/*$scope.home = function(){
 		//$state.go('app.home');
 		window.location = "index.html";
 	};
@@ -65,14 +65,14 @@ besties.controller('loginController',
 		'gender':'',
 		'uphone':'',
 		'otp':''
-	}
+	}*/
 
-	var firstdiv = document.getElementById("firstdiv");
+	/*var firstdiv = document.getElementById("firstdiv");
 	var seconddiv = document.getElementById("seconddiv");
 	var thirddiv = document.getElementById("thirddiv");
 	var forthdiv = document.getElementById("forthdiv");
 	var otpdiv = document.getElementById("otpdiv");
-	var seconddivradiodiv = document.getElementById('seconddivradiodiv');
+	var seconddivradiodiv = document.getElementById('seconddivradiodiv');*/
 
 	/*$timeout(function(){
 		firstdiv.style.display = "none";
