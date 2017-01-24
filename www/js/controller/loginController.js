@@ -2,7 +2,7 @@
 besties.controller('loginController',
 	//['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
 	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http){
-	
+	alert("inn;loginController");
 	  $scope.open1 = false;
 	  $scope.open2 = true;
 	  $scope.open3 = true;
