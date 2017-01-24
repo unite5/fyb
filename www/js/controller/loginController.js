@@ -3,6 +3,42 @@ besties.controller('loginController',
 	['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
 	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http){
 	
+	  $scope.open1 = false;
+	  $scope.open2 = false;
+	  $scope.open3 = false;
+	  $scope.open4 = false;
+	  $scope.open5 = false;
+	  $scope.call = function(){
+	    //console.info('ABCCtrl');
+	    //loginservice.call($scope);
+	    //servicelogin.docall('abc',$scope);
+	    
+	    // if ng-hide false then visible
+	    // if ng-hide true then invisible
+
+	    // if ng-show false then invisible
+	    // if ng-show true then visible
+	    $scope.open1 = true;//div hide
+	    $scope.open2 = true;//div show
+	  }
+	  $scope.call2 = function(){
+	    $scope.open3 = true;//div show
+	    $scope.open2 = false;//div hide
+	  }
+	  $scope.call3 = function(){
+	    $scope.open4 = true;//div show
+	    $scope.open3 = false;//div hide
+	  }
+	  $scope.call4 = function(){
+	    $scope.open5 = true;//div show
+	    $scope.open4 = false;//div hide
+	  }
+	  $scope.call5 = function(){
+	    $scope.open5 = false;//div hide
+	    alert("Welcome");
+	    $scope.open1 = false;//div show
+	  }
+
 	//scope.regex = '\\d+[0-9]{10}';///^[0-9]+$/
 	$scope.home = function(){
 		//$state.go('app.home');
@@ -44,7 +80,7 @@ besties.controller('loginController',
 		thirddiv.style.display = "block";
 	},4000);*/
 
-	$timeout(function() {
+	/*$timeout(function() {
 		alert("forthdiv called");
 		firstdiv.style.display = "none";
 		forthdiv.style.display = "block";
@@ -68,7 +104,7 @@ besties.controller('loginController',
 
 	$scope.callsubmitdivsecond = function(){
 		btngo1.style.display = "block";
-	}
+	}*/
 
 	
 	///////////////////////////////////////S Urls
@@ -77,7 +113,7 @@ besties.controller('loginController',
 	* Get otp to enter in app
 	*
 	*/
-	$scope.callsubmitotp = function(event){//first in contact
+	/*$scope.callsubmitotp = function(event){//first in contact
 		var phone =document.getElementById("thirddivinput").value;
 		console.log(phone);
 		var lat = 19.235234, lon = 73.1275884;
@@ -88,28 +124,28 @@ besties.controller('loginController',
 			deviceid:'12332434'
 		};//lat lon deviceid
 		meloginfact.registerforOtp(phone,$scope,datas,thirddiv,otpdiv,$http,$timeout,$ionicPopup,$ionicLoading);
-	}
+	}*/
 
 	/*
 	*
 	* Check otp 
 	*
 	*/
-	$scope.callsubmit = function(){//second for otp to check
+	/*$scope.callsubmit = function(){//second for otp to check
 		var otptxtdivinput = $scope.formdata.otp;
 		meloginfact.callotp(otpdiv,seconddiv,forthdiv,$scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput);
-	}
+	}*/
 
 	/*
 	*
 	* Add user Info name gender 
 	*
 	*/
-	$scope.createcontactdiv = function(){//third name and gender
+	/*$scope.createcontactdiv = function(){//third name and gender
 		  //seconddiv.style.display = "none";
 		  //forthdiv.style.display = "block";
 		meloginfact.addmyDetails(seconddiv,forthdiv,$scope,$http,$ionicPopup,$timeout,$ionicLoading);
-	}
+	}*/
 }])
 
 .directive('charsOnly', function () {

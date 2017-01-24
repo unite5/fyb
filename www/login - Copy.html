@@ -37,13 +37,16 @@
     <!-- your directive's js -->
     <!-- <script src="js/directive/charsOnly.js"></script>
     <script src="js/directive/numbersOnly.js"></script> -->
+    
+    <!-- your services's js -->
+    <!-- <script type="text/javascript" src="js/service/loginService.js"></script> -->
+    <script src="js/service/loginService.js"></script>
 
     <!-- your controller's js -->
     <script src="js/controller/loginController.js"></script>
     <script type="text/javascript" src="js/controller/menuController.js"></script>
     <script src="js/controller/homeController.js"></script>
 
-    <!-- your services's js -->
 
   </head>
   <body ng-app="besties" ng-controller="loginController">
@@ -55,10 +58,12 @@
       <button class="button button-positive" ng-click="staydelay()">staydelay</button>
       <button class="butt
     n button-positive" ng-click="staydelay2()">staydelay2</button> -->
-    
+    <!-- 
+          firstdiv (title and logo)
+     -->
     <div id="firstdiv" class="firstdiv" style="display: block;">
       <p class="fybp1 animated fadeInUp">
-            Find Your Besties
+            Find Your Besties 
       </p>
         <div class="row fybprow">
           <div class="col col-100 text-center"><img class="worldimagelogin animated zoomOut" src="img/SpinningEarth.gif"></div>
@@ -66,57 +71,21 @@
         <!-- <div style="m"><img src="img/starterimage.png"></div> -->
         <p class="fybplast animated bounceInUp">www.mydomain.com</p>
     </div>
-    <form name="login">
-    <div id="seconddiv" class="seconddiv" style="display: none;">
-      <p class="fybplogin animated zoomInDown">
-            Join Us
-      </p>
-      <div id="seconddivinputdiv" class="seconddivinputdiv">
-        <div class="list seconddivinputdivlist animated zoomIn">
-          <label class="item item-input item-floating-label text-center sdlabel">
-            <span class="input-label sdspan">Your Good Name</span>
-            <input type="text" class="seconddivinput" id="seconddivinput" ng-model="formdata.uname" chars-only placeholder="Your Good Name"><!-- ng-keyup="creatego1(uname)" -->
-          </label>
-        </div>
-        <div class="seconddivradiodiv" id="seconddivradiodiv">
-              <!-- <ion-radio ng-model="choice" ng-value="'A'">Choose A</ion-radio>
-              <ion-radio ng-model="choice" ng-value="'B'">Choose B</ion-radio> -->
-          <p class="sdrp animated flipInX">Are You</p>
-          <div class="row">
-            <div class="col col-50 sdr1div">
-              <ion-radio ng-model="formdata.gender" ng-click="callsubmitdivsecond()" class="sdr1 animated bounceInLeft" ng-value="'Male'">He</ion-radio>
-            </div>
-            <div class="col col-50 sdr2div">
-              <ion-radio ng-model="formdata.gender" ng-click="callsubmitdivsecond()" class="sdr2 animated bounceInRight" ng-value="'Female'">She</ion-radio>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div class="seconddivbtngo1 text-center">
-            <div class="row">
-              <div class="col col-20"></div>
-              <div class="col col-20"></div>
-              <div class="col col-20">
-                <button id="btngo1" ng-click="createcontactdiv()" class="button btngo1 animated flipInX"><!-- flipOutX -->
-              <img src="img/go1.png" width="60" height="60">
-                </button>
-              </div>
-              <div class="col col-20"></div>
-              <div class="col col-20"></div>
-            </div>
-            
-        </div>
-    </div>
 
+    <!-- 
+          thirddiv (contact number)
+     -->
     <div id="thirddiv" class="thirddiv" style="display: none;">
+    <form name="login">
       <p class="fybpcontact animated zoomInUp">
-            & Your Contact
+            Join Us <br>
+            <h2 class="fybpcontacth2 animated slideInLeft">Your Contact</h2>
       </p>
       <div id="thirddivinputdiv" class="thirddivinputdiv">
         <div class="list thirddivinputdivlist animated rubberBand">
           <label class="item item-input item-floating-label text-center tdlabel">
             <span class="input-label tdspan">Contact Number</span>
-            <input type="text" ng-model="formdata.uphone" ng-minlength="10" ng-maxlength="10" class="thirddivinput" id="thirddivinput" numbers-only placeholder="10 Digit Contact Number">
+            <input type="text" ng-model="formdata.uphone" ng-minlength="10" ng-maxlength="10" ng-pattern="regex" class="thirddivinput" id="thirddivinput" numbers-only placeholder="10 Digit Contact Number">
           </label>
         </div>
         
@@ -134,9 +103,15 @@
               <div class="col col-20"></div>
         </div>
       </div>
+      
+    </form>
     </div>
 
+    <!-- 
+          otpdiv (6digit)
+     -->
     <div id="otpdiv" class="otpdiv" style="display: none;">
+    <form name="loginOtp">
       <p class="fybpotp animated zoomInUp">
             Requesting OTP
       </p>
@@ -145,7 +120,7 @@
             <div class="list otpdivinputdivlist animated jello">
               <label class="item item-input item-floating-label text-center tdlabel">
                 <span class="input-label tdspan">6 digit OTP</span>
-                <input type="text" ng-keyup="submit(otp)" ng-model="formdata.otp" ng-minlength="6" ng-maxlength="6" class="thirddivinput" id="thirddivinput" validate-otp placeholder="6 digit OTP">
+                <input type="text" ng-keyup="submit(otp)" ng-model="formdata.otp" ng-minlength="6" ng-maxlength="6" class="thirddivinput" id="otptxtdivinput" validate-otp placeholder="6 digit OTP">
               </label>
             </div>
             
@@ -156,14 +131,65 @@
               <div class="col col-100 text-center">
               <center>
           <button id="btngo3" ng-click="callsubmit()" class="button btngo3 animated flipInX">
-            <img src="img/go5.png" width="100" height="100">
+            <img src="img/go1.png" width="70" height="70">
           </button>
             </center>
             </div>
         </div>
       </div>
+    </form>
     </div>
+    
 
+    <!-- 
+          seconddiv (name gender)
+     -->
+    <div id="seconddiv" class="seconddiv" style="display: none;">
+     <form name="login">
+      <p class="fybplogin animated zoomInDown">
+            &
+      </p>
+      <div id="seconddivinputdiv" class="seconddivinputdiv">
+        <div class="list seconddivinputdivlist animated zoomIn">
+          <label class="item item-input item-floating-label text-center sdlabel">
+            <span class="input-label sdspan">Your Good Name</span>
+            <input type="text" class="seconddivinput" id="seconddivinput" ng-model="formdata.uname" chars-only placeholder="Your Good Name"><!-- ng-keyup="creatego1(uname)" -->
+          </label>
+        </div>
+        <div class="seconddivradiodiv" id="seconddivradiodiv">
+              <!-- <ion-radio ng-model="choice" ng-value="'A'">Choose A</ion-radio>
+              <ion-radio ng-model="choice" ng-value="'B'">Choose B</ion-radio> -->
+          <p class="sdrp animated flipInX">You Are</p>
+          <div class="row">
+            <div class="col col-50 sdr1div">
+              <ion-radio ng-model="formdata.gender" ng-click="callsubmitdivsecond()" class="sdr1 animated bounceInLeft" ng-value="'Male'">He</ion-radio>
+            </div>
+            <div class="col col-50 sdr2div">
+              <ion-radio ng-model="formdata.gender" ng-click="callsubmitdivsecond()" class="sdr2 animated bounceInRight" ng-value="'Female'">She</ion-radio>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="seconddivbtngo1 text-center">
+            <div class="row">
+              <!-- <div class="col col-20"></div>
+              <div class="col col-20"></div> -->
+              <div class="col col-100 text-center">
+                <button id="btngo1" ng-click="createcontactdiv()" class="button btngo1 animated flipInX"><!-- flipOutX -->
+              <img src="img/go5.png" width="100" height="100">
+                </button>
+              </div>
+              <!-- <div class="col col-20"></div>
+              <div class="col col-20"></div> -->
+            </div>
+            
+        </div>
+    </form>
+    </div>
+    
+    <!-- 
+          forthdiv (done!!!)
+     -->
     <div id="forthdiv" class="forthdiv" style="display: none;">
       <p class="fybpdone animated zoomInUp">
             Done!!
@@ -175,7 +201,6 @@
             www.mydomain.com
       </p>
     </div>
-    </form>
     </ion-content>
   </body>
 </html>

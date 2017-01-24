@@ -7,8 +7,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <link href="css/stylelogin.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -34,63 +33,49 @@
     <script src="js/controller/loginController.js"></script>
     <script type="text/javascript" src="js/controller/menuController.js"></script>
     <script src="js/controller/homeController.js"></script>
+     
   </head>
   <body ng-app="besties">
-  <ion-content  class="loginpane" scroll="false">
-    <div id="firstdiv" class="firstdiv" style="display: block;">
-      <p class="fybp1 animated fadeInUp">
-            Find Your Besties Splsh
-      </p>
-        <div class="row fybprow">
-          <div class="col col-100 text-center"><img class="worldimagelogin animated zoomOut" src="img/SpinningEarth.gif"></div>
+        <ion-content class="myLogContent text-center" scroll="false">
+        <div id="DivM1" class="DivM1" ng-hide="open1">
+          <h1>A B C d</h1>
+          <form>
+            <div class="list DivM1list">
+              <label class="item item-input item-floating-label la1">
+                <center><span class="input-label DivM1inputlabel">My Good Name</span></center>
+                <input type="text" placeholder="My Good Name" style="text-align: center;">
+              </label>
+            </div>
+            <div class="DivM1button">
+              <button class="button" ng-click="call()">Click To Test</button>
+            </div>
+          </form>
         </div>
-        <!-- <div style="m"><img src="img/starterimage.png"></div> -->
-        <p class="fybplast animated bounceInUp">www.mydomain.com</p>
-    </div>
-
-    <!-- <div class="conteneur" align="center">
-    <div class="css3_div">
-      <img width="90%" ng-src="img/ionic.png"/>
-        <div class="txtcss">
-          <font style="font-size: 30px;">JP Creation</font>
-          <br />
-          <font style="font-weight:300; font-size: 18px;">Welcomes You</font>
-        </div>
-    </div>
-    <div class="html5_div">
-      <img width="50%" ng-src="img/ionic.png"/>
-      <div class="txthtml">
-          <font style="font-weight:300;font-size: 30px;">JP Creation</font>
-            <br />
-          <font style="font-weight:300; font-size: 18px;">Education for free</font>
-      </div>
-    </div>
-    <div class="trycss">
-        <font style="font-weight:300;font-size: 30px;">Enjoy The App</font>
-          <br />
-        <font style="font-weight:300; font-size: 18px;">It's Fully Free</font>
-    </div>
-    <div class="shareit">
-        <font style="font-size: 30px;"> AND SHARE</font> <font style="font-size: 45px;">IT</font>
-          <br />
-        <font style="font-size: 18px;">;)</font>
-    </div>
-  </div> -->
-  </ion-content>
-  </body>
-</html>
-
-    <!-- <ion-content style="background-color: #e5baba " scroll="false">
-        <div class="card">
-          <div class="item item-divider text-center">
-            <h1 class="title ">Find Your Besties</h1>
+        <div id="DivM2" class="DivM2" ng-show="open2">
+          2nd Div
+          
+          <div class="DivM2button">
+              <button class="button DivM2buttonElement" ng-click="call2()"></button>
           </div>
         </div>
-        <div class="row">
-          <div class="col col-100 text-center"><img src="img/SpinningEarth.gif"></div>
+        <div id="DivM3" class="DivM3" ng-show="open3">
+          3nd Div
+          <div class="DivM3button">
+              <button class="button DivM3buttonEle" ng-click="call3()"></button>
+          </div>
+        </div>
+        <div id="DivM4" class="DivM4" ng-show="open4">
+          4nd Div
+          <div class="DivM4button">
+              <button class="button DivM4buttonEle" ng-click="call4()"></button>
+          </div>
+        </div>
+        <div id="DivM5" class="DivM5" ng-show="open5">
+          5nd Div
+          <div class="DivM5button">
+              <button class="button DivM5buttonEle" ng-click="call5()"></button>
+          </div>
         </div>
       </ion-content>
-      <div style="position: absolute;bottom: 0;"><img src="img/starterimage.png"></div>
-      </div>
   </body>
-</html> -->
+</html>
