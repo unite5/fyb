@@ -16,10 +16,14 @@ besties.controller('loginController',
 	    // if ng-show true then visible
 	    $scope.open1 = true;//div hide
 	    $scope.open2 = false;//div show
+		document.getElementById("DivM1").style.display = "none";
+	    document.getElementById("DivM2").style.display = "block";
 	  }
 	  $scope.call2 = function(){
-	    $scope.open3 = true;//div show
-	    $scope.open2 = false;//div hide
+	    $scope.open1 = false;//div show
+	    $scope.open2 = true;//div hide
+	    document.getElementById("DivM1").style.display = "block";
+	    document.getElementById("DivM2").style.display = "none";
 	  }
 	  $scope.call3 = function(){
 	    $scope.open4 = true;//div show
