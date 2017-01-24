@@ -1,6 +1,6 @@
 //angular.module('besties')
 besties.controller('loginController',
-	['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
+	//['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
 	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http){
 	
 	  $scope.open1 = false;
@@ -16,6 +16,7 @@ besties.controller('loginController',
 	    // if ng-show true then visible
 	    $scope.open1 = true;//div hide
 	    $scope.open2 = false;//div show
+	    alert("am  i  called");
 		document.getElementById("DivM1").style.display = "none";
 	    document.getElementById("DivM2").style.display = "block";
 	  }
@@ -146,7 +147,8 @@ besties.controller('loginController',
 		  //forthdiv.style.display = "block";
 		meloginfact.addmyDetails(seconddiv,forthdiv,$scope,$http,$ionicPopup,$timeout,$ionicLoading);
 	}*/
-}])
+//}])
+})
 
 .directive('charsOnly', function () {
     return {
