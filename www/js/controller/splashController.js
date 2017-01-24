@@ -1,6 +1,6 @@
 //angular.module('besties')
 besties.controller('splashController',function($scope){
-	$scope.open1 = false;
+	/*$scope.open1 = false;
   $scope.open2 = false;
   $scope.open3 = false;
   $scope.open4 = false;
@@ -34,5 +34,5 @@ besties.controller('splashController',function($scope){
     $scope.open5 = false;//div hide
     alert("Welcome");
     $scope.open1 = false;//div show
-  }
+  }*/
 });
