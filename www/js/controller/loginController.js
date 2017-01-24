@@ -4,22 +4,18 @@ besties.controller('loginController',
 	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http){
 	
 	  $scope.open1 = false;
-	  $scope.open2 = false;
-	  $scope.open3 = false;
-	  $scope.open4 = false;
-	  $scope.open5 = false;
+	  $scope.open2 = true;
+	  $scope.open3 = true;
+	  $scope.open4 = true;
+	  $scope.open5 = true;
 	  $scope.call = function(){
-	    //console.info('ABCCtrl');
-	    //loginservice.call($scope);
-	    //servicelogin.docall('abc',$scope);
-	    
 	    // if ng-hide false then visible
 	    // if ng-hide true then invisible
 
 	    // if ng-show false then invisible
 	    // if ng-show true then visible
 	    $scope.open1 = true;//div hide
-	    $scope.open2 = true;//div show
+	    $scope.open2 = false;//div show
 	  }
 	  $scope.call2 = function(){
 	    $scope.open3 = true;//div show
