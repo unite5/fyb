@@ -1,4 +1,4 @@
-.myLogContent,.DivM1,.DivM2,.DivM3,.DivM4,.DivM5{
+.DivM1,.DivM2,.DivM3,.DivM4,.DivM5{
   padding: 0;
   width: 100%;
   height: 100%;
@@ -15,14 +15,15 @@
 .DivM1list{
   padding-top: 25%;
 }
-.DivM1 .DivM1button{
+/*.DivM1 .DivM1button{
   bottom: 0;
-  position: absolute;
-  margin: 10%;
-}
+  position: relative;
+  margin: 20%;
+}*/
 .DivM1button{
   left: 20%;
   right: 20%;
+  position: absolute;
   padding-bottom: 25%;
 }
 label.item.item-input.item-floating-label.la1 {

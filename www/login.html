@@ -49,7 +49,7 @@
   </head>
   <body ng-app="besties">
         <div class="myLogContent text-center" scroll="false">
-        <div id="DivM1" class="DivM1">
+        <div id="DivM1" class="DivM1" ng-hide="open1">
           <h1>Find Your Besties</h1>
           <form>
             <div class="list DivM1list">
@@ -63,7 +63,7 @@
             </div>
           </form>
         </div>
-        <div id="DivM2" class="DivM2" style="display: none;">
+        <div id="DivM2" class="DivM2" ng-hide="open2">
           2nd Div
           <div class="col col-100 text-center"><img class="worldimagelogin animated fadeIn" src="img/SpinningEarth.gif"></div>
           
@@ -71,24 +71,24 @@
               <button class="button DivM2buttonElement" ng-click="call2()"></button>
           </div>
         </div>
-        <!-- <div id="DivM3" class="DivM3" ng-show="open3">
+        <div id="DivM3" class="DivM3" ng-hide="open3">
           3nd Div
           <div class="DivM3button">
               <button class="button DivM3buttonEle" ng-click="call3()"></button>
           </div>
         </div>
-        <div id="DivM4" class="DivM4" ng-show="open4">
+        <div id="DivM4" class="DivM4" ng-hide="open4">
           4nd Div
           <div class="DivM4button">
               <button class="button DivM4buttonEle" ng-click="call4()"></button>
           </div>
         </div>
-        <div id="DivM5" class="DivM5" ng-show="open5">
+        <div id="DivM5" class="DivM5" ng-hide="open5">
           5nd Div
           <div class="DivM5button">
               <button class="button DivM5buttonEle" ng-click="call5()"></button>
           </div>
-        </div> -->
+        </div>
       </div>
   </body>
 </html>
