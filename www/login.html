@@ -29,10 +29,10 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
+    <script type="text/javascript" src="lib/angular-animate/angular-animate.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
-    <script src="cordova.js"></script>
+    <script <s></s>rc="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
@@ -45,10 +45,14 @@
 
     <script type="text/javascript" src="js/controller/menuController.js"></script>
     <script src="js/controller/homeController.js"></script>
+
+    <!-- Other's files -->
+    <link rel="stylesheet" href="css/ng-animation.css">
+    <script type="text/javascript" src="lib/other/d3/d3.min.js"></script>
      
   </head>
   <body ng-app="besties">
-        <div class="myLogContent text-center" scroll="false">
+        <ion-content class="myLogContent text-center" scroll="false">
         <div id="DivM1" class="DivM1" ng-hide="open1">
           <h1>Find Your Besties</h1>
           <form>
@@ -89,7 +93,7 @@
               <button class="button DivM5buttonEle" ng-click="call5()"></button>
           </div>
         </div>
-      </div>
+      </ion-content>
   </body>
 </html>
 

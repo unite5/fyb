@@ -25,6 +25,7 @@
   right: 20%;
   position: absolute;
   padding-bottom: 25%;
+  margin-top: 25%;
 }
 label.item.item-input.item-floating-label.la1 {
     border-top: black;
@@ -43,7 +44,7 @@ label.item.item-input.item-floating-label.la1 {
 }
 button.button.DivM2buttonElement,.DivM3buttonEle,.DivM4buttonEle,.DivM5buttonEle {
     border: none;
-    background-image: url('img/ionic.png');
+    background-image: url('../img/ionic.png');
     background-size: 45px 45px;
     background-repeat: no-repeat;
     background-position-x: 50%;
