@@ -148,8 +148,11 @@ besties.config(function($stateProvider,$urlRouterProvider){
         controller:'chatController'
       }
     }
-  })
+  });
 
-  $urlRouterProvider.otherwise('/app/home');
-  //$urlRouterProvider.otherwise('/login');
+  if(localStorage.imin === "Y"){
+    $urlRouterProvider.otherwise('/app/home');
+  }else{
+    $urlRouterProvider.otherwise('/login');
+  }
 });

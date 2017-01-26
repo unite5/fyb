@@ -2,8 +2,8 @@
 besties.controller('loginController',
 	//['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
 	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http){
-	alert("inn;loginController");
-	  /*$scope.open1 = false;
+	  alert("inn;loginController");
+	  $scope.open1 = false;
 	  $scope.open2 = true;
 	  $scope.open3 = true;
 	  $scope.open4 = true;
@@ -34,8 +34,9 @@ besties.controller('loginController',
 	    alert("Welcome");
 	    //$scope.open1 = false;//div show
 	    location.href="index.html";
+	    localStorage.imin = "Y";
 	  }
-*/
+
 	//scope.regex = '\\d+[0-9]{10}';///^[0-9]+$/
 	/*$scope.home = function(){
 		//$state.go('app.home');
