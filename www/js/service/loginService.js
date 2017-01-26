@@ -4,6 +4,7 @@ besties.factory("meloginfact",function(){
 	var sStatus = null;
 	var sOtp = null;
 	var tel = null;
+	var latitude = null , longitude = null;
 	var gotobrowse = function($scope,$timeout,$ionicLoading){
 		$timeout(function() {
 				// seconddiv.style.display = "none";
@@ -25,11 +26,42 @@ besties.factory("meloginfact",function(){
 				}, 3000);
 			}, 1500);
 	}
+	// onSuccess Geolocation
+    function onSuccess(position) {
+        console.log('in onSuccess()');
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        //var element = document.getElementById('geolocation');
+        /*alert('Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          + position.timestamp                    + '<br />');*/
+    }
+
+    // onError Callback receives a PositionError object
+    function onError(error) {
+        console.log('in onError()');
+        console.log(error.code);
+        console.log(error.message);
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
 	return {
-		registerforOtp:function(phone,$scope,datas,$http,$timeout,$ionicPopup,$ionicLoading){
+		registerforOtp:function(phone,$scope,$http,$timeout,$ionicPopup,$ionicLoading){
 			$ionicLoading.show({
 				  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
 			});
+			var lat = 19.235234, lon = 73.1275884;
+			var datas = {
+				phone:phone,
+				lat:latitude,
+				lon:longitude,
+				deviceid:'12332434'
+			};
 			$http.post(localStorage.myURL+"/mobile/login/me",
 				datas)
 			.then(function(response){
@@ -161,11 +193,11 @@ besties.factory("meloginfact",function(){
 		},
 		addmyDetails: function($scope,$http,$ionicPopup,$timeout,$ionicLoading){
 			var post = {
-				phone:"3452",//localStorage.userContact,
+				phone:localStorage.userContact,
 				name:$scope.formdata.uname,
 				gender:$scope.formdata.gender,
-				lat:19.2132988,
-				lon:73.0796049
+				lat:latitude,
+				lon:longitude
 			};
 			console.log(localStorage.userContact);
 			console.log($scope.formdata.uname);
@@ -213,6 +245,9 @@ besties.factory("meloginfact",function(){
 				console.log(JSON.stringify(err));
 			});
 			
+		},
+		init:function(){
+			navigator.geolocation.getCurrentPosition(onSuccess, onError);
 		}
 	}
 });

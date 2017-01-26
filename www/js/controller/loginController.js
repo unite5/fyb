@@ -17,16 +17,19 @@ besties.controller('loginController',
 	  $scope.open3 = true;
 	  $scope.open4 = true;
 	  $scope.open5 = true;
+
+	  meloginfact.init();
+
 	  $scope.formdata = {
 		'uname':'',
 		'gender':'',
 		'uphone':'',
 		'otp':''
 	  }
-	  /*$timeout(function(){
+	  $timeout(function(){
 		$scope.open1 = true;//div hide
 	    $scope.open2 = false;
-	  },4000);*/
+	  },4000);
 	  $scope.call = function(){
 	    // if ng-hide false then visible
 	    // if ng-hide true then invisible
@@ -35,47 +38,24 @@ besties.controller('loginController',
 	    // if ng-show true then visible
 	    // $scope.open1 = true;//div hide
 	    // $scope.open2 = false;//div show
-	    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	    
 	  }
-	  // onSuccess Geolocation
-    function onSuccess(position) {
-        console.log('in onSuccess()');
-        console.log(position.coords.latitude);
-        console.log(position.coords.longitude);
-        //var element = document.getElementById('geolocation');
-        alert('Latitude: '           + position.coords.latitude              + '<br />' +
-                            'Longitude: '          + position.coords.longitude             + '<br />' +
-                            'Altitude: '           + position.coords.altitude              + '<br />' +
-                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
-                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-                            'Heading: '            + position.coords.heading               + '<br />' +
-                            'Speed: '              + position.coords.speed                 + '<br />' +
-                            'Timestamp: '          + position.timestamp                    + '<br />');
-    }
-
-    // onError Callback receives a PositionError object
-    function onError(error) {
-        console.log('in onError()');
-        console.log(error.code);
-        console.log(error.message);
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
+	  
 
 	  $scope.call2 = function(){
 	    // $scope.open3 = false;//div show
 	    // $scope.open2 = true;//div hide
 	    var phone =angular.element(document.getElementById("txtPhone")).val();//document.getElementById("thirddivinput").value;
 		console.log(phone);
-		var lat = 19.235234, lon = 73.1275884;
+		/*var lat = 19.235234, lon = 73.1275884;
 		var datas = {
 			phone:phone,
-			lat:lat,
+			lat:latitude,
 			lon:lon,
 			deviceid:'12332434'
-		};//lat lon deviceid
+		};*///lat lon deviceid
 		//meloginfact.registerforOtp(phone,$scope,datas,thirddiv,otpdiv,$http,$timeout,$ionicPopup,$ionicLoading);
-		meloginfact.registerforOtp(phone,$scope,datas,$http,$timeout,$ionicPopup,$ionicLoading);
+		meloginfact.registerforOtp(phone,$scope,$http,$timeout,$ionicPopup,$ionicLoading);
 	  }
 	  $scope.call3 = function(){
 	    // $scope.open4 = false;//div show
