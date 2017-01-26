@@ -52,46 +52,88 @@
      
   </head>
   <body ng-app="besties">
-        <ion-content class="myLogContent text-center" scroll="false">
+    <ion-content class="myLogContent text-center" scroll="false">
         <div id="DivM1" class="DivM1" ng-hide="open1">
-          <h1>Find Your Besties</h1>
           <form>
             <div class="list DivM1list">
-              <label class="item item-input item-floating-label la1">
-                <center><span class="input-label DivM1inputlabel">My Good Name</span></center>
-                <input type="text" placeholder="My Good Name" style="text-align: center;">
-              </label>
-            </div>
-            <div class="DivM1button">
-              <button class="button" ng-click="call()">Click To Test</button>
+              <p class="fybp1 animated fadeInUp">
+                    Find Your Besties 
+              </p>
+                <div class="row fybprow">
+                  <div class="col col-100 text-center"><img class="worldimagelogin animated zoomOut" src="img/SpinningEarth.gif"></div>
+                </div>
+                <!-- <div style="m"><img src="img/starterimage.png"></div> -->
+                <p class="fybplast animated bounceInUp">www.mydomain.com</p>
             </div>
           </form>
         </div>
+
         <div id="DivM2" class="DivM2" ng-hide="open2">
-          2nd Div
-          <div class="col col-100 text-center"><img class="worldimagelogin animated fadeIn" src="img/SpinningEarth.gif"></div>
-          
-          <div class="DivM2button">
-              <button class="button DivM2buttonElement" ng-click="call2()"></button>
-          </div>
+          <form name="login">
+          <p class="fybpcontact animated zoomInUp">
+                Join Us <br>
+                <h2 class="fybpcontacth2 animated slideInLeft">Your Contact</h2>
+          </p>
+          <label class="item item-input item-floating-label text-center CNtdlabel animated bounceInDown">
+            <center><span class="input-label CNtdspan">Contact Number</span></center>
+            <input type="text" ng-model="formdata.uphone" ng-minlength="10" ng-maxlength="10" id="txtPhone" ng-pattern="regex" class="thirddivinput" numbers-only placeholder="10 Digit Contact Number">
+          </label>
+          <button id="btngo2" ng-click="call2()" class="button btngo2 animated flipInX" ng-hide="btngo2">
+              <!-- <img src="img/go1.png" width="70" height="70"> -->
+          </button>
+          </form>
         </div>
+
         <div id="DivM3" class="DivM3" ng-hide="open3">
-          3nd Div
-          <div class="DivM3button">
-              <button class="button DivM3buttonEle" ng-click="call3()"></button>
-          </div>
+          <form name="loginOtp">
+          <p class="fybpotp animated zoomInUp">
+            Requesting OTP
+          </p>
+          <label class="item item-input item-floating-label text-center la2 tdlabel">
+                <center><span class="input-label tdspan">6 digit OTP</span></center>
+                <input type="text" ng-keyup="submit(otp)" id="txtOTP" ng-model="formdata.otp" ng-minlength="6" ng-maxlength="6" class="thirddivinput" id="otptxtdivinput" validate-otp placeholder="6 digit OTP">
+          </label>
+          <button id="btngo3" ng-click="call3()" class="button btngo3 animated flipInX" ng-hide="btngo3">
+            <!-- <img src="img/go1.png" width="70" height="70"> -->
+          </button>
+          </form>
         </div>
+
         <div id="DivM4" class="DivM4" ng-hide="open4">
-          4nd Div
-          <div class="DivM4button">
-              <button class="button DivM4buttonEle" ng-click="call4()"></button>
+          <form name="login">
+          <p class="fybplogin animated zoomInDown">
+                &
+          </p>
+          <label class="item item-input item-floating-label text-center la4 sdlabel">
+            <center><span class="input-label sdspan">Your Good Name</span></center>
+            <input type="text" class="seconddivinput" id="seconddivinput" ng-model="formdata.uname" chars-only placeholder="Your Good Name"><!-- ng-keyup="creatego1(uname)" -->
+          </label>
+          <div id="seconddivradiodiv" ng-hide="seconddivradiodiv">
+          <p class="sdrp animated flipInX">You Are</p>
+          <div class="row">
+            <div class="col col-50 sdr1div">
+              <ion-radio ng-model="formdata.gender" ng-click="callsubmitdivsecond()" class="sdr1 animated bounceInLeft" ng-value="'Male'">He</ion-radio>
+            </div>
+            <div class="col col-50 sdr2div">
+              <ion-radio ng-model="formdata.gender" ng-click="callsubmitdivsecond()" class="sdr2 animated bounceInRight" ng-value="'Female'">She</ion-radio>
+            </div>
+          </div>
+          <button id="btngo4" ng-click="call4()" class="button btngo4 animated flipInX" ng-hide="btngo4"><!-- flipOutX -->
+              <!-- <img src="img/go5.png" width="100" height="100"> -->
+          </button>
           </div>
         </div>
+
         <div id="DivM5" class="DivM5" ng-hide="open5">
-          5nd Div
-          <div class="DivM5button">
-              <button class="button DivM5buttonEle" ng-click="call5()"></button>
+          <p class="fybpdone animated zoomInUp">
+            Done!!!
+          </p>
+          <div class="imageDiv5">
+              <img src="img/go4.png" class="fifthimg animated fadeIn">
           </div>
+          <p class="fybpcomplete animated fadeIn">
+                www.mydomain.com
+          </p>
         </div>
       </ion-content>
   </body>

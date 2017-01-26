@@ -183,7 +183,7 @@
 	margin-top: 10%;
   width: 100%;
 	animation-delay: 2.0s;
-	-webkit-animation-duration:1.0s;
+  -webkit-animation-duration:1.0s;
 	animation-duration:1.0s;
 }
 .list,.tdlabel{
