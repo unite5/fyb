@@ -42,8 +42,8 @@ besties.controller('loginController',
 	    $scope.open2 = false;//div show
 	  }
 	  $scope.call2 = function(){
-	    $scope.open3 = false;//div show
-	    $scope.open2 = true;//div hide
+	    // $scope.open3 = false;//div show
+	    // $scope.open2 = true;//div hide
 	    var phone =angular.element(document.getElementById("txtPhone")).val();//document.getElementById("thirddivinput").value;
 		console.log(phone);
 		var lat = 19.235234, lon = 73.1275884;
@@ -54,20 +54,23 @@ besties.controller('loginController',
 			deviceid:'12332434'
 		};//lat lon deviceid
 		//meloginfact.registerforOtp(phone,$scope,datas,thirddiv,otpdiv,$http,$timeout,$ionicPopup,$ionicLoading);
+		meloginfact.registerforOtp(phone,$scope,datas,$http,$timeout,$ionicPopup,$ionicLoading);
 	  }
 	  $scope.call3 = function(){
-	    $scope.open4 = false;//div show
-	    $scope.open3 = true;//div hide
+	    // $scope.open4 = false;//div show
+	    // $scope.open3 = true;//div hide
 	    var otptxtdivinput = angular.element(document.getElementById("txtOTP")).val();//$scope.formdata.otp;
 	    console.log(otptxtdivinput);
 		//meloginfact.callotp(otpdiv,seconddiv,forthdiv,$scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput);
+		meloginfact.callotp($scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput);
 	  }
 	  $scope.call4 = function(){
-	    $scope.open5 = false;//div show
-	    $scope.open4 = true;//div hide
+	    // $scope.open5 = false;//div show
+	    // $scope.open4 = true;//div hide
 	    console.log($scope.formdata.uname);
 	    console.log($scope.formdata.gender);
 	    //meloginfact.addmyDetails(seconddiv,forthdiv,$scope,$http,$ionicPopup,$timeout,$ionicLoading);
+	    meloginfact.addmyDetails($scope,$http,$ionicPopup,$timeout,$ionicLoading);
 	  }
 	  $scope.call5 = function(){
 	    $scope.open5 = true;//div hide

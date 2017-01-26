@@ -6,8 +6,10 @@ besties.factory("meloginfact",function(){
 	var tel = null;
 	var gotobrowse = function(seconddiv,forthdiv,$timeout,$ionicLoading){
 		$timeout(function() {
-				seconddiv.style.display = "none";
-				forthdiv.style.display = "block";
+				// seconddiv.style.display = "none";
+				// forthdiv.style.display = "block";
+				$scope.open5 = false;//div show
+	    		$scope.open4 = true;//div hide
 				$timeout(function() {
 					$ionicLoading.show({
 					  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>',
@@ -15,14 +17,16 @@ besties.factory("meloginfact",function(){
 					}).then(function(){
 					   	$timeout(function() {
 							//$state.go("app.home");
-							window.location = "index.html";
+							//window.location = "index.html";
+							location.href="index.html";
+	    					localStorage.imin = "Y";
 						}, 1200);
 					});
 				}, 3000);
 			}, 1500);
 	}
 	return {
-		registerforOtp:function(phone,$scope,datas,thirddiv,otpdiv,$http,$timeout,$ionicPopup,$ionicLoading){
+		registerforOtp:function(phone,$scope,datas,$http,$timeout,$ionicPopup,$ionicLoading){
 			$ionicLoading.show({
 				  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
 			});
@@ -35,10 +39,10 @@ besties.factory("meloginfact",function(){
 				if(sStatus == "Prelogin"){
 					sOtp = fetch.otp;
 					$timeout(function() {
-						// thirddiv.style.display = "none";
-						// otpdiv.style.display = "block";
-						thirddiv.style.display = "none";
-						otpdiv.style.display = "block";
+						/*thirddiv.style.display = "none";
+						otpdiv.style.display = "block";*/
+						$scope.open3 = false;//div show
+	    				$scope.open2 = true;//div hide
 					}, 1500);
 					localStorage.userName = fetch.name;				
 					localStorage.Prelogin = sStatus;
@@ -51,8 +55,8 @@ besties.factory("meloginfact",function(){
 					sOtp = fetch.otp;
 					localStorage.Prelogin = sStatus;
 					$timeout(function() {
-						thirddiv.style.display = "none";
-						otpdiv.style.display = "block";
+						$scope.open3 = false;//div show
+	    				$scope.open2 = true;//div hide
 					}, 1500);
 					alert(JSON.stringify(response.data));
 					console.log(sStatus+sOtp);
@@ -86,7 +90,7 @@ besties.factory("meloginfact",function(){
 				//alert("err:"+JSON.stringify(err));
 			});
 		},
-		callotp: function(otpdiv,seconddiv,forthdiv,$scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput){
+		callotp: function($scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput){
 			var get = sStatus;
         	/*$ionicLoading.show({
 			  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
@@ -100,16 +104,20 @@ besties.factory("meloginfact",function(){
 					});
 					$timeout(function() {
 						$ionicLoading.hide();
-						otpdiv.style.display = "none";
-						seconddiv.style.display = "block";
+						// otpdiv.style.display = "none";
+						// seconddiv.style.display = "block";
+						$scope.open4 = false;//div show
+	    				$scope.open3 = true;//div hide
 					}, 2000);
 				}
 				else if(get == "Prelogin"){
 				//	else if(get == "Register"){
 					$timeout(function() {
-						otpdiv.style.display = "none";
+						/*otpdiv.style.display = "none";
 						seconddiv.style.display = "none";
-						forthdiv.style.display = "block";
+						forthdiv.style.display = "block";*/
+						$scope.open5 = false;//div show
+	    				$scope.open3 = true;//div hide
 						$timeout(function() {
 							$ionicLoading.show({
 							  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>',
@@ -117,7 +125,9 @@ besties.factory("meloginfact",function(){
 							}).then(function(){
 							   	$timeout(function() {
 									//$state.go("app.home");
-									window.location = "index.html";
+									//window.location = "index.html";
+									location.href="index.html";
+	    							localStorage.imin = "Y";
 								}, 1200);
 							});
 						}, 5000);
@@ -149,7 +159,7 @@ besties.factory("meloginfact",function(){
 			    });
 			}
 		},
-		addmyDetails: function(seconddiv,forthdiv,$scope,$http,$ionicPopup,$timeout,$ionicLoading){
+		addmyDetails: function($scope,$http,$ionicPopup,$timeout,$ionicLoading){
 			var post = {
 				phone:"3452",//localStorage.userContact,
 				name:$scope.formdata.uname,
@@ -171,10 +181,10 @@ besties.factory("meloginfact",function(){
 				var fetch = JSON.parse(JSON.stringify(response.data));
 				console.log(fetch);
 				if(fetch.status == "Already Registered"){
-					gotobrowse(seconddiv,forthdiv,$timeout,$ionicLoading);
+					gotobrowse($scope,seconddiv,forthdiv,$timeout,$ionicLoading);
 				}
 				else if(fetch.status == "Registered"){
-					gotobrowse(seconddiv,forthdiv,$timeout,$ionicLoading);
+					gotobrowse($scope,econddiv,forthdiv,$timeout,$ionicLoading);
 				}
 				else if(fetch.status == "Failed"){
 					$ionicPopup.alert({
