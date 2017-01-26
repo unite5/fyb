@@ -35,27 +35,33 @@ besties.controller('loginController',
 	    // if ng-show true then visible
 	    // $scope.open1 = true;//div hide
 	    // $scope.open2 = false;//div show
-	    var watchOptions = {
-		    timeout : 3000,
-		    enableHighAccuracy: false // may cause errors if true
-		  };
-
-		  var watch = $cordovaGeolocation.watchPosition(watchOptions);
-		  watch.then(
-		    null,
-		    function(err) {
-		      // error
-		      var err = "error 1:"+JSON.stringify(err);
-		      return err;
-		    },
-		    function(position) {
-		      var lat  = position.coords.latitude;
-		      var long = position.coords.longitude;
-		      var p = "lat:"+lat+" long:"+long;
-		      return p;
-		  });
-		  alert(watch);
+	    navigator.geolocation.getCurrentPosition(onSuccess, onError);
 	  }
+	  // onSuccess Geolocation
+    function onSuccess(position) {
+        console.log('in onSuccess()');
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+        //var element = document.getElementById('geolocation');
+        alert('Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          + position.timestamp                    + '<br />');
+    }
+
+    // onError Callback receives a PositionError object
+    function onError(error) {
+        console.log('in onError()');
+        console.log(error.code);
+        console.log(error.message);
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
 	  $scope.call2 = function(){
 	    // $scope.open3 = false;//div show
 	    // $scope.open2 = true;//div hide
