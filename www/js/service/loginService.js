@@ -105,11 +105,13 @@ besties.factory("meloginfact",function(){
 				else if(sStatus == "Register"){
 					sOtp = fetch.otp;
 					localStorage.Prelogin = sStatus;
+					var tel = phone;
+					localStorage.userContact = tel;
 					$timeout(function() {
 						$scope.open3 = false;//div show
 	    				$scope.open2 = true;//div hide
 					}, 1500);
-					alert(JSON.stringify(response.data));
+					//alert(JSON.stringify(response.data));
 					console.log(sStatus+sOtp);
 				}else if(sStatus == "Failed"){
 					//alert("err :"+JSON.stringify(response.data));
