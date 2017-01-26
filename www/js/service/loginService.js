@@ -50,12 +50,30 @@ besties.factory("meloginfact",function(){
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
     }
+
+	var postIfIExists = function($http,$scope){
+		var posts = {
+			phone:localStorage.userContact,
+			name:localStorage.userName,
+			gender:localStorage.userGender,
+			lat:latitude,
+			lon:longitude
+		};
+		$http.post(localStorage.myURL+"/mobile/login/me/register",
+			post)
+		.then(function(response){
+			console.log("Done!"+JSON.stringify(response));
+		},function(err){
+			console.log("Err:"+JSON.stringify(err));
+		});
+	}
+
 	return {
 		registerforOtp:function(phone,$scope,$http,$timeout,$ionicPopup,$ionicLoading){
 			$ionicLoading.show({
 				  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
 			});
-			var lat = 19.235234, lon = 73.1275884;
+			//var lat = 19.235234, lon = 73.1275884;
 			var datas = {
 				phone:phone,
 				lat:latitude,
@@ -77,6 +95,7 @@ besties.factory("meloginfact",function(){
 	    				$scope.open2 = true;//div hide
 					}, 1500);
 					localStorage.userName = fetch.name;				
+					localStorage.userGender = fetch.gender;	
 					localStorage.Prelogin = sStatus;
 					var tel = phone;
 					localStorage.userContact = tel;
@@ -150,6 +169,9 @@ besties.factory("meloginfact",function(){
 						forthdiv.style.display = "block";*/
 						$scope.open5 = false;//div show
 	    				$scope.open3 = true;//div hide
+
+						postIfIExists($http,$scope);
+
 						$timeout(function() {
 							$ionicLoading.show({
 							  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>',

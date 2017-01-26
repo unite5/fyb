@@ -88,8 +88,8 @@ besties.controller('loginController',
 	    $scope.open5 = true;//div hide
 	    alert("Welcome");
 	    //$scope.open1 = false;//div show
-	    location.href="index.html";
-	    localStorage.imin = "Y";
+	    // location.href="index.html";
+	    // localStorage.imin = "Y";
 	  }
 	  $scope.callsubmitdivsecond = function(){
 		btngo4.style.display = "block";
