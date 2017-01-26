@@ -17,29 +17,44 @@ besties.controller('loginController',
 	  $scope.open3 = true;
 	  $scope.open4 = true;
 	  $scope.open5 = true;
-	  /*$scope.open1 = true;
-	  $scope.open2 = true;
-	  $scope.open3 = true;
-	  $scope.open4 = false;
-	  $scope.open5 = true;*/
 	  $scope.formdata = {
 		'uname':'',
 		'gender':'',
 		'uphone':'',
 		'otp':''
 	  }
-	  $timeout(function(){
+	  /*$timeout(function(){
 		$scope.open1 = true;//div hide
 	    $scope.open2 = false;
-	  },4000);
+	  },4000);*/
 	  $scope.call = function(){
 	    // if ng-hide false then visible
 	    // if ng-hide true then invisible
 
 	    // if ng-show false then invisible
 	    // if ng-show true then visible
-	    $scope.open1 = true;//div hide
-	    $scope.open2 = false;//div show
+	    // $scope.open1 = true;//div hide
+	    // $scope.open2 = false;//div show
+	    var watchOptions = {
+		    timeout : 3000,
+		    enableHighAccuracy: false // may cause errors if true
+		  };
+
+		  var watch = $cordovaGeolocation.watchPosition(watchOptions);
+		  watch.then(
+		    null,
+		    function(err) {
+		      // error
+		      var err = "error 1:"+JSON.stringify(err);
+		      return err;
+		    },
+		    function(position) {
+		      var lat  = position.coords.latitude;
+		      var long = position.coords.longitude;
+		      var p = "lat:"+lat+" long:"+long;
+		      return p;
+		  });
+		  alert(watch);
 	  }
 	  $scope.call2 = function(){
 	    // $scope.open3 = false;//div show
@@ -84,114 +99,6 @@ besties.controller('loginController',
 		$scope.btngo4 = false;
 	  }
 
-	//scope.regex = '\\d+[0-9]{10}';///^[0-9]+$/
-	/*$scope.home = function(){
-		//$state.go('app.home');
-		window.location = "index.html";
-	};
-	
-
-
-	$scope.staydelay = function(){
-		$timeout(function(){
-			alert('going via a ');
-			location.href="/#/app/home";
-		},2000);
-	};
-	$scope.staydelay2 = function(){
-		$timeout(function(){
-			alert('going via go ');
-			$state.go('app.home');
-		},2000);
-	};
-	//main
-	$scope.formdata = {
-		'uname':'',
-		'gender':'',
-		'uphone':'',
-		'otp':''
-	}*/
-
-	/*var firstdiv = document.getElementById("firstdiv");
-	var seconddiv = document.getElementById("seconddiv");
-	var thirddiv = document.getElementById("thirddiv");
-	var forthdiv = document.getElementById("forthdiv");
-	var otpdiv = document.getElementById("otpdiv");
-	var seconddivradiodiv = document.getElementById('seconddivradiodiv');*/
-
-	/*$timeout(function(){
-		firstdiv.style.display = "none";
-		//seconddiv.style.display = "block";
-		thirddiv.style.display = "block";
-	},4000);*/
-
-	/*$timeout(function() {
-		alert("forthdiv called");
-		firstdiv.style.display = "none";
-		forthdiv.style.display = "block";
-	}, 4000);
-	
-	$scope.uname = "";
-	
-	var btngo1 = document.getElementById("btngo1");
-	var btngo2 = document.getElementById("btngo2");
-	btngo1.style.display = "none";
-	btngo2.style.display = "none";
-	seconddivradiodiv.style.display = "none";
-	document.getElementById('btngo3').style.display = "none";
-	$scope.creatego1 = function(inputtxt){//unused
-		  var numbers = /^[0-9]+$/;
-		  var name = inputtxt;  
-		  var d = $scope.uname;
-		  //console.log("called "+name+" "+d+" fddf");
-		  seconddivradiodiv.style.display = "block";
-	}
-
-	$scope.callsubmitdivsecond = function(){
-		btngo1.style.display = "block";
-	}*/
-
-	
-	///////////////////////////////////////S Urls
-	/*
-	*
-	* Get otp to enter in app
-	*
-	*/
-	/*$scope.callsubmitotp = function(event){//first in contact
-		var phone =document.getElementById("thirddivinput").value;
-		console.log(phone);
-		var lat = 19.235234, lon = 73.1275884;
-		var datas = {
-			phone:phone,
-			lat:lat,
-			lon:lon,
-			deviceid:'12332434'
-		};//lat lon deviceid
-		meloginfact.registerforOtp(phone,$scope,datas,thirddiv,otpdiv,$http,$timeout,$ionicPopup,$ionicLoading);
-	}*/
-
-	/*
-	*
-	* Check otp 
-	*
-	*/
-	/*$scope.callsubmit = function(){//second for otp to check
-		var otptxtdivinput = $scope.formdata.otp;
-		meloginfact.callotp(otpdiv,seconddiv,forthdiv,$scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput);
-	}*/
-
-	/*
-	*
-	* Add user Info name gender 
-	*
-	*/
-	/*$scope.createcontactdiv = function(){//third name and gender
-		  //seconddiv.style.display = "none";
-		  //forthdiv.style.display = "block";
-		meloginfact.addmyDetails(seconddiv,forthdiv,$scope,$http,$ionicPopup,$timeout,$ionicLoading);
-	}*/
-//}])
 })
 
 .directive('charsOnly', function () {

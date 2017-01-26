@@ -4,7 +4,7 @@ besties.factory("meloginfact",function(){
 	var sStatus = null;
 	var sOtp = null;
 	var tel = null;
-	var gotobrowse = function(seconddiv,forthdiv,$timeout,$ionicLoading){
+	var gotobrowse = function($scope,$timeout,$ionicLoading){
 		$timeout(function() {
 				// seconddiv.style.display = "none";
 				// forthdiv.style.display = "block";
@@ -181,10 +181,10 @@ besties.factory("meloginfact",function(){
 				var fetch = JSON.parse(JSON.stringify(response.data));
 				console.log(fetch);
 				if(fetch.status == "Already Registered"){
-					gotobrowse($scope,seconddiv,forthdiv,$timeout,$ionicLoading);
+					gotobrowse($scope,$timeout,$ionicLoading);
 				}
 				else if(fetch.status == "Registered"){
-					gotobrowse($scope,econddiv,forthdiv,$timeout,$ionicLoading);
+					gotobrowse($scope,$timeout,$ionicLoading);
 				}
 				else if(fetch.status == "Failed"){
 					$ionicPopup.alert({
