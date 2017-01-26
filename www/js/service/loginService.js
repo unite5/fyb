@@ -4,7 +4,7 @@ besties.factory("meloginfact",function(){
 	var sStatus = null;
 	var sOtp = null;
 	var tel = null;
-	var latitude = null , longitude = null;
+	var latitude = null , longitude = null,uuid= null;
 	var gotobrowse = function($scope,$timeout,$ionicLoading){
 		$timeout(function() {
 				// seconddiv.style.display = "none";
@@ -60,7 +60,7 @@ besties.factory("meloginfact",function(){
 			lon:longitude
 		};
 		$http.post(localStorage.myURL+"/mobile/login/me/register",
-			post)
+			posts)
 		.then(function(response){
 			console.log("Done!"+JSON.stringify(response));
 		},function(err){
@@ -78,7 +78,7 @@ besties.factory("meloginfact",function(){
 				phone:phone,
 				lat:latitude,
 				lon:longitude,
-				deviceid:'12332434'
+				deviceid:uuid
 			};
 			$http.post(localStorage.myURL+"/mobile/login/me",
 				datas)
@@ -268,8 +268,9 @@ besties.factory("meloginfact",function(){
 			});
 			
 		},
-		init:function(){
+		init:function($cordovaDevice){
 			navigator.geolocation.getCurrentPosition(onSuccess, onError);
+			uuid = $cordovaDevice.getUUID();
 		}
 	}
 });
