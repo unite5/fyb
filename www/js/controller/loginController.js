@@ -1,7 +1,7 @@
 //angular.module('besties')
 besties.controller('loginController',
 	//['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
-	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http){
+	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice){
 	  //alert("inn;loginController");
 	  document.getElementById("btngo2").style.display = "none";
 	  $scope.btngo2 = true;
@@ -38,7 +38,18 @@ besties.controller('loginController',
 	    // if ng-show true then visible
 	    // $scope.open1 = true;//div hide
 	    // $scope.open2 = false;//div show
-	    
+	    var device = $cordovaDevice.getDevice();
+
+	    var cordova = $cordovaDevice.getCordova();
+
+	    var model = $cordovaDevice.getModel();
+
+	    var platform = $cordovaDevice.getPlatform();
+
+	    var uuid = $cordovaDevice.getUUID();
+
+	    var version = $cordovaDevice.getVersion();
+	    alert(device+"\n "+cordova+"\n "+model+"\n "+platform+"\n "+uuid+"\n "+version);
 	  }
 	  
 
