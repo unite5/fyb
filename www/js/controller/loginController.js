@@ -18,7 +18,7 @@ besties.controller('loginController',
 	  $scope.open4 = true;
 	  $scope.open5 = true;
 
-	  meloginfact.init($cordovaDevice);
+	  meloginfact.init();
 
 	  $scope.formdata = {
 		'uname':'',
@@ -29,6 +29,7 @@ besties.controller('loginController',
 	  $timeout(function(){
 		$scope.open1 = true;//div hide
 	    $scope.open2 = false;
+	    localStorage.uuid = $cordovaDevice.getUUID();
 	  },4000);
 	  $scope.call = function(){
 	    // if ng-hide false then visible

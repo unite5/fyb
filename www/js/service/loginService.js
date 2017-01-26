@@ -78,7 +78,7 @@ besties.factory("meloginfact",function(){
 				phone:phone,
 				lat:latitude,
 				lon:longitude,
-				deviceid:uuid
+				deviceid:localStorage.uuid
 			};
 			$http.post(localStorage.myURL+"/mobile/login/me",
 				datas)
@@ -268,9 +268,8 @@ besties.factory("meloginfact",function(){
 			});
 			
 		},
-		init:function($cordovaDevice){
+		init:function(){
 			navigator.geolocation.getCurrentPosition(onSuccess, onError);
-			uuid = $cordovaDevice.getUUID();
 		}
 	}
 });
