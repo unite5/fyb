@@ -30,6 +30,18 @@ besties.factory('makedb', function() {
 			//dumb
 		    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
 		    console.log("serviceDB created");
+
+		    var contact = '9768431024';
+			var findu = "SELECT * FROM self WHERE contact = ? and id<=1";
+		        $cordovaSQLite.execute(db, findu, [contact]).then(function(res) {
+		            if(res.rows.length > 0) {
+		                alert("SELECTED -> " + res.rows.item(0).contact + " " + res.rows.item(0).uid);
+		            } else {
+		            	alert()
+					}
+		        }, function (err) {
+		            alert(err);
+		        });	            	
 		},
 		create: function($scope,$timeout, $cordovaSQLite){
 			console.log("serviceDB");

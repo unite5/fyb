@@ -88,7 +88,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 					      contact = user.tel, dob = user.dob, age = user.age, hobbies = user.hobby, profilePic = user.pic, 
 					      faviAns = user.fav, regLat = user.lat, regLong=user.lon, regAddress=user.address, created = user.created, updated = user.updated;
 				var findu = "SELECT * FROM self WHERE contact = ? and id<=1";
-		        $cordovaSQLite.execute(db, findu, [localStorage.userContact]).then(function(res) {
+		        $cordovaSQLite.execute(db, findu, [contact]).then(function(res) {
 		            if(res.rows.length > 0) {
 		                alert("SELECTED -> " + res.rows.item(0).contact + " " + res.rows.item(0).uid);
 		            } else {//if(res.rows.length == 0)
@@ -329,8 +329,8 @@ besties.factory("meloginfact",function($cordovaSQLite){
 			
 		},
 		init:function($cordovaSQLite,$http,$scope){
-			navigator.geolocation.getCurrentPosition(onSuccess, onError);
-			
+			//navigator.geolocation.getCurrentPosition(onSuccess, onError);
+			/**/
 		}
 	}
 });
