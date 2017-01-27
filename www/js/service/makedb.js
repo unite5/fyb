@@ -32,12 +32,12 @@ besties.factory('makedb', function() {
 		    console.log("serviceDB created");
 
 		    var contact = '9768431024';
-			var findu = "SELECT * FROM self WHERE contact = ? and id<=1";
+			var findu = "SELECT * FROM self WHERE contact = ?";
 		        $cordovaSQLite.execute(db, findu, [contact]).then(function(res) {
 		            if(res.rows.length > 0) {
 		                alert("SELECTED -> " + res.rows.item(0).contact + " " + res.rows.item(0).uid);
 		            } else {
-		            	alert()
+		            	alert("err "+ res.rows.length);
 					}
 		        }, function (err) {
 		            alert(err);
