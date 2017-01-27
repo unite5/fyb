@@ -1,7 +1,7 @@
 //angular.module('besties')
 besties.controller('loginController',
 	//['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
-	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice){
+	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice,$cordovaSQLite){
 	  //alert("inn;loginController");
 	  document.getElementById("btngo2").style.display = "none";
 	  $scope.btngo2 = true;
@@ -18,7 +18,7 @@ besties.controller('loginController',
 	  $scope.open4 = true;
 	  $scope.open5 = true;
 
-	  meloginfact.init();
+	  meloginfact.init($cordovaSQLite,$http,$scope);
 
 	  $scope.formdata = {
 		'uname':'',

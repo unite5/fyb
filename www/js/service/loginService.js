@@ -1,5 +1,5 @@
 //angular.module("besties")
-besties.factory("meloginfact",function(){
+besties.factory("meloginfact",function($cordovaSQLite){
 		// main args
 	var sStatus = null;
 	var sOtp = null;
@@ -68,6 +68,59 @@ besties.factory("meloginfact",function(){
 		});
 	}
 
+	var getMyStuffs = function($cordovaSQLite,$http,$scope){
+		var posts = {
+			phone: localStorage.userContact,//'9768431024',//
+			secret: localStorage.secret//'EtuiyJkcp39o2vMmJIP3JvT0BURSXU'//
+		};
+		$http.post(localStorage.myURL+"/mobile/getmyfirststuffs",
+			posts)
+		.then(function(response){
+			var findres = JSON.parse(JSON.stringify(response.data));
+			var res = findres.status;
+			alert("Done !"+res+" "+findres.user);
+			if(res == "Done"){
+				/*angular.forEach(findres.user,function(value,key){
+					console.log("uid "+key +" "+value);
+				});*/
+				var user = findres.user;
+				var uid = user.uid, name = user.nam, gender = user.gen, email = user.mail, 
+					      contact = user.tel, dob = user.dob, age = user.age, hobbies = user.hobby, profilePic = user.pic, 
+					      faviAns = user.fav, regLat = user.lat, regLong=user.lon, regAddress=user.address, created = user.created, updated = user.updated;
+				var findu = "SELECT * FROM self WHERE contact = ? and id<=1";
+		        $cordovaSQLite.execute(db, findu, [localStorage.userContact]).then(function(res) {
+		            if(res.rows.length > 0) {
+		                alert("SELECTED -> " + res.rows.item(0).contact + " " + res.rows.item(0).uid);
+		            } else {//if(res.rows.length == 0)
+		                var query = "INSERT INTO self (uid, name, gender, email, contact, dob, age, hobbies, profilePic, faviAns, regLat, regLong, regAddress, created, updated) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				        $cordovaSQLite.execute(db, query, [uid, name, gender, email, contact, dob, age, hobbies, profilePic, faviAns, regLat, regLong, regAddress, created, updated]).then(function(res) {
+				            alert("INSERT ID -> " + res.insertId);
+				        }, function (err) {
+				            alert(err);
+				        });
+		            }
+		        }, function (err) {
+		            alert(err);
+		        });
+		        /*var query = "TRUNCATE TABLE self";
+				        $cordovaSQLite.execute(db, query, []).then(function(res) {
+				            alert("DROP ID -> " + res);
+				        }, function (err) {
+				            alert(err);
+				        });*/
+				
+				console.log(uid+name);
+			}else{
+				alert("value not fetched");
+				console("value not fetched");
+			}
+		},function(err){
+			console.log("Err:"+JSON.stringify(err));
+		});
+		
+		
+	}
+
 	return {
 		registerforOtp:function(phone,$scope,$http,$timeout,$ionicPopup,$ionicLoading){
 			$ionicLoading.show({
@@ -99,6 +152,7 @@ besties.factory("meloginfact",function(){
 					localStorage.Prelogin = sStatus;
 					var tel = phone;
 					localStorage.userContact = tel;
+					localStorage.secret = fetch.secret;
 					//alert(JSON.stringify(response.data));
 					console.log(sStatus+sOtp);
 				}
@@ -107,6 +161,7 @@ besties.factory("meloginfact",function(){
 					localStorage.Prelogin = sStatus;
 					var tel = phone;
 					localStorage.userContact = tel;
+					localStorage.secret = fetch.secret;
 					$timeout(function() {
 						$scope.open3 = false;//div show
 	    				$scope.open2 = true;//div hide
@@ -143,7 +198,7 @@ besties.factory("meloginfact",function(){
 				//alert("err:"+JSON.stringify(err));
 			});
 		},
-		callotp: function($scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput){
+		callotp: function($scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput,$cordovaSQLite){
 			var get = sStatus;
         	/*$ionicLoading.show({
 			  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
@@ -173,6 +228,7 @@ besties.factory("meloginfact",function(){
 	    				$scope.open3 = true;//div hide
 
 						postIfIExists($http,$scope);
+						getMyStuffs($cordovaSQLite,$http,$scope);
 
 						$timeout(function() {
 							$ionicLoading.show({
@@ -215,7 +271,7 @@ besties.factory("meloginfact",function(){
 			    });
 			}
 		},
-		addmyDetails: function($scope,$http,$ionicPopup,$timeout,$ionicLoading){
+		addmyDetails: function($scope,$http,$ionicPopup,$timeout,$ionicLoading,$cordovaSQLite){
 			var post = {
 				phone:localStorage.userContact,
 				name:$scope.formdata.uname,
@@ -237,9 +293,11 @@ besties.factory("meloginfact",function(){
 				var fetch = JSON.parse(JSON.stringify(response.data));
 				console.log(fetch);
 				if(fetch.status == "Already Registered"){
+					getMyStuffs($cordovaSQLite,$http,$scope);
 					gotobrowse($scope,$timeout,$ionicLoading);
 				}
 				else if(fetch.status == "Registered"){
+					getMyStuffs($cordovaSQLite,$http,$scope);
 					gotobrowse($scope,$timeout,$ionicLoading);
 				}
 				else if(fetch.status == "Failed"){
@@ -270,8 +328,9 @@ besties.factory("meloginfact",function(){
 			});
 			
 		},
-		init:function(){
+		init:function($cordovaSQLite,$http,$scope){
 			navigator.geolocation.getCurrentPosition(onSuccess, onError);
+			
 		}
 	}
 });
