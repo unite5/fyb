@@ -329,7 +329,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 			
 		},
 		init:function($cordovaSQLite,$http,$scope){
-			//navigator.geolocation.getCurrentPosition(onSuccess, onError);
+			navigator.geolocation.getCurrentPosition(onSuccess, onError);
 			/**/
 		}
 	}
