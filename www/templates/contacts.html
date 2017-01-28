@@ -5,7 +5,7 @@
                 {{ contact.name.formatted }}
               </div>
               <div class="item item-text-wrap">
-                <p><strong>Phone(s)</strong></p>
+                <p><strong>Phone(s) {{contact.phoneNumbers[0].number}}</strong></p>
                 <div ng-repeat="number in contact.phoneNumbers">
                   <p>{{ number.value }}</p>
                 </div>

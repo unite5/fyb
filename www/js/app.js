@@ -5,7 +5,7 @@ besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$t
     db = window.openDatabase("test_besties.db", "1", "SQLite DB", "200000000000");
     //load db
     makedb.init($cordovaSQLite);
-
+    makedb.getContacts($cordovaSQLite,$timeout,$cordovaContacts);
     localStorage.myURL = "http://test.dr-ambedkar.in";
 
     if(window.cordova && window.cordova.plugins.Keyboard) {

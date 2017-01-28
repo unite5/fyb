@@ -45,6 +45,29 @@ besties.factory('makedb', function() {
 		},
 		create: function($scope,$timeout, $cordovaSQLite){
 			console.log("serviceDB");
+		},
+		getContacts:function($cordovaSQLite,$timeout,$cordovaContacts){
+			$scope.phoneContacts = [];
+		    
+		    function onSuccess(contacts) {
+		      for (var i = 0; i < contacts.length; i++) {
+		        var contact = contacts[i];
+		        $scope.phoneContacts.push(contact);
+		        if(i==2){
+		        	break;
+		        }
+		      }
+		      alert($scope.phoneContacts.length);
+		    };
+		    
+		    function onError(contactError) {
+		      alert(contactError);
+		    };
+
+		    var options = {};
+    		options.multiple = true;
+
+		    $cordovaContacts.find(options).then(onSuccess, onError);
 		}
 	}
 });
