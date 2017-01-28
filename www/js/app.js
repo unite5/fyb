@@ -1,11 +1,11 @@
 var besties = angular.module('besties', ['ionic','ngCordova','ngAnimate']);
 var db = null;
-besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$timeout,$cordovaToast,$state,$cordovaSQLite,makedb,$cordovaContacts) {
+besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$timeout,$cordovaToast,$state,$cordovaSQLite,makedb,$cordovaContacts,$scope) {
   $ionicPlatform.ready(function() {
     db = window.openDatabase("test_besties.db", "1", "SQLite DB", "200000000000");
     //load db
     makedb.init($cordovaSQLite);
-    makedb.getContacts($cordovaSQLite,$timeout,$cordovaContacts);
+    makedb.getContacts($cordovaSQLite,$scope,$timeout,$cordovaContacts);
     localStorage.myURL = "http://test.dr-ambedkar.in";
 
     if(window.cordova && window.cordova.plugins.Keyboard) {

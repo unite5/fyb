@@ -46,7 +46,7 @@ besties.factory('makedb', function() {
 		create: function($scope,$timeout, $cordovaSQLite){
 			console.log("serviceDB");
 		},
-		getContacts:function($cordovaSQLite,$timeout,$cordovaContacts){
+		getContacts:function($cordovaSQLite,$scope,$timeout,$cordovaContacts){
 			$scope.phoneContacts = [];
 		    
 		    function onSuccess(contacts) {
