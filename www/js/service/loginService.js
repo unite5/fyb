@@ -31,6 +31,8 @@ besties.factory("meloginfact",function($cordovaSQLite){
         console.log('in onSuccess()');
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
+        localStorage.registeredLatitude = latitude;
+        localStorage.registeredLongitude = longitude;
         //var element = document.getElementById('geolocation');
         /*alert('Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
@@ -49,6 +51,9 @@ besties.factory("meloginfact",function($cordovaSQLite){
         console.log(error.message);
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
+        var latt = 19.235234, longg = 73.1275884;
+        localStorage.registeredLatitude = latt;
+        localStorage.registeredLongitude = longg;
     }
 
 	var postIfIExists = function($http,$scope){
@@ -56,8 +61,8 @@ besties.factory("meloginfact",function($cordovaSQLite){
 			phone:localStorage.userContact,
 			name:localStorage.userName,
 			gender:localStorage.userGender,
-			lat:latitude,
-			lon:longitude
+			lat:localStorage.registeredLatitude,//latitude,//
+			lon:localStorage.registeredLongitude//longitude//
 		};
 		$http.post(localStorage.myURL+"/mobile/login/me/register",
 			posts)
@@ -78,7 +83,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 		.then(function(response){
 			var findres = JSON.parse(JSON.stringify(response.data));
 			var res = findres.status;
-			alert("Done !"+res+" "+findres.user);
+			//alert("Done !"+res+" "+findres.user);
 			if(res == "Done"){
 				/*angular.forEach(findres.user,function(value,key){
 					console.log("uid "+key +" "+value);
@@ -96,11 +101,11 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				        $cordovaSQLite.execute(db, query, [uid, name, gender, email, contact, dob, age, hobbies, profilePic, faviAns, regLat, regLong, regAddress, created, updated]).then(function(res) {
 				            alert("INSERT ID -> " + res.insertId);
 				        }, function (err) {
-				            alert(err);
+				            //alert(err);
 				        });
 		            }
 		        }, function (err) {
-		            alert(err);
+		            //alert(err;
 		        });
 		        /*var query = "TRUNCATE TABLE self";
 				        $cordovaSQLite.execute(db, query, []).then(function(res) {
@@ -126,11 +131,11 @@ besties.factory("meloginfact",function($cordovaSQLite){
 			$ionicLoading.show({
 				  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
 			});
-			//var lat = 19.235234, lon = 73.1275884;
+			var lat = 19.235234, lon = 73.1275884;
 			var datas = {
 				phone:phone,
-				lat:latitude,
-				lon:longitude,
+				lat:localStorage.registeredLatitude,//lat,//latitude,//
+				lon:localStorage.registeredLongitude,//lon,//longitude,//
 				deviceid:localStorage.uuid
 			};
 			$http.post(localStorage.myURL+"/mobile/login/me",
@@ -272,12 +277,13 @@ besties.factory("meloginfact",function($cordovaSQLite){
 			}
 		},
 		addmyDetails: function($scope,$http,$ionicPopup,$timeout,$ionicLoading,$cordovaSQLite){
+			var lat = 19.235234, lon = 73.1275884;
 			var post = {
 				phone:localStorage.userContact,
 				name:$scope.formdata.uname,
 				gender:$scope.formdata.gender,
-				lat:latitude,
-				lon:longitude
+				lat:localStorage.registeredLatitude,//lat,//latitude,//
+				lon:localStorage.registeredLongitude//lon//longitude//
 			};
 			console.log(localStorage.userContact);
 			console.log($scope.formdata.uname);
@@ -334,3 +340,4 @@ besties.factory("meloginfact",function($cordovaSQLite){
 		}
 	}
 });
+//lat lon changes

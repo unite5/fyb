@@ -31,6 +31,28 @@ besties.controller('loginController',
 	    $scope.open2 = false;
 	    localStorage.uuid = $cordovaDevice.getUUID();
 	  },4000);
+
+	  document.getElementById('txtPhone').addEventListener('keypress', function(event) {
+        if (event.keyCode == 13) {
+		        event.preventDefault();
+		        console.log("fill it first");
+		        return false;
+		    }
+		});//
+	  document.getElementById('txtOTP').addEventListener('keypress', function(event) {
+        if (event.keyCode == 13) {
+		        event.preventDefault();
+		        console.log("fill it first");
+		        return false;
+		    }
+		});//
+	  document.getElementById('seconddivinput').addEventListener('keypress', function(event) {
+        if (event.keyCode == 13) {
+		        event.preventDefault();
+		        console.log("fill it first");
+		        return false;
+		    }
+		});//
 	  $scope.call = function(){
 	    // if ng-hide false then visible
 	    // if ng-hide true then invisible
