@@ -28,19 +28,19 @@ button.button.DivM2buttonElement,.DivM3buttonEle,.DivM4buttonEle,.DivM5buttonEle
     border-bottom: 20%;
 }
 input::-webkit-input-placeholder {
-color: #f4aa10 !important;
+color: #ffffff !important;
 }
  
 input:-moz-placeholder { /* Firefox 18- */
-color: #f4aa10 !important;  
+color: #ffffff !important;  
 }
  
 input::-moz-placeholder {  /* Firefox 19+ */
-color: #f4aa10 !important;  
+color: #ffffff !important;  
 }
  
 input:-ms-input-placeholder {  
-color: #f4aa10 !important;  
+color: #ffffff !important;  
 }
 /************************ Div 1 ***********************/
 .DivM1list{
