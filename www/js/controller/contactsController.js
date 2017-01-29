@@ -16,18 +16,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
     };
     
     var options = {};
-    options.multiple = false;
-
-    /*var options = {                                           //search options
-      filter : '',                                 // 'Bob'
-      multiple: true,                                      // Yes, return any contact that matches criteria
-      fields:  [ 'displayName', 'name' ]                   // These are the fields to search for 'bob'.
-      desiredFields: [id];    //return fields.
-    };*/
-
-    if ($ionicPlatform.isAndroid()) {
-      options.hasPhoneNumber = true;         //hasPhoneNumber only works for android.
-    };
+    options.multiple = true;
     
     $cordovaContacts.find(options).then(onSuccess, onError);
            
