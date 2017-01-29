@@ -54,7 +54,7 @@ besties.factory('makedb', function() {
 		        var contact = contacts[i];
 		        $scope.phoneContacts.push(contact);
 		        alert(contacts[i].phoneNumbers[0].number+" && "+contacts[i].phoneNumbers[0].number.value);
-		        if(i==2){
+		        if(i === 2){
 		        	break;
 		        }
 		      }
