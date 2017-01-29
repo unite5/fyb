@@ -1,5 +1,5 @@
 //angular.module('besties')
-besties.controller('contactsController',function($scope,$cordovaContacts){
+besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform){
     //fetch
     $scope.phoneContacts = [];
     
