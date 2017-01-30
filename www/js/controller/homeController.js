@@ -1,7 +1,8 @@
 //angular.module('besties')
 besties.controller('homeController',function($scope,trackusers,availableisOffline,$interval,$ionicPopup,$cordovaToast,$cordovaDialogs,$location,$timeout,$interval,$log,$state,$ionicLoading,$http,makedb,$cordovaContacts,$cordovaSQLite){
     
-    //makedb.getContacts($cordovaSQLite,$scope,$timeout,$cordovaContacts);	
+    makedb.getContacts($cordovaSQLite,$scope,$timeout,$cordovaContacts);	
+    
     console.log("available:"+availableisOffline.check());
     
     $scope.navigatethis = function(id){
