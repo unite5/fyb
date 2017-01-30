@@ -1,7 +1,14 @@
 <ion-view view-title="All Contacts">
   <ion-content>
       <div class="card" ng-repeat="contact in phoneContacts">
-              <div class="item item-divider">
+          <div class="item item-divider">
+            {{contact.name}}
+          </div>
+          <div class="item item-text-wrap">
+          {{contact.phone}}<br>
+          {{contact.email}}
+          </div>
+              <!-- <div class="item item-divider">
                 {{ contact.name.formatted }}
               </div>
               <div class="item item-text-wrap">
@@ -13,7 +20,7 @@
                 <div ng-repeat="email in contact.emails">
                   <p>{{ email.value }}</p>
                 </div>
-              </div>
+              </div> -->
         </div>
         New eseet
   		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">

@@ -1,14 +1,33 @@
 //angular.module('besties')
 besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform){
+    
+
+
+
     //fetch
     $scope.phoneContacts = [];
     
     function onSuccess(contacts) {
-      for (var i = 0; i < contacts.length; i++) {
+      /*for (var i = 0; i < contacts.length; i++) {
         var contact = contacts[i];
         $scope.phoneContacts.push(contact);
-      }
+      }*/
       //alert($scope.phoneContacts.length);
+
+      var result = contacts;
+      $arr = [];
+      for (var i = 0; i < result.length; i++) {
+      if ((result[i].displayName != "" && result[i].displayName != " ")
+        && (result[i].phoneNumbers != null || result[i].emails != null)) {
+                if (result[i].phoneNumbers != null && result[i].emails != null)
+                  $arr.push({ name: result[i].displayName, phone: result[i].phoneNumbers[0].value, email: result[i].emails[0].value });
+                else if (result[i].phoneNumbers != null)
+                  $arr.push({ name: result[i].displayName, phone: result[i].phoneNumbers[0].value, email: "" });
+                else
+                  $arr.push({ name: result[i].displayName, phone: "", email: result[i].emails[0].value });
+        }
+      }
+      $scope.phoneContacts = $arr;
     };
     
     function onError(contactError) {

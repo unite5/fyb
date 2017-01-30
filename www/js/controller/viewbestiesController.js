@@ -44,7 +44,7 @@ besties.controller('viewbestiesController',function($scope,$log,$ionicPopup,$cor
     var myPopup = $ionicPopup.show({
       template: '<input type="text" ng-model="data.msg">',
       title: 'Your message...',
-      subTitle: 'Please use normal words!',
+      subTitle: 'Please use your words!',
       scope: $scope,
       buttons: [
         { text: 'No' },
@@ -78,7 +78,7 @@ besties.controller('viewbestiesController',function($scope,$log,$ionicPopup,$cor
         });
       } else {
         var tel = "+91-9768431024";
-        $cordovaSocialSharing
+        /*$cordovaSocialSharing
         //.shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
         .shareViaWhatsApp(res,null,"mydomain.com")
         .then(function(result) {
@@ -86,7 +86,8 @@ besties.controller('viewbestiesController',function($scope,$log,$ionicPopup,$cor
         }, function(err) {
           //alert("android>"+err);
           // An error occurred. Show a message to the user
-        });
+        });*/
+        location.href="whatsapp://send?text="+res+"&abid=9768431024";
       }
       //alert(res);
     });
