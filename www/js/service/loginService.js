@@ -184,6 +184,15 @@ besties.factory("meloginfact",function($cordovaSQLite){
 			            console.info('Thanks');
 			        });
 					//console.log(sStatus+" "+JSON.stringify(response.data));
+				}else if(sStatus == "LatLonFailed"){
+					//alert("err :"+JSON.stringify(response.data));
+					$ionicPopup.alert({
+			            title: sStatus,
+			            content: 'Something wrong with your input. Make sure you have enable the GPS location.'
+			          }).then(function(res) {
+			            console.info('Thanks');
+			        });
+					//console.log(sStatus+" "+JSON.stringify(response.data));
 				}else{
 					$ionicPopup.alert({
 			            title: sStatus,
