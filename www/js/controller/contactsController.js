@@ -38,7 +38,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
                     email: "" 
                   });
 
-var findc = "SELECT * FROM contacts WHERE contact = ?";
+var findc = "SELECT * FROM simcontacts WHERE contact = ?";
 /*$cordovaSQLite.execute(db, 
   "CREATE TABLE IF NOT EXISTS simcontacts
   (id integer primary key, 
