@@ -17,7 +17,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
       var result = contacts;
       $arr = [];
       for (var i = 0; i < result.length; i++) {
-      if ((result[i].displayName != "" && result[i].displayName != " ") && (result[i].phoneNumbers.length > 10)
+      if ((result[i].displayName != "" && result[i].displayName != " ")
         && (result[i].phoneNumbers != null)) {        
 //        && (result[i].phoneNumbers != null || result[i].emails != null)) {
                 /*if (result[i].phoneNumbers != null && result[i].emails != null)
