@@ -26,8 +26,9 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
                     email: result[i].emails[0].value });
                 else */
                   if (result[i].phoneNumbers != null)
+                    var tel = result[i].phoneNumbers[0].value;
                   $arr.push({ name: result[i].displayName, 
-                    phone: (result[i].phoneNumbers[0].value).replace(/\s/g,'')
+                    phone: tel.replace(/\s/g,''),
                     //phone: result[i].phoneNumbers[0].value, 
                     email: "" });
                 /*else

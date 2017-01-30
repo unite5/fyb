@@ -64,7 +64,7 @@ besties.controller('viewbestiesController',function($scope,$log,$ionicPopup,$cor
     });
     myPopup.then(function(res) {
       console.log('Tapped!', res);
-      /*if(ionic.Platform.isIOS()) {
+      if(ionic.Platform.isIOS()) {
         var abid = "";
         $cordovaSocialSharing
         //.shareViaWhatsAppToReceiver(abid,res, null, file, link) // Share via native share sheet
@@ -76,19 +76,19 @@ besties.controller('viewbestiesController',function($scope,$log,$ionicPopup,$cor
           //alert("ios>"+err);
                 // An error occured. Show a message to the user
         });
-      } else {*/
-        var tel = "+91-9768431024";
-        /*$cordovaSocialSharing
-        //.shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
-        .shareViaWhatsApp(res,null,"mydomain.com")
+      } else {
+        var tel = "+91 97684 31024";
+        $cordovaSocialSharing
+        .shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
+        //.shareViaWhatsApp(res,null,"mydomain.com")
         .then(function(result) {
           //alert("android>"+result);
         }, function(err) {
           //alert("android>"+err);
           // An error occurred. Show a message to the user
-        });*/
-        location.href="whatsapp://send?text="+res+"&abid=9768431024";
-      //}
+        });
+        //location.href="whatsapp://send?text="+res+"&abid=9768431024";
+      }
       //alert(res);
     });
 	}
