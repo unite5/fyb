@@ -11,6 +11,8 @@ besties.controller('menuController',function($scope,$log,$cordovaToast,$cordovaS
     $state.go("app.home");
   };
 
+  $scope.username = localStorage.userName;
+
   //share app code
   var options = {
     title:'So You love this app?',
