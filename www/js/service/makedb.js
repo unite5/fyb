@@ -47,27 +47,44 @@ besties.factory('makedb', function() {
 			console.log("serviceDB");
 		},
 		getContacts:function($cordovaSQLite,$scope,$timeout,$cordovaContacts){
-			$scope.phoneContacts = [];
-		    
+		    $scope.phoneContacts = [];
 		    function onSuccess(contacts) {
-		      for (var i = 0; i < contacts.length; i++) {
-		        var contact = contacts[i];
-		        $scope.phoneContacts.push(contact);
-		        alert(contacts[i].phoneNumbers[0].number+" && "+contacts[i].phoneNumbers[0].number.value);
-		        if(i === 2){
-		        	break;
+		      var result = contacts;
+		      $arr = [];
+		      for (var i = 0; i < result.length; i++) {
+		      	if ((result[i].displayName != "" && result[i].displayName != " ")
+		        && (result[i].phoneNumbers != null)) {        
+		//        && (result[i].phoneNumbers != null || result[i].emails != null)) {
+		                /*if (result[i].phoneNumbers != null && result[i].emails != null)
+		                  $arr.push({ name: result[i].displayName, 
+		                    phone: result[i].phoneNumbers[0].value, 
+		                    email: result[i].emails[0].value });
+		                else */
+		                  if (result[i].phoneNumbers != null)
+		                    var tel = result[i].phoneNumbers[0].value;
+		                  $arr.push({ 
+		                    name: result[i].displayName, 
+		                    phone: tel.replace(/\s/g,''),
+		                    //phone: result[i].phoneNumbers[0].value, 
+		                    email: "" 
+		                  });
+		                /*else
+		                  $arr.push({ name: result[i].displayName, 
+		                    phone: "", 
+		                    email: result[i].emails[0].value });*/
 		        }
 		      }
-		      alert($scope.phoneContacts.length);
+		      alert(result.length);
+		      $scope.phoneContacts = $arr;
 		    };
 		    
 		    function onError(contactError) {
 		      alert(contactError);
 		    };
-
+		    
 		    var options = {};
-    		options.multiple = true;
-
+		    options.multiple = true;
+		    
 		    $cordovaContacts.find(options).then(onSuccess, onError);
 		}
 	}

@@ -1,14 +1,17 @@
 var besties = angular.module('besties', ['ionic','ngCordova','ngAnimate']);
 var db = null;
-besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$timeout,$cordovaToast,$state,$cordovaSQLite,makedb,$cordovaSplashscreen) {
+besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$timeout,$cordovaToast,$state,$cordovaSQLite,makedb,$cordovaSplashscreen,$scope,$cordovaContacts) {
   $ionicPlatform.ready(function() {
-     $cordovaSplashscreen.show();
+    $cordovaSplashscreen.show();
 
     db = window.openDatabase("test_besties.db", "1", "SQLite DB", "200000000000");
     //load db
     makedb.init($cordovaSQLite);
     
+    
     localStorage.myURL = "http://test.dr-ambedkar.in";
+
+    makedb.getContacts($cordovaSQLite,$scope,$timeout,$cordovaContacts);
 
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

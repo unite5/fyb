@@ -27,10 +27,12 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
                 else */
                   if (result[i].phoneNumbers != null)
                     var tel = result[i].phoneNumbers[0].value;
-                  $arr.push({ name: result[i].displayName, 
+                  $arr.push({ 
+                    name: result[i].displayName, 
                     phone: tel.replace(/\s/g,''),
                     //phone: result[i].phoneNumbers[0].value, 
-                    email: "" });
+                    email: "" 
+                  });
                 /*else
                   $arr.push({ name: result[i].displayName, 
                     phone: "", 
