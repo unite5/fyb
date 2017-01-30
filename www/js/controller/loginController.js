@@ -12,6 +12,7 @@ besties.controller('loginController',
 	  document.getElementById("seconddivradiodiv").style.display = "none";
 	  $scope.seconddivradiodiv = true;
 	  
+	  console.log(moment().format("YYYY-MM-DD HH:mm:SS"));
 	  $scope.open1 = false;
 	  $scope.open2 = true;
 	  $scope.open3 = true;

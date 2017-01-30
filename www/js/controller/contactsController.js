@@ -1,9 +1,11 @@
 //angular.module('besties')
-besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform){
+besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading){
     
 
 
-
+    $ionicLoading.show({
+            template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
+          });
     //fetch
     $scope.phoneContacts = [];
     
@@ -16,6 +18,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
 
       var result = contacts;
       $arr = [];
+      var cc=0;
       for (var i = 0; i < result.length; i++) {
       if ((result[i].displayName != "" && result[i].displayName != " ")
         && (result[i].phoneNumbers != null)) {        
@@ -27,18 +30,56 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
                 else */
                   if (result[i].phoneNumbers != null)
                     var tel = result[i].phoneNumbers[0].value;
+                    var name = result[i].displayName;
                   $arr.push({ 
-                    name: result[i].displayName, 
+                    name: name, 
                     phone: tel.replace(/\s/g,''),
                     //phone: result[i].phoneNumbers[0].value, 
                     email: "" 
                   });
+
+var findc = "SELECT * FROM contacts WHERE contact = ?";
+/*$cordovaSQLite.execute(db, 
+  "CREATE TABLE IF NOT EXISTS simcontacts
+  (id integer primary key, 
+    uname text,contact text,
+  created text,updated text)");
+
+  CREATE TABLE IF NOT EXISTS 
+  joinincontacts(id integer primary key,
+  uid text, uname text,
+  contact text,gender text,
+  isActive text,dob text,age text,
+  email text,profilePic text,
+  dummyPic text,listen text,
+  token text,accepted text,
+  created text,updated text*/
+//console.log(moment(1485776474422).format("ddd, Do MMM"));
+                $cordovaSQLite.execute(db, findc, [tel]).then(function(res) {
+                    if(res.rows.length > 0) {
+                        //alert("already SELECTED -> " + res.rows.item(0).contact + " " + res.rows.item(0).uid);
+                    } else {//if(res.rows.length == 0)
+                      var created = console.log(moment().format("YYYY-MM-DD HH:mm:SS"));
+                      var updated = console.log(moment().format("YYYY-MM-DD HH:mm:SS"));
+                        var query = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
+                    $cordovaSQLite.execute(db, query, [name, tel, created, updated]).then(function(res) {
+                        //alert("new INSERT ID -> " + res.insertId);
+                        cc++;
+                    }, function (err) {
+                        //alert(err);
+                    });
+                    }
+                }, function (err) {
+                    //alert(err;
+                });
                 /*else
                   $arr.push({ name: result[i].displayName, 
                     phone: "", 
                     email: result[i].emails[0].value });*/
         }
       }
+      $ionicLoading.hide();
+      alert("total:"+cc);
       $scope.phoneContacts = $arr;
     };
     

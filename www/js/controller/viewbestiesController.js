@@ -79,8 +79,8 @@ besties.controller('viewbestiesController',function($scope,$log,$ionicPopup,$cor
       } else {
         var tel = "+91 97684 31024";
         $cordovaSocialSharing
-        .shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
-        //.shareViaWhatsApp(res,null,"mydomain.com")
+        //.shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
+        .shareViaWhatsApp(res,null,"mydomain.com")
         .then(function(result) {
           //alert("android>"+result);
         }, function(err) {
