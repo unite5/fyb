@@ -17,14 +17,23 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
       var result = contacts;
       $arr = [];
       for (var i = 0; i < result.length; i++) {
-      if ((result[i].displayName != "" && result[i].displayName != " ")
-        && (result[i].phoneNumbers != null || result[i].emails != null)) {
-                if (result[i].phoneNumbers != null && result[i].emails != null)
-                  $arr.push({ name: result[i].displayName, phone: result[i].phoneNumbers[0].value, email: result[i].emails[0].value });
-                else if (result[i].phoneNumbers != null)
-                  $arr.push({ name: result[i].displayName, phone: result[i].phoneNumbers[0].value, email: "" });
-                else
-                  $arr.push({ name: result[i].displayName, phone: "", email: result[i].emails[0].value });
+      if ((result[i].displayName != "" && result[i].displayName != " ") && (result[i].phoneNumbers.length > 10)
+        && (result[i].phoneNumbers != null)) {        
+//        && (result[i].phoneNumbers != null || result[i].emails != null)) {
+                /*if (result[i].phoneNumbers != null && result[i].emails != null)
+                  $arr.push({ name: result[i].displayName, 
+                    phone: result[i].phoneNumbers[0].value, 
+                    email: result[i].emails[0].value });
+                else */
+                  if (result[i].phoneNumbers != null)
+                  $arr.push({ name: result[i].displayName, 
+                    phone: (result[i].phoneNumbers[0].value).replace(/\s/g,'')
+                    //phone: result[i].phoneNumbers[0].value, 
+                    email: "" });
+                /*else
+                  $arr.push({ name: result[i].displayName, 
+                    phone: "", 
+                    email: result[i].emails[0].value });*/
         }
       }
       $scope.phoneContacts = $arr;
