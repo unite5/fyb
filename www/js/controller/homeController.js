@@ -5,6 +5,7 @@ besties.controller('homeController',function($scope,trackusers,availableisOfflin
         makedb.getContacts($cordovaSQLite,$scope,$timeout,$cordovaContacts);	
     },5000);
 
+    $timeout(function(){
     var findu = "SELECT * FROM simcontacts";
             $cordovaSQLite.execute(db, findu, []).then(function(res) {
                 if(res.rows.length > 0) {
@@ -15,6 +16,7 @@ besties.controller('homeController',function($scope,trackusers,availableisOfflin
             }, function (err) {
                 alert(err);
             });
+    },8000);
     
     console.log("available:"+availableisOffline.check());
     
