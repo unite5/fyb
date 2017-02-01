@@ -79,19 +79,14 @@ var findc = "SELECT * FROM simcontacts WHERE contact = ?";
         }
       }
       $ionicLoading.hide();
-      alert("total:"+cc);
+      if(cc>0){
+        alert("total:"+cc);
+      }else{
+        alert("total not > 0");
+      }
       $scope.phoneContacts = $arr;
 
-      var findu = "SELECT * FROM simcontacts";
-            $cordovaSQLite.execute(db, findu, []).then(function(res) {
-                if(res.rows.length > 0) {
-                    alert("SELECTED -> " + res.rows.length);
-                } else {
-                  alert("err "+ res.rows.length);
-          }
-            }, function (err) {
-                alert(err);
-            });   
+         
     };
     
     function onError(contactError) {

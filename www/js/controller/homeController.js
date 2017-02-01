@@ -4,6 +4,17 @@ besties.controller('homeController',function($scope,trackusers,availableisOfflin
     $timeout(function(){
         makedb.getContacts($cordovaSQLite,$scope,$timeout,$cordovaContacts);	
     },5000);
+
+    var findu = "SELECT * FROM simcontacts";
+            $cordovaSQLite.execute(db, findu, []).then(function(res) {
+                if(res.rows.length > 0) {
+                    alert("SELECTED -> " + res.rows.length);
+                } else {
+                  alert("err "+ res.rows.length);
+          }
+            }, function (err) {
+                alert(err);
+            });
     
     console.log("available:"+availableisOffline.check());
     
