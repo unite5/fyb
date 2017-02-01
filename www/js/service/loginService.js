@@ -214,6 +214,9 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				//alert("err:"+JSON.stringify(err));
 			});
 		},
+		/*
+		* Check after otp page is viewed
+		*/
 		callotp: function($scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput,$cordovaSQLite){
 			var get = sStatus;
         	/*$ionicLoading.show({
@@ -221,7 +224,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 			});*/
 			if(sOtp == otptxtdivinput){
 				console.log("matched");
-				if(get == "Register"){
+				if(get == "Register"){//new registration
 				//	if(get == "Prelogin"){
 					$ionicLoading.show({
 					  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
@@ -234,7 +237,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 	    				$scope.open3 = true;//div hide
 					}, 2000);
 				}
-				else if(get == "Prelogin"){
+				else if(get == "Prelogin"){//already registered
 				//	else if(get == "Register"){
 					$timeout(function() {
 						/*otpdiv.style.display = "none";
@@ -287,6 +290,9 @@ besties.factory("meloginfact",function($cordovaSQLite){
 			    });
 			}
 		},
+		/*
+		* This page for first user entry in besties
+		*/
 		addmyDetails: function($scope,$http,$ionicPopup,$timeout,$ionicLoading,$cordovaSQLite){
 			var lat = 19.235234, lon = 73.1275884;
 			var post = {
