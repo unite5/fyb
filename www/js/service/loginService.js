@@ -162,6 +162,18 @@ besties.factory("meloginfact",function($cordovaSQLite){
 					localStorage.secret = fetch.secret;
 					//alert(JSON.stringify(response.data));
 					console.log(sStatus+sOtp);
+					   var confirmPopup = $ionicPopup.confirm({
+					     title: 'OTP',
+					     template: 'Is OTP '+sOtp+' is same?'
+					   });
+
+					   confirmPopup.then(function(res) {
+					     if(res) {
+					       console.log('You are sure');
+					     } else {
+					       console.log('You are not sure');
+					     }
+					   });
 				}
 				else if(sStatus == "Register"){
 					sOtp = fetch.otp;
@@ -175,6 +187,18 @@ besties.factory("meloginfact",function($cordovaSQLite){
 					}, 1500);
 					//alert(JSON.stringify(response.data));
 					console.log(sStatus+sOtp);
+					var confirmPopup = $ionicPopup.confirm({
+					     title: 'OTP',
+					     template: 'Is OTP '+sOtp+' is same?'
+					   });
+
+					   confirmPopup.then(function(res) {
+					     if(res) {
+					       console.log('You are sure');
+					     } else {
+					       console.log('You are not sure');
+					     }
+					   });
 				}else if(sStatus == "Failed"){
 					//alert("err :"+JSON.stringify(response.data));
 					$ionicPopup.alert({

@@ -3,6 +3,7 @@ besties.controller('loginController',
 	//['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
 	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice,$cordovaSQLite){
 	  //alert("inn;loginController");
+
 	  document.getElementById("btngo2").style.display = "none";
 	  $scope.btngo2 = true;
 	  document.getElementById("btngo3").style.display = "none";
@@ -31,6 +32,9 @@ besties.controller('loginController',
 		$scope.open1 = true;//div hide
 	    $scope.open2 = false;
 	    localStorage.uuid = $cordovaDevice.getUUID();
+	    //angular.element(document.getElementById("txtPhone")).val("8976786767");// = "8976786767";//$scope.formdata.otp;
+	    //$scope.formdata.uphone = "8976786767";
+	    //document.loginbesties.txtPhone.value = "8976786767";
 	  },4000);
 
 	  document.getElementById('txtPhone').addEventListener('keypress', function(event) {
