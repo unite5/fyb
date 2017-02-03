@@ -28,6 +28,9 @@ besties.controller('loginController',
 		'uphone':'',
 		'otp':''
 	  }
+	  $scope.gformdata = {
+	  	'otp':''
+	  }
 	  $timeout(function(){
 		$scope.open1 = true;//div hide
 	    $scope.open2 = false;

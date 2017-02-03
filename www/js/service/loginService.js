@@ -162,7 +162,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 					localStorage.secret = fetch.secret;
 					//alert(JSON.stringify(response.data));
 					console.log(sStatus+sOtp);
-					   var confirmPopup = $ionicPopup.confirm({
+					   /*var confirmPopup = $ionicPopup.confirm({
 					     title: 'OTP',
 					     template: 'Is OTP '+sOtp+' is same?'
 					   });
@@ -173,7 +173,30 @@ besties.factory("meloginfact",function($cordovaSQLite){
 					     } else {
 					       console.log('You are not sure');
 					     }
-					   });
+					   });*/
+						//1
+						var myPopup = $ionicPopup.show({
+							template: 'Is OTP '+sOtp+' is same?',
+							title: 'OTP',
+							scope: $scope,
+							cssClass: 'popupME',
+							buttons: [
+						  	{
+						    	type: 'button-default',
+						    	onTap: function(e) {
+						      	myPopup.close();
+						    	}
+						  	},
+						  	{
+						    	type: 'button-positive',
+						    	cssClass:'pb2',
+						    	onTap: function(e) {
+						      	myPopup.close();
+						      	$scope.gformdata.otp = sOtp;
+						    	}
+						  	}
+							]
+						  });
 				}
 				else if(sStatus == "Register"){
 					sOtp = fetch.otp;
@@ -187,7 +210,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 					}, 1500);
 					//alert(JSON.stringify(response.data));
 					console.log(sStatus+sOtp);
-					var confirmPopup = $ionicPopup.confirm({
+					/*var confirmPopup = $ionicPopup.confirm({
 					     title: 'OTP',
 					     template: 'Is OTP '+sOtp+' is same?'
 					   });
@@ -198,7 +221,29 @@ besties.factory("meloginfact",function($cordovaSQLite){
 					     } else {
 					       console.log('You are not sure');
 					     }
-					   });
+					   });*/
+					   var myPopup = $ionicPopup.show({
+							template: 'Is OTP '+sOtp+' is same?',
+							title: 'OTP',
+							scope: $scope,
+							cssClass: 'popupME',
+							buttons: [
+						  	{
+						    	type: 'button-default',
+						    	onTap: function(e) {
+						      	myPopup.close();
+						    	}
+						  	},
+						  	{
+						    	type: 'button-positive',
+						    	cssClass:'pb2',
+						    	onTap: function(e) {
+						      	myPopup.close();
+						      	$scope.gformdata.otp = sOtp;
+						    	}
+						  	}
+							]
+						  });
 				}else if(sStatus == "Failed"){
 					//alert("err :"+JSON.stringify(response.data));
 					$ionicPopup.alert({
