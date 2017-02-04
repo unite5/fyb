@@ -280,7 +280,7 @@ button.btngo4 {
 }
 
 /* otp popup */
-.popup.popup-showing.active{
+div.popup-container.popupME.popup-showing.active{
     border-radius: 35%;    
 }
 .popup-title.ng-binding {
@@ -293,34 +293,34 @@ button.btngo4 {
 .popup-body span {
   color: #66b1da;
   text-align: center;
-  margin-left: 15%;
-    margin-right: 15%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
-button.button.col.ng-binding {
+/*button.button.col.ng-binding {
   border-radius: 40px;
   background: antiquewhite;
+}*/
+button.button.ng-binding.button-positive {
+     border-radius: 55px;
+    background: none;
+    border: 0;
+    width: 60px;
+    height: 100px;
+    background-image: url(../img/ok1.png);
+    background-size: 60px 65px;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin: 25px;
 }
-button.button.col.ng-binding.button-positive {
-      border-radius: 40px;
-  background: none;
-  background-image: url('../img/ok1.png');
-  background-size: 75px 75px !important;
-  background-repeat: no-repeat;
-  width: 60px;
-  height: 80px;
-  text-align: center;
-  border: 0;
-  margin: 10px;
-}
-button.button.col.ng-binding.button-default {
-  border-radius: 40px;
-  background: none;
-  border: 0;
-  width: 60px;
-  height: 80px;
-  background-image: url('../img/ok2.png');
-  background-size: 70px 70px !important;
-  background-repeat: no-repeat;
-  text-align: center;
-  margin: 15px;
+button.button.ng-binding.button-default {
+      border-radius: 55px;
+    background: none;
+    border: 0;
+    width: 60px;
+    height: 100px;
+    background-image: url(../img/ok2.svg);
+    background-size: 60px 65px;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin: 25px;
 }

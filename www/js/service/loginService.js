@@ -193,6 +193,9 @@ besties.factory("meloginfact",function($cordovaSQLite){
 						    	onTap: function(e) {
 						      	myPopup.close();
 						      	$scope.gformdata.otp = sOtp;
+						      	
+						      	$scope.btngo3 = false;
+						      	document.getElementById("btngo3").style.display = "block";
 						    	}
 						  	}
 							]
@@ -240,6 +243,8 @@ besties.factory("meloginfact",function($cordovaSQLite){
 						    	onTap: function(e) {
 						      	myPopup.close();
 						      	$scope.gformdata.otp = sOtp;
+						      	$scope.btngo3 = false;
+						      	document.getElementById("btngo3").style.display = "block";
 						    	}
 						  	}
 							]
