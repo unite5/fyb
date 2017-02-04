@@ -50,7 +50,7 @@ besties.factory('makedb', function() {
 		    $scope.phoneContacts = [];
 		    function onSuccess(contacts) {
 		      var result = contacts;
-		      $arr = [];
+		      $scope.arr = [];
 		      for (var i = 0; i < result.length; i++) {
 		      	if ((result[i].displayName != "" && result[i].displayName != " ")
 		        && (result[i].phoneNumbers != null)) {        
@@ -62,7 +62,7 @@ besties.factory('makedb', function() {
 		                else */
 		                  if (result[i].phoneNumbers != null)
 		                    var tel = result[i].phoneNumbers[0].value;
-		                  $arr.push({ 
+		                  $scope.arr.push({ 
 		                    name: result[i].displayName, 
 		                    phone: tel.replace(/\s/g,''),
 		                    //phone: result[i].phoneNumbers[0].value, 
@@ -75,7 +75,7 @@ besties.factory('makedb', function() {
 		        }
 		      }
 		      //alert(result.length); //working
-		      $scope.phoneContacts = $arr;
+		      $scope.phoneContacts = $scope.arr;
 		    };
 		    
 		    function onError(contactError) {
@@ -89,7 +89,7 @@ besties.factory('makedb', function() {
 		},
 		getSQLDBContactLists:function($scope,$cordovaSQLite){
 			$scope.arrc = [];
-			var findu = "SELECT * FROM simcontacts WHERE contact <> ?";
+			var findu = "SELECT * FROM s";
 	        $cordovaSQLite.execute(db, findu, [null]).then(function(res) {
 	            if(res.rows.length > 0) {
 	            	for(var i=0;i<res.rows.length;i++){
@@ -106,11 +106,11 @@ besties.factory('makedb', function() {
 	            	}
 	                
 	            } else {
-	            	alert("err "+ res.rows.length);
+	            	//alert("err "+ res.rows.length);
 	            	$scope.arrc.push({name:undefined});
 				}
 	        }, function (err) {
-	            alert(err);
+	            //alert(err);
 	            $scope.arrc.push({name:undefined});
 	        });	 
 		}
