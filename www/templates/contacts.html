@@ -1,5 +1,9 @@
 <ion-view view-title="All Contacts">
   <ion-content>
+      <div class="card">
+      Contacts db:
+      {{arrc | json}}
+      </div>
       <div class="card" ng-repeat="contact in phoneContacts">
           <div class="item item-divider">
             {{contact.name}}

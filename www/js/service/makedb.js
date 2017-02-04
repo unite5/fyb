@@ -6,7 +6,7 @@ besties.factory('makedb', function() {
 			//`self` data table
 			$cordovaSQLite.execute(db,"CREATE TABLE IF NOT EXISTS self(id integer primary key,uid text,name text,gender text,email text,contact text,dob text,age text,hobbies text,profilePic text,dummyPic text,faviAns text,regLat text,regLong text,regAddress text,created text,updated text)");
 		    
-			//`contacts` table `and update friends` to get distance
+			//`simcontacts` table `and update friends` to get distance
 		    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS simcontacts(id integer primary key,uname text,contact text,created text,updated text)");
 		    
 		    //`invited contactslist` table
@@ -74,7 +74,7 @@ besties.factory('makedb', function() {
 		                    email: result[i].emails[0].value });*/
 		        }
 		      }
-		      alert(result.length);
+		      //alert(result.length); //working
 		      $scope.phoneContacts = $arr;
 		    };
 		    
@@ -86,6 +86,34 @@ besties.factory('makedb', function() {
 		    options.multiple = true;
 		    
 		    $cordovaContacts.find(options).then(onSuccess, onError);
+		},
+		getSQLDBContactLists:function($scope,$cordovaSQLite){
+			$scope.arrc = [];
+			var findu = "SELECT * FROM simcontacts WHERE contact <> ?";
+	        $cordovaSQLite.execute(db, findu, [null]).then(function(res) {
+	            if(res.rows.length > 0) {
+	            	var 
+	            	for(var i=0;i<res.rows.length;i++){
+	            		var id = res.rows.item[i].id;
+	            		var contact = res.rows.item[i].contact;
+		                var name = res.rows.item[i].uname;
+		                var created = res.rows.item[i].created;
+		             	$scope.arrc.push({ 
+			                id: id, 
+			                name: name,
+			                contact:contact,
+			                created:created
+		              	});
+	            	}
+	                
+	            } else {
+	            	alert("err "+ res.rows.length);
+	            	$scope.arrc.push({name:undefined});
+				}
+	        }, function (err) {
+	            alert(err);
+	            $scope.arrc.push({name:undefined});
+	        });	 
 		}
 	}
 });

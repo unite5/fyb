@@ -1,5 +1,5 @@
 //angular.module('besties')
-besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading){
+besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout){
     
 
 
@@ -18,11 +18,11 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
       //alert($scope.phoneContacts.length);
 
       var result = contacts;
-      $arr = [];
+      var arr = [];
       for (var i = 0; i < result.length; i++) {
       if ((result[i].displayName != "" && result[i].displayName != " ")
         && (result[i].phoneNumbers != null)) {        
-//        && (result[i].phoneNumbers != null || result[i].emails != null)) {
+        //&& (result[i].phoneNumbers != null || result[i].emails != null)) {
                 /*if (result[i].phoneNumbers != null && result[i].emails != null)
                   $arr.push({ name: result[i].displayName, 
                     phone: result[i].phoneNumbers[0].value, 
@@ -32,30 +32,30 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
                     var tel = result[i].phoneNumbers[0].value;
                     var tell = tel.replace(/\s/g,'');
                     var name = result[i].displayName;
-                  $arr.push({ 
+                  arr.push({ 
                     name: name, 
                     phone: tell,
                     //phone: result[i].phoneNumbers[0].value, 
                     email: "" 
                   });
 
-var findc = "SELECT * FROM simcontacts";
-/*$cordovaSQLite.execute(db, 
-  "CREATE TABLE IF NOT EXISTS simcontacts
-  (id integer primary key, 
-    uname text,contact text,
-  created text,updated text)");
+                  var findc = "SELECT * FROM simcontacts";
+                  /*$cordovaSQLite.execute(db, 
+                    "CREATE TABLE IF NOT EXISTS simcontacts
+                    (id integer primary key, 
+                      uname text,contact text,
+                    created text,updated text)");
 
-  CREATE TABLE IF NOT EXISTS 
-  joinincontacts(id integer primary key,
-  uid text, uname text,
-  contact text,gender text,
-  isActive text,dob text,age text,
-  email text,profilePic text,
-  dummyPic text,listen text,
-  token text,accepted text,
-  created text,updated text*/
-//console.log(moment(1485776474422).format("ddd, Do MMM"));
+                    CREATE TABLE IF NOT EXISTS 
+                    joinincontacts(id integer primary key,
+                    uid text, uname text,
+                    contact text,gender text,
+                    isActive text,dob text,age text,
+                    email text,profilePic text,
+                    dummyPic text,listen text,
+                    token text,accepted text,
+                    created text,updated text*/
+                  //console.log(moment(1485776474422).format("ddd, Do MMM"));
                 $cordovaSQLite.execute(db, findc, []).then(function(res) {
                     if(res.rows.length > 0) {
                       for(var x=0;x<res.rows.length;x++){
@@ -70,6 +70,7 @@ var findc = "SELECT * FROM simcontacts";
                           });
                         }
                       }
+                      
                     } else if(res.rows.length == 0){//if(res.rows.length == 0)
                           var created = moment().format("YYYY-MM-DD HH:mm:SS");
                           var updated = moment().format("YYYY-MM-DD HH:mm:SS");
@@ -91,8 +92,11 @@ var findc = "SELECT * FROM simcontacts";
       }
       $ionicLoading.hide();
 
-      $scope.phoneContacts = $arr;
+      $scope.phoneContacts = arr;
 
+      $timeout(function(){
+        makedb.getSQLDBContactLists($scope,$cordovaSQLite);
+      },10000);
          
     };
     
@@ -104,7 +108,22 @@ var findc = "SELECT * FROM simcontacts";
     options.multiple = true;
     
     $cordovaContacts.find(options).then(onSuccess, onError);
-           
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	  $scope.data = {
       showDelete: false
     };

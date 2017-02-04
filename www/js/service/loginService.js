@@ -89,18 +89,29 @@ besties.factory("meloginfact",function($cordovaSQLite){
 					console.log("uid "+key +" "+value);
 				});*/
 				var user = findres.user;
-				var uid = user.uid, name = user.nam, gender = user.gen, email = user.mail, 
+				var dummyPic,uid = user.uid, name = user.nam, gender = user.gen, email = user.mail, 
 					      contact = user.tel, dob = user.dob, age = user.age, hobbies = user.hobby, profilePic = user.pic, 
 					      faviAns = user.fav, regLat = user.lat, regLong=user.lon, regAddress=user.address, created = user.created, updated = user.updated;
 				localStorage.userName = name;				
-				localStorage.userGender = gender;	      
+				localStorage.userGender = gender;
+				if(profilePic == "" || profilePic == null || profilePic == undefined){
+					if(gender == "Male"){
+						profilePic = "img/profileBoy.png";
+						dummyPic = profilePic;
+						localStorage.userprofilePic = profilePic;
+					}else if(gender == "Female"){
+						profilePic = "img/profileGirl.png";	
+						dummyPic = profilePic;
+						localStorage.userprofilePic = profilePic;
+					}
+				}
 				var findu = "SELECT * FROM self WHERE contact = ? and id<=1";
 		        $cordovaSQLite.execute(db, findu, [contact]).then(function(res) {
 		            if(res.rows.length > 0) {
 		                //alert("SELECTED -> " + res.rows.item(0).contact + " " + res.rows.item(0).uid);
 		            } else {//if(res.rows.length == 0)
-		                var query = "INSERT INTO self (uid, name, gender, email, contact, dob, age, hobbies, profilePic, faviAns, regLat, regLong, regAddress, created, updated) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-				        $cordovaSQLite.execute(db, query, [uid, name, gender, email, contact, dob, age, hobbies, profilePic, faviAns, regLat, regLong, regAddress, created, updated]).then(function(res) {
+		                var query = "INSERT INTO self (uid, name, gender, email, contact, dob, age, hobbies, profilePic, dummyPic, faviAns, regLat, regLong, regAddress, created, updated) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				        $cordovaSQLite.execute(db, query, [uid, name, gender, email, contact, dob, age, hobbies, profilePic, dummyPic, faviAns, regLat, regLong, regAddress, created, updated]).then(function(res) {
 				            //alert("INSERT ID -> " + res.insertId);
 				        }, function (err) {
 				            //alert(err);
@@ -193,7 +204,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 						    	onTap: function(e) {
 						      	myPopup.close();
 						      	$scope.gformdata.otp = sOtp;
-						      	
+
 						      	$scope.btngo3 = false;
 						      	document.getElementById("btngo3").style.display = "block";
 						    	}

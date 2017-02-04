@@ -213,8 +213,8 @@ border-color: transparent;
 .img-circular{
  width: 160px;
  height: 160px;
- background-image: url('../img/person.png');
- background-size: cover;
+ /*background-image: url('../img/person.png');
+ background-size: cover;*/
  display: block;
  border-radius: 100px;
  -webkit-border-radius: 100px;
