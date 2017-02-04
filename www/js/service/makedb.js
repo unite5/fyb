@@ -89,7 +89,7 @@ besties.factory('makedb', function() {
 		},
 		getSQLDBContactLists:function($scope,$cordovaSQLite){
 			$scope.arrc = [];
-			var findu = "SELECT * FROM s";
+			var findu = "SELECT * FROM simcontacts";
 	        $cordovaSQLite.execute(db, findu, [null]).then(function(res) {
 	            if(res.rows.length > 0) {
 	            	for(var i=0;i<res.rows.length;i++){
@@ -104,7 +104,7 @@ besties.factory('makedb', function() {
 			                created:created
 		              	});
 	            	}
-	                
+	                alert(JSON.stringify($scope.arrc));
 	            } else {
 	            	//alert("err "+ res.rows.length);
 	            	$scope.arrc.push({name:undefined});
