@@ -92,7 +92,6 @@ besties.factory('makedb', function() {
 			var findu = "SELECT * FROM simcontacts WHERE contact <> ?";
 	        $cordovaSQLite.execute(db, findu, [null]).then(function(res) {
 	            if(res.rows.length > 0) {
-	            	var 
 	            	for(var i=0;i<res.rows.length;i++){
 	            		var id = res.rows.item[i].id;
 	            		var contact = res.rows.item[i].contact;
