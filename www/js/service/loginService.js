@@ -96,11 +96,11 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				localStorage.userGender = gender;
 				if(profilePic == "" || profilePic == null || profilePic == undefined){
 					if(gender == "Male"){
-						profilePic = "/img/profileBoy.png";
+						profilePic = "img/profileBoy.png";
 						dummyPic = profilePic;
 						localStorage.userprofilePic = profilePic;
 					}else if(gender == "Female"){
-						profilePic = "/img/profileGirl.png";	
+						profilePic = "img/profileGirl.png";	
 						dummyPic = profilePic;
 						localStorage.userprofilePic = profilePic;
 					}
