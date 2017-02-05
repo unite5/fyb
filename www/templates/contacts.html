@@ -2,16 +2,21 @@
   <ion-content>
       <div class="card">
       Contacts db:
-      {{arrc | json}}
+      {{arrcc | json}}
       </div>
-      <div class="card" ng-repeat="contact in phoneContacts">
+      <div class="card" ng-repeat="p in phoneContacts">
+      Contacts db:
+      {{p.name}}<br>
+      {{p.contact}}
+      </div>
+      <!-- <div class="card" ng-repeat="contact in phoneContacts">
           <div class="item item-divider">
             {{contact.name}}
           </div>
           <div class="item item-text-wrap">
           {{contact.phone}}<br>
           {{contact.email}}
-          </div>
+          </div> -->
               <!-- <div class="item item-divider">
                 {{ contact.name.formatted }}
               </div>
@@ -25,9 +30,9 @@
                   <p>{{ email.value }}</p>
                 </div>
               </div> -->
-        </div>
+        <!-- </div> -->
         New eseet
-  		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+  		<!-- <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
            <ion-item ng-repeat="contact in phoneContacts"
                      item="item"
@@ -61,7 +66,7 @@
              <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
            </ion-item>
 
-         </ion-list>
+         </ion-list> -->
 
   </ion-content>
 </ion-view>

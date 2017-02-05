@@ -3,31 +3,51 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
     
 
 
-    $ionicLoading.show({
+    /*$ionicLoading.show({
             template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
-          });
+          });*/
     //fetch
     $scope.phoneContacts = [];
+
+    var ar = [];
+
+    var findu = "SELECT * FROM simcontacts";
+        $cordovaSQLite.execute(db, findu, []).then(function(res) {
+            if(res.rows.length > 0) {
+              for(var i=0;i<res.rows.length;i++){
+                alert("Home SELECTED -> " + res.rows.length);
+                var id = res.rows.item[i].id;
+                  var contact = res.rows.item[i].contact;
+                    var name = res.rows.item[i].uname;
+                    var created = res.rows.item[i].created;
+                  ar.push({ 
+                      id: id, 
+                      name: name,
+                      contact:contact,
+                      created:created
+                    });
+              }
+              $scope.phoneContacts = ar;
+            } else {
+              alert("err "+ res.rows.length);
+      }
+        }, function (err) {
+            alert(err);
+        });
+
+      $timeout(function(){
+        makedb.getSQLDBContactLists($scope,$cordovaSQLite);
+      },10000);
     
-      var cc=0;
+/*      var cc=0;
     function onSuccess(contacts) {
-      /*for (var i = 0; i < contacts.length; i++) {
-        var contact = contacts[i];
-        $scope.phoneContacts.push(contact);
-      }*/
-      //alert($scope.phoneContacts.length);
 
       var result = contacts;
       var arr = [];
       for (var i = 0; i < result.length; i++) {
       if ((result[i].displayName != "" && result[i].displayName != " ")
         && (result[i].phoneNumbers != null)) {        
-        //&& (result[i].phoneNumbers != null || result[i].emails != null)) {
-                /*if (result[i].phoneNumbers != null && result[i].emails != null)
-                  $arr.push({ name: result[i].displayName, 
-                    phone: result[i].phoneNumbers[0].value, 
-                    email: result[i].emails[0].value });
-                else */
+
                   if (result[i].phoneNumbers != null)
                     var tel = result[i].phoneNumbers[0].value;
                     var tell = tel.replace(/\s/g,'');
@@ -40,23 +60,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
                   });
 
                   var findc = "SELECT * FROM simcontacts";
-                  /*$cordovaSQLite.execute(db, 
-                    "CREATE TABLE IF NOT EXISTS simcontacts
-                    (id integer primary key, 
-                      uname text,contact text,
-                    created text,updated text)");
-
-                    CREATE TABLE IF NOT EXISTS 
-                    joinincontacts(id integer primary key,
-                    uid text, uname text,
-                    contact text,gender text,
-                    isActive text,dob text,age text,
-                    email text,profilePic text,
-                    dummyPic text,listen text,
-                    token text,accepted text,
-                    created text,updated text*/
-                  //console.log(moment(1485776474422).format("ddd, Do MMM"));
-                $cordovaSQLite.execute(db, findc, []).then(function(res) {
+                  $cordovaSQLite.execute(db, findc, []).then(function(res) {
                     if(res.rows.length > 0) {
                       for(var x=0;x<res.rows.length;x++){
                         if(tell != res.rows.item(x).contact){
@@ -84,10 +88,6 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
                 }, function (err) {
                     //alert(err;
                 });
-                /*else
-                  $arr.push({ name: result[i].displayName, 
-                    phone: "", 
-                    email: result[i].emails[0].value });*/
         }
       }
       $ionicLoading.hide();
@@ -107,7 +107,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
     var options = {};
     options.multiple = true;
     
-    $cordovaContacts.find(options).then(onSuccess, onError);
+    $cordovaContacts.find(options).then(onSuccess, onError);*/
          
 
 
