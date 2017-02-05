@@ -88,31 +88,31 @@ besties.factory('makedb', function() {
 		    $cordovaContacts.find(options).then(onSuccess, onError);
 		},
 		getSQLDBContactLists:function($scope,$cordovaSQLite){
-			var arrc = [];
+			$scope.arrc = [];
 			var findu = "SELECT * FROM simcontacts";
-	        $cordovaSQLite.execute(db, findu, [null]).then(function(res) {
+	        $cordovaSQLite.execute(db, findu, []).then(function(res) {
 	            if(res.rows.length > 0) {
 	            	for(var i=0;i<res.rows.length;i++){
 	            		var id = res.rows.item[i].id;
 	            		var contact = res.rows.item[i].contact;
 		                var name = res.rows.item[i].uname;
 		                var created = res.rows.item[i].created;
-		             	arrc.push({ 
+		             	$scope.arrc.push({ 
 			                id: id, 
 			                name: name,
 			                contact:contact,
 			                created:created
 		              	});
 	            	}
-	            	$scope.arrcc = arrc;
-	                alert(JSON.stringify($scope.arrcc));
+	            	//$scope.arrcc = arrc;
+	                alert(JSON.stringify($scope.arrc));
 	            } else {
-	            	 $scope.arrcc = "err";
-	            	 alert("err "+ res.rows.length + " arrcc "+$scope.arrcc);
+	            	 $scope.arrc = "err";
+	            	 alert("err "+ res.rows.length + " arrcc "+$scope.arrc);
 				}
 	        }, function (err) {
-	            $scope.arrcc = "err";
-	            alert("err  arrcold "+$scope.arrcc);
+	            $scope.arrc = "err";
+	            alert("err  arrcold "+$scope.arrc);
 	        });	 
 		},
 		/*

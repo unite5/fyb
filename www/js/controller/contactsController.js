@@ -9,25 +9,25 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
     //fetch
     $scope.phoneContacts = [];
 
-    var ar = [];
+    $scope.ar = [];
 
     var findu = "SELECT * FROM simcontacts";
         $cordovaSQLite.execute(db, findu, []).then(function(res) {
             if(res.rows.length > 0) {
               for(var i=0;i<res.rows.length;i++){
-                alert("Home SELECTED -> " + res.rows.length);
+                //alert("Home SELECTED -> " + res.rows.length);
                 var id = res.rows.item[i].id;
                   var contact = res.rows.item[i].contact;
                     var name = res.rows.item[i].uname;
                     var created = res.rows.item[i].created;
-                  ar.push({ 
+                  $scope.ar.push({ 
                       id: id, 
                       name: name,
                       contact:contact,
                       created:created
                     });
               }
-              $scope.phoneContacts = ar;
+              $scope.phoneContacts = $scope.ar;
             } else {
               alert("err "+ res.rows.length);
       }
