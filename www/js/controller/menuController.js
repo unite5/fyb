@@ -13,6 +13,7 @@ besties.controller('menuController',function($scope,$log,$cordovaToast,$cordovaS
 
   $scope.username = localStorage.userName;
   $scope.profilePic = localStorage.userprofilePic;
+  alert("scope pic:"+$scope.profilePic+" local:"+localStorage.userprofilePic);
 
   //share app code
   var options = {

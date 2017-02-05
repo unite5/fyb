@@ -2,21 +2,22 @@
 besties.controller('homeController',function($scope,trackusers,availableisOffline,$interval,$ionicPopup,$cordovaToast,$cordovaDialogs,$location,$timeout,$interval,$log,$state,$ionicLoading,$http,makedb,$cordovaContacts,$cordovaSQLite){
     
     $timeout(function(){
-        makedb.getContacts($cordovaSQLite,$scope,$timeout,$cordovaContacts);	
+        //makedb.getContacts($cordovaSQLite,$scope,$timeout,$cordovaContacts);	
+        makedb.AddContactInPhone($cordovaSQLite,$scope,$timeout,$cordovaContacts);
     },5000);
 
-    /*$timeout(function(){
+    $timeout(function(){
     var findu = "SELECT * FROM simcontacts";
             $cordovaSQLite.execute(db, findu, []).then(function(res) {
                 if(res.rows.length > 0) {
-                    alert("SELECTED -> " + res.rows.length);
+                    alert("Home SELECTED -> " + res.rows.length);
                 } else {
                   alert("err "+ res.rows.length);
           }
             }, function (err) {
                 alert(err);
             });
-    },8000);*/
+    },8000);
     
     console.log("available:"+availableisOffline.check());
     

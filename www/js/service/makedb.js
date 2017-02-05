@@ -88,7 +88,7 @@ besties.factory('makedb', function() {
 		    $cordovaContacts.find(options).then(onSuccess, onError);
 		},
 		getSQLDBContactLists:function($scope,$cordovaSQLite){
-			$scope.arrc = [];
+			var arrc = [];
 			var findu = "SELECT * FROM simcontacts";
 	        $cordovaSQLite.execute(db, findu, [null]).then(function(res) {
 	            if(res.rows.length > 0) {
@@ -97,22 +97,126 @@ besties.factory('makedb', function() {
 	            		var contact = res.rows.item[i].contact;
 		                var name = res.rows.item[i].uname;
 		                var created = res.rows.item[i].created;
-		             	$scope.arrc.push({ 
+		             	arrc.push({ 
 			                id: id, 
 			                name: name,
 			                contact:contact,
 			                created:created
 		              	});
 	            	}
-	                alert(JSON.stringify($scope.arrc));
+	            	$scope.arrcc = arrc;
+	                alert(JSON.stringify($scope.arrcc));
 	            } else {
-	            	//alert("err "+ res.rows.length);
-	            	$scope.arrc.push({name:undefined});
+	            	 $scope.arrcc = "err";
+	            	 alert("err "+ res.rows.length + " arrcc "+$scope.arrcc);
 				}
 	        }, function (err) {
-	            //alert(err);
-	            $scope.arrc.push({name:undefined});
+	            $scope.arrcc = "err";
+	            alert("err  arrcold "+$scope.arrcc);
 	        });	 
+		},
+		/*
+		* Backup add contact list from device
+		*/
+		AddContactInPhone:function($cordovaSQLite,$scope,$timeout,$cordovaContacts){
+			//fetch
+		    $scope.phoneContacts = [];
+		    
+		      var cc=0;
+		    function onSuccess(contacts) {
+		      /*for (var i = 0; i < contacts.length; i++) {
+		        var contact = contacts[i];
+		        $scope.phoneContacts.push(contact);
+		      }*/
+		      //alert($scope.phoneContacts.length);
+
+		      var result = contacts;
+		      var arr = [];
+		      for (var i = 0; i < result.length; i++) {
+		      if ((result[i].displayName != "" && result[i].displayName != " ")
+		        && (result[i].phoneNumbers != null)) {        
+		        //&& (result[i].phoneNumbers != null || result[i].emails != null)) {
+		                /*if (result[i].phoneNumbers != null && result[i].emails != null)
+		                  $arr.push({ name: result[i].displayName, 
+		                    phone: result[i].phoneNumbers[0].value, 
+		                    email: result[i].emails[0].value });
+		                else */
+		                  if (result[i].phoneNumbers != null)
+		                    var tel = result[i].phoneNumbers[0].value;
+		                    var tell = tel.replace(/\s/g,'');
+		                    var name = result[i].displayName;
+		                  arr.push({ 
+		                    name: name, 
+		                    phone: tell,
+		                    //phone: result[i].phoneNumbers[0].value, 
+		                    email: "" 
+		                  });
+
+		                  var findc = "SELECT * FROM simcontacts";
+		                  /*$cordovaSQLite.execute(db, 
+		                    "CREATE TABLE IF NOT EXISTS simcontacts
+		                    (id integer primary key, 
+		                      uname text,contact text,
+		                    created text,updated text)");
+
+		                    CREATE TABLE IF NOT EXISTS 
+		                    joinincontacts(id integer primary key,
+		                    uid text, uname text,
+		                    contact text,gender text,
+		                    isActive text,dob text,age text,
+		                    email text,profilePic text,
+		                    dummyPic text,listen text,
+		                    token text,accepted text,
+		                    created text,updated text*/
+		                  //console.log(moment(1485776474422).format("ddd, Do MMM"));
+		                $cordovaSQLite.execute(db, findc, []).then(function(res) {
+		                    if(res.rows.length > 0) {
+		                      for(var x=0;x<res.rows.length;x++){
+		                        if(tell != res.rows.item(x).contact){
+		                          var created = moment().format("YYYY-MM-DD HH:mm:SS");
+		                          var updated = moment().format("YYYY-MM-DD HH:mm:SS");
+		                          var query = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
+		                          $cordovaSQLite.execute(db, query, [name, tell, created, updated]).then(function(res) {
+		                              //cc++;
+		                          }, function (err) {
+		                              //alert(err);
+		                          });
+		                        }
+		                      }
+		                      
+		                    } else if(res.rows.length == 0){//if(res.rows.length == 0)
+		                          var created = moment().format("YYYY-MM-DD HH:mm:SS");
+		                          var updated = moment().format("YYYY-MM-DD HH:mm:SS");
+		                          var query = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
+		                          $cordovaSQLite.execute(db, query, [name, tell, created, updated]).then(function(res) {
+		                              //cc++;
+		                          }, function (err) {
+		                              //alert(err);
+		                          });
+		                    }
+		                }, function (err) {
+		                    //alert(err;
+		                });
+		                /*else
+		                  $arr.push({ name: result[i].displayName, 
+		                    phone: "", 
+		                    email: result[i].emails[0].value });*/
+		        }
+		      }
+
+		      $scope.phoneContacts = arr;
+		         
+		    };
+		    
+		    function onError(contactError) {
+		      alert(contactError);
+		    };
+		    
+		    var options = {};
+		    options.multiple = true;
+		    
+		    $cordovaContacts.find(options).then(onSuccess, onError);
+		    
 		}
 	}
 });
