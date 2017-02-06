@@ -105,7 +105,7 @@ besties.factory('makedb', function() {
 		              	});
 	            	}
 	            	//$scope.arrcc = arrc;
-	                alert(JSON.stringify($scope.arrc));
+	                alert(res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
 	            } else {
 	            	 $scope.arrc = "err";
 	            	 alert("err "+ res.rows.length + " arrcc "+$scope.arrc);

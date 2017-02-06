@@ -20,19 +20,19 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
                   var contact = res.rows.item[i].contact;
                     var name = res.rows.item[i].uname;
                     var created = res.rows.item[i].created;
-                  $scope.ar.push({ 
+                  $scope.phoneContacts.push({ 
                       id: id, 
                       name: name,
                       contact:contact,
                       created:created
                     });
               }
-              $scope.phoneContacts = $scope.ar;
+              //$scope.phoneContacts = $scope.ar;
             } else {
-              alert("err "+ res.rows.length);
-      }
+              alert("err fetch "+ res.rows.length);
+            }
         }, function (err) {
-            alert(err);
+            alert("err in execute "+err);
         });
 
       $timeout(function(){
