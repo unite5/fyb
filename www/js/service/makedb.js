@@ -289,6 +289,8 @@ besties.factory('makedb', function() {
 		                      }*/
 		                      
 		                    } else if(res.rows.length == 0){//if(res.rows.length == 0)
+		                    	for(var x=0;x<res.rows.length;x++){
+		                         if(tell != res.rows.item(x).contact){
 		                          var created = moment().format("YYYY-MM-DD HH:mm:SS");
 		                          var updated = moment().format("YYYY-MM-DD HH:mm:SS");
 		                          var query = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
@@ -297,6 +299,8 @@ besties.factory('makedb', function() {
 		                          }, function (err) {
 		                              //alert(err);
 		                          });
+		                         }
+		                      	}
 		                    }
 		                }, function (err) {
 		                    //alert(err;
@@ -305,10 +309,13 @@ besties.factory('makedb', function() {
 		                  $arr.push({ name: result[i].displayName, 
 		                    phone: "", 
 		                    email: result[i].emails[0].value });*/
+		                    $scope.ttt.push(tell);
 		        }
 		      }
 
 		      $scope.phoneContacts = arr;
+
+		      $timeout(function(){alert("makedb first:"+JSON.stringify($scope.ttt));},8000);
 		      //$timeout(function(){alert("makedb first:"+JSON.stringify(arr)+" "+$scope.phoneContacts);},8000);
 		         
 		    };
