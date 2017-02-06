@@ -275,7 +275,7 @@ besties.factory('makedb', function() {
 		                  //console.log(moment(1485776474422).format("ddd, Do MMM"));
 		                $cordovaSQLite.execute(db, findc, [tell]).then(function(res) {
 		                    if(res.rows.length > 0) {
-		                      /*for(var x=0;x<res.rows.length;x++){
+		                      for(var x=0;x<res.rows.length;x++){
 		                        if(tell != res.rows.item(x).contact){
 		                          var created = moment().format("YYYY-MM-DD HH:mm:SS");
 		                          var updated = moment().format("YYYY-MM-DD HH:mm:SS");
@@ -286,7 +286,7 @@ besties.factory('makedb', function() {
 		                              //alert(err);
 		                          });
 		                        }
-		                      }*/
+		                      }
 		                      
 		                    } else if(res.rows.length == 0){//if(res.rows.length == 0)
 		                    	for(var x=0;x<res.rows.length;x++){
