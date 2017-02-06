@@ -11,7 +11,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
 
     $scope.ar = [];
 
-    var findu = "SELECT * FROM simcontacts";
+    /*var findu = "SELECT * FROM simcontacts";
         $cordovaSQLite.execute(db, findu, []).then(function(res) {
             if(res.rows.length > 0) {
               for(var i=0;i<res.rows.length;i++){
@@ -33,7 +33,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
             }
         }, function (err) {
             alert("err in execute "+err);
-        });
+        });*/
 
       $timeout(function(){
         makedb.getSQLDBContactLists($scope,$cordovaSQLite);

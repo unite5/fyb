@@ -97,12 +97,12 @@ besties.factory('makedb', function() {
 	            		var contact = res.rows.item[i].contact;
 		                var name = res.rows.item[i].uname;
 		                var created = res.rows.item[i].created;
-		             	$scope.arrc.push({ 
+		             	/*$scope.arrc.push({ 
 			                id: id, 
 			                name: name,
 			                contact:contact,
 			                created:created
-		              	});
+		              	});*/
 	            	}
 	            	//$scope.arrcc = arrc;
 	                alert(res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
