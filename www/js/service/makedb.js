@@ -288,7 +288,7 @@ besties.factory('makedb', function() {
 		                        }
 		                      }*/
 		                      //not do anything
-		                    } else if(res.rows.length == 0 || res.rows.length == null || res.rows.length == undefined){//if(res.rows.length == 0)
+		                    } else if(res.rows.length == 0){//if(res.rows.length == 0)
 		                          var created = moment().format("YYYY-MM-DD HH:mm:SS");
 		                          var updated = moment().format("YYYY-MM-DD HH:mm:SS");
 		                          var query = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
