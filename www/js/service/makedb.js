@@ -103,7 +103,9 @@ besties.factory('makedb', function() {
 			                contact:contact,
 			                created:created
 		              	});*/
+
 	            	}
+	            	$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
 	                alert(res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
 	            } else {
