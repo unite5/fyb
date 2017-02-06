@@ -35,9 +35,9 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
             alert("err in execute "+err);
         });*/
 
-      $timeout(function(){
+      //$timeout(function(){
         makedb.getSQLDBContactLists($scope,$cordovaSQLite);
-      },10000);
+      //},10000);
     
 /*      var cc=0;
     function onSuccess(contacts) {
