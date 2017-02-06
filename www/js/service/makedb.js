@@ -93,18 +93,18 @@ besties.factory('makedb', function() {
 	        $cordovaSQLite.execute(db, findu, []).then(function(res) {
 	            if(res.rows.length > 0) {
 	            	for(var i=0;i<res.rows.length;i++){
-	            		var id = res.rows.item[i].id;
-	            		var contact = res.rows.item[i].contact;
-		                var name = res.rows.item[i].uname;
-		                var created = res.rows.item[i].created;
-		             	/*$scope.arrc.push({ 
+	            		var id = res.rows.item(i)['id'];//res.rows.item[i].id;
+	            		var contact = res.rows.item(i)['contact'];//res.rows.item[i].contact;
+		                var name = res.rows.item(i)['uname'];
+		                var created = res.rows.item(i)['created'];
+		             	$scope.arrc.push({ 
 			                id: id, 
 			                name: name,
 			                contact:contact,
 			                created:created
-		              	});*/
+		              	});
 		              	//alert(res.rows.item[i].contact+" "+res.rows.item[i].uname);
-		              	$scope.mydc = JSON.stringify(res);
+		              	$scope.mydc = JSON.stringify(res.rows.item(i));
 	            	}
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;

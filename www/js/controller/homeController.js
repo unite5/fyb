@@ -11,7 +11,7 @@ besties.controller('homeController',function($scope,trackusers,availableisOfflin
             $cordovaSQLite.execute(db, findu, []).then(function(res) {
                 if(res.rows.length > 0) {
                     //alert("Home SELECTED -> " + res.rows.length);
-                    alert("Home SELECTED -> " + res.rows.length+" makedb first:"+JSON.stringify(res)+" ");
+                    alert("Home SELECTED -> " + res.rows.length+" makedb first:"+JSON.stringify(res.rows.item(0))+" "+res.rows.item(0)['contact']);
                     //alert(res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
                 } else {
                   alert("err "+ res.rows.length);
