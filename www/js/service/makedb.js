@@ -103,10 +103,10 @@ besties.factory('makedb', function() {
 			                contact:contact,
 			                created:created
 		              	});*/
-		              	alert(res.rows.item[i].contact+" "+res.rows.item[i].uname);
-
+		              	//alert(res.rows.item[i].contact+" "+res.rows.item[i].uname);
+		              	$scope.mydc = JSON.stringify(res);
 	            	}
-	            	$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
+	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
 	                alert(res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
 	            } else {
@@ -208,7 +208,7 @@ besties.factory('makedb', function() {
 		      }
 
 		      $scope.phoneContacts = arr;
-		      $timeout(function(){alert("makedb first:"+JSON.stringify(arr)+" "+$scope.phoneContacts);},8000);
+		      //$timeout(function(){alert("makedb first:"+JSON.stringify(arr)+" "+$scope.phoneContacts);},8000);
 		         
 		    };
 		    
