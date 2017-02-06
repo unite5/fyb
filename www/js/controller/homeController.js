@@ -3,7 +3,7 @@ besties.controller('homeController',function($scope,trackusers,availableisOfflin
     
     $timeout(function(){
         //makedb.getContacts($cordovaSQLite,$scope,$timeout,$cordovaContacts);	
-        makedb.AddContactInPhone($cordovaSQLite,$scope,$timeout,$cordovaContacts);
+        makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
     },5000);
 
     $timeout(function(){
