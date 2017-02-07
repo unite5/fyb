@@ -1,12 +1,12 @@
 //angular.module('besties')
 besties.controller('homeController',function($scope,trackusers,availableisOffline,$interval,$ionicPopup,$cordovaToast,$cordovaDialogs,$location,$timeout,$interval,$log,$state,$ionicLoading,$http,makedb,$cordovaContacts,$cordovaSQLite){
     
-    $timeout(function(){
+/*    $timeout(function(){
         //makedb.getContacts($cordovaSQLite,$scope,$timeout,$cordovaContacts);	
-        //makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
-    },5000);
+        makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
+    },5000);*/
 
-    /*$timeout(function(){
+    $timeout(function(){
     var findu = "SELECT * FROM simcontacts";
             $cordovaSQLite.execute(db, findu, []).then(function(res) {
                 if(res.rows.length > 0) {
@@ -19,7 +19,7 @@ besties.controller('homeController',function($scope,trackusers,availableisOfflin
             }, function (err) {
                 alert(err);
             });
-    },8000);*/
+    },8000);
     
     console.log("available:"+availableisOffline.check());
     

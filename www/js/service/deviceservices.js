@@ -1,16 +1,9 @@
-besties.factory("deviceservice",function(){
-	var isOffline = 'onLine' in navigator && !navigator.onLine;
+besties.factory("deviceservices",function(){
+	
 	return {
-		check: function(){
-			/*
-			* is Online -> false
-			* is Offline -> true
-			*/
-			return isOffline;
-		},
 		sendDeviceDetailWhenFirstInstallToWeb:function($cordovaDevice,$timeout,$http){
 			//var isOfflined = 'onLine' in navigator && !navigator.onLine;
-
+			var isOffline = 'onLine' in navigator && !navigator.onLine;
 			if(!isOfflined){
 				$timeout(function() {
 					var device = $cordovaDevice.getDevice();

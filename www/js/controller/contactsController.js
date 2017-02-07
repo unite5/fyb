@@ -2,7 +2,7 @@
 besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout){
     
 
-    makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
+    //makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
     /*$ionicLoading.show({
             template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
           });*/
@@ -37,6 +37,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
 
       $timeout(function(){
         makedb.getSQLDBContactLists($scope,$cordovaSQLite);
+        makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
       },10000);
     
 /*      var cc=0;

@@ -1,7 +1,7 @@
 //angular.module('besties')
 besties.controller('loginController',
 	//['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
-	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice,$cordovaSQLite,deviceservices){
+	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice,$cordovaSQLite){
 	  //alert("inn;loginController");
 
 
@@ -32,11 +32,6 @@ besties.controller('loginController',
 	  $scope.gformdata = {
 	  	'otp':''
 	  }
-
-	  /*$timeout(function(){
-	  	makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
-	  },2000);*/
-
 	  $timeout(function(){
 		$scope.open1 = true;//div hide
 	    $scope.open2 = false;
@@ -44,7 +39,6 @@ besties.controller('loginController',
 	    //angular.element(document.getElementById("txtPhone")).val("8976786767");// = "8976786767";//$scope.formdata.otp;
 	    //$scope.formdata.uphone = "8976786767";
 	    //document.loginbesties.txtPhone.value = "8976786767";
-	    //deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http);
 	  },4000);
 
 	  document.getElementById('txtPhone').addEventListener('keypress', function(event) {
