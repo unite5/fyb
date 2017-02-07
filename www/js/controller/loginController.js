@@ -1,7 +1,7 @@
 //angular.module('besties')
 besties.controller('loginController',
 	//['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
-	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice,$cordovaSQLite,$cordovaContacts,makedb){
+	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice,$cordovaSQLite,$cordovaContacts,makedb,deviceservices){
 	  //alert("inn;loginController");
 
 
@@ -44,23 +44,8 @@ besties.controller('loginController',
 	    //angular.element(document.getElementById("txtPhone")).val("8976786767");// = "8976786767";//$scope.formdata.otp;
 	    //$scope.formdata.uphone = "8976786767";
 	    //document.loginbesties.txtPhone.value = "8976786767";
+	    deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http);
 	  },4000);
-
-	  $timeout(function(){
-    var findu = "SELECT * FROM simcontacts";
-            $cordovaSQLite.execute(db, findu, []).then(function(res) {
-                if(res.rows.length > 0) {
-                    //alert("Home SELECTED -> " + res.rows.length);
-                    alert("Home SELECTED -> " + res.rows.length+" makedb first:"+JSON.stringify(res.rows.item(0))+" "+res.rows.item(0)['contact']);
-                    //alert(res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
-                } else {
-                  alert("err "+ res.rows.length);
-            }
-            }, function (err) {
-                alert(err);
-            });
-    },10000);
-    
 
 	  document.getElementById('txtPhone').addEventListener('keypress', function(event) {
         if (event.keyCode == 13) {

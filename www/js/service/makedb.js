@@ -337,7 +337,7 @@ besties.factory('makedb', function() {
                         });
 		        }
 		      }
-		      alert("cc:"+cc);
+		      //alert("cc:"+cc);
 
 		    };
 

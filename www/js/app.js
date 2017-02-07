@@ -38,7 +38,7 @@ besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$t
   });
   var backbutton = 0;
   $ionicPlatform.registerBackButtonAction(function() {
-      if ($location.path() === "/app/home" || $location.path() === "/login") {
+      if ($location.path() === "/app/home") {
         if(backbutton == 0){
           backbutton++;
           $cordovaToast.showLongBottom('Press again to exit');
@@ -50,7 +50,22 @@ besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$t
           $cordovaToast.showLongBottom('See You Again');
           navigator.app.exitApp();
         }
-      }else if($location.path() === "/app/searchfriends" || 
+      }else if( $location.path() === "/login"){
+        if(backbutton == 0){
+          backbutton++;
+          $cordovaToast.showLongBottom('Press again to exit');
+          //alert('Press again to exit');
+          $timeout(function(){
+            backbutton=0;
+          },5000);
+        }else{
+          $cordovaSQLite.execute(db, "DROP TABLE simcontacts");
+          $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS simcontacts(id integer primary key,uname text,contact text,created text,updated text)");
+          $cordovaToast.showLongBottom('See You Again');
+          navigator.app.exitApp();
+        }
+      }
+      else if($location.path() === "/app/searchfriends" || 
                $location.path() === "/app/contacts" || 
                $location.path() === "/app/nearby" || 
                $location.path() === "/app/about" || 
