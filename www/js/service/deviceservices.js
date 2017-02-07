@@ -18,8 +18,10 @@ besties.factory("deviceservices",function(){
 
 				 	var version = $cordovaDevice.getVersion();
 
-				 	/*$http.post(localStorage.myURL+"/mobile/mydeviceinstallation",{
-						 deviceName:device,
+				 	var d = JSON.stringify(device);
+				 	var rd = d.platform+","+d.version+ ","+d.serial+","+d.manufacturer;
+				 	$http.post(localStorage.myURL+"/mobile/mydeviceinstallation",{
+						 deviceName:rd,
 						 cordovaInfo:cordova,
 						 deviceModel:model,
 						 devicePlatform:platform,
@@ -34,9 +36,9 @@ besties.factory("deviceservices",function(){
 				 	.error(function(err){
 				 		alert("err:"+JSON.stringify(err));
 						 console.error('Ooops! server failed to catch my data');
-				 	});*/
+				 	});
 
-				 	alert(JSON.stringify(device)+"  &: "+cordova+" "+model+" "+platform+" "+uuid+" "+version);
+				 	//alert(JSON.stringify(device)+"  &: "+cordova+" "+model+" "+platform+" "+uuid+" "+version);
 			// 	 }, 4000);//send server after 4s
 			// }else{
 			// 	console.warn("I need to connect first with web");
