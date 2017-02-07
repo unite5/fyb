@@ -2,14 +2,14 @@
 besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout){
     
 
-
+    makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
     /*$ionicLoading.show({
             template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
           });*/
     //fetch
-    $scope.phoneContacts = [];
+    //$scope.phoneContacts = [];
 
-    $scope.ar = [];
+    //$scope.ar = [];
 
     /*var findu = "SELECT * FROM simcontacts";
         $cordovaSQLite.execute(db, findu, []).then(function(res) {
@@ -35,9 +35,9 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
             alert("err in execute "+err);
         });*/
 
-      //$timeout(function(){
+      $timeout(function(){
         makedb.getSQLDBContactLists($scope,$cordovaSQLite);
-      //},10000);
+      },10000);
     
 /*      var cc=0;
     function onSuccess(contacts) {

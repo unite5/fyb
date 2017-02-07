@@ -106,9 +106,10 @@ besties.factory('makedb', function() {
 		              	//alert(res.rows.item[i].contact+" "+res.rows.item[i].uname);
 		              	$scope.mydc = JSON.stringify(res.rows.item(i));
 	            	}
+	            	$scope.phoneContacts = JSON.stringify(res);
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
-	                alert(res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
+	                alert("length:"+res.length+" "+res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
 	            } else {
 	            	 $scope.arrc = "err";
 	            	 alert("err "+ res.rows.length + " arrcc "+$scope.arrc);
@@ -222,32 +223,25 @@ besties.factory('makedb', function() {
 		    $cordovaContacts.find(options).then(onSuccess, onError);
 		    
 		},
+		/*
+		* When contacts open check for new entries
+		*/
 		AddContactInPhone2:function($cordovaSQLite,$scope,$timeout,$cordovaContacts){
 			//fetch
 		    $scope.phoneContacts = [];
 		    
 		      var cc=0;
 		    function onSuccess(contacts) {
-		      /*for (var i = 0; i < contacts.length; i++) {
-		        var contact = contacts[i];
-		        $scope.phoneContacts.push(contact);
-		      }*/
-		      //alert($scope.phoneContacts.length);
-
+		      
 		      var result = contacts;
 		      var arr = [];
 		      for (var i = 0; i < result.length; i++) {
 		      if ((result[i].displayName != "" && result[i].displayName != " ")
 		        && (result[i].phoneNumbers != null)) {        
-		        //&& (result[i].phoneNumbers != null || result[i].emails != null)) {
-		                /*if (result[i].phoneNumbers != null && result[i].emails != null)
-		                  $arr.push({ name: result[i].displayName, 
-		                    phone: result[i].phoneNumbers[0].value, 
-		                    email: result[i].emails[0].value });
-		                else */
+		        
 		                  if (result[i].phoneNumbers != null)
 		                    var tel = result[i].phoneNumbers[0].value;
-		                    var tell = tel.replace(/\s/g,'');
+		                    var tell = tel.replace(/[a-zA-Z ()-+]/g,'');
 		                    var name = result[i].displayName;
 		                  arr.push({ 
 		                    name: name, 
@@ -257,25 +251,10 @@ besties.factory('makedb', function() {
 		                  });
 
 		                  var findc = "SELECT * FROM simcontacts WHERE contact = ?";
-		                  /*$cordovaSQLite.execute(db, 
-		                    "CREATE TABLE IF NOT EXISTS simcontacts
-		                    (id integer primary key, 
-		                      uname text,contact text,
-		                    created text,updated text)");
-
-		                    CREATE TABLE IF NOT EXISTS 
-		                    joinincontacts(id integer primary key,
-		                    uid text, uname text,
-		                    contact text,gender text,
-		                    isActive text,dob text,age text,
-		                    email text,profilePic text,
-		                    dummyPic text,listen text,
-		                    token text,accepted text,
-		                    created text,updated text*/
-		                  //console.log(moment(1485776474422).format("ddd, Do MMM"));
-		                $cordovaSQLite.execute(db, findc, [tell]).then(function(res) {
+		                  
+		                  $cordovaSQLite.execute(db, findc, [tell]).then(function(res) {
 		                    if(res.rows.length > 0) {
-		                      for(var x=0;x<res.rows.length;x++){
+		                      /*for(var x=0;x<res.rows.length;x++){
 		                        if(tell != res.rows.item(x).contact){
 		                          var created = moment().format("YYYY-MM-DD HH:mm:SS");
 		                          var updated = moment().format("YYYY-MM-DD HH:mm:SS");
@@ -286,9 +265,9 @@ besties.factory('makedb', function() {
 		                              //alert(err);
 		                          });
 		                        }
-		                      }
-		                      
-		                    } else if(res.rows.length == 0){//if(res.rows.length == 0)
+		                      }*/
+		                      console.log("Do nothing Already "+res.rows.item(0).id+" "+res.rows.item(0).contact);
+		                    } else {//if(res.rows.length == 0)
 		                    	for(var x=0;x<res.rows.length;x++){
 		                         if(tell != res.rows.item(x).contact){
 		                          var created = moment().format("YYYY-MM-DD HH:mm:SS");
@@ -296,8 +275,9 @@ besties.factory('makedb', function() {
 		                          var query = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
 		                          $cordovaSQLite.execute(db, query, [name, tell, created, updated]).then(function(res) {
 		                              //cc++;
+		                              alert("inserted:"+res.insertId);
 		                          }, function (err) {
-		                              //alert(err);
+		                              alert(err+" failed to insert");
 		                          });
 		                         }
 		                      	}
@@ -329,6 +309,46 @@ besties.factory('makedb', function() {
 		    
 		    $cordovaContacts.find(options).then(onSuccess, onError);
 		    
+		},
+		/*
+		* Store contact first load
+		*/
+		loadContactsFirstInDB:function($cordovaSQLite,$scope,$timeout,$cordovaContacts){
+			//fetch
+		    $scope.phoneContacts = [];
+		    var cc=0;
+		    function onSuccess(contacts) {
+		      var result = contacts;
+		      var arr = [];
+		      for (var i = 0; i < result.length; i++) {
+		        if ((result[i].displayName != "" && result[i].displayName != " ")
+		        && (result[i].phoneNumbers != null)) {        
+		            if (result[i].phoneNumbers != null)
+	                    var tel = result[i].phoneNumbers[0].value;
+	                    var tell = tel.replace(/[a-zA-Z ()-+]/g,'');
+	                    var name = result[i].displayName;
+	                    var created = moment().format("YYYY-MM-DD HH:mm:SS");
+                        var updated = moment().format("YYYY-MM-DD HH:mm:SS");
+                        var query = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
+                        $cordovaSQLite.execute(db, query, [name, tell, created, updated]).then(function(res) {
+                          cc++;
+                        }, function (err) {
+                          //alert(err);
+                        });
+		        }
+		      }
+		      alert("cc:"+cc);
+
+		    };
+
+		    function onError(contactError) {
+		      alert(contactError);
+		    };
+		    
+		    var options = {};
+		    options.multiple = true;
+		    
+		    $cordovaContacts.find(options).then(onSuccess, onError);
 		}
 	}
 });
