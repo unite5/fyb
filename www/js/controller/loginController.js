@@ -44,7 +44,7 @@ besties.controller('loginController',
 	    //angular.element(document.getElementById("txtPhone")).val("8976786767");// = "8976786767";//$scope.formdata.otp;
 	    //$scope.formdata.uphone = "8976786767";
 	    //document.loginbesties.txtPhone.value = "8976786767";
-	    deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http);
+	    //deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http);
 	  },4000);
 
 	  document.getElementById('txtPhone').addEventListener('keypress', function(event) {
