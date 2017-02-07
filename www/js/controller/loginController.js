@@ -33,9 +33,9 @@ besties.controller('loginController',
 	  	'otp':''
 	  }
 
-	  $timeout(function(){
+	  /*$timeout(function(){
 	  	makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
-	  },2000);
+	  },2000);*/
 
 	  $timeout(function(){
 		$scope.open1 = true;//div hide
