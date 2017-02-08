@@ -104,12 +104,12 @@ besties.factory('makedb', function() {
 			                created:created
 		              	});
 		              	//alert(res.rows.item[i].contact+" "+res.rows.item[i].uname);
-		              	$scope.mydc.push(JSON.stringify(res.rows.item(i)));
+		              	$scope.mydc = JSON.stringify(res.rows.item(i));
+		            	$scope.phoneContacts.push(JSON.stringify(res.rows.item(i)));
 	            	}
-	            	//$scope.phoneContacts = JSON.stringify(res.rows.item(i));
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
-	                alert("length:"+res.length+" "+res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
+	                alert("length:"+res.length+" "+JSON.stringify(res.rows));
 	            } else {
 	            	 $scope.arrc = "err";
 	            	 alert("err "+ res.rows.length + " arrcc "+$scope.arrc);
