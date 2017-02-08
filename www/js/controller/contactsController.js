@@ -39,7 +39,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
       },100);
       $timeout(function(){
         
-        makedb.AddContactInPhone2Once($cordovaSQLite,$scope,$timeout,$cordovaContacts,$ionicPopup);
+        makedb.AddContactInPhoneOnce($cordovaSQLite,$scope,$timeout,$cordovaContacts,$ionicPopup);
       },10000);
     
 /*      var cc=0;

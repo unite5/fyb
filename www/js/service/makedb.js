@@ -104,7 +104,7 @@ besties.factory('makedb', function() {
 			                created:created
 		              	});
 		              	//alert(res.rows.item[i].contact+" "+res.rows.item[i].uname);
-		              	$scope.mydc = JSON.stringify(res.rows.item(i));
+		              	$scope.mydc.push(JSON.stringify(res.rows.item(i)));
 	            	}
 	            	//$scope.phoneContacts = JSON.stringify(res.rows.item(i));
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
@@ -226,7 +226,7 @@ besties.factory('makedb', function() {
 		/*
 		* When contacts open check for new entries
 		*/
-		AddContactInPhone2Once:function($cordovaSQLite,$scope,$timeout,$cordovaContacts,$ionicPopup){
+		AddContactInPhoneOnce:function($cordovaSQLite,$scope,$timeout,$cordovaContacts,$ionicPopup){
 			//fetch
 		    $scope.phoneContacts = [];
 		    

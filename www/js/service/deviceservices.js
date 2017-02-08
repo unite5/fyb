@@ -4,7 +4,7 @@ besties.factory("deviceservices",function(){
 		sendDeviceDetailWhenFirstInstallToWeb:function($cordovaDevice,$timeout,$http){
 			//var isOfflined = 'onLine' in navigator && !navigator.onLine;
 			var isOffline = 'onLine' in navigator && !navigator.onLine;
-			 if(!isOfflined){
+			// if(!isOfflined){
 			// 	$timeout(function() {
 					var device = $cordovaDevice.getDevice();
 
@@ -20,7 +20,7 @@ besties.factory("deviceservices",function(){
 
 				 	//var d = JSON.stringify(device);
 				 	//var rd = "Name:"+device.name+",Platform:"+device.platform+",Version:"+device.version+ ",Serial:"+device.serial+",Manufacturer:"+device.manufacturer;
-				 	var rd = ""+device.name+","+device.platform+","+device.version+ ","+device.serial+","+device.manufacturer;
+				 	var rd = device.platform+","+device.version+ ","+device.serial+","+device.manufacturer;
 				 	$http.post(localStorage.myURL+"/mobile/mydeviceinstallation",{
 						 deviceName:rd,
 						 cordovaInfo:cordova,
@@ -46,9 +46,9 @@ besties.factory("deviceservices",function(){
 
 				 	//alert(JSON.stringify(device)+"  &: "+cordova+" "+model+" "+platform+" "+uuid+" "+version);
 			// 	 }, 4000);//send server after 4s
-			}else{
-				console.warn("I need to connect first with web");
-			}
+			// }else{
+			// 	console.warn("I need to connect first with web");
+			// }
 		}
 
 	}
