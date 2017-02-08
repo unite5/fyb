@@ -88,7 +88,7 @@ besties.factory('makedb', function() {
 		    $cordovaContacts.find(options).then(onSuccess, onError);
 		},
 		getSQLDBContactLists:function($scope,$cordovaSQLite){
-			$scope.arrc = [];
+			$scope.arrc = [];var ds=new Array();
 			var findu = "SELECT * FROM simcontacts";
 	        $cordovaSQLite.execute(db, findu, []).then(function(res) {
 	            if(res.rows.length > 0) {
@@ -105,10 +105,17 @@ besties.factory('makedb', function() {
 		              	});
 		              	//alert(res.rows.item[i].contact+" "+res.rows.item[i].uname);
 		              	$scope.mydc = JSON.stringify(res.rows.item(i));
-		            	$scope.phoneContacts.push(JSON.stringify(res.rows.item(i)));
+		            	$scope.phoneContacts.push(res.rows.item(i));
+		            	ds.push({ 
+			                id: id, 
+			                name: name,
+			                contact:contact,
+			                created:created
+		              	});
 	            	}
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
+	            	$scope.arrcc = ds;
 	                alert("length:"+res.length+" "+JSON.stringify(res.rows));
 	            } else {
 	            	 $scope.arrc = "err";
