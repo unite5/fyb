@@ -19,7 +19,8 @@ besties.factory("deviceservices",function(){
 				 	var version = $cordovaDevice.getVersion();
 
 				 	//var d = JSON.stringify(device);
-				 	var rd = "Name:"+device.name+",Platform:"+device.platform+",Version:"+device.version+ ",Serial:"+device.serial+",Manufacturer:"+device.manufacturer;
+				 	//var rd = "Name:"+device.name+",Platform:"+device.platform+",Version:"+device.version+ ",Serial:"+device.serial+",Manufacturer:"+device.manufacturer;
+				 	var rd = ""+device.name+","+device.platform+","+device.version+ ","+device.serial+","+device.manufacturer;
 				 	$http.post(localStorage.myURL+"/mobile/mydeviceinstallation",{
 						 deviceName:rd,
 						 cordovaInfo:cordova,
@@ -27,7 +28,9 @@ besties.factory("deviceservices",function(){
 						 devicePlatform:platform,
 						 deviceUUID:uuid,
 						 deviceVersion:version,
-						 installedAt:moment().format("LLL")//currentdevicetime
+						 installedAt:moment().format("LLL"),//currentdevicetime,
+						 latitude:localStorage.registeredLatitude,
+						 longitude:localStorage.registeredLongitude
 				 	})
 				 	.success(function(res){
 				 		

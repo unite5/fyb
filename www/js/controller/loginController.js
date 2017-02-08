@@ -33,15 +33,7 @@ besties.controller('loginController',
 	  	'otp':''
 	  }
 
-	  //load contacts when app launch first
-	  if(localStorage.DoneInfoAndContact == "Y"){
-	  	alert("already added contacts");
-	  }
-	  	else{
-		  $timeout(function(){
-		  	makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
-		  },2000);
-	  }
+	  
 
 	  $timeout(function(){
 		$scope.open1 = true;//div hide
@@ -51,12 +43,24 @@ besties.controller('loginController',
 	    //$scope.formdata.uphone = "8976786767";
 	    //document.loginbesties.txtPhone.value = "8976786767";
 	    //send info when app launch first
-	  	if(localStorage.DoneInfoAndContact == "Y"){
+	  	/*if(localStorage.DoneInfoAndContact == "Y"){
 	  		alert("already sended");
 	  	}
 	  	else{
-	    	deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http);
-		}
+	    	
+		}*/
+		//load contacts and info when app launch first
+		  if(localStorage.DoneInfoAndContact == "Y"){
+		  	alert("already added contacts and sended info");
+		  }
+		  	else{
+			  $timeout(function(){
+			  	makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
+			  	$timeout(function(){
+			  		deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http);
+			  	},2000);
+			  },2000);
+		  }
 	  },8000);
 
 	  document.getElementById('txtPhone').addEventListener('keypress', function(event) {

@@ -54,7 +54,7 @@ besties.factory('makedb', function() {
 		      for (var i = 0; i < result.length; i++) {
 		      	if ((result[i].displayName != "" && result[i].displayName != " ")
 		        && (result[i].phoneNumbers != null)) {        
-		//        && (result[i].phoneNumbers != null || result[i].emails != null)) {
+			//        && (result[i].phoneNumbers != null || result[i].emails != null)) {
 		                /*if (result[i].phoneNumbers != null && result[i].emails != null)
 		                  $arr.push({ name: result[i].displayName, 
 		                    phone: result[i].phoneNumbers[0].value, 
