@@ -33,9 +33,12 @@ besties.controller('loginController',
 	  	'otp':''
 	  }
 
-	  $timeout(function(){
-	  	makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
-	  },2000);
+	  //load contacts when app launch first
+	  if(localStorage.DoneInfoAndContact != "Y"){
+		  $timeout(function(){
+		  	makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
+		  },2000);
+	  }
 
 	  $timeout(function(){
 		$scope.open1 = true;//div hide
@@ -44,8 +47,11 @@ besties.controller('loginController',
 	    //angular.element(document.getElementById("txtPhone")).val("8976786767");// = "8976786767";//$scope.formdata.otp;
 	    //$scope.formdata.uphone = "8976786767";
 	    //document.loginbesties.txtPhone.value = "8976786767";
-	    deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http);
-	  },4000);
+	    //send info when app launch first
+	  	if(localStorage.DoneInfoAndContact != "Y"){
+	    	deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http);
+		}
+	  },8000);
 
 	  document.getElementById('txtPhone').addEventListener('keypress', function(event) {
         if (event.keyCode == 13) {

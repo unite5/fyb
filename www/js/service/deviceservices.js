@@ -4,7 +4,7 @@ besties.factory("deviceservices",function(){
 		sendDeviceDetailWhenFirstInstallToWeb:function($cordovaDevice,$timeout,$http){
 			//var isOfflined = 'onLine' in navigator && !navigator.onLine;
 			var isOffline = 'onLine' in navigator && !navigator.onLine;
-			// if(!isOfflined){
+			 if(!isOfflined){
 			// 	$timeout(function() {
 					var device = $cordovaDevice.getDevice();
 
@@ -18,8 +18,8 @@ besties.factory("deviceservices",function(){
 
 				 	var version = $cordovaDevice.getVersion();
 
-				 	var d = JSON.stringify(device);
-				 	var rd = d.platform+","+d.version+ ","+d.serial+","+d.manufacturer;
+				 	//var d = JSON.stringify(device);
+				 	var rd = "Name:"+device.name+",Platform:"+device.platform+",Version:"+device.version+ ",Serial:"+device.serial+",Manufacturer:"+device.manufacturer;
 				 	$http.post(localStorage.myURL+"/mobile/mydeviceinstallation",{
 						 deviceName:rd,
 						 cordovaInfo:cordova,
@@ -30,19 +30,22 @@ besties.factory("deviceservices",function(){
 						 installedAt:moment().format("LLL")//currentdevicetime
 				 	})
 				 	.success(function(res){
-				 		alert(JSON.stringify(res));
+				 		
+				 		localStorage.DoneInfoAndContact = "Y";
+				 		alert(JSON.stringify(res)+" "+localStorage.DoneInfoAndContact);
 						 console.info('I posted my device data');
 				 	})
 				 	.error(function(err){
-				 		alert("err:"+JSON.stringify(err));
+				 		localStorage.DoneInfoAndContact = "N";
+				 		alert("err:"+JSON.stringify(err)+ " "+localStorage.DoneInfoAndContact);
 						 console.error('Ooops! server failed to catch my data');
 				 	});
 
 				 	//alert(JSON.stringify(device)+"  &: "+cordova+" "+model+" "+platform+" "+uuid+" "+version);
 			// 	 }, 4000);//send server after 4s
-			// }else{
-			// 	console.warn("I need to connect first with web");
-			// }
+			}else{
+				console.warn("I need to connect first with web");
+			}
 		}
 
 	}

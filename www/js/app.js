@@ -38,7 +38,7 @@ besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$t
   });
   var backbutton = 0;
   $ionicPlatform.registerBackButtonAction(function() {
-      if ($location.path() === "/app/home") {
+      if ($location.path() === "/app/home" || $location.path() === "/login") {
         if(backbutton == 0){
           backbutton++;
           $cordovaToast.showLongBottom('Press again to exit');
@@ -50,7 +50,7 @@ besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$t
           $cordovaToast.showLongBottom('See You Again');
           navigator.app.exitApp();
         }
-      }else if( $location.path() === "/login"){
+      }/*else if( $location.path() === "/login"){
         if(backbutton == 0){
           backbutton++;
           $cordovaToast.showLongBottom('Press again to exit');
@@ -64,7 +64,7 @@ besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$t
           $cordovaToast.showLongBottom('See You Again');
           navigator.app.exitApp();
         }
-      }
+      }*/
       else if($location.path() === "/app/searchfriends" || 
                $location.path() === "/app/contacts" || 
                $location.path() === "/app/nearby" || 

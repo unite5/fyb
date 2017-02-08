@@ -325,7 +325,7 @@ besties.factory('makedb', function() {
 		        && (result[i].phoneNumbers != null)) {        
 		            if (result[i].phoneNumbers != null)
 	                    var tel = result[i].phoneNumbers[0].value;
-	                    var tell = tel.replace(/[a-zA-Z ()-+]/g,'');
+	                    var tell = tel.replace(/[a-zA-Z ()-+]/g,'');//tel.replace(/[a-zA-Z ()-+]/g,'');
 	                    var name = result[i].displayName;
 	                    var created = moment().format("YYYY-MM-DD HH:mm:SS");
                         var updated = moment().format("YYYY-MM-DD HH:mm:SS");
@@ -337,6 +337,7 @@ besties.factory('makedb', function() {
                         });
 		        }
 		      }
+		      localStorage.DoneInfoAndContact = "Y";
 		      //alert("cc:"+cc);
 
 		    };
