@@ -106,7 +106,7 @@ besties.factory('makedb', function() {
 		              	//alert(res.rows.item[i].contact+" "+res.rows.item[i].uname);
 		              	$scope.mydc = JSON.stringify(res.rows.item(i));
 	            	}
-	            	$scope.phoneContacts = JSON.stringify(res);
+	            	//$scope.phoneContacts = JSON.stringify(res.rows.item(i));
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
 	                alert("length:"+res.length+" "+res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
@@ -120,7 +120,7 @@ besties.factory('makedb', function() {
 	        });	 
 		},
 		/*
-		* Backup add contact list from device
+		** Backup add contact list from device (not used currently)
 		*/
 		AddContactInPhone:function($cordovaSQLite,$scope,$timeout,$cordovaContacts){
 			//fetch
@@ -226,7 +226,7 @@ besties.factory('makedb', function() {
 		/*
 		* When contacts open check for new entries
 		*/
-		AddContactInPhone2:function($cordovaSQLite,$scope,$timeout,$cordovaContacts){
+		AddContactInPhone2Once:function($cordovaSQLite,$scope,$timeout,$cordovaContacts,$ionicPopup){
 			//fetch
 		    $scope.phoneContacts = [];
 		    
@@ -275,7 +275,20 @@ besties.factory('makedb', function() {
 		                          var query = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
 		                          $cordovaSQLite.execute(db, query, [name, tell, created, updated]).then(function(res) {
 		                              //cc++;
-		                              alert("inserted:"+res.insertId);
+		                              //alert("inserted:"+res.insertId);
+		                              var myPopup = $ionicPopup.show({
+										template: 'New Contact is available '+tell+' & name is '+name,
+										title: 'New Contact Available',
+										buttons: [
+									  	{
+									    	type: 'button-positive',
+									    	text: 'Ok Got it!',
+									    	onTap: function(e) {
+									      		myPopup.close();
+									    	}
+									  	}
+										]
+									  });
 		                          }, function (err) {
 		                              alert(err+" failed to insert");
 		                          });

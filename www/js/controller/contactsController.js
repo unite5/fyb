@@ -1,5 +1,5 @@
 //angular.module('besties')
-besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout){
+besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout,$ionicPopup){
     
 
     //makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
@@ -34,10 +34,12 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
         }, function (err) {
             alert("err in execute "+err);
         });*/
-
       $timeout(function(){
         makedb.getSQLDBContactLists($scope,$cordovaSQLite);
-        makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
+      },100);
+      $timeout(function(){
+        
+        makedb.AddContactInPhone2Once($cordovaSQLite,$scope,$timeout,$cordovaContacts,$ionicPopup);
       },10000);
     
 /*      var cc=0;
