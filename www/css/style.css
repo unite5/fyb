@@ -591,3 +591,13 @@ button.button-icon.round-overlay-button {
 
   }
 }
+
+/***************SidemnuImage***************/
+ion-side-menu.menu.menu-left.active {
+    height: 100%;
+    top: 0;
+}
+
+img.profileLogo {
+    margin: 10%;
+}
