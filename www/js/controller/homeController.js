@@ -8,7 +8,7 @@ besties.controller('homeController',function($scope,trackusers,availableisOfflin
 
     $ionicLoading.show({
       template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>',
-      duration: 5000
+      duration: 3000
     }).then(function(){
         console.log("done");
     });
