@@ -34,6 +34,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
         }, function (err) {
             alert("err in execute "+err);
         });*/
+      $scope.emptyJoinedFriends = true;
       $timeout(function(){
         makedb.getSQLDBContactLists($scope,$cordovaSQLite);
       },100);
@@ -200,4 +201,22 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
       { id: 49 },
       { id: 50 }
     ];
+})
+
+.filter('searchContacts', function(){
+  return function (items, query) {
+    var filtered = [];
+    var letterMatch = new RegExp(query, 'i');
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      if (query) {
+        if (letterMatch.test(item.uname.substring(0, query.length))) {
+          filtered.push(item);
+        }
+      } else {
+        filtered.push(item);
+      }
+    }
+    return filtered;
+  };
 });

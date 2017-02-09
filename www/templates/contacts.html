@@ -1,37 +1,52 @@
 <ion-view view-title="All Contacts">
   <ion-content>
-      <!-- <div class="card">
-      mydc {{items | json}}
-      <br>
-      </div> -->
+      <div ng-if="emptyJoinedFriends" class="list card">
 
-      <!-- <div class="card" ng-repeat="contact in items">
-          <div class="item item-divider">
-            {{contact.uname}}
-          </div>
-          <div class="item item-text-wrap">
-          {{contact.contact}}<br>
-          
-          </div>
-              <div class="item item-divider">
-                {{ contact.name.formatted }}
-              </div>
-              <div class="item item-text-wrap">
-                <p><strong>Phone(s)</strong></p>
-                <div ng-repeat="number in contact.phoneNumbers">
-                  <p>{{ number.value }}</p>
-                </div>
-                <p><strong>Email(s)</strong></p>
-                <div ng-repeat="email in contact.emails">
-                  <p>{{ email.value }}</p>
-                </div>
-              </div>
+        <div class="item item-avatar">
+          <img src="img/bestieslogo.png">
+          <h2>Your Friends Are Yet Waiting</h2>
+          <p>Browse By Contacts </p>
         </div>
-        New eseet -->
+
+        <div class="item item-image">
+          <img src="img/starterimage.png">
+        </div>
+
+        <a class="item item-icon-left assertive text-center" href="#">
+         Given Below,
+        </a>
+
+      </div>
+
+      <div class="list">
+
+        <a class="item item-avatar" href="#">
+          <img src="img/bestieslogo.png">
+          <h2>Venkman C</h2>
+          <p>Back off, man. I'm a scientist.</p>
+        </a>
+        <a class="item item-avatar" href="#">
+          <img src="img/bestieslogo.png">
+          <h2>Venkman T</h2>
+          <p>Back off, man. I'm a scientists.</p>
+        </a>
+
+    </div>
+
+
+    <div class="list">
+      <div class="item item-divider">
+        <p><b>All Friends In PhoneBook</b></p>
+      </div>
+    </div>
+
+    <input type="search"
+        placeholder="Filter contacts..."
+        ng-model="search">
 
   		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
-           <ion-item ng-repeat="contact in items"
+           <ion-item ng-repeat="contact in items | searchContacts:search"
                      item="item"
                      href="#" class="item-remove-animate">
 
@@ -50,18 +65,18 @@
                        </div> -->
                        </div>
                      </div>
-             <ion-delete-button class="ion-minus-circled"
+             <!-- <ion-delete-button class="ion-minus-circled"
                                 ng-click="onItemDelete(item)">
-             </ion-delete-button>
+             </ion-delete-button> -->
              <ion-option-button class="button-assertive"
-                                ng-click="edit(item)">
-               Edit
+                                ng-click="edit(contact)">
+               Add To Join
              </ion-option-button>
              <ion-option-button class="button-calm"
-                                ng-click="share(item)">
-               Share
+                                ng-click="share(contact)">
+               Chat
              </ion-option-button>
-             <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+             <!-- <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button> -->
            </ion-item>
 
          </ion-list>
