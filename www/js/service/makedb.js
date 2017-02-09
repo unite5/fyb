@@ -379,7 +379,7 @@ besties.factory('makedb', function() {
 		    options.multiple = true;
 		    
 		    $cordovaContacts.find(options).then(onSuccess, onError);
-		}
+		},
 
 		/*
 		* Refresh contacts list
