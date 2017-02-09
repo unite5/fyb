@@ -117,17 +117,15 @@ besties.factory('makedb', function() {
 		              	});*/
 	            	}
 	            	$scope.items = JSON.parse(JSON.stringify(dataC));
-				    	console.info(($scope.items));
-				  	} else {
-				    	alert("No results found");
-				  	}
+	            	
+	            	console.info(($scope.items));
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
 	            	// $scope.arrcc = ds;
 	             //    alert("length:"+res.length+" "+JSON.stringify(res.rows));
 	            } else {
-	            	 $scope.arrc = "err";
-	            	 alert("err "+ res.rows.length + " arrcc "+$scope.arrc);
+	            	 $scope.arrc = "err"; 
+	            	 alert("No results found"+" err "+ res.rows.length + " arrcc "+$scope.arrc);
 				}
 	        }, function (err) {
 	            $scope.arrc = "err";
