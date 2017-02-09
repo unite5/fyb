@@ -13,7 +13,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 	    		$scope.open4 = true;//div hide
 				$timeout(function() {
 					$ionicLoading.show({
-					  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>',
+					  template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>',
 					  duration: 3000
 					}).then(function(){
 					   	$timeout(function() {
@@ -142,7 +142,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 	return {
 		registerforOtp:function(phone,$scope,$http,$timeout,$ionicPopup,$ionicLoading){
 			$ionicLoading.show({
-				  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
+				  template: '<ion-spinner icon="spiral" style="color:#fff" class="spinner-positive"></ion-spinner>'
 			});
 			var lat = 19.235234, lon = 73.1275884;
 			var datas = {
@@ -312,7 +312,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				if(get == "Register"){//new registration
 				//	if(get == "Prelogin"){
 					$ionicLoading.show({
-					  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
+					  template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>'
 					});
 					$timeout(function() {
 						$ionicLoading.hide();
@@ -336,7 +336,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 
 						$timeout(function() {
 							$ionicLoading.show({
-							  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>',
+							  template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>',
 							  duration: 3000
 							}).then(function(){
 							   	$timeout(function() {
@@ -392,7 +392,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 			console.log($scope.formdata.gender);
 
 			$ionicLoading.show({
-				  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
+				  template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>'
 			});
 			$http.post(localStorage.myURL+"/mobile/login/me/register",
 				post)

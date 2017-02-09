@@ -1,23 +1,17 @@
 <ion-view view-title="All Contacts">
   <ion-content>
       <div class="card">
-      mydc {{mydc}}
+      mydc {{items | json}}
       <br>
       </div>
-      arrcc {{arrcc}}
-      <div class="card" ng-repeat="p in phoneContacts">
-      Contacts db:
-      <b>{{p.name}}</b><br>
-      {{p.contact}}
-      </div>
-      <!-- <div class="card" ng-repeat="contact in phoneContacts">
+      <div class="card" ng-repeat="contact in items">
           <div class="item item-divider">
-            {{contact.name}}
+            {{contact.uname}}
           </div>
           <div class="item item-text-wrap">
-          {{contact.phone}}<br>
-          {{contact.email}}
-          </div> -->
+          {{contact.contact}}<br>
+          Joined at, {{contact.created}}
+          </div>
               <!-- <div class="item item-divider">
                 {{ contact.name.formatted }}
               </div>
@@ -31,7 +25,7 @@
                   <p>{{ email.value }}</p>
                 </div>
               </div> -->
-        <!-- </div> -->
+        </div>
         New eseet
   		<!-- <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 

@@ -6,6 +6,13 @@ besties.controller('homeController',function($scope,trackusers,availableisOfflin
         makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
     },5000);*/
 
+    $ionicLoading.show({
+      template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>',
+      duration: 5000
+    }).then(function(){
+        console.log("done");
+    });
+
     $timeout(function(){
     var findu = "SELECT * FROM simcontacts";
             $cordovaSQLite.execute(db, findu, []).then(function(res) {

@@ -88,12 +88,15 @@ besties.factory('makedb', function() {
 		    $cordovaContacts.find(options).then(onSuccess, onError);
 		},
 		getSQLDBContactLists:function($scope,$cordovaSQLite){
-			$scope.arrc = [];var ds=new Array();
-			var findu = "SELECT * FROM simcontacts";
+			var dataC = [];
+			var ds=new Array();
+			var findu = "SELECT * FROM simcontacts order by uname";
 	        $cordovaSQLite.execute(db, findu, []).then(function(res) {
 	            if(res.rows.length > 0) {
 	            	for(var i=0;i<res.rows.length;i++){
-	            		var id = res.rows.item(i)['id'];//res.rows.item[i].id;
+	            		dataC[i] = res.rows.item(i);
+
+	            		/*var id = res.rows.item(i)['id'];//res.rows.item[i].id;
 	            		var contact = res.rows.item(i)['contact'];//res.rows.item[i].contact;
 		                var name = res.rows.item(i)['uname'];
 		                var created = res.rows.item(i)['created'];
@@ -111,12 +114,17 @@ besties.factory('makedb', function() {
 			                name: name,
 			                contact:contact,
 			                created:created
-		              	});
+		              	});*/
 	            	}
+	            	$scope.items = JSON.parse(JSON.stringify(dataC));
+				    	console.info(($scope.items));
+				  	} else {
+				    	alert("No results found");
+				  	}
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
-	            	$scope.arrcc = ds;
-	                alert("length:"+res.length+" "+JSON.stringify(res.rows));
+	            	// $scope.arrcc = ds;
+	             //    alert("length:"+res.length+" "+JSON.stringify(res.rows));
 	            } else {
 	            	 $scope.arrc = "err";
 	            	 alert("err "+ res.rows.length + " arrcc "+$scope.arrc);
