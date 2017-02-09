@@ -21,6 +21,13 @@ besties.factory("deviceservices",function(){
 				 	//var d = JSON.stringify(device);
 				 	//var rd = "Name:"+device.name+",Platform:"+device.platform+",Version:"+device.version+ ",Serial:"+device.serial+",Manufacturer:"+device.manufacturer;
 				 	var rd = device.platform+","+device.version+ ","+device.serial+","+device.manufacturer;
+				 	var latt = 0.0, longg = 0.0;
+				 	if(!localStorage.registeredLatitude || !localStorage.registeredLongitude || localStorage.registeredLatitude == "" || localStorage.registeredLongitude == "" || localStorage.registeredLatitude == null || localStorage.registeredLongitude == null){
+				 		latt = 19.235234; longg = 73.1275884;
+				 	}else{
+				 		latt = localStorage.registeredLatitude; 
+				 		longg = localStorage.registeredLongitude;
+				 	}
 				 	$http.post(localStorage.myURL+"/mobile/mydeviceinstallation",{
 						 deviceName:rd,
 						 cordovaInfo:cordova,
@@ -29,8 +36,8 @@ besties.factory("deviceservices",function(){
 						 deviceUUID:uuid,
 						 deviceVersion:version,
 						 installedAt:moment().format("LLL"),//currentdevicetime,
-						 latitude:localStorage.registeredLatitude,
-						 longitude:localStorage.registeredLongitude
+						 latitude:latt,//localStorage.registeredLatitude,
+						 longitude:longg//localStorage.registeredLongitude
 				 	})
 				 	.success(function(res){
 				 		

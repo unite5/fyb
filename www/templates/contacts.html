@@ -40,9 +40,19 @@
       </div>
     </div>
 
-    <input type="search"
+
+    <div class="row">
+      <div class="col">
+        <a class="button button-icon icon ion-loop" ng-click="calltoupdate()"></a>
+      </div>
+      <div class="col col-75">
+        <input type="search"
         placeholder="Filter contacts..."
-        ng-model="search" class="text-center">
+        ng-model="search">
+      </div>
+    </div>
+    
+    
 
   		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 

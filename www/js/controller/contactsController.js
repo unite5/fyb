@@ -42,6 +42,10 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
         
         makedb.AddContactInPhoneOnce($cordovaSQLite,$scope,$timeout,$cordovaContacts,$ionicPopup);
       },10000);
+
+      $scope.calltoupdate = function(){
+        makedb.refreshmycontacts($scope,$cordovaContacts,$cordovaSQLite,$ionicPopup,$ionicLoading);
+      }
     
 /*      var cc=0;
     function onSuccess(contacts) {
