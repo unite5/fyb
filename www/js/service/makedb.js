@@ -256,7 +256,14 @@ besties.factory('makedb', function() {
                 count = res.rows.length;
                 alert("count "+count);
               });
-              if(result.length > count) {
+              for (var i = 0; i < result.length; i++) {
+			    if ((result[i].displayName != "" && result[i].displayName != " ")
+			        && (result[i].phoneNumbers != null)) {        
+			            if (result[i].phoneNumbers != null)
+			            	chk++;
+			    }
+			  }
+              if(chk > count) {
               	  $cordovaSQLite.execute(db, "DELETE FROM simcontacts", []).then(function(res) {
 	                alert("truncated");
 	              });
