@@ -61,7 +61,7 @@
               class="item-thumbnail-left"> -->
            <ion-item ng-repeat="contact in Contactitems | searchContacts:search | limitTo:listlength"
                      item="item"
-                     href="#/app/contacts/:contact.id" class="item-remove-animate">
+                     ng-href="#/app/contacts/:{{contact.id}}" class="item-remove-animate">
 
                      <div class="row">
                        <div class="col">
