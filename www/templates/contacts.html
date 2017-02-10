@@ -3,7 +3,7 @@
       <div ng-if="emptyJoinedFriends" class="list card">
 
         <div class="item item-avatar">
-          <img src="img/bestieslogo.png">
+          <img src="img/ionic.png">
           <h2>Your Friends Are Yet Waiting</h2>
           <p>Browse By Contacts </p>
         </div>
@@ -36,12 +36,13 @@
 
     <div class="list">
       <div class="item item-divider">
-        <p><b>All Friends In PhoneBook</b></p>
+        <p><b>All Friends In PhoneBook <i class="icon ion-chevron-down"></i></b></p>
       </div>
     </div>
 
 
-    <div class="row">
+    <!-- Search filter
+     <div class="row">
       <div class="col">
         <a class="button button-icon icon ion-loop" ng-click="calltoupdate()"></a>
       </div>
@@ -50,16 +51,17 @@
         placeholder="Filter contacts by name..."
         ng-model="search">
       </div>
-    </div>
+    </div> -->
     
     
 
-  		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+  		<!-- <ion-list show-delete="data.showDelete" show-reorder="data.showReorder"> -->
+      <ion-list>
            <!-- <ion-item ng-repeat="item in Contactitems | searchContacts:search | limitTo:listlength"
               class="item-thumbnail-left"> -->
            <ion-item ng-repeat="contact in Contactitems | searchContacts:search | limitTo:listlength"
                      item="item"
-                     href="#" class="item-remove-animate">
+                     href="#/app/contacts/:contact.id" class="item-remove-animate">
 
                      <div class="row">
                        <div class="col">
@@ -80,11 +82,11 @@
                                 ng-click="onItemDelete(item)">
              </ion-delete-button> -->
              <ion-option-button class="button-assertive"
-                                ng-click="edit(contact.contact)">
+                                ng-click="edit(contact)">
                Add To Join
              </ion-option-button>
              <ion-option-button class="button-calm"
-                                ng-click="share(contact.contact)">
+                                ng-click="share(contact)">
                Chat
              </ion-option-button>
              <!-- <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button> -->

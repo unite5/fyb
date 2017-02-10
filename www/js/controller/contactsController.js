@@ -123,7 +123,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
 
 
 
-    $scope.listlength = 5;
+    $scope.listlength = 25;
     $scope.loadMore = function(){
     if (!$scope.Contactitems){//contacts list
       $scope.$broadcast('scroll.infiniteScrollComplete');
@@ -131,7 +131,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
     }
 
     if ($scope.listlength < $scope.Contactitems.length)
-      $scope.listlength+=2;
+      $scope.listlength+=5;
       $scope.$broadcast('scroll.infiniteScrollComplete');
     }
 
@@ -148,10 +148,10 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
     };
 
     $scope.edit = function(item) {
-      alert('Edit Item: ' + item.id);
+      alert('Edit Item: ' + item.uname+ " "+item.id);
     };
     $scope.share = function(item) {
-      alert('Share Item: ' + item.id);
+      alert('Share Item: ' + item.contact);
     };
 
     $scope.moveItem = function(item, fromIndex, toIndex) {

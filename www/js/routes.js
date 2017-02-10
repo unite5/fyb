@@ -54,6 +54,16 @@ besties.config(function($stateProvider,$urlRouterProvider){
     }
   })
 
+  .state('app.contactsbyid',{
+    url:'/contacts:id',
+    views:{
+      'menuContent':{
+        templateUrl:'templates/contactsbyid.html',
+        controller:'contactsbyIdController'
+      }
+    }
+  })
+
   .state('app.nearby',{
     cache:false,
     url:'/nearby',
