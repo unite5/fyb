@@ -47,7 +47,7 @@
       </div>
       <div class="col col-75">
         <input type="search"
-        placeholder="Filter contacts..."
+        placeholder="Filter contacts by name..."
         ng-model="search">
       </div>
     </div>
@@ -55,8 +55,9 @@
     
 
   		<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
-
-           <ion-item ng-repeat="contact in items | searchContacts:search"
+           <!-- <ion-item ng-repeat="item in Contactitems | searchContacts:search | limitTo:listlength"
+              class="item-thumbnail-left"> -->
+           <ion-item ng-repeat="contact in Contactitems | searchContacts:search | limitTo:listlength"
                      item="item"
                      href="#" class="item-remove-animate">
 
@@ -79,17 +80,21 @@
                                 ng-click="onItemDelete(item)">
              </ion-delete-button> -->
              <ion-option-button class="button-assertive"
-                                ng-click="edit(contact)">
+                                ng-click="edit(contact.contact)">
                Add To Join
              </ion-option-button>
              <ion-option-button class="button-calm"
-                                ng-click="share(contact)">
+                                ng-click="share(contact.contact)">
                Chat
              </ion-option-button>
              <!-- <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button> -->
            </ion-item>
 
          </ion-list>
+
+        <ion-infinite-scroll ng-if="listlength<=Contactitems.length"
+          on-infinite="loadMore()" distance="3%">
+        </ion-infinite-scroll>
 
   </ion-content>
 </ion-view>

@@ -116,9 +116,9 @@ besties.factory('makedb', function() {
 			                created:created
 		              	});*/
 	            	}
-	            	$scope.items = JSON.parse(JSON.stringify(dataC));
+	            	$scope.Contactitems = JSON.parse(JSON.stringify(dataC));
 	            	
-	            	console.info(($scope.items));
+	            	//console.info(($scope.Contactitems));
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
 	            	// $scope.arrcc = ds;

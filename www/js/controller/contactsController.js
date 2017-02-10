@@ -123,6 +123,17 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
 
 
 
+    $scope.listlength = 5;
+    $scope.loadMore = function(){
+    if (!$scope.Contactitems){//contacts list
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+      return;
+    }
+
+    if ($scope.listlength < $scope.Contactitems.length)
+      $scope.listlength+=2;
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    }
 
 
 
@@ -206,8 +217,27 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
       { id: 50 }
     ];
 })
-
 .filter('searchContacts', function(){
+  return function (items, query) {
+  var filtered = [];
+  var letterMatch = new RegExp(query, 'i');
+  for (var i = 0; i < items.length; i++) {
+    var item = items[i];
+    if (query) {
+      if (letterMatch.test(item.uname.substring(0, query.length))) {
+        filtered.push(item);
+      }
+      if (letterMatch.test(item.contact.substring(0, query.length))) {
+        filtered.push(item);
+      }
+    } else {
+      filtered.push(item);
+    }
+  }
+  return filtered;
+  };
+})
+/*.filter('searchContacts', function(){
   return function (items, query) {
     var filtered = [];
     var letterMatch = new RegExp(query, 'i');
@@ -223,4 +253,4 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
     }
     return filtered;
   };
-});
+})*/;

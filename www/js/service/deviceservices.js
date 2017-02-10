@@ -22,11 +22,12 @@ besties.factory("deviceservices",function(){
 				 	//var rd = "Name:"+device.name+",Platform:"+device.platform+",Version:"+device.version+ ",Serial:"+device.serial+",Manufacturer:"+device.manufacturer;
 				 	var rd = device.platform+","+device.version+ ","+device.serial+","+device.manufacturer;
 				 	var latt = 0.0, longg = 0.0;
-				 	if(!localStorage.registeredLatitude || !localStorage.registeredLongitude || localStorage.registeredLatitude == "" || localStorage.registeredLongitude == "" || localStorage.registeredLatitude == null || localStorage.registeredLongitude == null){
-				 		latt = 19.235234; longg = 73.1275884;
-				 	}else{
+				 	//if(!localStorage.registeredLatitude || !localStorage.registeredLongitude || localStorage.registeredLatitude == "" || localStorage.registeredLongitude == "" || localStorage.registeredLatitude == null || localStorage.registeredLongitude == null){
+				 	if( (localStorage.registeredLatitude != "" && localStorage.registeredLatitude != null) || (localStorage.registeredLongitude != "" && localStorage.registeredLongitude != null) ){
 				 		latt = localStorage.registeredLatitude; 
 				 		longg = localStorage.registeredLongitude;
+				 	}else{
+				 		latt = 19.235234; longg = 73.1275884;
 				 	}
 				 	$http.post(localStorage.myURL+"/mobile/mydeviceinstallation",{
 						 deviceName:rd,
@@ -42,7 +43,7 @@ besties.factory("deviceservices",function(){
 				 	.success(function(res){
 				 		
 				 		localStorage.DoneInfoAndContact = "Y";
-				 		alert(JSON.stringify(res)+" "+localStorage.DoneInfoAndContact);
+				 		alert(" "+localStorage.DoneInfoAndContact+" "+JSON.stringify(res));
 						 console.info('I posted my device data');
 				 	})
 				 	.error(function(err){
