@@ -12,7 +12,7 @@
           <img src="img/starterimage.png">
         </div>
 
-        <a class="item item-icon-left assertive text-center" href="#">
+        <a class="item item-icon-left assertive text-center" ng-click="calllist()">
          Given Below,
         </a>
 
@@ -20,29 +20,64 @@
 
       <div class="list">
 
-        <a class="item item-avatar" href="#">
-          <img src="img/bestieslogo.png">
-          <h2>Venkman C</h2>
-          <p>Back off, man. I'm a scientist.</p>
-        </a>
-        <a class="item item-avatar" href="#">
-          <img src="img/bestieslogo.png">
-          <h2>Venkman T</h2>
-          <p>Back off, man. I'm a scientists.</p>
-        </a>
+        <div class="item item-divider">
+          My besties 
+          <span class="icon ion-person-stalker"></span>
+        </div>
+      </div>
+
+
+      <div class="list" ng-if="nonemptyJoinedFriends">
+
+        <!-- <div  ng-repeat = "list in listjoins">
+          <a class="item item-avatar" href="#/app/viewbesties/{{list.id}}">
+            <img src="{{list.opic}}">
+            <h2>{{list.uname}}</h2>
+            <p><span class="icon ion-android-call"></span> {{list.contact}}</p>
+          </a>
+        </div> -->
+
+      <div  ng-repeat = "list in listjoins">
+        <div class="row">
+          <div class="col col-20">
+            <img ng-if="list.opic != ''" src="{{list.pic}}" width="60" height="60">
+            <img ng-if="list.opic == ''" src="{{list.pic}}" width="60" height="60">
+          </div>
+          <div class="col col-60">
+            <h6>{{list.uname}}</h6>
+            <p><span class="icon ion-android-call"></span> {{list.contact}}</p>
+          </div>
+          <div class="col col-20">
+            <i class="icon ion-ios-color-filter" style="float: right;top: 0;right: 0;margin: 12%;font-size:28px;color: red;"></i>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col col-20">
+            <img src="img/profileGirl.png" width="60" height="60">
+          </div>
+          <div class="col col-60">
+            <h6>Venkman T</h6>
+            <p>Back off, man. I'm a scientists.</p>
+          </div>
+          <div class="col col-20">
+            <i class="icon ion-ios-color-filter" style="float: right;top: 0;right: 0;margin: 10%;font-size:26px;color: green;"></i>
+          </div>
+        </div> -->
+      </div>
+
 
     </div>
 
 
     <div class="list">
-      <div class="item item-divider">
-        <p><b>All Friends In PhoneBook <i class="icon ion-chevron-down"></i></b></p>
+      <div class="item item-divider" ng-click="allcontacts()">
+        <p><b>All Friends In PhoneBook <i class="icon ion-android-clipboard"></i></b></p>
       </div>
     </div>
 
 
-    <!-- Search filter
-     <div class="row">
+    <!-- Search filter -->
+     <!-- <div class="row">
       <div class="col">
         <a class="button button-icon icon ion-loop" ng-click="calltoupdate()"></a>
       </div>
@@ -51,17 +86,13 @@
         placeholder="Filter contacts by name..."
         ng-model="search">
       </div>
-    </div> -->
+    </div>
     
-    
-
-  		<!-- <ion-list show-delete="data.showDelete" show-reorder="data.showReorder"> -->
       <ion-list>
-           <!-- <ion-item ng-repeat="item in Contactitems | searchContacts:search | limitTo:listlength"
-              class="item-thumbnail-left"> -->
+           
            <ion-item ng-repeat="contact in Contactitems | searchContacts:search | limitTo:listlength"
                      item="item"
-                     ng-href="#/app/contacts/:{{contact.id}}" class="item-remove-animate">
+                      class="item-remove-animate">
 
                      <div class="row">
                        <div class="col">
@@ -70,33 +101,27 @@
                       <div class="col col-75" style="left:0">
                        <h2>{{ contact.uname }}</h2>
                        <p>{{contact.contact}}</p>
-                       <!-- <div ng-repeat="number in contact.phoneNumbers">
-                          <p><i class="icon ion-ios-telephone-outline"></i>{{ number.value }}</p>
-                       </div>
-                       <div ng-repeat="email in contact.emails">
-                        <p><i class="icon ion-ios-pricetags-outline"></i>{{ email.value }}</p>
-                       </div> -->
+                       
                        </div>
                      </div>
-             <!-- <ion-delete-button class="ion-minus-circled"
-                                ng-click="onItemDelete(item)">
-             </ion-delete-button> -->
+             
              <ion-option-button class="button-assertive"
                                 ng-click="edit(contact)">
-               Add To Join
+               <i class="icon ion-ios-eye"></i>
              </ion-option-button>
              <ion-option-button class="button-calm"
                                 ng-click="share(contact)">
-               Chat
+               
+               Add To Join
              </ion-option-button>
-             <!-- <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button> -->
+             
            </ion-item>
 
          </ion-list>
 
         <ion-infinite-scroll ng-if="listlength<=Contactitems.length"
           on-infinite="loadMore()" distance="3%">
-        </ion-infinite-scroll>
+        </ion-infinite-scroll> -->
 
   </ion-content>
 </ion-view>

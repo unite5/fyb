@@ -1,7 +1,25 @@
 //angular.module('besties')
-besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout,$ionicPopup){
+besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout,$ionicPopup,callfriends,$http,$ionicModal){
     
+    /*listin joinins*/
+    $timeout(function(){
+      callfriends.listjoinin($scope,$cordovaSQLite);
+    },100);
+    $scope.listfriendlength = 25;
+    $scope.loadMorelist = function(){
+    if (!$scope.listjoins){//joinin contacts list
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+      return;
+    }
 
+    if ($scope.listfriendlength < $scope.listjoins.length)
+      $scope.listfriendlength+=5;
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    }
+
+
+    $scope.mybesties = 4;
+    //makedb.loadInContacts($cordovaSQLite,$scope);
     //makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
     /*$ionicLoading.show({
             template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
@@ -44,7 +62,31 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
       },10000);
 
       $scope.calltoupdate = function(){
-        makedb.refreshmycontacts($scope,$cordovaContacts,$cordovaSQLite,$ionicPopup,$ionicLoading);
+        var myPopup = $ionicPopup.show({
+          template: 'All Contacts of your phonebook will replaced, i.e. the contacts will rollback with new.',
+          title: 'Are you sure?',
+          scope: $scope,
+          cssClass:'closePopup',
+          buttons: [
+            { 
+              text: 'Cancel',
+              onTap: function(e) {
+                myPopup.close();
+              }
+            },
+            {
+              text: '<b>Save</b>',
+              type: 'button-positive',
+              onTap: function(e) {
+                console.log("close");
+                myPopup.close();
+                makedb.refreshmycontacts($scope,$cordovaContacts,$cordovaSQLite,$ionicPopup,$ionicLoading);
+                
+              }
+            }
+          ]
+        });
+        
       }
     
 /*      var cc=0;
@@ -147,14 +189,66 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
       showDelete: false
     };
 
-    $scope.edit = function(item) {
-      alert('Edit Item: ' + item.uname+ " "+item.id);
-    };
     $scope.share = function(item) {
-      alert('Share Item: ' + item.contact);
+      /*alert('Edit Item: ' + item.uname+ " "+item.id);*/
+      callfriends.makeFriendsFromContactLists($cordovaSQLite,$http,$scope,item,$ionicLoading,$ionicPopup);
+    };
+    $scope.edit = function(item) {
+      //alert('View Detail: ' + item.contact+" "+ item.uname+ " "+item.id);
+      var pop = $ionicPopup.alert({
+        template: 'Friend Name '+item.uname+'<br>'+'Contact is '+item.contact,
+        title: 'besties collegue',
+        scope: $scope,
+        buttons: [
+          {
+            text: 'Ok',
+            type: 'button-default',
+            onTap: function(e) {
+              //pop.close();
+            }
+          },
+        ]
+      }).then(function(res){
+
+      });
     };
 
-    $scope.moveItem = function(item, fromIndex, toIndex) {
+    /*call list of friends*/
+    $scope.calllist = function(){
+      callfriends.loadConnectedContacts($cordovaSQLite,$http,$scope,$ionicLoading,$ionicPopup);
+    }
+
+
+    /*Model Contact View*/
+    $ionicModal.fromTemplateUrl('templates/abstractpages/contactlist.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+    $scope.allcontacts = function() {
+      $scope.modal.show();
+    };
+    $scope.closeModal = function() {
+      $scope.modal.hide();
+    };
+    // Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.modal.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+      // Execute action
+    });
+
+
+
+    ////further  
+    /*$scope.moveItem = function(item, fromIndex, toIndex) {
       $scope.items.splice(fromIndex, 1);
       $scope.items.splice(toIndex, 0, item);
     };
@@ -215,7 +309,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
       { id: 48 },
       { id: 49 },
       { id: 50 }
-    ];
+    ];*/
 })
 .filter('searchContacts', function(){
   return function (items, query) {

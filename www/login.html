@@ -32,7 +32,7 @@
     <script type="text/javascript" src="lib/angular-animate/angular-animate.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
-    <script <s></s>rc="cordova.js"></script>
+    <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
@@ -42,6 +42,8 @@
     <script src="js/controller/loginController.js"></script>
     <!-- <script src="js/controller/splashController.js"></script> -->
         <script src="js/service/loginService.js"></script>
+        <script src="js/service/notifyservice.js"></script>
+        <script src="js/service/countries.js"></script>
 
     <script type="text/javascript" src="js/controller/menuController.js"></script>
     <script src="js/controller/homeController.js"></script>
@@ -72,11 +74,37 @@
           <form name="loginbesties">
           <p class="fybpcontact animated zoomInUp">
                 Join Us <br>
-                <h2 class="fybpcontacth2 animated slideInLeft">Your Contact</h2>
+                <h2 class="fybpcontacth2 animated slideInLeft">Your Mobile </h2>
           </p>
+
+          <label class="item item-input item-select animated bounceInDown labelselect">
+            <div class="input-label">
+              Country
+            </div>
+            <select class="selectcountry" id="country" name="country" ng-model="cntr.countrie" ng-change="changecountry($index)">
+              <option ng-repeat="c in county | orderBy:'name'" value="{{c.name}}">{{c.name}}</option>
+              <!-- <option value="Portugees">Portugees</option>
+              <option value="India">India</option>
+              <option value="UK">UK</option> -->
+            </select>
+          </label>
+          <div class="row labelselectimg">
+            <div class="col col-25"></div>
+            <div class="col">
+            <div ng-hide="countryshown">
+            <img src="{{contryflag}}" width="30" height="20">
+            <p>{{countrycode}}</p>
+            </div>
+            </div>
+            <!-- <div class="col">
+            <p>+91</p>
+            </div> -->
+            <div class="col col-25"></div>
+          </div>
+
           <label class="item item-input item-floating-label text-center CNtdlabel animated bounceInDown">
             <center><span class="input-label CNtdspan">Contact Number</span></center>
-            <input type="text" ng-model="formdata.uphone" name="txtPhone" ng-minlength="10" ng-maxlength="10" id="txtPhone" ng-pattern="regex" class="thirddivinput" numbers-only placeholder="My Contact Number">
+            <input type="text" ng-model="formdata.uphone" name="txtPhone" ng-minlength="10" ng-maxlength="20" id="txtPhone" ng-pattern="regex" class="thirddivinput" numbers-only placeholder="98000 98000">
           </label>
           <button id="btngo2" ng-click="call2()" class="button btngo2 animated flipInX" ng-hide="btngo2">
               <!-- <img src="img/go1.png" width="70" height="70"> -->

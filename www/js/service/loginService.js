@@ -1,5 +1,5 @@
 //angular.module("besties")
-besties.factory("meloginfact",function($cordovaSQLite){
+besties.factory("meloginfact",function($cordovaSQLite,notify){
 		// main args
 	var sStatus = null;
 	var sOtp = null;
@@ -88,6 +88,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				/*angular.forEach(findres.user,function(value,key){
 					console.log("uid "+key +" "+value);
 				});*/
+				//console.warn("all:"+JSON.parse(JSON.stringify(response.data)));
 				var user = findres.user;
 				var dummyPic,uid = user.uid, name = user.nam, gender = user.gen, email = user.mail, 
 					      contact = user.tel, dob = user.dob, age = user.age, hobbies = user.hobby, profilePic = user.pic, 
@@ -105,17 +106,33 @@ besties.factory("meloginfact",function($cordovaSQLite){
 						localStorage.userprofilePic = profilePic;
 					}
 				}
-				var findu = "SELECT * FROM self WHERE contact = ? and id<=1";
-		        $cordovaSQLite.execute(db, findu, [contact]).then(function(res) {
+				console.log(uid+" "+name+" "+dummyPic);
+				var findu = "SELECT * FROM self";// WHERE contact = ? and id<=1
+		        $cordovaSQLite.execute(db, findu, []).then(function(res) {
 		            if(res.rows.length > 0) {
 		                //alert("SELECTED -> " + res.rows.item(0).contact + " " + res.rows.item(0).uid);
-		            } else {//if(res.rows.length == 0)
-		                var query = "INSERT INTO self (uid, name, gender, email, contact, dob, age, hobbies, profilePic, dummyPic, faviAns, regLat, regLong, regAddress, created, updated) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		                var query = "UPDATE self  SET uid = ?, name = ?, gender = ?, email = ?, dob = ?, age = ?, hobbies = ?, profilePic = ?, dummyPic = ?, faviAns = ?, regLat = ?, regLong = ?, regAddress = ?, created = ?, updated = ? WHERE contact = ?";
+				        $cordovaSQLite.execute(db, query, [uid,name, gender, email, dob, age, hobbies, profilePic,dummyPic, faviAns, regLat, regLong, regAddress, created, updated,contact]).then(function(res) {
+				            //alert("INSERT ID -> " + res.insertId);
+				            console.info("records updated");
+				        }, function (err) {
+				            //alert(err);
+				        });
+		            }else if(res.rows.length == 0) {//if(res.rows.length == 0)
+		                var query = "INSERT INTO self (uid, name, gender, email, contact, dob, age, hobbies, profilePic, dummyPic, faviAns, regLat, regLong, regAddress, created, updated) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				        $cordovaSQLite.execute(db, query, [uid, name, gender, email, contact, dob, age, hobbies, profilePic, dummyPic, faviAns, regLat, regLong, regAddress, created, updated]).then(function(res) {
 				            //alert("INSERT ID -> " + res.insertId);
 				        }, function (err) {
 				            //alert(err);
 				        });
+						var deviceid = "1223243";
+						var query1 = "INSERT INTO trackme (lat,long,address,deviceid,created, updated) VALUES (?,?,?,?,?,?)";
+						$cordovaSQLite.execute(db, query1, [regLat, regLong, regAddress,deviceid, created, updated]).then(function(res) {
+						    //alert("INSERT ID -> " + res.insertId);
+						    console.log("done");
+						}, function (err) {
+						    console.error("Failed");
+						});
 		            }
 		        }, function (err) {
 		            //alert(err;
@@ -126,7 +143,57 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				        }, function (err) {
 				            alert(err);
 				        });*/
-				
+				var dfriendsstatus = findres.FriendsFound;
+				if(dfriendsstatus == "Yes"){
+					console.warn("FriendsFound "+findres.count);
+					var friends = findres.Friends;
+					console.log(JSON.stringify(friends));
+					//console.log(JSON.parse(JSON.stringify(friends)));
+					//var ang = d.results;
+					angular.forEach(friends,function(value,key){
+						//getListFromDBByContact($scope,$cordovaSQLite,value.contact);//just fetching records previously
+						var tbuid = value.uid,tbuname = value.uname,tbcontact = value.contact,tbgender = value.gender,tbisActive = value.isActive,tbdob = value.dob,tbage = value.age,tbemail = value.email,tbprofilePic = value.profilePic,tbdummyPic = value.dummyPic,tblisten = value.listen,tbtoken = value.token,tbaccepted = value.accepted,tbcreated = value.created.date,tbupdated = value.updated.date;
+
+						console.info("uid:"+tbuid+" "+
+							"uname:"+tbuname+" "+
+							"contact:"+tbcontact+" "+
+							"gender:"+tbgender+" "+
+							"isActive:"+tbisActive+" "+
+							"dob:"+tbdob+" "+
+							"age:"+tbage+" "+
+							"email:"+tbemail+" "+
+							"profilePic:"+tbprofilePic+" "+
+							"dummyPic:"+tbdummyPic+" "+
+							"listen:"+tblisten+" "+
+							"token:"+tbtoken+" "+
+							"accepted:"+tbaccepted+" "+
+							"created:"+tbcreated+" "+
+							"updated:"+tbupdated+" "
+							);
+
+						var query = "INSERT INTO joinincontacts (uid, uname,contact,gender,isActive,dob,age,email,profilePic,dummyPic,listen,token,accepted,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        $cordovaSQLite.execute(db, query, [tbuid, tbuname,tbcontact,tbgender,tbisActive,tbdob,tbage,tbemail,tbprofilePic,tbdummyPic,tblisten,tbtoken,tbaccepted,tbcreated,tbupdated]).then(function(res) {
+                          //cc++;
+                          console.log("inserted"+res.insertId);
+                        }, function (err) {
+                          //alert(err);
+                          console.error("failed");
+                        });
+                        //bestiesnearby(id integer primary key,uid,ucontact,uname,distance,lat,long,address,token,created,updated)
+                        //to inserting in user tracking table
+                        var distance = "";
+                        var query = "INSERT INTO bestiesnearby (uid,ucontact,uname,distance,lat,long,address,token,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                        $cordovaSQLite.execute(db, query, [tbuid,tbcontact, tbuname,distance,"","","",tbtoken,tbcreated,tbupdated]).then(function(res) {
+                          //cc++;
+                          console.log("inserted in bestiesnearby"+res.insertId);
+                        }, function (err) {
+                          //alert(err);
+                          console.error("failed in bestiesnearby");
+                        });
+					});
+				}else{
+					console.info("No FriendsFound");
+				}
 				console.log(uid+name);
 			}else{
 				alert("value not fetched");
@@ -144,13 +211,18 @@ besties.factory("meloginfact",function($cordovaSQLite){
 			$ionicLoading.show({
 				  template: '<ion-spinner icon="spiral" style="color:#fff" class="spinner-positive"></ion-spinner>'
 			});
+			var pcode = $scope.countrycode;
+			var p = pcode+phone;
 			var lat = 19.235234, lon = 73.1275884;
 			var datas = {
-				phone:phone,
+				phone:p,
 				lat:localStorage.registeredLatitude,//lat,//latitude,//
 				lon:localStorage.registeredLongitude,//lon,//longitude,//
-				deviceid:localStorage.uuid
+				deviceid:localStorage.uuid,
+				country:$scope.cntr.countrie,
+				countryCode:$scope.countrycode
 			};
+			console.warn($scope.cntr.countrie+" "+$scope.countrycode);
 			$http.post(localStorage.myURL+"/mobile/login/me",
 				datas)
 			.then(function(response){
@@ -168,7 +240,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 					localStorage.userName = fetch.name;				
 					localStorage.userGender = fetch.gender;	
 					localStorage.Prelogin = sStatus;
-					var tel = phone;
+					var tel = p;
 					localStorage.userContact = tel;
 					localStorage.secret = fetch.secret;
 					//alert(JSON.stringify(response.data));
@@ -212,10 +284,47 @@ besties.factory("meloginfact",function($cordovaSQLite){
 							]
 						  });
 				}
+				else if(sStatus == "PreloginNG"){
+					sOtp = fetch.otp;
+					localStorage.Prelogin = sStatus;
+					var tel = p;
+					localStorage.userContact = tel;
+					localStorage.secret = fetch.secret;
+					$timeout(function() {
+						$scope.open3 = false;//div show
+	    				$scope.open2 = true;//div hide
+					}, 1500);
+					//alert(JSON.stringify(response.data));
+					console.log(sStatus+sOtp);
+					var myPopup = $ionicPopup.show({
+							template: 'Is OTP '+sOtp+' is same?',
+							title: 'OTP',
+							scope: $scope,
+							cssClass: 'popupME',
+							buttons: [
+						  	{
+						    	type: 'button-default',
+						    	onTap: function(e) {
+						      	myPopup.close();
+						    	}
+						  	},
+						  	{
+						    	type: 'button-positive',
+						    	cssClass:'pb2',
+						    	onTap: function(e) {
+						      	myPopup.close();
+						      	$scope.gformdata.otp = sOtp;
+						      	$scope.btngo3 = false;
+						      	document.getElementById("btngo3").style.display = "block";
+						    	}
+						  	}
+							]
+						  });
+				}
 				else if(sStatus == "Register"){
 					sOtp = fetch.otp;
 					localStorage.Prelogin = sStatus;
-					var tel = phone;
+					var tel = p;
 					localStorage.userContact = tel;
 					localStorage.secret = fetch.secret;
 					$timeout(function() {
@@ -264,6 +373,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 					//alert("err :"+JSON.stringify(response.data));
 					$ionicPopup.alert({
 			            title: sStatus,
+			            cssClass:'alertLoginPopup',
 			            content: 'Something wrong with your contact number. Make sure it should be 10 digit.'
 			          }).then(function(res) {
 			            console.info('Thanks');
@@ -273,6 +383,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 					//alert("err :"+JSON.stringify(response.data));
 					$ionicPopup.alert({
 			            title: sStatus,
+			            cssClass:'alertLoginPopup',
 			            content: 'Something wrong with your input. Make sure you have enable the GPS location.'
 			          }).then(function(res) {
 			            console.info('Thanks');
@@ -281,6 +392,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				}else{
 					$ionicPopup.alert({
 			            title: sStatus,
+			            cssClass:'alertLoginPopup',
 			            content: 'Something wrong with respond to your contact number. Try Again!'
 			          }).then(function(res) {
 			            ///console.info('Thanks');
@@ -292,6 +404,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				$ionicLoading.hide();
 				$ionicPopup.alert({
 		            title: "Failed From You",
+			        cssClass:'alertLoginPopup',
 		            content: 'Something wrong with sending to your contact number. Try Again!'
 		          }).then(function(res) {
 		            console.info('Thanks');
@@ -302,14 +415,14 @@ besties.factory("meloginfact",function($cordovaSQLite){
 		/*
 		* Check after otp page is viewed
 		*/
-		callotp: function($scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput,$cordovaSQLite){
+		callotp: function($scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput,$cordovaSQLite,$ionicPlatform,$cordovaLocalNotification){
 			var get = sStatus;
         	/*$ionicLoading.show({
 			  template: '<ion-spinner icon="spiral" style="color:#fff"></ion-spinner>'
 			});*/
 			if(sOtp == otptxtdivinput){
 				console.log("matched");
-				if(get == "Register"){//new registration
+				if(get == "Register" || get == "PreloginNG"){//new registration
 				//	if(get == "Prelogin"){
 					$ionicLoading.show({
 					  template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>'
@@ -342,6 +455,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 							   	$timeout(function() {
 									//$state.go("app.home");
 									//window.location = "index.html";
+									notify.scheduleWhenLoggedIn($ionicPlatform,$scope,$cordovaLocalNotification);
 									location.href="index.html";
 	    							localStorage.imin = "Y";
 								}, 1200);
@@ -352,6 +466,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				else if(get == "Failed"){
 					$ionicPopup.alert({
 			            title: sStatus,
+			            cssClass:'alertLoginPopup',
 			            content: 'Something wrong with respond sending to your otp. Try Again!'
 			          }).then(function(res) {
 			            console.info('Thanks');
@@ -360,6 +475,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				else{
 					$ionicPopup.alert({
 			            title: "Ooops! You Crashed Me.",
+			            cssClass:'alertLoginPopup',
 			            content: 'Something wrong with your input. Try Again!'
 			          }).then(function(res) {
 			            //console.info('Thanks');
@@ -369,6 +485,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				console.log("notmatched");
 				$ionicPopup.alert({
 			            title: "Oooops! Otp Wrong!!!.",
+			            cssClass:'alertLoginPopup',
 			            content: 'One Time Password is not correct. Try Again!'
 			          }).then(function(res) {
 			            //console.info('Thanks');
@@ -378,7 +495,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 		/*
 		* This page for first user entry in besties
 		*/
-		addmyDetails: function($scope,$http,$ionicPopup,$timeout,$ionicLoading,$cordovaSQLite){
+		addmyDetails: function($scope,$http,$ionicPopup,$timeout,$ionicLoading,$cordovaSQLite,$ionicPlatform,$cordovaLocalNotification){
 			var lat = 19.235234, lon = 73.1275884;
 			var post = {
 				phone:localStorage.userContact,
@@ -403,14 +520,17 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				if(fetch.status == "Already Registered"){
 					getMyStuffs($cordovaSQLite,$http,$scope);
 					gotobrowse($scope,$timeout,$ionicLoading);
+					//notify.scheduleWhenLoggedIn($ionicPlatform,$scope,$cordovaLocalNotification);
 				}
 				else if(fetch.status == "Registered"){
 					getMyStuffs($cordovaSQLite,$http,$scope);
 					gotobrowse($scope,$timeout,$ionicLoading);
+					//notify.scheduleWhenLoggedIn($ionicPlatform,$scope,$cordovaLocalNotification);
 				}
 				else if(fetch.status == "Failed"){
 					$ionicPopup.alert({
 			            title: "Oooops! Failed!!!.",
+			            cssClass:'alertLoginPopup',
 			            content: 'Info you have give is not appropriate. Try Again!'
 			          }).then(function(res) {
 			            //console.info('Thanks');
@@ -419,6 +539,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				else{
 					$ionicPopup.alert({
 			            title: "Failed",
+			            cssClass:'alertLoginPopup',
 			            content: 'Server can not understood your query. Try Again!'
 			          }).then(function(res) {
 			            //console.info('Thanks');
@@ -428,6 +549,7 @@ besties.factory("meloginfact",function($cordovaSQLite){
 				$ionicLoading.hide();
 				$ionicPopup.alert({
 			            title: "Unreachable",
+			            cssClass:'alertLoginPopup',
 			            content: 'Server can not understood your query. Try Again!'
 			          }).then(function(res) {
 			            //console.info('Thanks');

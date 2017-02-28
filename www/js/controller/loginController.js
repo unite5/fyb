@@ -1,10 +1,22 @@
 //angular.module('besties')
 besties.controller('loginController',
 	//['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
-	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice,$cordovaSQLite,$cordovaContacts,makedb,deviceservices){
+	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice,$cordovaSQLite,$cordovaContacts,makedb,deviceservices,notify,$ionicPlatform,$cordovaLocalNotification,countries){
+		//scheduleTest:function($ionicPlatform,$scope,$cordovaLocalNotification)
+		//scheduleTest:function($ionicPlatform,$scope,$cordovaLocalNotification);
 	  //alert("inn;loginController");
 
-
+	  /*country*/
+	  $scope.cntr = {'countrie':''};
+	  $scope.county = countries.country;
+	  //console.log($scope.county);
+	  $scope.countryshown = true;
+	  $scope.changecountry = function(el){
+	  	console.log($scope.cntr.countrie);
+	  	countries.countryname($scope.cntr.countrie,$scope);
+	  };
+	  /*country*/
+	  
 	  document.getElementById("btngo2").style.display = "none";
 	  $scope.btngo2 = true;
 	  document.getElementById("btngo3").style.display = "none";
@@ -108,7 +120,17 @@ besties.controller('loginController',
 			deviceid:'12332434'
 		};*///lat lon deviceid
 		//meloginfact.registerforOtp(phone,$scope,datas,thirddiv,otpdiv,$http,$timeout,$ionicPopup,$ionicLoading);
-		meloginfact.registerforOtp(phone,$scope,$http,$timeout,$ionicPopup,$ionicLoading);
+		var code = $scope.cntr.countrie;
+		if(code == "" || code == null || code == undefined){
+			$ionicPopup.alert({
+				title:'Your Country',
+				content:'Provide atleast your home country dear!',
+				cssClass:'countryCodeCss'
+				})
+			.then(function(){});
+		}else{
+			meloginfact.registerforOtp(phone,$scope,$http,$timeout,$ionicPopup,$ionicLoading);
+		}
 	  }
 	  $scope.call3 = function(){
 	    // $scope.open4 = false;//div show
@@ -116,7 +138,7 @@ besties.controller('loginController',
 	    var otptxtdivinput = angular.element(document.getElementById("txtOTP")).val();//$scope.formdata.otp;
 	    console.log(otptxtdivinput);
 		//meloginfact.callotp(otpdiv,seconddiv,forthdiv,$scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput);
-		meloginfact.callotp($scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput,$cordovaSQLite);
+		meloginfact.callotp($scope,$timeout,$ionicLoading,$http,$ionicPopup,otptxtdivinput,$cordovaSQLite,$ionicPlatform,$cordovaLocalNotification);
 	  }
 	  $scope.call4 = function(){
 	    // $scope.open5 = false;//div show
@@ -124,7 +146,7 @@ besties.controller('loginController',
 	    console.log($scope.formdata.uname);
 	    console.log($scope.formdata.gender);
 	    //meloginfact.addmyDetails(seconddiv,forthdiv,$scope,$http,$ionicPopup,$timeout,$ionicLoading);
-	    meloginfact.addmyDetails($scope,$http,$ionicPopup,$timeout,$ionicLoading);
+	    meloginfact.addmyDetails($scope,$http,$ionicPopup,$timeout,$ionicLoading,$ionicPlatform,$cordovaLocalNotification);
 	  }
 	  $scope.call5 = function(){
 	    $scope.open5 = true;//div hide
@@ -211,7 +233,10 @@ besties.controller('loginController',
 	                    	console.log("val is:"+d);
 	                    	thirddivinput.val(d.substr(0, d.length - 1));
 	                    	console.log("after val is:"+d.substr(0, d.length - 1));*/
-	                    	btngo2.style.display = "none";
+	                    	/*btngo2.style.display = "none";
+	                        //console.log("more than 10");
+	                        scope.btngo2 = true;*/
+	                        btngo2.style.display = "none";
 	                        //console.log("more than 10");
 	                        scope.btngo2 = true;
 	                    }

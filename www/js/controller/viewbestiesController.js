@@ -1,10 +1,12 @@
 //angular.module('besties')
-besties.controller('viewbestiesController',function($scope,$log,$ionicPopup,$cordovaSms,$stateParams,$cordovaSocialSharing,$cordovaToast){
-	$scope.name = $stateParams.name;
-	$log.info("current view for "+$stateParams.name);
+besties.controller('viewbestiesController',function($scope,$log,$timeout,$ionicPopup,$cordovaSms,$stateParams,$cordovaSocialSharing,$cordovaToast,bestiesservice,$cordovaSQLite){
+	$scope.id = $stateParams.id;
+	$log.info("current view for "+$stateParams.id);
+
+  bestiesservice.check($stateParams.id,$cordovaSQLite,$scope);
 
 	$scope.navigatethis = function(id){
-		location.href = "/#/app/viewinmap"+id;
+		location.href = "/#/app/viewinmap/"+id;
 	}	
 
 	$scope.bestiescall = function(){

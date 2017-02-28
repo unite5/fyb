@@ -1,8 +1,36 @@
 besties.factory('makedb', function() {
+	var getaddresss = "";
+	var getaddressbylatlong = function($http,lat,long,$cordovaSQLite){
+		
+		$http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=false&key=AIzaSyB16sGmIekuGIvYOfNoW9T44377IU2d2Es")
+		.success(function(data){
+		    getaddresss = data.results[0].formatted_address;
+		    console.log("show:"+getaddresss);
+		})
+		.error(function(err){
+		  var phone = localStorage.userContact;
+		  var findc = "SELECT * FROM self WHERE contact = ? LIMIT 1";
+		  $cordovaSQLite.execute(db, findc, [phone]).then(function(resp) {
+            getaddresss = resp.rows.item(0).regAddress;
+          });
+          console.log("err:"+getaddresss);
+		});
+		//return addresss;
+	};
+	var truncated = function($cordovaSQLite){
+		var del = "DROP TABLE joinincontacts";
+		$cordovaSQLite.execute(db,del,[]).then(function(res){console.info("truncated");},function(err){console.error("fail");});
+		var del2 = "DROP TABLE self";
+		$cordovaSQLite.execute(db,del2,[]).then(function(res){console.info("truncated");},function(err){console.error("fail");});
+		var del3 = "DROP TABLE bestiesnearby";
+		$cordovaSQLite.execute(db,del3,[]).then(function(res){console.info("truncated");},function(err){console.error("fail");});
+		
+	};
 	return {
 		init: function($cordovaSQLite){
 			//db = window.openDatabase("test_besties.db", "1", "SQLite DB", "200000000000");
 
+			//truncated($cordovaSQLite);
 			//`self` data table
 			$cordovaSQLite.execute(db,"CREATE TABLE IF NOT EXISTS self(id integer primary key,uid text,name text,gender text,email text,contact text,dob text,age text,hobbies text,profilePic text,dummyPic text,faviAns text,regLat text,regLong text,regAddress text,created text,updated text)");
 		    
@@ -10,7 +38,7 @@ besties.factory('makedb', function() {
 		    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS simcontacts(id integer primary key,uname text,contact text,created text,updated text)");
 		    
 		    //`invited contactslist` table
-		    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS joinincontacts(id integer primary key, uid text, uname text,contact text,gender text,isActive text,dob text,age text,email text,profilePic text,dummyPic text,listen text,token text,accepted text,created text,updated text)");
+		    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS joinincontacts(id integer primary key, uid integer, uname text,contact text,gender text,isActive text,dob text,age text,email text,profilePic text,dummyPic text,listen text,token text,accepted text,created text,updated text)");
 
 			//`track me` self table
 		    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS trackme(id integer primary key, lat text,long text,address text,deviceid text,created text,updated text)");
@@ -23,6 +51,9 @@ besties.factory('makedb', function() {
 
 			//my `tasks` table
 		    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS tasks(id integer primary key,taskname text,taskdetail text,lat text,long text,address text,token text,created text,updated text)");
+
+		    //usertracker table
+			$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS bestiesnearby(id integer primary key,uid integer,ucontact text,uname text,distance text,lat text,long text,address text,token text,created text,updated text,track int Default 0,length integer,strlength text)");
 
 		    //`chats` table
 		    /*$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text,caos text)");*/
@@ -90,7 +121,8 @@ besties.factory('makedb', function() {
 		getSQLDBContactLists:function($scope,$cordovaSQLite){
 			var dataC = [];
 			var ds=new Array();
-			var findu = "SELECT * FROM simcontacts order by uname";
+			//uname,contact
+			var findu = "SELECT simcontacts.id as id,simcontacts.uname as uname,simcontacts.contact as contact,simcontacts.created as created,joinincontacts.contact as tel  FROM simcontacts INNER JOIN joinincontacts ON simcontacts.contact <> joinincontacts.contact order by simcontacts.uname";
 	        $cordovaSQLite.execute(db, findu, []).then(function(res) {
 	            if(res.rows.length > 0) {
 	            	for(var i=0;i<res.rows.length;i++){
@@ -422,7 +454,7 @@ besties.factory('makedb', function() {
 	                        var updated1 = moment().format("YYYY-MM-DD HH:mm:SS");
 	                        var query1 = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
 	                        $cordovaSQLite.execute(db, query1, [name1, tell1, created1, updated1]).then(function(res) {
-	                          cc++;
+	                          //cc++;
 	                        }, function (err) {
 	                          //alert(err);
 	                        });
@@ -441,7 +473,51 @@ besties.factory('makedb', function() {
 		    options.multiple = true;
 		    
 		    $cordovaContacts.find(options).then(onSuccess, onError);
+		},
+
+		mytabletrack:function($cordovaSQLite,$scope,$http,tname,tdetail){
+			//tasks(id integer primary key,
+			//taskname text,taskdetail text,
+			//lat text,long text,address text,
+			//token text,created text,updated text)
+			//name1,			
+			var name1 = localStorage.userContact;
+			var taskname = tname;
+			var taskdetail = tdetail;
+			var lat = localStorage.currentlatitude;
+			var long = localStorage.currentlongitude;
+			//getaddressbylatlong($http,lat,long,$cordovaSQLite);
+			var address = "";
+			$http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&sensor=false&key=AIzaSyB16sGmIekuGIvYOfNoW9T44377IU2d2Es")
+			.success(function(data){
+			    address = data.results[0].formatted_address;
+			    console.log("show:"+address);
+			})
+			.error(function(err){
+			  var phone = localStorage.userContact;
+			  var findc = "SELECT * FROM self WHERE contact = ? LIMIT 1";
+			  $cordovaSQLite.execute(db, findc, [phone]).then(function(resp) {
+	            address = resp.rows.item(0).regAddress;
+	          });
+	          console.log("err:"+address);
+			});
+			var token = localStorage.secret;
+			var created1 = moment().format("YYYY-MM-DD HH:mm:SS");
+            var updated1 = moment().format("YYYY-MM-DD HH:mm:SS");
+
+			
+            var query1 = "INSERT INTO tasks (taskname,taskdetail, lat,long,address,token, created, updated) VALUES (?,?,?,?,?,?,?,?)";
+            $cordovaSQLite.execute(db, query1, [taskname,taskdetail,lat,long,address,token,created1,updated1]).then(function(res) {
+              console.info("Inserted Record For:"+res.insertId);
+            }, function (err) {
+              console.error("failed to insert in tasks");
+            });
 		}
+
+
+
+		/*dummies*/
+		
 
 	}
 });

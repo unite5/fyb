@@ -2,7 +2,7 @@ var besties = angular.module('besties', ['ionic','ngCordova','ngAnimate']);
 var db = null;
 besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$timeout,$cordovaToast,$state,$cordovaSQLite,makedb,$cordovaSplashscreen) {
   $ionicPlatform.ready(function() {
-    $cordovaSplashscreen.show();
+    //$cordovaSplashscreen.show();
 
     db = window.openDatabase("test_besties.db", "1", "SQLite DB", "200000000000");
     //load db

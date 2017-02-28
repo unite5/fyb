@@ -2,6 +2,8 @@
 <html >
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
+  
   <title>FYB</title>
   
   <link rel="icon" href="img/ionic.png">
@@ -66,6 +68,7 @@
     <script src="js/controller/contactsbyIdController.js"></script>
 
 
+
     <script src="js/service/loginService.js"></script>
     <script src="js/controller/loginController.js"></script>
     
@@ -74,10 +77,17 @@
     <script src="js/service/makedb.js"></script>
     <script src="js/service/availability.js"></script>
     <script src="js/service/deviceservices.js"></script>
+    <script src="js/service/callfriends.js"></script>
+    <script src="js/service/dummiesservice.js"></script>
+    <script src="js/service/bestiesservice.js"></script>
+    <script src="js/service/notifyservice.js"></script>
+    <script src="js/service/countries.js"></script>
+    
 
     <!-- Other's files -->
     <link rel="stylesheet" href="css/ng-animation.css">
     <script type="text/javascript" src="lib/other/d3/d3.min.js"></script>
+    <script src="lib/other/lodash.js"></script>
     <!-- <script type="text/javascript" src="lib/other/googlemap.js"></script> -->
     
   </head>
