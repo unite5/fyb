@@ -5,6 +5,12 @@ besties.controller('homeController',function($scope,trackusers,availableisOfflin
         //makedb.getContacts($cordovaSQLite,$scope,$timeout,$cordovaContacts);	
         makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
     },5000);*/
+
+    /*var now = moment().format('YYYY-MM-DD H:mm:ss'),
+end = moment("2017-02-28 23:24:38"),
+days = end.diff(now, 'minutes');
+    var dddd = moment.duration().subtract("2017-02-28 23:24:38");//moment.duration("2017-02-28 23:24:38").minutes();
+    console.log("difference is:"+days);*/
     $timeout(function(){
         //$interval(function(){
             //notify.scheduleTest($ionicPlatform,$scope,$cordovaLocalNotification,$cordovaSQLite);
@@ -19,14 +25,16 @@ besties.controller('homeController',function($scope,trackusers,availableisOfflin
     $scope.showbestiesview = false;*/
     $timeout(function(){
         trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
-    },10000);
+    },4000);
 
-    $ionicLoading.show({
+
+    /*$ionicLoading.show({
       template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>',
       duration: 3000
     }).then(function(){
         console.log("done");
-    });
+    });*/
+
 
     /*$timeout(function(){
     var findu = "SELECT * FROM simcontacts";
@@ -141,4 +149,58 @@ besties.controller('homeController',function($scope,trackusers,availableisOfflin
     }
 
     
+    $scope.doRefresh = function(){
+        
+        
+        $timeout(function(){
+            trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
+            $scope.$broadcast('scroll.refreshComplete');
+            $cordovaToast
+            .show('New besties are there', 'long', 'center')
+            .then(function(success) {
+              // success
+            }, function (error) {
+              // error
+            });
+        },2000);
+    }
+
+})
+.controller('homeinvitationController',function($scope,$timeout,$ionicLoading,$cordovaSQLite,bestiesservice,$cordovaToast,$ionicPopup,$http){
+    $timeout(function(){
+        $ionicLoading.show({
+      template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>',
+      duration: 3000
+    }).then(function(){
+        console.log("done");
+    });
+        bestiesservice.showInvitationInHome($scope,$cordovaSQLite,$ionicLoading);
+    },1000);
+
+
+        /*Accept invitation*/
+    $scope.acceptInvitation = function(id,contact,name,iid){
+        bestiesservice.acceptInvitation(id,contact,name,iid,$cordovaSQLite,$ionicPopup,$ionicLoading,$cordovaToast,$scope,$http);
+        //var meet = $ionicPopup.confirm();
+    };
+
+})
+.controller('homelastmeetController',function($scope,$timeout,$ionicLoading,$cordovaSQLite,bestiesservice,$cordovaToast,$ionicPopup,$http){
+    $timeout(function(){
+        $ionicLoading.show({
+      template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>',
+      duration: 3000
+    }).then(function(){
+        console.log("done");
+    });
+        bestiesservice.showLastMeetInHome($scope,$cordovaSQLite,$ionicLoading);
+    },1000);
+
+
+        /*Accept invitation*/
+    $scope.acceptInvitation = function(id,contact,name,iid){
+        //bestiesservice.acceptInvitation(id,contact,name,iid,$cordovaSQLite,$ionicPopup,$ionicLoading,$cordovaToast,$scope,$http);
+        //var meet = $ionicPopup.confirm();
+    };
+
 });

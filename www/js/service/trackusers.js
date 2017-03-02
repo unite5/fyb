@@ -66,7 +66,7 @@ besties.factory("trackusers",function(availableisOffline){
 				if(status == "MyUpdatedLocation"){
 					console.warn("MyUpdatedLocation :"+d.address);
 					var query = "UPDATE trackme SET lat = ?,long = ?,address = ?, updated = ?";
-					var time = moment().format('YYYY-MM-DD H:mm:ss');
+					var time = moment().format('YYYY-MM-DD HH:mm:ss');
 					$cordovaSQLite.execute(db,query,[localStorage.currentlatitude,localStorage.currentlongitude,d.address,time]).then(
 						function(res){console.info("tracked you");},
 						function(err){console.error("error to track you");}
@@ -112,10 +112,10 @@ besties.factory("trackusers",function(availableisOffline){
 			if(availableisOffline.check()){
 				console.log("NEt is not available");
 			}else{
-				$ionicLoading.show({
+				/*$ionicLoading.show({
 				  template: '<ion-spinner icon="ripple" style="color:#fff"></ion-spinner>',
 				  noBackdrop:true
-				});
+				});*/
 				console.log("net is available");
 				var track = 0;
 				var besties = new Array();
@@ -161,7 +161,7 @@ besties.factory("trackusers",function(availableisOffline){
 								updatelat = bestiesfound[j].lat;
 								updatelon = bestiesfound[j].lon;
 								updateaddress = bestiesfound[j].address;
-								updatedat = moment().format('YYYY-MM-DD H:mm:ss');
+								updatedat = moment().format('YYYY-MM-DD HH:mm:ss');
 								updatedistance = bestiesfound[j].distance;
 								length = bestiesfound[j].length;
 								strlength = bestiesfound[j].strlength;
@@ -177,21 +177,21 @@ besties.factory("trackusers",function(availableisOffline){
 								});
 								//alert("Updated for "+updateforcontact+ " "+ii);
 								//console.log(bestiesfound.length+bestiesfound[j].lat);
-								$ionicLoading.hide();
+								//$ionicLoading.hide();
 							}	
 							console.log(bestiesfound);
 						}else{
-							$ionicLoading.hide();
+							//$ionicLoading.hide();
 							console.error("failed to load");
 						}
-						
+						//$ionicLoading.hide();
 					})
 					.error(function(err){
-						$ionicLoading.hide();
+						//$ionicLoading.hide();
 						console.error("Error in:"+JSON.stringify(err));
 					})
 		        }, function (err) {
-		        	$ionicLoading.hide();
+		        	//$ionicLoading.hide();
 		            alert(err);
 		        });	  
 				/*$cordovaSQLite.execute(db,query).then({
@@ -209,6 +209,7 @@ besties.factory("trackusers",function(availableisOffline){
 						console.log("cant fetching besties");
 					}
 				});*/
+				//$ionicLoading.hide();
 				console.warn(JSON.parse(JSON.stringify(besties)));
 			}
 		},
@@ -222,10 +223,12 @@ besties.factory("trackusers",function(availableisOffline){
 			var strlength = 'm';
 			var distancelike = '%m';
 			var ttime,tymd,thms;
-			$ionicLoading.show({
-			  template: '<ion-spinner icon="ripple" style="color:#fff"></ion-spinner>',
-			  noBackdrop:true
-			});
+			/*$ionicLoading.show({
+			  template: '<ion-spinner class="spinner-energized ionicPopupSpinner" icon="bubbles"></ion-spinner>',
+			  noBackdrop:true,
+      		  duration: 4000
+			});*/
+			
 			//var q  = "SELECT bestiesnearby.uid,bestiesnearby.uname,bestiesnearby.id,bestiesnearby.ucontact,bestiesnearby.distance,bestiesnearby.lat,bestiesnearby.long,bestiesnearby.address,bestiesnearby.token,bestiesnearby.updated,bestiesnearby.track,joinincontacts.gender,joinincontacts.profilePic,joinincontacts.dummyPic,bestiesnearby.length,bestiesnearby.strlength FROM bestiesnearby INNER JOIN joinincontacts ON bestiesnearby.uid = joinincontacts.uid WHERE bestiesnearby.track = ? and bestiesnearby.length < ? or bestiesnearby.length < ?";// WHERE distance"; and bestiesnearby.distance like ?
 			var q  = "SELECT bestiesnearby.uid,bestiesnearby.uname,bestiesnearby.id,bestiesnearby.ucontact,bestiesnearby.distance,bestiesnearby.lat,bestiesnearby.long,bestiesnearby.address,bestiesnearby.token,bestiesnearby.updated,bestiesnearby.track,joinincontacts.gender,joinincontacts.profilePic,joinincontacts.dummyPic,bestiesnearby.length,bestiesnearby.strlength FROM bestiesnearby INNER JOIN joinincontacts ON bestiesnearby.uid = joinincontacts.uid WHERE bestiesnearby.track = ?";// WHERE distance"; and bestiesnearby.distance like ?
 			var bestiesbyfound = new Array();//,length,glength
@@ -295,7 +298,7 @@ besties.factory("trackusers",function(availableisOffline){
 				$scope.showbestiese = true;
 				$scope.showbestiesview = false;
 			});
-			
+			$ionicLoading.hide();
 		}
 
 	}

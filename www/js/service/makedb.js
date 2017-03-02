@@ -62,6 +62,8 @@ besties.factory('makedb', function() {
 		    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
 		    console.log("serviceDB created");
 
+			// $cordovaSQLite.execute(db,"DELETE FROM bestiesnearby WHERE id > ?",['3']).then(function(res){console.info("deleted 1");},function(err){console.error("failed 1");});		    
+			// $cordovaSQLite.execute(db,"DELETE FROM joinincontacts WHERE id > ?",['3']).then(function(res){console.info("deleted 2");},function(err){console.error("failed 2");});		    
 		    /*var contact = '9768431024';
 			var findu = "SELECT * FROM self WHERE contact = ?";
 		        $cordovaSQLite.execute(db, findu, [contact]).then(function(res) {

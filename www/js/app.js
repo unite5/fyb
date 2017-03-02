@@ -38,7 +38,7 @@ besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$t
   });
   var backbutton = 0;
   $ionicPlatform.registerBackButtonAction(function() {
-      if ($location.path() === "/app/home" || $location.path() === "/login") {
+      if ($location.path() === "/app/home" || $location.path() === "/login" || $location.path() === "/app/home/room"  || $location.path() === "/app/home/invitation"  || $location.path() === "/app/home/lastmeet") {
         if(backbutton == 0){
           backbutton++;
           $cordovaToast.showLongBottom('Press again to exit');

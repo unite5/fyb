@@ -93,7 +93,8 @@ besties.factory("meloginfact",function($cordovaSQLite,notify){
 				var dummyPic,uid = user.uid, name = user.nam, gender = user.gen, email = user.mail, 
 					      contact = user.tel, dob = user.dob, age = user.age, hobbies = user.hobby, profilePic = user.pic, 
 					      faviAns = user.fav, regLat = user.lat, regLong=user.lon, regAddress=user.address, created = user.created, updated = user.updated;
-				localStorage.userName = name;				
+				localStorage.userName = name;
+				localStorage.userId = uid;				
 				localStorage.userGender = gender;
 				if(profilePic == "" || profilePic == null || profilePic == undefined){
 					if(gender == "Male"){

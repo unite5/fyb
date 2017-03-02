@@ -22,7 +22,7 @@ besties.config(function($stateProvider,$urlRouterProvider){
     controller:'menuController'
   })
   
-  .state('app.home',{
+  /*.state('app.home',{
     cache:false,
     url:'/home',
     views:{
@@ -31,7 +31,7 @@ besties.config(function($stateProvider,$urlRouterProvider){
         controller:'homeController'
       }
     }
-  })
+  })*/
 
   .state('app.searchfriends',{
     //cache:false,
@@ -160,52 +160,52 @@ besties.config(function($stateProvider,$urlRouterProvider){
     }
   })
 
-  /*.state('app.home',{
+  .state('app.home',{
     cache:false,
     url:'/home',
     views:{
       'menuContent':{
-        templateUrl:'templates/home.html',
+        templateUrl:'templates/tabs/tab.html',
         controller:'homeController'
       }
     }
   })
 
-  .state('app.homehome',{
-    url:'/home/home',
+  .state('app.home.room',{
+    url:'/room',
     views:{
-      'tab-home':{
+      'home-tab':{
         templateUrl:'templates/tabs/home.html',
         controller:'homeController'
       }
     }
   })
 
-  .state('app.homeinvitation',{
-    url:'/home/invitation',
+  .state('app.home.invitation',{
+    url:'/invitation',
     views:{
-      'tab-invitation':{
+      'invitation-tab':{
         templateUrl:'templates/tabs/invitation.html',
-        controller:'homeController'
+        controller:'homeinvitationController'
       }
     }
   })
 
-  .state('app.homelastmeet',{
-    url:'/home/lastmeet',
+  .state('app.home.lastmeet',{
+    url:'/lastmeet',
     views:{
-      'tab-lastmeet':{
+      'lastmeet-tab':{
         templateUrl:'templates/tabs/lastmeet.html',
-        controller:'homeController'
+        controller:'homelastmeetController'
       }
     }
-  })*/
+  })
 
   ;
 
-  if(localStorage.imin === "Y"){
+  //if(localStorage.imin === "Y"){
     $urlRouterProvider.otherwise('/app/home');
-  }else{
+  /*}else{
     $urlRouterProvider.otherwise('/login');
-  }
+  }*/
 });
