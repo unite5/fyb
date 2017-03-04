@@ -1,16 +1,16 @@
-<ion-side-menus enable-menu-with-back-views="false" style="background-color:#699cfa">
+<ion-side-menus enable-menu-with-back-views="false" style="background-color:#222446"><!-- #699cfa -->
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-positive">
+    <ion-nav-bar class="bar constColor2">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        <button class="button button-icon  ion-navicon"  style="color: #fff" menu-toggle="left">
         </button>
       </ion-nav-buttons>
 
       <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-android-home" ng-click="callHome()">
+        <button class="button button-icon  ion-android-home" style="color: #fff" ng-click="callHome()">
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
@@ -18,12 +18,12 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content> 
 
-  <ion-side-menu side="left" style="background-color:#699cfa">
+  <ion-side-menu side="left" style="background-color:#222446">
     <ion-content>
       <div class="img-circular">
           <img src="{{profilePic}}" width="160" height="160" class="profileLogo">
       </div>
-      <p style="margin-left: 20%;font-size: 18px;margin-top: 10px"><b>{{username}}</b></p>
+      <p style="margin-left: 20%;font-size: 18px;margin-top: 12px;color: #ffffcc"><b>{{username}}</b></p>
       <ul class="list constColor">
         <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
         <!-- <ion-item class="item item-thumbnail-left constColor" menu-close>  

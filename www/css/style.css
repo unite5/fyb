@@ -205,8 +205,12 @@ border-color: transparent;
 /****************************END*******************************/
 
 .constColor {
-  background-color:#699cfa;
+  background-color:#222446;/*#699cfa;*/
 }
+.constColor2 {
+  background-color:#323569;/*#699cfa;*/
+}
+
 .constText {
   color: #ffffff;
 }
