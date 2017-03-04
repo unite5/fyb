@@ -2,6 +2,10 @@
 besties.controller('viewbestiesController',function($scope,$log,$timeout,$ionicPopup,$cordovaSms,$stateParams,$cordovaSocialSharing,$cordovaToast,bestiesservice,$cordovaSQLite){
 	$scope.id = $stateParams.id;
 	$log.info("current view for "+$stateParams.id);
+  $scope.social = {
+    'contact':'',
+    'id':''
+  }
 
   bestiesservice.check($stateParams.id,$cordovaSQLite,$scope);
 
@@ -10,7 +14,8 @@ besties.controller('viewbestiesController',function($scope,$log,$timeout,$ionicP
 	}	
 
 	$scope.bestiescall = function(){
-		location.href = "tel:+918433488040";
+    console.log("calling "+$scope.contact+" haha "+$scope.id);
+		location.href = "tel:"+$scope.contact;
 	}
 
 	$scope.bestiessms = function(){
@@ -22,11 +27,11 @@ besties.controller('viewbestiesController',function($scope,$log,$timeout,$ionicP
       }
   		}
 		$cordovaSms
-      .send('8433488040', 'Hello Ionic From JP', options)
+      .send($scope.contact, 'Hello Ionic From JP', options)
       .then(function() {
         // Success! SMS was sent
         $cordovaToast
-            .show('Success! SMS was sent', 'long', 'bottom')
+            .show('Success! SMS was sending...', 'long', 'bottom')
             .then(function(success) {
               // success
             }, function (error) {
@@ -79,7 +84,7 @@ besties.controller('viewbestiesController',function($scope,$log,$timeout,$ionicP
                 // An error occured. Show a message to the user
         });
       } else {
-        var tel = "+91 97684 31024";
+        var tel = $scope.contact;//"+91 97684 31024";
         $cordovaSocialSharing
         //.shareViaWhatsAppToReceiver(tel,res, null, "mydomain.com")
         .shareViaWhatsApp(res,null,"mydomain.com")

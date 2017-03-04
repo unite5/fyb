@@ -1,15 +1,41 @@
 besties.factory("bestiesservice",function(){
 	var isOffline = 'onLine' in navigator && !navigator.onLine;
 	var besties = function(id,$cordovaSQLite,$scope){
-		var findu = "SELECT * FROM joinincontacts where id = ?";
+		var findu = "SELECT * FROM joinincontacts where uid = ?";
         $cordovaSQLite.execute(db, findu, [id]).then(function(res) {
-	
+			var pic = "";
+			$scope.id = id;
             if(res.rows.length == 1) {
                 console.warn(res.rows.length+" makedb first:"+JSON.stringify(res.rows.item(0))+" "+res.rows.item(0)['contact']);
                 $scope.name = res.rows.item(0).uname;
                 $scope.contact = res.rows.item(0).contact;
                 $scope.age = res.rows.item(0).age;
                 $scope.created = moment(res.rows.item(0).created).fromNow();
+                pic = res.rows.item(0).profilePic;
+                if(pic == "" || pic == null){
+                	$scope.pic = res.rows.item(0).dummyPic;
+                }else{
+                	$scope.pic = res.rows.item(0).profilePic;
+                }
+                var c = res.rows.item(0).contact;
+                var q = "SELECT * FROM bestiesnearby where uid = ? and ucontact = ?";
+                $cordovaSQLite.execute(db,q,[id,c])
+                .then(function(suc){
+                	$scope.last = moment(suc.rows.item(0).updated).fromNow();
+                	$scope.address = suc.rows.item(0).address;
+                	var q = "SELECT max(id) as id,address,eventName,eventDesc,date,created FROM meet where friendID = ? and friendContact = ?";
+	                $cordovaSQLite.execute(db,q,[id,c])
+	                .then(function(s){
+	                	$scope.meetdate = s.rows.item(0).date;
+	                	$scope.meetaddress = s.rows.item(0).address;
+	                	$scope.meetcreated = s.rows.item(0).created;
+	                	console.info("rows "+s.rows.length+" "+s.rows.item(0).id);
+	                },function(err){
+	                	console.log("address failed to find through sql");
+	                });
+                },function(err){
+                	console.log("address failed to find through sql");
+                });
                 console.log($scope.name+" "+$scope.contact+" "+$scope.age);
             } else {
               alert("err "+ res.rows.length);
