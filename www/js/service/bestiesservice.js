@@ -347,6 +347,44 @@ besties.factory("bestiesservice",function(){
 			},function(err){
 				console.error("failed to find besties "+JSON.stringify(err));
 			});
+		},
+
+		/*search besties*/
+		searchbesties:function($cordovaSQLite,$scope,$ionicLoading,$ionicPopup){
+			var filtr = "%"+$scope.search.item+"%",data = new Array(),pic;
+			var query = "SELECT * FROM joinincontacts where uname like ? or contact like ? or gender like ?";
+			$cordovaSQLite.execute(db,query,[filtr,filtr,filtr])
+			.then(function(res){
+				if(res.rows.length != 0){
+					$scope.nobesties = true;
+					$scope.besties = false;
+					console.info("user "+JSON.stringify(res)+" "+res.rows.length+" "+$scope.search.item);
+					for(var i=0;i<res.rows.length;i++){
+						//JSON.parse(JSON.stringify(res));
+						pic = res.rows.item(i).profilePic;
+						if(pic == "" || pic == null){
+							pic = res.rows.item(i).dummyPic;
+						}else{
+							pic = res.rows.item(i).profilePic;
+						}
+						data[i] = {
+							'uname':res.rows.item(i).uname,
+							'contact':res.rows.item(i).contact,
+							'uid':res.rows.item(i).uid,
+							'pic':pic,
+							'gender':res.rows.item(i).gender
+						};
+					}
+					$scope.bestiesdata = JSON.parse(JSON.stringify(data));
+				}else{
+					$scope.nobesties = false;
+					$scope.besties = true;
+				}
+			},function(err){
+				$scope.nobesties = false;
+				$scope.besties = true;
+				console.error("failed to find besties "+JSON.stringify(err));
+			});
 		}
 
 	}

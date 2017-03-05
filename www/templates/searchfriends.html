@@ -14,13 +14,13 @@
 	    </div>
 	</div>   
 
-	<ion-list>
-      <div ng-repeat = "i in besties">
-        <ion-item class="item item-avatar item-icon-right" ng-click="seeBesties('{{i.friendID}}','{{i.friendContact}}','{{i.name}}','{{i.iid}}')">
+	<ion-list ng-hide="besties">
+      <div ng-repeat = "i in bestiesdata">
+        <ion-item class="item item-avatar item-icon-right" ng-click="">
           
           <img src="{{i.pic}}" width="30" height="30">
-          {{i.name}}<br>
-          <p> {{i.eventName}} {{i.at}}</p>
+          {{i.uname}}<br>
+          <p> {{i.contact}} {{i.gender}}</p>
           <i class="icon ion-eye"></i>
         </ion-item>
       </div>
