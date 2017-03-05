@@ -319,6 +319,34 @@ besties.factory("bestiesservice",function(){
 				console.error("failed to find lastmeet");
 			});
 			//$ionicLoading.hide();
+		},
+
+		/*show in all meets model*/
+		showMeetUser:function($cordovaSQLite,id,contact,name,$scope){
+			console.info("id"+id+" "+contact+" "+name);
+			var query = "SELECT * FROM joinincontacts where uid = ? and contact = ?";
+			$cordovaSQLite.execute(db,query,[id,contact])
+			.then(function(res){
+				console.info("user "+JSON.stringify(res));
+				$scope.uname = name;
+				$scope.uid = id;
+				$scope.ucontact = contact;
+				$scope.gender = res.rows.item(0).gender;
+				$scope.dob = res.rows.item(0).dob;
+				$scope.age = res.rows.item(0).age;
+				$scope.email = res.rows.item(0).email;
+				var pic = res.rows.item(0).profilePic;
+				if(pic == "" || pic == null){
+					$scope.pic = res.rows.item(0).dummyPic;
+				}else{
+					$scope.pic = res.rows.item(0).profilePic;
+				}			
+				$scope.token = res.rows.item(0).token;
+				$scope.created = moment(res.rows.item(0).created).fromNow();
+				$scope.rowid = res.rows.item(0).id;
+			},function(err){
+				console.error("failed to find besties "+JSON.stringify(err));
+			});
 		}
 
 	}

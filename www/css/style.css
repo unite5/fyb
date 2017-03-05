@@ -616,3 +616,15 @@ img.profileLogo {
   stroke: #444;
   fill: #444;
 }
+
+
+/*meetmodel*/
+.meetmodelarrow {
+    position: absolute;
+    font-size: 28px;
+    color: #ff525e;
+}
+img.animated.fadeIn.meetmodelimage {
+    top: 0;
+    left: 0;
+}

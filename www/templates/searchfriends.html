@@ -1,12 +1,30 @@
-<ion-view view-title="Search Friends">
+<ion-view view-title="Search Besties">
   <ion-content scroll="false">
     <h2 class="title text-center" style="margin-top: 3%">Find Your Besties</h2>
     <div class="list list-inset searchhead">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search">
+        <input type="text" placeholder="Search" ng-keyup="callbesties($event)" ng-model="search.item">
       </label>
-    </div>    
+    </div> 
+
+    <div class="card" ng-hide="nobesties">
+	    <div class="item item-text-wrap cardnotmeet">
+	      No besties founded.
+	    </div>
+	</div>   
+
+	<ion-list>
+      <div ng-repeat = "i in besties">
+        <ion-item class="item item-avatar item-icon-right" ng-click="seeBesties('{{i.friendID}}','{{i.friendContact}}','{{i.name}}','{{i.iid}}')">
+          
+          <img src="{{i.pic}}" width="30" height="30">
+          {{i.name}}<br>
+          <p> {{i.eventName}} {{i.at}}</p>
+          <i class="icon ion-eye"></i>
+        </ion-item>
+      </div>
+    </ion-list>
 
   </ion-content>
 </ion-view>

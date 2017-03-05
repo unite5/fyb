@@ -38,7 +38,8 @@ besties.config(function($stateProvider,$urlRouterProvider){
     url:'/searchfriends',
     views:{
       'menuContent':{
-        templateUrl:'templates/searchfriends.html'
+        templateUrl:'templates/searchfriends.html',
+        controller:'searchController'
       }
     }
   })

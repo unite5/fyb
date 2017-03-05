@@ -167,6 +167,7 @@ days = end.diff(now, 'minutes');
 
 })
 .controller('homeinvitationController',function($scope,$timeout,$ionicLoading,$cordovaSQLite,bestiesservice,$cordovaToast,$ionicPopup,$http){
+    //location.reload();
     $timeout(function(){
         $ionicLoading.show({
       template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>',
