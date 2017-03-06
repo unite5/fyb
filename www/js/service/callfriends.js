@@ -131,7 +131,7 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 			});
 		},
 
-		/*load connected contacts*/
+		/*load connected accepted contacts*/
 		loadConnectedContacts:function($cordovaSQLite,$http,$scope,$ionicLoading,$ionicPopup){
 			var contact = "9768431024";//localStorage.userContact;//"9768431024";//
 			var token = "Iif5NdKxsWQN4xAHIzO69VZiGi1zjB";//localStorage.secret;//
@@ -232,6 +232,83 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 			$cordovaSQLite.execute(db,del,[]).then(function(res){console.info("truncated");},function(err){console.error("fail");});
 			//`invited contactslist` table
 		    $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS joinincontacts(id integer primary key, uid text, uname text,contact text,gender text,isActive text,dob text,age text,email text,profilePic text,dummyPic text,listen text,token text,accepted text,created text,updated text)").then(function(res){console.info("created");},function(err){console.error("failed to create");});
+		},
+
+		/*load connected requested contacts*/
+		loadRequestedContacts:function($cordovaSQLite,$http,$scope,$ionicLoading,$ionicPopup){
+			var contact = localStorage.userContact;//"9768431024";//
+			var token = localStorage.secret;//"Iif5NdKxsWQN4xAHIzO69VZiGi1zjB";//
+			$http.post(localStorage.myURL+'/mobile/my/requestedcontacts',{
+				contact:contact,
+				token:token
+			})
+			.success(function(res){
+				//insertInJoin($cordovaSQLite);
+				var data = JSON.stringify(res);
+				var d = JSON.parse(data);
+				var pic,results = new Array();
+				if(d.status == "success"){
+					var ang = d.results;
+					angular.forEach(ang,function(value,key){
+						//getListFromDBByContact($scope,$cordovaSQLite,value.contact);//just fetching records previously
+						var tbuid = value.uid,tbuname = value.uname,tbcontact = value.contact,tbgender = value.gender,tbisActive = value.isActive,tbdob = value.dob,tbage = value.age,tbemail = value.email,tbprofilePic = value.profilePic,tbdummyPic = value.dummyPic,tblisten = value.listen,tbtoken = value.token,tbaccepted = value.accepted,tbcreated = value.created.date,tbupdated = value.updated.date;
+						pic = tbprofilePic;
+						if(pic == null || pic == ""){
+							pic = tbdummyPic;
+						}else{
+							pic = tbprofilePic;
+						}
+						console.info("uid:"+tbuid+" "+
+							"uname:"+tbuname+" "+
+							"contact:"+tbcontact+" "+
+							"gender:"+tbgender+" "+
+							"isActive:"+tbisActive+" "+
+							"dob:"+tbdob+" "+
+							"age:"+tbage+" "+
+							"email:"+tbemail+" "+
+							"profilePic:"+tbprofilePic+" "+
+							"dummyPic:"+tbdummyPic+" "+
+							"listen:"+tblisten+" "+
+							"token:"+tbtoken+" "+
+							"accepted:"+tbaccepted+" "+
+							"created:"+tbcreated+" "+
+							"updated:"+tbupdated+" "
+							);
+						results[key] = {
+							"uid":tbuid,
+							"uname":tbuname,
+							"contact":tbcontact,
+							"gender":tbgender,
+							"isActive":tbisActive,
+							"dob":tbdob,
+							"age":tbage,
+							"email":tbemail,
+							"pic":pic,
+							"listen":tblisten,
+							"token":tbtoken,
+							"accepted":tbaccepted,
+							"created":tbcreated,
+							"updated":tbupdated
+						};
+						//console.info("msg:"+JSON.stringify(d.results));
+						$scope.pendingbesties = JSON.parse(JSON.stringify(results));
+						$scope.pendingbestiesdiv = false;
+					});
+				}else if(d.status == "Failed"){
+					$scope.pendingbestiesdiv = true;
+					console.error(JSON.stringify(res));
+				}
+				//console.log(JSON.stringify(res));
+			})
+			.error(function(err){
+				$scope.pendingbestiesdiv = true;
+				console.error(JSON.stringify(err)+" in service");
+			});
+		},
+
+		/*joinpendingbesties($cordovaSQLite,$scope,$http,$ionicLoading,$cordovaToast,name,id,contact,webrowid)*/
+		joinpendingbesties:function($cordovaSQLite,$scope,$http,$ionicLoading,$cordovaToast,name,id,contact,webrowid){
+			console.log(name+" "+webrowid);
 		}
 
 	}

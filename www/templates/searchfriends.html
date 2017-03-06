@@ -16,7 +16,7 @@
 
 	<ion-list ng-hide="besties">
       <div ng-repeat = "i in bestiesdata">
-        <ion-item class="item item-avatar item-icon-right" ng-click="">
+        <ion-item class="item item-avatar item-icon-right" ng-click="showsearchuser('{{i.rowid}}','{{i.uname}}','{{i.contact}}','{{i.gender}}')">
           
           <img src="{{i.pic}}" width="30" height="30">
           {{i.uname}}<br>

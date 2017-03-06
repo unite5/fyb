@@ -3,8 +3,8 @@
       <h1 class="title">My Modal title</h1>
     </ion-header-bar> -->
     <ion-content>
-    	<div class="meetmodelarrow"><i class="icon ion-arrow-left-c" ng-click="closeModal()"></i></div>
-    	<img src="{{pic}}" class="item-avatar animated fadeIn meetmodelimage" style="width: 100%;height: 80%;text-align: center;">
+    	<div class="meetmodelarrow"  ng-click="closeModal()"><i class="icon ion-arrow-left-c" ng-click="closeModal()"></i></div>
+    	<img src="{{pic}}" class="animated fadeIn meetmodelimage"  ng-click="alert('dsf')" style="width: 100%;height: 80%;text-align: center;">
       	<!-- <div class="row">
 	        <div class="col col-100 colviewbestiesimagemodel">
 	            <img src="img/ionic.png" class="item-avatar animated fadeIn">
@@ -38,6 +38,9 @@
 	      </div>
 	      <h5>{{ucontact}}</h5><br>
 	      <h6>{{email}}</h6>
+	    </div>
+	    <div>
+	    	<button class="button"  ng-click="closeModal()">OK</button>
 	    </div>
 	    <!-- <div class="row">
 	      <div class="col">

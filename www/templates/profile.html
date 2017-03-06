@@ -1,5 +1,14 @@
 <ion-view view-title="{{ 'Me' }}">
   	<ion-content>
+  		<div class="row">
+	        <div class="col colviewbestiesimage">
+	            <img src="{{pic}}" class=" animated fadeIn" width="100" height="100">
+	        </div>
+	        <div class="col colviewbestiesname">
+	        	<h2><b>{{name}}</b> {{name}} </h2>
+	            <p>Last Viewed @ {{last}}</p>
+	        </div>
+	    </div>
   		<div class="list">
 		  <label class="item item-input item-floating-label">
 		    <span class="input-label">Name</span>

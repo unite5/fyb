@@ -14,4 +14,16 @@ besties.controller('searchController',function($scope,$cordovaContacts,$ionicPla
 			bestiesservice.searchbesties($cordovaSQLite,$scope,$ionicLoading,$ionicPopup);
 		}
 	};
+	$scope.showsearchuser = function(rowid,name,contact,gender){
+		var sPopup = $ionicPopup.alert({
+			title:''+name,
+			cssClass:'searchPopup',
+			content:''+contact+"<br>"+gender
+		}).then(function(){
+			setTimeout(function(){
+				sPopup.close();
+			},2500);
+			console.log("done");
+		});
+	};
 });

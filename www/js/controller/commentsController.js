@@ -11,7 +11,7 @@ besties.controller('commentsController',function($scope){
         
         (function() { // DON'T EDIT BELOW THIS LINE
         var d = document, s = d.createElement('script');
-        s.src = 'http://jpbesties.disqus.com/embed.js';
+        s.src = 'https://jpbesties.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
         })();

@@ -1,6 +1,6 @@
 //angular.module('besties')
-besties.config(function($stateProvider,$urlRouterProvider){
-  
+besties.config(function($stateProvider,$urlRouterProvider,$ionicConfigProvider){
+  $ionicConfigProvider.tabs.position('bottom');
   $stateProvider
   
   .state('splash',{

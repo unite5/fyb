@@ -18,14 +18,27 @@
 
       </div>
 
-      <div class="list">
+      <div class="list" ng-hide="pendingbestiesdiv">
 
         <div class="item item-divider">
           Pending connected besties,
           <span class="icon ion-person-stalker"></span>
         </div>
         <div>
-         <div class="row">
+
+         <div class="row" ng-repeat="p in pendingbesties">
+           <div class="col col-20">
+            <img src="{{p.pic}}" width="60" height="60" ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)">   
+           </div>
+           <div class="col col-60">
+             <h6  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)">{{p.uname}}</h6>
+             <p  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)">{{p.contact}}<br>{{'Wants to Join with you'}}</p>
+           </div>
+           <div class="col col-20">
+             <i class="icon ion-android-done-all"  style="float: right;top: 0;right: 0;margin: 12%;font-size:28px;color: red;"  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)"></i>
+           </div>
+         </div>
+         <!-- <div class="row">
            <div class="col col-20">
             <img src="img/ionic.png" width="60" height="60">   
            </div>
@@ -36,7 +49,8 @@
            <div class="col col-20">
              <i class="icon ion-android-done-all"  style="float: right;top: 0;right: 0;margin: 12%;font-size:28px;color: red;"></i>
            </div>
-         </div>
+         </div> -->
+
         </div>   
         
 

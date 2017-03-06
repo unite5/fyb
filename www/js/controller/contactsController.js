@@ -1,8 +1,9 @@
 //angular.module('besties')
-besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout,$ionicPopup,callfriends,$http,$ionicModal){
+besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout,$ionicPopup,callfriends,$http,$ionicModal,$cordovaToast){
     
     /*listin joinins*/
     $timeout(function(){
+      callfriends.loadRequestedContacts($cordovaSQLite,$http,$scope,$ionicLoading,$ionicPopup);
       callfriends.listjoinin($scope,$cordovaSQLite);
     },100);
     $scope.listfriendlength = 25;
@@ -57,7 +58,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
         makedb.getSQLDBContactLists($scope,$cordovaSQLite);
       },100);
       $timeout(function(){
-        
+        /*This is for native contact list updating*/
         makedb.AddContactInPhoneOnce($cordovaSQLite,$scope,$timeout,$cordovaContacts,$ionicPopup);
       },10000);
 
@@ -215,9 +216,39 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
 
     /*call list of friends*/
     $scope.calllist = function(){
-      callfriends.loadConnectedContacts($cordovaSQLite,$http,$scope,$ionicLoading,$ionicPopup);
+      callfriends.loadRequestedContacts($cordovaSQLite,$http,$scope,$ionicLoading,$ionicPopup);
+      //callfriends.loadConnectedContacts($cordovaSQLite,$http,$scope,$ionicLoading,$ionicPopup);
     }
 
+
+    /*joinpendingbesties friends*/
+    $scope.joinpendingbesties = function(name,id,contact,webrowid){
+      var pops = $ionicPopup.confirm({
+        template: 'Friend Name '+name+'<br>'+'Contact is '+contact+'<br>'+'wants to besties with you!',
+        title: 'besties '+name,
+        scope: $scope,
+        buttons: [
+          {
+            text: 'Cancel',
+            type: 'button-default',
+            onTap: function(e) {
+              pops.close();
+            }
+          },
+          {
+            text: 'Ok',
+            type: 'button-royal',
+            onTap: function(e) {
+              //pops.close();
+              callfriends.joinpendingbesties($cordovaSQLite,$scope,$http,$ionicLoading,$cordovaToast,name,id,contact,webrowid);
+            }
+          }
+        ]
+      }).then(function(res){
+
+      });
+      
+    }
 
     /*Model Contact View*/
     $ionicModal.fromTemplateUrl('templates/abstractpages/contactlist.html', {

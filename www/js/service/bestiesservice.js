@@ -372,7 +372,11 @@ besties.factory("bestiesservice",function(){
 							'contact':res.rows.item(i).contact,
 							'uid':res.rows.item(i).uid,
 							'pic':pic,
-							'gender':res.rows.item(i).gender
+							'gender':res.rows.item(i).gender,
+							'token':res.rows.item(i).token,
+							'email':res.rows.item(i).email,
+							'created':res.rows.item(i).created,
+							'rowid':res.rows.item(i).id
 						};
 					}
 					$scope.bestiesdata = JSON.parse(JSON.stringify(data));
