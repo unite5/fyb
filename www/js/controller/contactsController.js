@@ -3,6 +3,14 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
     
     /*listin joinins*/
     $timeout(function(){
+      /*test*/
+      /*$timeout(function(){
+      $cordovaSQLite.execute(db,"UPDATE joinincontacts SET contact = ? WHERE id = ?",["+919004338043",4])
+      .then(function(s){
+        console.info("done");
+      },function(er){console.error("err")});
+    },6000);*/
+      /**/
       callfriends.loadRequestedContacts($cordovaSQLite,$http,$scope,$ionicLoading,$ionicPopup);
       callfriends.listjoinin($scope,$cordovaSQLite);
     },100);

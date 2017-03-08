@@ -308,7 +308,98 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 
 		/*joinpendingbesties($cordovaSQLite,$scope,$http,$ionicLoading,$cordovaToast,name,id,contact,webrowid)*/
 		joinpendingbesties:function($cordovaSQLite,$scope,$http,$ionicLoading,$cordovaToast,name,id,contact,webrowid){
-			console.log(name+" "+webrowid);
+			console.log(name+" "+webrowid+" "+id);
+			$ionicLoading.show({
+	        	template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/
+	        	cssClass:"ionicLoadingCss1",
+	        	animation: 'fade-in',
+	        	showBackdrop: false,
+	        	duration:10000
+	    	});
+			$cordovaSQLite.execute(db,"SELECT uid FROM joinincontacts where uid = ?",[id])
+			.then(function(rin){
+				if(rin.rows.length == 1){
+					alert("You already connected with "+name+" besties");
+					$ionicLoading.hide();
+					$cordovaToast.show("You already connected with "+name+" besties", 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
+				}else{
+					var data = {
+						'uname':name,
+						'utoken':webrowid,
+						'uid':id,
+						'ucontact':contact,
+						'myid':localStorage.userId,
+						'mycontact':localStorage.userContact,
+						'myname':localStorage.userName,
+						'mytoken':localStorage.secret
+					};
+					var userele = angular.element(document.getElementById('user'+id));
+					var userico = angular.element(document.getElementById('userico'+id));
+					/*setTimeout(function(){
+						userele.text("");
+						userele.html("<font color='green'>"+contact+"<br>You besties with "+name+"</font>");
+						userico.css({"color":"green"});
+						$ionicLoading.hide();
+					},6000);*/
+					$http.post(localStorage.myURL+"/mobile/my/besties/approval",data)
+					.success(function(res){
+						var results = JSON.parse(JSON.stringify(res));
+						var status = results.status;
+						if(status == "success"){
+							
+							var userdata = JSON.parse(JSON.stringify(results.userdata));
+							var trackuser = JSON.parse(JSON.stringify(results.trackuser));
+							var pic = userdata.profilePic;
+							if(pic == "" || pic == null){
+								if(userdata.gender != "Female")
+									pic = "img/profileBoy.png";
+								else
+									pic = "img/profileGirl.png";
+							}
+							var query = "INSERT INTO joinincontacts(uid,uname,contact,gender,isActive,dob,age,email,profilePic,dummyPic,listen,token,accepted,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+							$cordovaSQLite.execute(db,query,[id,name,userdata.contact,userdata.gender,userdata.isActive,userdata.dob,userdata.age,userdata.email,userdata.profilePic,pic,"1",userdata.token,"1",userdata.created,userdata.updated])
+							.then(function(res){
+								console.info("done");
+								var query = "INSERT INTO bestiesnearby(uid,ucontact,uname,distance,lat,long,address,token,created,updated,track,length,strlength) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"
+								$cordovaSQLite.execute(db,query,[trackuser.uid,trackuser.ucontact,name,'',trackuser.lat,trackuser.lon,trackuser.address,trackuser.token,trackuser.created,trackuser.updated,'0','',''])
+								.then(function(res){
+									console.info("done");
+								},function(err){console.error("failed in query");})
+							},function(err){console.error("failed in query");})
+							$ionicLoading.hide();
+							userele.text("");
+							userele.html("<font color='green'>"+contact+"<br>You besties with "+name+"</font>");
+							userico.css({"color":"green"});
+							$ionicLoading.hide();
+						}else{
+							$ionicLoading.hide();
+							console.error("failed "+results.Message);
+							$cordovaToast
+			                .show("Sorry write your are unable to join with "+name, 'long', 'center')
+			                .then(function(success) {
+			                  // success
+			                }, function (error) {
+			                  // error
+			                });	
+						}
+					})
+					.error(function(err){
+						$ionicLoading.hide();
+						alert("error "+JSON.stringify(err));
+						$cordovaToast
+		                .show("Sorry write your are unable to join with "+name, 'long', 'center')
+		                .then(function(success) {
+		                  // success
+		                }, function (error) {
+		                  // error
+		                });
+					});
+				}
+			},function(rout){
+				$ionicLoading.hide();
+				alert("You already connected with "+name+" besties");
+				$cordovaToast.show("You already connected with "+name+" besties", 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
+			});
 		}
 
 	}

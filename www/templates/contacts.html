@@ -32,10 +32,10 @@
            </div>
            <div class="col col-60">
              <h6  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)">{{p.uname}}</h6>
-             <p  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)">{{p.contact}}<br>{{'Wants to Join with you'}}</p>
+             <p  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)" id="user{{p.uid}}">{{p.contact}}<br>{{'Wants to Join with you'}}</p>
            </div>
            <div class="col col-20">
-             <i class="icon ion-android-done-all"  style="float: right;top: 0;right: 0;margin: 12%;font-size:28px;color: red;"  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)"></i>
+             <i id="userico{{p.uid}}" class="icon ion-android-done-all"  style="float: right;top: 0;right: 0;margin: 12%;font-size:28px;color: red;"  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)"></i>
            </div>
          </div>
          <!-- <div class="row">
