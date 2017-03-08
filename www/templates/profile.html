@@ -1,45 +1,45 @@
 <ion-view view-title="{{ 'Me' }}">
-  	<ion-content>
+  	<ion-content class="contentProfile">
   		<div class="row">
-	        <div class="col colviewbestiesimage">
+	        <div class="col colviewbestiesimage Profileimage">
 	            <img src="{{pic}}" class=" animated fadeIn" width="100" height="100">
 	        </div>
 	        <div class="col colviewbestiesname">
-	        	<h2><b>{{name}}</b> {{name}} </h2>
+	        	<h2 style="color: white"><b>{{name}}</b></h2>
 	            <p>Last Viewed @ {{last}}</p>
 	        </div>
 	    </div>
   		<div class="list">
-		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Name</span>
-		    <input type="text" placeholder="Name">
-		  </label>
+		  <!-- <label class="item item-input item-floating-label">
+		    <span class="input-label">My Name</span>
+		    <input type="text" placeholder="Name" value="{{name}}">
+		  </label> -->
 		  
 		  <label class="item item-input item-floating-label">
 		    <span class="input-label">Email</span>
-		    <input type="email" placeholder="Email">
+		    <input type="email" placeholder="Email" value="{{email}}" ng-model="profilemodel.email">
 		  </label>
 		  <label class="item item-input item-floating-label">
 		    <span class="input-label">Age</span>
-		    <input type="text" placeholder="Age">
+		    <input type="text" placeholder="Age" value="{{age}}" ng-model="profilemodel.age">
 		  </label>
 		  <label class="item item-input item-floating-label">
 		    <span class="input-label">Address</span>
-		    <input type="text" placeholder="Address">
+		    <input type="text" placeholder="Address" value="regAddress" ng-model="profilemodel.address">
 		  </label>
 		  <label class="item item-input item-floating-label">
-		    <span class="input-label">Hobbies</span>
-		    <input type="text" placeholder="Hobbies">
+		    <span class="input-label" >Hobbies</span>
+		    <input type="text" placeholder="Hobbies" value="hobbies" ng-model="profilemodel.hobbies">
 		  </label>
 		  <label class="item item-input item-floating-label">
 		    <span class="input-label">Your secret Answer For Last 3 Digit Of Surname</span>
-		    <input type="text" placeholder="Your secret Answer For Last 3 Digit Of Surname">
+		    <input type="text" placeholder="Your secret Answer For Last 3 Digit Of Surname"  ng-model="profilemodel.fvans">
 		  </label>
-		  <button class="button button-block button-calm">
+		  <button class="button button-block button-calm" ng-click="submitefork()">
 			  Change Your Info
 		  </button>
 		</div>
-		<div class="list">
+		<!-- <div class="list">
 			<label class="item item-input item-floating-label">
 			    <span class="input-label">Image</span>
 			    <input type="text" placeholder="Image">
@@ -47,7 +47,7 @@
 			<button class="button button-block button-calm">
 			  Change Profile Image
 		  	</button>
-		</div>
+		</div> -->
     	<!-- <ion-tabs class="tabs-icon-bottom tabs-color-active-positive">
 
 		  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">

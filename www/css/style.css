@@ -215,15 +215,15 @@ border-color: transparent;
 .constText {
   color: #ffffff;
 }
-.img-circular{
- width: 160px;
- height: 160px;
- /*background-image: url('../img/person.png');
- background-size: cover;*/
- display: block;
- border-radius: 100px;
- -webkit-border-radius: 100px;
- -moz-border-radius: 100px;
+.img-circular {
+    width: 160px;
+    height: 160px;
+    display: block;
+    border-radius: 100px;
+    margin-left: 10%;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    background-color: #222446;
 }
 
 /*searchhead*/
@@ -604,7 +604,7 @@ ion-side-menu.menu.menu-left.active {
 }
 
 img.profileLogo {
-    margin: 10%;
+    /*margin: 10%;*/
 }
 
 
@@ -651,6 +651,25 @@ ion-side-menu.menu {
 }*/
 a.item.a1,a.item.a2,a.item.a3,a.item.a4,a.item.a5,a.item.a6,a.item.a7,a.item.a8,a.item.a9,a.item.a10,a.item.a11,a.item.a12{
   background-color: transparent;
+}
+
+/*contentProfile Profile*/
+ion-content.contentProfile{
+  background-color: #222446;
+}
+div.col.colviewbestiesimage.Profileimage{
+  width: 100px;
+    height: 100px;
+    display: block;
+    border-radius: 100px;
+    margin-left: 10%;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    background-color: #222446;
+}
+label.item.item-input.item-floating-label{
+  border-top-color: #222446;
+  border-bottom-color: #222446;
 }
 
 /******************************************************************************************

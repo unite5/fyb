@@ -9,7 +9,20 @@ besties.factory("profileservice",function($cordovaSQLite){
 		.then(function(res){
 			if(res.rows.length != 0){
 				$scope.name = res.rows.item(0).name;
-				console.log($scope.name);
+				var photo = res.rows.item(0).profilePic;
+				if(photo == "img/profileBoy.png"){
+					$scope.pic = res.rows.item(0).dummyPic;
+				}else if(photo == "" || photo == null){
+					$scope.pic = res.rows.item(0).dummyPic;
+				}else if(photo != "img/profileBoy.png"){
+					$scope.pic = res.rows.item(0).profilePic;
+				}
+				$scope.last = moment(res.rows.item(0).updated).fromNow();
+				$scope.email = res.rows.item(0).email;
+				$scope.age = res.rows.item(0).age;
+				$scope.regAddress = res.rows.item(0).regAddress;
+				$scope.hobbies = res.rows.item(0).hobbies;
+				$scope.faviAns = res.rows.item(0).faviAns;
 				//name = res.rows.item(0).name;
 				//return JSON.parse(JSON.stringify(data));
 			}else{
