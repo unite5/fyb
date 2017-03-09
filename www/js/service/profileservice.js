@@ -18,11 +18,13 @@ besties.factory("profileservice",function($cordovaSQLite){
 					$scope.pic = res.rows.item(0).profilePic;
 				}
 				$scope.last = moment(res.rows.item(0).updated).fromNow();
-				$scope.email = res.rows.item(0).email;
-				$scope.age = res.rows.item(0).age;
+				$scope.profilemodel.email = res.rows.item(0).email;
+				$scope.profilemodel.age = res.rows.item(0).age;
 				$scope.regAddress = res.rows.item(0).regAddress;
-				$scope.hobbies = res.rows.item(0).hobbies;
-				$scope.faviAns = res.rows.item(0).faviAns;
+				$scope.profilemodel.hobbies = res.rows.item(0).hobbies;
+				$scope.profilemodel.fvans = "abc";//res.rows.item(0).faviAns;
+				$scope.profilemodel.address = res.rows.item(0).regAddress;
+				console.info($scope.last+"\n"+$scope.regAddress+"\n"+$scope.profilemodel.address);
 				//name = res.rows.item(0).name;
 				//return JSON.parse(JSON.stringify(data));
 			}else{
@@ -40,6 +42,76 @@ besties.factory("profileservice",function($cordovaSQLite){
 		},
 		say:function(){
 			console.log('say');
+		},
+		sendToMyProfile:function($http,$cordovaSQLite,$scope,$ionicLoading,$ionicPopup,$timeout,$cordovaToast){
+			$ionicLoading.show({
+                template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/
+                cssClass:"ionicLoadingCss1",
+                animation: 'fade-in',
+                showBackdrop: false,
+                duration:6000
+            });
+            var data = {
+            	'email':$scope.profilemodel.email,
+            	'age':$scope.profilemodel.age,
+            	'address':$scope.profilemodel.address,
+            	'hobbies':$scope.profilemodel.hobbies,
+            	'fvans':$scope.profilemodel.fvans,
+            	'id':localStorage.userId,
+            	'contact':localStorage.userContact,
+            	'token':localStorage.secret
+            };
+            console.warn(data);
+            $http.post(localStorage.myURL+"/mobile/my/profile/update/info",data)
+            .success(function(suc){
+            	$ionicLoading.hide();
+            	var res = JSON.parse(JSON.stringify(suc));
+            	var status = res.status;
+            	if(status == "success"){
+            		var updated = moment().format('YYYY-MM-DD H:mm:ss');
+            		var query = "UPDATE self SET email = ?,age = ?,hobbies = ?,faviAns = ?,regAddress = ?,updated = ?";
+					$cordovaSQLite.execute(db,query,[$scope.profilemodel.email,$scope.profilemodel.age,$scope.profilemodel.hobbies,$scope.profilemodel.fvans,$scope.profilemodel.address,updated]).then(function(res){
+						console.info('You updated your info');
+		                $cordovaToast.show("You updated your info", 'long', 'center')
+		                .then(function(success) {/*success*/}, function (error) {/* error*/});	
+					},function(err){
+						console.error("failed to insert");
+					});
+            	}else if(status == "Failed"){
+            		var meetPopup = $ionicPopup.alert({
+        				title:'Ooops! Updating Failed',
+        				cssClass:'profilePopup',
+        				content:'Your data is failed through server.<br>Can not do right now.<br>Server says '+res.Message
+        			}).then(function(){
+        				setTimeout(function(){
+        					meetPopup.close();
+        				},3000);
+        				console.log("done");
+        			});
+            	}else{
+            		var meetPopup = $ionicPopup.alert({
+        				title:'Ooops! Updating Failed',
+        				cssClass:'profilePopup',
+        				content:'Your data is failed through server.<br>Can not do right now.<br>Server says '+res.Message
+        			}).then(function(){
+        				setTimeout(function(){
+        					meetPopup.close();
+        				},3000);
+        				console.log("done");
+        			});
+            	}
+            	console.info(JSON.stringify(suc));
+            })
+            .error(function(err){
+            	$ionicLoading.hide();
+            	console.log("Server failed the request");
+                $cordovaToast.show("Right now your data, could not updated. Try again.", 'long', 'center')
+                .then(function(success) {
+                  // success
+                }, function (error) {
+                  // error
+                });
+            });
 		}
 	}
 });
