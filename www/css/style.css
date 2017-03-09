@@ -210,6 +210,7 @@ border-color: transparent;
 .constColor2 {
   color: #fff;
   background-color:#323569;/*#699cfa;*/
+  border-bottom-color: #323569;
 }
 
 .constText {
@@ -670,6 +671,10 @@ div.col.colviewbestiesimage.Profileimage{
 label.item.item-input.item-floating-label{
   border-top-color: #222446;
   border-bottom-color: #222446;
+}
+input.profiletxt{
+  color: #ffffff;
+  text-decoration-color: #ffffff;
 }
 
 /******************************************************************************************
