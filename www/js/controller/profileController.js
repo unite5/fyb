@@ -57,7 +57,7 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	          $scope.my.image = "data:image/png;base64," + imageData;
 	          var con = '<img src="{{pic}}" ng-model="my.image" width="100" height="100">';
 				var meetPopup = $ionicPopup.alert({
-					title:'Choose From',
+					title:'Upload',
 					cssClass:'profileChoosePopup',
 					content:con,
 					scope:$scope
@@ -88,11 +88,11 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	        };
 	       
 	      $cordovaCamera.getPicture(options).then(function (imageData) {
-	            $scope.pic = "data:image/jpeg;base64," + imageData;
-	            $scope.my.image = "data:image/jpeg;base64," + imageData;
+	            $scope.pic = "data:image/png;base64," + imageData;
+	            $scope.my.image = "data:image/png;base64," + imageData;
 	            var con = '<img src="{{pic}}" ng-model="my.image" width="100" height="100">';
 				var meetPopup = $ionicPopup.alert({
-					title:'Choose From',
+					title:'Upload',
 					cssClass:'profileChoosePopup',
 					content:con,
 					scope:$scope
