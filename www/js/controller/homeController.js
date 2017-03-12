@@ -12,6 +12,13 @@ days = end.diff(now, 'minutes');
     var dddd = moment.duration().subtract("2017-02-28 23:24:38");//moment.duration("2017-02-28 23:24:38").minutes();
     console.log("difference is:"+days);*/
     $timeout(function(){
+        
+        $ionicLoading.show({
+            template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/
+            cssClass:"ionicLoadingCss1",
+            animation: 'fade-in',
+            showBackdrop: false,
+        });
         //$interval(function(){
             //notify.scheduleTest($ionicPlatform,$scope,$cordovaLocalNotification,$cordovaSQLite);
             if(availableisOffline.check()){console.log('tracker isnt available')}
@@ -28,12 +35,6 @@ days = end.diff(now, 'minutes');
     },4000);
 
 
-    /*$ionicLoading.show({
-      template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>',
-      duration: 3000
-    }).then(function(){
-        console.log("done");
-    });*/
 
 
     /*$timeout(function(){

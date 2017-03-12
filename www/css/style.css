@@ -211,6 +211,8 @@ border-color: transparent;
   color: #fff;
   background-color:#323569;/*#699cfa;*/
   border-bottom-color: #323569;
+  padding-bottom: 2px;
+  border-color: #323569;
 }
 
 .constText {

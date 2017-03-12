@@ -1,5 +1,5 @@
 //angular.module('besties')
-besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoading,$ionicPopup,$http,profileservice,$timeout,$cordovaToast,$cordovaCamera, $cordovaCapture){
+besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoading,$ionicPopup,$http,profileservice,$timeout,$cordovaToast,$cordovaCamera, $cordovaCapture,$ionicActionSheet){
 	
 	$scope.my = {
 		'image':''
@@ -22,20 +22,58 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 		profileservice.sendToMyProfile($http,$cordovaSQLite,$scope,$ionicLoading,$ionicPopup,$timeout,$cordovaToast);
 	};
 
+	//var meetPopup;
 	$scope.chooseOptionToChangePic = function(){
 		var con = '<div class="row"><div class="col col-50"><button class="button button-large button-positive" ng-click="gallery()">  Gallery </button></div>'+
 				   '<div class="col col-50"><button class="button button-large button-positive"  ng-click="camera()"> Camera </button></div></div>';
-		var meetPopup = $ionicPopup.alert({
+		/*var meetPopup = $ionicPopup.show({
 			title:'Choose From',
 			cssClass:'profileChoosePopup',
 			content:con,
-			scope:$scope
+			scope:$scope,
+			buttons: [
+		      { text: 'Cancel' },
+		      {
+		        text: '<b>Save</b>',
+		        type: 'button-positive',
+		        onTap: function(e) {
+		          meetPopup.close();
+		        }
+		      }
+		    ]
 		}).then(function(){
-			setTimeout(function(){
-				meetPopup.close();
-			},3000);
+			// setTimeout(function(){
+			// 	meetPopup.close();
+			// },3000);
 			console.log("done");
-		});
+		});*/
+		// Show the action sheet
+		   var hideSheet = $ionicActionSheet.show({
+		     buttons: [
+		       { text: 'Gallery' },
+		       { text: 'Camera' }
+		     ],
+		     /*destructiveText: 'Delete',*/
+		     titleText: 'Change Profile Picture From',
+		     cancelText: 'Cancel',
+		     cancel: function() {
+		          // add cancel code..
+		        },
+		     buttonClicked: function(index) {
+		     	if(index==0){
+		     		console.log("gallery");
+			       return true;
+		     	}else{
+		     		console.log("camera");
+			       return true;	
+		     	}
+		     }
+		   });
+
+		   // For example's sake, hide the sheet after two seconds
+		   $timeout(function() {
+		     hideSheet();
+		   }, 6000);
 	};
 
 	$scope.gallery = function(){
@@ -91,7 +129,7 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	            $scope.pic = "data:image/png;base64," + imageData;
 	            $scope.my.image = "data:image/png;base64," + imageData;
 	            var con = '<img src="{{pic}}" ng-model="my.image" width="100" height="100">';
-				var meetPopup = $ionicPopup.alert({
+				var meetPopup = $ionicPopup.show({
 					title:'Upload',
 					cssClass:'profileChoosePopup',
 					content:con,

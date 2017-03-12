@@ -1,10 +1,42 @@
 //angular.module('besties')
-besties.controller('viewinmapController',function($log,$http,$scope,$compile,$stateParams,$cordovaGeolocation,$ionicLoading){
+besties.controller('viewinmapController',function($log,$http,$scope,$compile,$stateParams,$cordovaGeolocation,$ionicLoading,$cordovaSQLite){
 	//googlemap
-      var uluru = {lat: 19.018044, lng: 72.843120};//19.018044,72.843620
+  var n,c,i;
+  var query = "SELECT * FROM joinincontacts WHERE uid = ? LIMIT 1";
+  $cordovaSQLite.execute(db,query,[$stateParams.id])
+  .then(function(suc){
+    $scope.name = suc.rows.item(0).uname;
+    $scope.contact = suc.rows.item(0).contact;
+    $scope.id = suc.rows.item(0).id;
+     n = suc.rows.item(0).uname;
+     c = suc.rows.item(0).contact;
+     i = suc.rows.item(0).id;
+
+     var query = "SELECT * FROM bestiesnearby WHERE uid = ? and ucontact = ? LIMIT 1";
+      $cordovaSQLite.execute(db,query,[$stateParams.id,c])
+      .then(function(suc){
+        $scope.bestiesfindname = suc.rows.item(0).uname; 
+        $scope.bestiesaddress =suc.rows.item(0).address; 
+        $scope.bestieslat =suc.rows.item(0).lat; 
+        $scope.bestieslong =suc.rows.item(0).long; 
+        console.info("success 1 "+$scope.bestiesaddress +" "+ $scope.bestieslat+" "+$scope.bestieslong);
+
+        var query = "SELECT * FROM trackme WHERE id = ? LIMIT 1";
+        $cordovaSQLite.execute(db,query,["1"])
+        .then(function(suc){
+          $scope.bestiesuseraddress =suc.rows.item(0).address; 
+          $scope.bestiesuserlat =suc.rows.item(0).lat; 
+          $scope.bestiesuserlong =suc.rows.item(0).long; 
+          console.info("success 2 "+$scope.bestiesuseraddress+" "+$scope.bestiesuserlat+" "+$scope.bestiesuserlong);
+        
+        
+  console.log(n+" "+c+" "+i);
+
+      //var uluru = {lat: 19.018044, lng: 72.843120};//19.018044,72.843620
+      var uluru = {lat: $scope.bestieslat, lng: $scope.bestieslong};//19.018044,72.843620
       //for map
         var map = new google.maps.Map(document.getElementById('map'), {
-          backgroundColor:'#63d0ff',
+          backgroundColor:'#323569',/*63d0ff*/
           zoom: 22,
           center: uluru,
           fullscreenControl:true,
@@ -42,9 +74,12 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
        }
        var features = [
          {
+           position: new google.maps.LatLng($scope.bestiesuserlat, $scope.bestiesuserlong),
+           type: 'me'
+         }/*{
            position: new google.maps.LatLng(19.018044, 72.843620),
            type: 'me'
-         }/*,
+         }*//*,
         {
            position: new google.maps.LatLng(19.018044, 72.843120),
            type: 'foundfriend'
@@ -58,7 +93,7 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">Person Name</h1>'+
+      '<h1 id="firstHeading" class="firstHeading">'+$scope.bestiesfindname+'</h1>'+
       '</div></div>'+
       '</div>';
 
@@ -71,7 +106,7 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
         map: map,
         icon:'img/ic/nav.png',
          animation: google.maps.Animation.DROP,
-        title: 'Person Name'
+        title: $scope.bestiesfindname/*'Person Name'*/
       });
       marker.addListener('click', function() {
         infowindow.open(map, marker);
@@ -146,4 +181,15 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
       .error(function(err){
         $log.error(err);
       });
+
+
+        },function(err){
+          console.error("error trackme");
+        });
+      },function(err){
+        console.error("error bestiesnearby");
+      });
+    },function(err){
+      console.error("error joinincontacts");
+    });      
 });
