@@ -32,8 +32,8 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
   console.log(n+" "+c+" "+i);
 
       //$scope.bestiesuserlat
-      var uluru = {lat: 19.018044, lng: 72.843120};//19.018044,72.843620
-      //var uluru = {lat: $scope.bestiesuserlat, lng: $scope.bestiesuserlong};//19.018044,72.843620
+      //var uluru = {lat: 19.018044, lng: 72.843120};//19.018044,72.843620
+      var uluru = {lat: parseFloat($scope.bestiesuserlat), lng: parseFloat($scope.bestiesuserlong)};//19.018044,72.843620
       //for map
         var map = new google.maps.Map(document.getElementById('map'), {
           backgroundColor:'#323569',/*63d0ff*/
@@ -74,7 +74,7 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
        }
        var features = [
          {
-           position: new google.maps.LatLng(19.018044, 72.843620),
+           position: new google.maps.LatLng(parseFloat($scope.bestiesuserlat), parseFloat($scope.bestiesuserlong)),
            type: 'me'
          }/*,
         {
@@ -90,7 +90,7 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">Person Name</h1>'+
+      '<h1 id="firstHeading" class="firstHeading">'+n+'</h1>'+
       '</div></div>'+
       '</div>';
 
