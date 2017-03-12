@@ -120,7 +120,7 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
 
 
 
-      $http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=19.018044,72.843620&sensor=false")
+      $http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+$scope.bestieslat+","+$scope.bestieslong+"&sensor=false")
       .success(function(data){
         var values = data;
         var log,log2 ,log3= [];
