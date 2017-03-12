@@ -37,7 +37,7 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
       //for map
         var map = new google.maps.Map(document.getElementById('map'), {
           backgroundColor:'#323569',/*63d0ff*/
-          zoom: 22,
+          zoom: 20,
           center: uluru,
           fullscreenControl:true,
           maxZoom:24,
@@ -103,8 +103,9 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
         map: map,
         icon:'img/ic/nav.png',
          animation: google.maps.Animation.DROP,
-        title: 'Person Name'
+        title: n/*'Person Name'*/
       });
+      console.log("n "+n);
       marker.addListener('click', function() {
         infowindow.open(map, marker);
         // if (marker.getAnimation() !== null) {
