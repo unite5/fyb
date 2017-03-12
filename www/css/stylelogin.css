@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: #699cfa;
+  background-color: #323569/*#699cfa;*/
 }
 .DivM2 .DivM2button,.DivM3 .DivM3button,.DivM4 .DivM4button,.DivM5 .DivM5button{
   bottom: 0;
@@ -80,8 +80,15 @@ label.item.item-input.item-floating-label.la1 {
   animation-duration:2.0s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-fill-mode: both; 
+  color: #fff;
+}
+p.fybplast.myweb{
+  color: #fff;
 }
 .worldimagelogin{
+  color: #323569;
+  background-color: #323569;
+  border-color: #323569;
   margin-top: 10%;
   width: 250px;
   height: 250px;
@@ -102,8 +109,10 @@ label.item.item-input.item-floating-label.la1 {
   animation-delay: 0.1s;
   -webkit-animation-duration:1.0s;
   animation-duration:1.0s;
+  color: #fff;
 }
 .fybpcontacth2{
+  color: #fff;
   font-size: 25px;
   font-weight: 500;
   animation-delay: 0.9s;
@@ -111,11 +120,15 @@ label.item.item-input.item-floating-label.la1 {
   animation-duration:1.0s;
 }
 select {
-    background: #699cfa;
-    background-color: #699cfa;
+  border-color: #323569;
+  border-bottom-color: #323569;
+  padding: 2px;
+    background: #323569;/*#699cfa;*/
+    background-color: #323569;/*#699cfa;*/
 }
 .item-select select.selectcountry{
-  background: #699cfa;
+  background: #323569;/*#699cfa;*/
+  color: #fff;
 }
 label.item.item-input.item-select {
     margin-left: 18%;
@@ -123,17 +136,22 @@ label.item.item-input.item-select {
     margin-top: 10%;
     /* border-top-left-radius: 50%; */
     /* border-top-right-radius: 50%; */
-    border-color: #699cfa;
+    border-color: #323569/*#699cfa;*/
     border-bottom-color: darkblue;
     animation-delay: 1.5s;
     -webkit-animation-duration: 1.5s;
     animation-duration: 1.5s;
-    background-color: #699cfa;
+    background-color: #323569;/*#699cfa;*/
+    border:none;
 }
 .labelselect{
   animation-delay: 1.5s;
     -webkit-animation-duration:1.5s;
     animation-duration:1.5s;
+    color: #fff;
+}
+div.input-label.selectlabelcountry{
+ color: #fff; 
 }
 .labelselectimg{
   margin-top: 2%;
@@ -150,11 +168,16 @@ label.item.item-input.item-floating-label.text-center.CNtdlabel {
     margin-top: 3%;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
-    border-color: #699cfa;
+    border-color: darkslateblue;
+    color: #fff;
+    /*border-color: #699cfa;*/
     border-bottom-color: darkblue;
     animation-delay: 1.8s;
     -webkit-animation-duration:1.0s;
     animation-duration:1.0s;
+}
+input#txtPhone {
+    color: #fff;
 }
 .thirddivinput {
     text-align: center;
@@ -193,9 +216,16 @@ button.btngo2 {
   font-size: 35px;
   font-weight: 500;
   margin: 15%;
+  color: #fff;
   animation-delay: 0.1s;
   -webkit-animation-duration:1.0s;
   animation-duration:1.0s;
+}
+span.input-label.tdspan{
+  color: #fff;
+}
+#txtOTP{
+ color: #fff; 
 }
 label.item.item-input.item-floating-label.la2 {
     margin-left: 15%;
@@ -244,6 +274,10 @@ button.btngo3 {
   animation-delay: 0.1s;
   -webkit-animation-duration:1.0s;
   animation-duration:1.0s;
+  color: #fff;
+}
+span.input-label.sdspan{
+  color: #fff;
 }
 label.item.item-input.item-floating-label.la4 {
     margin-left: 15%;
@@ -288,6 +322,7 @@ button.btngo4 {
   animation-delay: 0.1s;
   -webkit-animation-duration:1.0s;
   animation-duration:1.0s;
+  color: #fff;
 }
 .sdr1,.sdr2{
   width: 100%;
@@ -299,6 +334,9 @@ button.btngo4 {
 .seconddivinput{
   text-align: center;
 }
+#seconddivinput{
+  color: #fff;
+}
 
 /************************ Div 5 ***********************/
 /*forthdivbtngo1*/
@@ -309,12 +347,14 @@ button.btngo4 {
   animation-delay: 0.1s;
   -webkit-animation-duration:1.0s;
   animation-duration:1.0s;
+  color: #fff;
 }
 .fifthimg{
   width: 90%;
 }
 .fybpcomplete{
   margin-top: 10%;
+  color: #fff;
 }
 
 /* otp popup */
