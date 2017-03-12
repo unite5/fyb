@@ -32,8 +32,8 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
   console.log(n+" "+c+" "+i);
 
       //$scope.bestiesuserlat
-      //var uluru = {lat: 19.018044, lng: 72.843120};//19.018044,72.843620
-      var uluru = {lat: $scope.bestiesuserlat, lng: $scope.bestiesuserlong};//19.018044,72.843620
+      var uluru = {lat: 19.018044, lng: 72.843120};//19.018044,72.843620
+      //var uluru = {lat: $scope.bestiesuserlat, lng: $scope.bestiesuserlong};//19.018044,72.843620
       //for map
         var map = new google.maps.Map(document.getElementById('map'), {
           backgroundColor:'#323569',/*63d0ff*/
