@@ -15,7 +15,6 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
      var query = "SELECT * FROM bestiesnearby WHERE uid = ? and ucontact = ? LIMIT 1";
       $cordovaSQLite.execute(db,query,[$stateParams.id,c])
       .then(function(suc){
-        $scope.bestiesfindname = suc.rows.item(0).uname; 
         $scope.bestiesaddress =suc.rows.item(0).address; 
         $scope.bestieslat =suc.rows.item(0).lat; 
         $scope.bestieslong =suc.rows.item(0).long; 
@@ -32,8 +31,9 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
         
   console.log(n+" "+c+" "+i);
 
+      //$scope.bestiesuserlat
       //var uluru = {lat: 19.018044, lng: 72.843120};//19.018044,72.843620
-      var uluru = {lat: $scope.bestieslat, lng: $scope.bestieslong};//19.018044,72.843620
+      var uluru = {lat: $scope.bestiesuserlat, lng: $scope.bestiesuserlong};//19.018044,72.843620
       //for map
         var map = new google.maps.Map(document.getElementById('map'), {
           backgroundColor:'#323569',/*63d0ff*/
@@ -74,12 +74,9 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
        }
        var features = [
          {
-           position: new google.maps.LatLng($scope.bestiesuserlat, $scope.bestiesuserlong),
-           type: 'me'
-         }/*{
            position: new google.maps.LatLng(19.018044, 72.843620),
            type: 'me'
-         }*//*,
+         }/*,
         {
            position: new google.maps.LatLng(19.018044, 72.843120),
            type: 'foundfriend'
@@ -93,7 +90,7 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">'+$scope.bestiesfindname+'</h1>'+
+      '<h1 id="firstHeading" class="firstHeading">Person Name</h1>'+
       '</div></div>'+
       '</div>';
 
@@ -106,7 +103,7 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
         map: map,
         icon:'img/ic/nav.png',
          animation: google.maps.Animation.DROP,
-        title: $scope.bestiesfindname/*'Person Name'*/
+        title: 'Person Name'
       });
       marker.addListener('click', function() {
         infowindow.open(map, marker);
@@ -120,6 +117,7 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
 
 
 
+      /*$http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=19.018044,72.843620&sensor=false")*/
       $http.get("https://maps.googleapis.com/maps/api/geocode/json?latlng="+$scope.bestieslat+","+$scope.bestieslong+"&sensor=false")
       .success(function(data){
         var values = data;
@@ -139,6 +137,10 @@ besties.controller('viewinmapController',function($log,$http,$scope,$compile,$st
         }
         $log.log("The final result:"+res.substring(2));
         $scope.useraddress = res.substring(2);
+        console.log(" user: "+$scope.bestiesuserlat+" "+$scope.bestiesuserlong+"\n"
+        +"besties:"+$scope.bestieslat+" "+$scope.bestieslong);
+//         user: 19.235449 73.128483
+// besties:19.235882 73.128483
         // if (status == "OK") {
         //   $log.info("gone");
         //   console.log(values.results[0]);
