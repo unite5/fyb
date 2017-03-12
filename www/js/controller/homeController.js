@@ -219,4 +219,10 @@ days = end.diff(now, 'minutes');
         //var meet = $ionicPopup.confirm();
     };
 
+
+    /*for chat*/
+    $scope.callthisalsoforchat = function(contact){
+        //localStorage.chatWith = contact; 
+    };
+
 });

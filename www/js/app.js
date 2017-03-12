@@ -1,6 +1,6 @@
-var besties = angular.module('besties', ['ionic','ngCordova','ngAnimate']);
+var besties = angular.module('besties', ['ionic','ngCordova','ngAnimate','firebase']);
 var db = null;
-besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$timeout,$cordovaToast,$state,$cordovaSQLite,makedb,$cordovaSplashscreen) {
+besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$timeout,$cordovaToast,$state,$cordovaSQLite,makedb,$cordovaSplashscreen, $cordovaPushV5) {
   $ionicPlatform.ready(function() {
     //$cordovaSplashscreen.show();
 
@@ -91,5 +91,43 @@ besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$t
           ionic.Platform.exitApp();
       },300000);
   });
+
+
+  var chatoptions = {
+    android: {
+      senderID: "556384031635"
+    },
+    ios: {
+      alert: "true",
+      badge: "true",
+      sound: "true"
+    },
+    windows: {}
+  };
+
+  /*$cordovaPushV5.initialize(chatoptions).then(function() {
+    // start listening for new notifications
+    $cordovaPushV5.onNotification();
+    // start listening for errors
+    $cordovaPushV5.onError();
+    
+    // register to get registrationId
+    $cordovaPushV5.register().then(function(registrationId) {
+      // save `registrationId` somewhere;
+      alert("registrationId");
+    })
+  });*/
+  
+  // triggered every time notification received
+  /*$rootScope.$on('$cordovaPushV5:notificationReceived', function(event, data){
+    alert("received "+data.message);
+  });
+
+  // triggered every time error occurs
+  $rootScope.$on('$cordovaPushV5:errorOcurred', function(event, e){
+    alert("failed "+e.message);
+  });
+*/
+
 });
 

@@ -152,7 +152,7 @@ besties.config(function($stateProvider,$urlRouterProvider,$ionicConfigProvider){
   })
 
   .state('app.chat',{
-    url:'/chat/:id',
+    url:'/chat/:id/:contact',
     views:{
       'menuContent':{
         templateUrl:'templates/chat.html',

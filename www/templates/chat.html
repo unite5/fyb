@@ -2,30 +2,44 @@
   	<ion-content>
     	<div class="chatdiv">
     		<div class="chattexts">
-    			<div class="chatfrom">
+    			<!-- <div class="chatfrom">
     				<p>Hi</p>
     			</div>
     			<div class="chatto">
     				<p>Ha bol kya hua!</p>
+    			</div> -->
+                <div ng-repeat="m in messages">
+    			<div class="chatfrom" ng-if="me == m.sendby">
+    				<p>{{m.text}}</p>
+                    <small>{{timeby(m.timestamp)}}</small>
     			</div>
-    			<div class="chatfrom">
-    				<p>Hi2</p>
+    			<div class="chatto"  ng-if="me != m.sendby">
+    				<p>{{m.text}}</p>
+                    <small>{{timeby(m.timestamp)}}</small>
     			</div>
-    			<div class="chatto">
-    				<p>Ha fir se bol kya hua!</p>
-    			</div>
+                </div>
     		</div>
-    		<div id="chattextnbtn" class="row chattextnbtn">
+    		<!-- <div id="chattextnbtn" class="row chattextnbtn">
 				<div class="col col-80">
-		  			<input type="text" class="chattextbox" name="chat" placeholder="Your Message To P_Name">	
+		  			<input type="text" class="chattextbox" name="chat" ng-model="chat.text" placeholder="Your Message To {{name}}">	
 				</div>
 				<div class="col col-20 chatbtndiv">
-					<button class="button chatbtn"><img src="img/sendmsg.png" width="40" height="40"></button>
+					<button class="button chatbtn" ng-click="sendit()"><img src="img/sendmsg.png" width="40" height="40"></button>
 				</div>
-			</div>
+			</div> -->
+
+            
     	</div>
     </ion-content>
-    <!-- <ion-footer-bar class="bar bar-default">
-    	
-  	</ion-footer-bar> -->
+    <ion-footer-bar align-title="left" class="bar"><!--  style="color: #323569;background-color: #323569" -->
+      <div class="row">
+        <div class="col col-80">
+            <input type="text" class="chattextbox" id="chatinput" name="chat" ng-model="chat.text" placeholder="Your Message To {{name}}"> 
+        </div>
+        <div class="col col-20 chatbtndiv">
+            <button class="button chatbtn" ng-click="sendit()"><img src="img/sendmsg.png" width="30" class="sendchatbtn" height="30"></button>
+        </div>
+      </div>
+    </ion-footer-bar>
+
 </ion-view>

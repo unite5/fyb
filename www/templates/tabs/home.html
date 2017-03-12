@@ -37,7 +37,7 @@
         </div>
         <div class="col" style="text-align:right;">
           <a class="icon ion-wineglass navigateinvite animated fadeIn" ng-click="callforinvite('{{b.uid}}','{{b.contact}}','{{b.token}}','{{b.name}}')"></a>
-          <a class="icon ion-chatbox-working navigatechat animated fadeIn" ng-href="#/app/chat/{{b.uid}}"></a>
+          <a class="icon ion-chatbox-working navigatechat animated fadeIn" ng-href="#/app/chat/{{b.uid}}/{{b.contact}}" ng-click="callthisalsoforchat('{{b.contact}}')"></a>
           <!-- <a class="subdued icon ion-code-working" style="font-size:36px;position:absolute;right:0;margin-right:4%;"></a> -->
         </div>
       </div>
