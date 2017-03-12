@@ -24,13 +24,13 @@ besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$t
       //StatusBar.styleDefault();
       if (cordova.platformId == 'android') {
           $cordovaStatusbar.overlaysWebView(true);
-          $cordovaStatusbar.styleHex('#699cfa');
+          $cordovaStatusbar.styleHex('#323569');//699cfa
         //$cordovaStatusbar.hide();
           $cordovaStatusbar.show();
           //StatusBar.backgroundColorByHexString("#699cfa");
       }else{
         $cordovaStatusbar.overlaysWebView(true);
-          $cordovaStatusbar.styleHex('#699cfa');
+          $cordovaStatusbar.styleHex('#323569');//699cfa
         //$cordovaStatusbar.hide();
           $cordovaStatusbar.show();
       }

@@ -176,6 +176,9 @@ label.item.item-input.item-floating-label.text-center.CNtdlabel {
     -webkit-animation-duration:1.0s;
     animation-duration:1.0s;
 }
+span.input-label.CNtdspan{
+  color: #fff;
+}
 input#txtPhone {
     color: #fff;
 }
