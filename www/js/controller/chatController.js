@@ -3,6 +3,8 @@ besties.controller('chatController',function($scope,$log,$stateParams,$cordovaSQ
 	$log.info("chatController " +$stateParams.id);
 	$scope.name = '';$scope.contact = '';
 	localStorage.chatWith = $stateParams.contact;	
+	$scope.ucontact = localStorage.chatWith;
+
 	var query = "SELECT * FROM joinincontacts WHERE uid = ? LIMIT 1";
 	$cordovaSQLite.execute(db,query,[$stateParams.id])
 	.then(function(suc){
@@ -49,7 +51,7 @@ besties.controller('chatController',function($scope,$log,$stateParams,$cordovaSQ
 				'receivedby':$scope.contact,/*localStorage.chatWith*/
 				'receivername':$scope.name,
 				'fulldate':moment().format('YYYY-MM-DD H:mm:ss'),
-				'timestamp':moment().format('LLLL')
+				'timestamp':moment().unix()
 			}
 			Message.create(message);
 			$scope.chat.text = '';
@@ -103,7 +105,8 @@ besties.factory('Message', ['$firebaseArray',function($firebaseArray) {
         //var messages = firebase.database().ref().child('messages').$asArray();
     var pp = localStorage.userContact+"-"+localStorage.chatWith;//+"/";
     console.log("pp "+pp);
-    var messages = $firebaseArray(firebase.database().ref('chats/group/').child(pp));
+    //var messages = $firebaseArray(firebase.database().ref('chats/group/').child(pp));
+    var messages = $firebaseArray(firebase.database().ref('chats/').child("group"));
     //   var ref = new Firebase('https://chatdemo-28584.firebaseio.com');
     // var messages = $firebase(ref.child('messages')).$asArray();
     /*var messages = [{'name':'Pippo','text':'Hello'},
@@ -117,6 +120,7 @@ besties.factory('Message', ['$firebaseArray',function($firebaseArray) {
     var Message = {
       all: messages,
       create: function (message) {
+      	console.log("pp "+pp);
         console.log("Message: "+JSON.stringify(message));
         return messages.$add(message);
       },

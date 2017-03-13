@@ -9,11 +9,11 @@
     				<p>Ha bol kya hua!</p>
     			</div> -->
                 <div ng-repeat="m in messages">
-    			<div class="chatfrom" ng-if="me == m.sendby">
+    			<div class="chatfrom" ng-if="me == m.sendby && ucontact == m.receivedby">
     				<p>{{m.text}}</p>
                     <small>{{timeby(m.timestamp)}}</small>
     			</div>
-    			<div class="chatto"  ng-if="me != m.sendby">
+    			<div class="chatto"  ng-if="ucontact == m.sendby && me == m.receivedby">
     				<p>{{m.text}}</p>
                     <small>{{timeby(m.timestamp)}}</small>
     			</div>
