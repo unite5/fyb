@@ -5,13 +5,22 @@ besties.controller('chatController',function($scope,$log,$stateParams,$cordovaSQ
 	localStorage.chatWith = $stateParams.contact;	
 	$scope.ucontact = localStorage.chatWith;
 
+	$ionicLoading.show({
+    	template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/
+    	cssClass:"ionicLoadingCss1",
+    	animation: 'fade-in',
+    	showBackdrop: false,
+    	duration:10000
+	});
 	var query = "SELECT * FROM joinincontacts WHERE uid = ? LIMIT 1";
 	$cordovaSQLite.execute(db,query,[$stateParams.id])
 	.then(function(suc){
 		$scope.name = suc.rows.item(0).uname;
 		$scope.contact = suc.rows.item(0).contact;
 		/*localStorage.chatWith = $scope.contact;	*/
+		setTimeout(function(){$ionicLoading.hide();},2500);
 	},function(err){
+		setTimeout(function(){$ionicLoading.hide();},2500);
 		console.error("cant fetched");
 	});
 
@@ -82,7 +91,8 @@ besties.controller('chatController',function($scope,$log,$stateParams,$cordovaSQ
 	
 
 	$scope.timeby  = function(time){
-		return moment(time).fromNow();
+		var ti = time*1000;
+		return moment(ti).fromNow();
 	}
 	/*var random = _.random(100000,999999).toString();
     var user = "user"+random;
