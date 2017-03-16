@@ -111,7 +111,7 @@ besties.controller('chatController',function($scope,$log,$stateParams,$cordovaSQ
       console.info(msg);
     });*/
 });
-besties.factory('Message', ['$firebaseArray',function($firebaseArray) {
+besties.factory('Message', ['$firebaseArray',function($firebaseArray,$http) {
         //var messages = firebase.database().ref().child('messages').$asArray();
     var pp = localStorage.userContact+"-"+localStorage.chatWith;//+"/";
     console.log("pp "+pp);
@@ -129,6 +129,10 @@ besties.factory('Message', ['$firebaseArray',function($firebaseArray) {
  	console.info("in factory "+JSON.stringify(messages));
     var Message = {
       all: messages,
+      init:function($http){
+      	//$http.post();
+      	return "";
+      },
       create: function (message) {
       	console.log("pp "+pp);
         console.log("Message: "+JSON.stringify(message));

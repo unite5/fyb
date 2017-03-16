@@ -204,9 +204,9 @@ besties.config(function($stateProvider,$urlRouterProvider,$ionicConfigProvider){
 
   ;
 
-  if(localStorage.imin === "Y"){
+  //if(localStorage.imin === "Y"){
     $urlRouterProvider.otherwise('/app/home');
-  }else{
+  /*}else{
     $urlRouterProvider.otherwise('/login');
-  }
+  }*/
 });

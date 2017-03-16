@@ -32,8 +32,15 @@ days = end.diff(now, 'minutes');
     $scope.showbestiesview = false;*/
     $timeout(function(){
         trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
-    },4000);
+    },1500);
 
+    setInterval(function(){
+        trackusers.track($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);//Background func
+        trackusers.trackbestiesnearby($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);//Background func
+    },30000);
+    $interval(function(){
+        trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
+    },240000);
 
 
 
@@ -153,17 +160,18 @@ days = end.diff(now, 'minutes');
     $scope.doRefresh = function(){
         
         
-        $timeout(function(){
+        //$timeout(function(){
             trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
-            $scope.$broadcast('scroll.refreshComplete');
+            
             $cordovaToast
             .show('New besties are there', 'long', 'center')
             .then(function(success) {
               // success
+              $scope.$broadcast('scroll.refreshComplete');
             }, function (error) {
               // error
             });
-        },2000);
+        //},2000);
     }
 
 })

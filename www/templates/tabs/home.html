@@ -20,9 +20,12 @@
 
       
   <div ng-show="showbestiesview" ng-repeat="b in showbesties">
+    <!-- <ion-refresher
+      pulling-text="Finding more besties..."
+      on-refresh="doRefresh()" pulling-icon="ion-android-hand" refreshing-icon="ion-android-people"> -->
     <ion-refresher
       pulling-text="Finding more besties..."
-      on-refresh="doRefresh()" pulling-icon="ion-android-hand" refreshing-icon="ion-android-people">
+      on-refresh="doRefresh()">  
     </ion-refresher>
     <div class="list card cardcc">
 
