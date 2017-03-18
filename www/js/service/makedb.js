@@ -124,6 +124,7 @@ besties.factory('makedb', function() {
 			var dataC = [];
 			var ds=new Array();
 			//uname,contact
+			$scope.showContactitems = false;
 			var findu = "SELECT simcontacts.id as id,simcontacts.uname as uname,simcontacts.contact as contact,simcontacts.created as created,joinincontacts.contact as tel  FROM simcontacts INNER JOIN joinincontacts ON simcontacts.contact <> joinincontacts.contact order by simcontacts.uname";
 	        $cordovaSQLite.execute(db, findu, []).then(function(res) {
 	            if(res.rows.length > 0) {
@@ -150,6 +151,7 @@ besties.factory('makedb', function() {
 			                created:created
 		              	});*/
 	            	}
+	            	$scope.showContactitems = true;
 	            	$scope.Contactitems = JSON.parse(JSON.stringify(dataC));
 	            	
 	            	//console.info(($scope.Contactitems));
@@ -158,10 +160,12 @@ besties.factory('makedb', function() {
 	            	// $scope.arrcc = ds;
 	             //    alert("length:"+res.length+" "+JSON.stringify(res.rows));
 	            } else {
+	            	$scope.showContactitems = false;
 	            	 $scope.arrc = "err"; 
 	            	 alert("No results found"+" err "+ res.rows.length + " arrcc "+$scope.arrc);
 				}
 	        }, function (err) {
+	        	$scope.showContactitems = false;
 	            $scope.arrc = "err";
 	            alert("err  arrcold "+$scope.arrc);
 	        });	 

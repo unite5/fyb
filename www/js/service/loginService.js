@@ -198,7 +198,7 @@ besties.factory("meloginfact",function($cordovaSQLite,notify){
 				console.log(uid+name);
 			}else{
 				alert("value not fetched");
-				console("value not fetched");
+				console.log("value not fetched");
 			}
 		},function(err){
 			console.log("Err:"+JSON.stringify(err));

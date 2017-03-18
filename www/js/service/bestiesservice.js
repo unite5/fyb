@@ -80,15 +80,17 @@ besties.factory("bestiesservice",function(){
 				console.info("success "+JSON.stringify(res));
 				var data = JSON.parse(JSON.stringify(res));
 				if(data.status == "success"){
-					var query = "INSERT INTO invite(friendID,friendContact,lat,long,address,inviteName,inviteDesc,date,time,ampm,accepted,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					/*var query = "INSERT INTO invite(friendID,friendContact,lat,long,address,inviteName,inviteDesc,date,time,ampm,accepted,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 					$cordovaSQLite.execute(db,query,[id,contact,localStorage.currentlatitude,localStorage.currentlongitude,'',inviteName,inviteDesc,inviteDate,inviteTime,inviteAMPM,'0',created,created]).then(function(res){
 						console.info("Inserted "+res.insertId);
 						console.log("Invitation is sended");
-		                $cordovaToast.show("Invitation is sended", 'long', 'center')
-		                .then(function(success) {/*success*/}, function (error) {/* error*/});	
+		                
 					},function(err){
 						console.error("failed to insert");
-					});
+					});*/
+					console.log("Invitation is sended");
+					$cordovaToast.show("Invitation is sended", 'long', 'center')
+		                .then(function(success) {/*success*/}, function (error) {/* error*/});	
 				}else{
 					console.log("Invitation is failed to send");
 	                $cordovaToast.show("Invitation is failed to send", 'long', 'center')
@@ -106,47 +108,93 @@ besties.factory("bestiesservice",function(){
                 });
 			});
 		},
-		showInvitationInHome:function($scope,$cordovaSQLite,$ionicLoading){
-			var accepted = '0';var pic = "";
-			var query = "SELECT invite.id,invite.friendID,invite.inviteName,invite.inviteDesc,invite.friendContact,invite.address,invite.date,invite.ampm,invite.time,invite.accepted,joinincontacts.uid,joinincontacts.uname,joinincontacts.profilePic,joinincontacts.dummyPic FROM invite INNER JOIN joinincontacts ON invite.friendID = joinincontacts.uid WHERE invite.accepted = ? group by invite.friendID";
-			var invitation = new Array();
-			$cordovaSQLite.execute(db,query,[accepted]).then(function(res){
-				console.warn("found new invitations" +res.rows.length);
-
-				if(res.rows.length == 0){
-					$scope.noInvitation = true;
+		showInvitationInHome:function($scope,$cordovaSQLite,$ionicLoading,$http){
+			var datap = {
+				phone:localStorage.userContact,
+				id:localStorage.userId
+			};
+			$ionicLoading.show({
+                template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/
+                cssClass:"ionicLoadingCss1",
+                animation: 'fade-in',
+                showBackdrop: false,
+                duration:5000
+            });
+			$http.post(localStorage.myURL+"/mobile/my/invitation/retrieve",datap)
+			.success(function(res){
+				var data = JSON.parse(JSON.stringify(res));
+				console.log(JSON.stringify(res));
+				if(data.status == "success"){
+					var datas = data.data;
+					angular.forEach(datas,function(value,key){
+						var query = "SELECT * FROM invite WHERE inviteName = ? and inviteDesc = ? and time = ? and friendContact = ?";
+						$cordovaSQLite.execute(db,query,[datas.inviteName,datas.inviteDesc,datas.inviteTime,datas.friendContact]).then(function(res){
+							if(res.rows.length == 0){
+								/*var query = "INSERT INTO invite(friendID,friendContact,lat,long,address,inviteName,inviteDesc,date,time,ampm,accepted,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+								$cordovaSQLite.execute(db,query,[datas.friendID,datas.friendContact,datas.lat,datas.lon,datas.address,datas.inviteName,datas.inviteDesc,datas.inviteDate,datas.inviteTime,datas.inviteAMPM,'0',datas.created_at,datas.updated_at]).then(function(res){
+									console.info("Inserted invitation "+res.insertId);    
+								},function(err){
+									console.error("failed to insert");
+								});*/
+							}else{
+								console.error("already invite insert");
+							}
+						},function(err){
+							console.error("failed to insert");
+						});
+					});				
 				}else{
-					$scope.noInvitation = false;
+					console.error("no invitation");
 				}
-				for(var i=0;i<res.rows.length;i++){
-					pic = res.rows.item(i).profilePic;
-					if(pic == "" || pic == null){
-						pic = res.rows.item(i).dummyPic;
-					}else{
-						pic = res.rows.item(i).profilePic;
-					}
-					invitation[i] = {
-						'iid':res.rows.item(i).id,
-						'friendID':res.rows.item(i).friendID,
-						'friendContact':res.rows.item(i).friendContact,
-						'date':res.rows.item(i).date,
-						'time':res.rows.item(i).time,
-						'ampm':res.rows.item(i).ampm,
-						'address':res.rows.item(i).address,
-						'name':res.rows.item(i).uname,
-						'inviteName':res.rows.item(i).inviteName,
-						'inviteDesc':res.rows.item(i).inviteDesc,
-						'pic':pic,
-						'accepted':res.rows.item(i).accepted
-					};
-				}
-				$scope.invitations = JSON.parse(JSON.stringify(invitation));
-				console.warn("found new invitations "+JSON.stringify($scope.invitations));
-				console.warn("found new invitations "+JSON.stringify(invitation));
-			},function(err){
-				console.error("failed to find invitations");
+			})
+			.error(function(err){
+				console.error(JSON.stringify(err));
 			});
-			$ionicLoading.hide();
+
+			setInterval(function(){ 
+				var accepted = '0';var pic = "";
+				var query = "SELECT invite.id,invite.friendID,invite.inviteName,invite.inviteDesc,invite.friendContact,invite.address,invite.date,invite.ampm,invite.time,invite.accepted,joinincontacts.uid,joinincontacts.uname,joinincontacts.profilePic,joinincontacts.dummyPic FROM invite INNER JOIN joinincontacts ON invite.friendID = joinincontacts.uid WHERE invite.accepted = ? group by invite.friendID";
+				var invitation = new Array();
+				$cordovaSQLite.execute(db,query,[accepted]).then(function(res){
+					console.warn("found new invitations" +res.rows.length);
+
+					if(res.rows.length == 0){
+						$scope.noInvitation = true;
+					}else{
+						$scope.noInvitation = false;
+					}
+					for(var i=0;i<res.rows.length;i++){
+						pic = res.rows.item(i).profilePic;
+						if(pic == "" || pic == null){
+							pic = res.rows.item(i).dummyPic;
+						}else{
+							pic = res.rows.item(i).profilePic;
+						}
+						invitation[i] = {
+							'iid':res.rows.item(i).id,
+							'friendID':res.rows.item(i).friendID,
+							'friendContact':res.rows.item(i).friendContact,
+							'date':res.rows.item(i).date,
+							'time':res.rows.item(i).time,
+							'ampm':res.rows.item(i).ampm,
+							'address':res.rows.item(i).address,
+							'name':res.rows.item(i).uname,
+							'inviteName':res.rows.item(i).inviteName,
+							'inviteDesc':res.rows.item(i).inviteDesc,
+							'pic':pic,
+							'accepted':res.rows.item(i).accepted
+						};
+					}
+					$ionicLoading.hide();
+					$scope.invitations = JSON.parse(JSON.stringify(invitation));
+					
+					console.warn("found new invitations "+JSON.stringify($scope.invitations));
+					console.warn("found new invitations "+JSON.stringify(invitation));
+				},function(err){
+					$ionicLoading.hide();
+					console.error("failed to find invitations");
+				});
+			},4000);
 		},
 
 		/*

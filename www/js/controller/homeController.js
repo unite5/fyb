@@ -19,17 +19,19 @@ days = end.diff(now, 'minutes');
             animation: 'fade-in',
             showBackdrop: false,
         });
-        //$interval(function(){
+        //here will load self and other besties
+        setInterval(function(){
             //notify.scheduleTest($ionicPlatform,$scope,$cordovaLocalNotification,$cordovaSQLite);
             if(availableisOffline.check()){console.log('tracker isnt available')}
             else{
             trackusers.track($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);/*Background func*/
             trackusers.trackbestiesnearby($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);/*Background func*/
             }
-        //},10000);
+        },30000); 
     },10);
 /*    $scope.showbesties = false;
     $scope.showbestiesview = false;*/
+    //here list beeties is will seen on homepage
     $timeout(function(){
         trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
     },1500);
@@ -37,10 +39,14 @@ days = end.diff(now, 'minutes');
     setInterval(function(){
         trackusers.track($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);//Background func
         trackusers.trackbestiesnearby($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);//Background func
+        trackusers.updatedailybesties($cordovaSQLite,$http,$scope);
     },30000);
     $interval(function(){
         trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
     },240000);
+    $timeout(function(){
+        $ionicLoading.hide();
+    },8000);
 
 
 
@@ -191,7 +197,7 @@ days = end.diff(now, 'minutes');
                 showBackdrop: false,
                 duration:6000
             });
-        bestiesservice.showInvitationInHome($scope,$cordovaSQLite,$ionicLoading);
+        bestiesservice.showInvitationInHome($scope,$cordovaSQLite,$ionicLoading,$http);
     },1000);
 
 

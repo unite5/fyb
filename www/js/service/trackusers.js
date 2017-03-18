@@ -12,11 +12,11 @@ besties.factory("trackusers",function(availableisOffline){
 		});*/
 		var a = _.random(100,999);
 		var b = _.random(100,999);
-		var latt = 19.235000, longg = 73.1275000;
+		var latt = 19.235574, longg = 73.12845;
 		//console.log(eval(a/1000000));
 		//console.log(eval(b/1000000));
-		localStorage.currentlatitude = latt+eval(a/1000000);
-        localStorage.currentlongitude = longg+eval(b/1000000);
+		localStorage.currentlatitude = latt;//+eval(a/1000000)
+        localStorage.currentlongitude = longg;//+eval(b/1000000)
 		//navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
 	}
@@ -180,7 +180,7 @@ besties.factory("trackusers",function(availableisOffline){
 								//$ionicLoading.hide();
 							}	
 							console.log(bestiesfound);
-						}else{
+						}else{ 
 							//$ionicLoading.hide();
 							console.error("failed to load");
 						}
@@ -188,7 +188,7 @@ besties.factory("trackusers",function(availableisOffline){
 					})
 					.error(function(err){
 						//$ionicLoading.hide();
-						console.error("Error in:"+JSON.stringify(err));
+						console.error("Error in: web");//+JSON.stringify(err));
 					})
 		        }, function (err) {
 		        	//$ionicLoading.hide();
@@ -299,6 +299,80 @@ besties.factory("trackusers",function(availableisOffline){
 				$scope.showbestiesview = false;
 			});
 			$ionicLoading.hide();
+		},
+		updatedailybesties:function($cordovaSQLite,$http,$scope){
+			var posts = {
+			phone: localStorage.userContact,//'9768431024',//
+			secret: localStorage.secret//'EtuiyJkcp39o2vMmJIP3JvT0BURSXU'//
+			};
+			$http.post(localStorage.myURL+"/mobile/my/contacts/update/profile",
+				posts)
+			.then(function(response){
+				var findres = JSON.parse(JSON.stringify(response.data));
+				var res = findres.status;
+				//alert("Done !"+res+" "+findres.user);
+				if(res == "Done"){
+					var dfriendsstatus = findres.FriendsFound;
+					if(dfriendsstatus == "Yes"){
+						//console.warn("FriendsFound "+findres.count);
+						var friends = findres.Friends;
+						//console.log(JSON.stringify(friends));
+						//console.log(JSON.parse(JSON.stringify(friends)));
+						//var ang = d.results;
+						angular.forEach(friends,function(value,key){
+							//getListFromDBByContact($scope,$cordovaSQLite,value.contact);//just fetching records previously
+							var tbuid = value.uid,tbuname = value.uname,tbcontact = value.contact,tbgender = value.gender,tbisActive = value.isActive,tbdob = value.dob,tbage = value.age,tbemail = value.email,tbprofilePic = value.profilePic,tbdummyPic = value.dummyPic,tblisten = value.listen,tbtoken = value.token,tbaccepted = value.accepted,tbcreated = value.created.date,tbupdated = value.updated.date;
+
+							// console.info("uid:"+tbuid+" "+
+							// 	"uname:"+tbuname+" "+
+							// 	"contact:"+tbcontact+" "+
+							// 	"gender:"+tbgender+" "+
+							// 	"isActive:"+tbisActive+" "+
+							// 	"dob:"+tbdob+" "+
+							// 	"age:"+tbage+" "+
+							// 	"email:"+tbemail+" "+
+							// 	"profilePic:"+tbprofilePic+" "+
+							// 	"dummyPic:"+tbdummyPic+" "+
+							// 	"listen:"+tblisten+" "+
+							// 	"token:"+tbtoken+" "+
+							// 	"accepted:"+tbaccepted+" "+
+							// 	"created:"+tbcreated+" "+
+							// 	"updated:"+tbupdated+" "
+							// 	);
+
+							var qfind = "SELECT * FROM joinincontacts WHERE uid = ? and contact = ? and isActive = ? and dob = ? and age = ? and email = ? and profilePic = ?"
+							$cordovaSQLite.execute(db, qfind, [tbuid,tbcontact,tbisActive,tbdob,tbage,tbemail,tbprofilePic]).then(function(res) {
+
+								if(res.rows.length === 1){
+									console.error("data is same");
+								}else{
+									var query = "UPDATE joinincontacts SET isActive=?,dob=?,age=?,email=?,profilePic=?,updated=? WHERE uid = ? and contact = ?";
+			                        $cordovaSQLite.execute(db, query, [tbisActive,tbdob,tbage,tbemail,tbprofilePic,tbupdated,tbuid,tbcontact]).then(function(res) {
+			                          //cc++;
+			                          console.log("updated"+JSON.stringify(res));
+			                        }, function (err) {
+			                          //alert(err);
+			                          console.error("failed");
+			                        });
+		                    	}
+
+	                        }, function (err) {
+	                          //alert(err);
+	                          console.error("failed");
+	                        });
+						});
+					}else{
+						console.info("No FriendsFound");
+					}
+					
+				}else{
+					alert("value not fetched");
+					console.log("value not fetched");
+				}
+				//console.log("besties update fetched "+JSON.stringify(response.data));
+			},function(err){
+				console.log("Err:"+JSON.stringify(err));
+			});			
 		}
 
 	}

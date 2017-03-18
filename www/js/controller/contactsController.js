@@ -62,6 +62,8 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
             alert("err in execute "+err);
         });*/
       $scope.emptyJoinedFriends = true;
+
+      $scope.showContactitems = false;
       $timeout(function(){
         makedb.getSQLDBContactLists($scope,$cordovaSQLite);
       },100);
@@ -354,17 +356,20 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
   return function (items, query) {
   var filtered = [];
   var letterMatch = new RegExp(query, 'i');
-  for (var i = 0; i < items.length; i++) {
-    var item = items[i];
-    if (query) {
-      if (letterMatch.test(item.uname.substring(0, query.length))) {
+  console.log(items+"////////////"+items.length);
+  if(items.length>0){
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      if (query) {
+        if (letterMatch.test(item.uname.substring(0, query.length))) {
+          filtered.push(item);
+        }
+        if (letterMatch.test(item.contact.substring(0, query.length))) {
+          filtered.push(item);
+        }
+      } else {
         filtered.push(item);
       }
-      if (letterMatch.test(item.contact.substring(0, query.length))) {
-        filtered.push(item);
-      }
-    } else {
-      filtered.push(item);
     }
   }
   return filtered;

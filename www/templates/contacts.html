@@ -115,52 +115,5 @@
     </div>
 
 
-    <!-- Search filter -->
-     <!-- <div class="row">
-      <div class="col">
-        <a class="button button-icon icon ion-loop" ng-click="calltoupdate()"></a>
-      </div>
-      <div class="col col-75">
-        <input type="search"
-        placeholder="Filter contacts by name..."
-        ng-model="search">
-      </div>
-    </div>
-    
-      <ion-list>
-           
-           <ion-item ng-repeat="contact in Contactitems | searchContacts:search | limitTo:listlength"
-                     item="item"
-                      class="item-remove-animate">
-
-                     <div class="row">
-                       <div class="col">
-                       <img src="img/ionic.png" width="45" height="45">
-                     </div>
-                      <div class="col col-75" style="left:0">
-                       <h2>{{ contact.uname }}</h2>
-                       <p>{{contact.contact}}</p>
-                       
-                       </div>
-                     </div>
-             
-             <ion-option-button class="button-assertive"
-                                ng-click="edit(contact)">
-               <i class="icon ion-ios-eye"></i>
-             </ion-option-button>
-             <ion-option-button class="button-calm"
-                                ng-click="share(contact)">
-               
-               Add To Join
-             </ion-option-button>
-             
-           </ion-item>
-
-         </ion-list>
-
-        <ion-infinite-scroll ng-if="listlength<=Contactitems.length"
-          on-infinite="loadMore()" distance="3%">
-        </ion-infinite-scroll> -->
-
   </ion-content>
 </ion-view>

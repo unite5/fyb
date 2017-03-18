@@ -18,7 +18,7 @@
         <ion-list>
         <!-- <ion-item ng-repeat="item in Contactitems | searchContacts:search | limitTo:listlength"
               class="item-thumbnail-left"> href="#/app/contacts/{{contact.id}}"-->
-           <ion-item ng-repeat="contact in Contactitems | searchContacts:search | limitTo:listlength"
+           <ion-item ng-hide="showContactitems" ng-repeat="contact in Contactitems | searchContacts:search | limitTo:listlength"
                      item="item"
                       class="item-remove-animate">
 
