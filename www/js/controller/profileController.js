@@ -62,9 +62,14 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 		     buttonClicked: function(index) {
 		     	if(index==0){
 		     		console.log("gallery");
+		     		$scope.gallery();
 			       return true;
-		     	}else{
+		     	}else if(index == 1){
 		     		console.log("camera");
+		     		$scope.camera();
+			       return true;	
+		     	}else{
+		     		alert("undefined");
 			       return true;	
 		     	}
 		     }

@@ -136,6 +136,7 @@ besties.factory("bestiesservice",function(){
 								},function(err){
 									console.error("failed to insert");
 								});*/
+								console.log("inside 0 "+JSON.stringify(res));
 							}else{
 								console.error("already invite insert");
 							}
