@@ -1,6 +1,8 @@
 //angular.module('besties')
 besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoading,$ionicPopup,$http,profileservice,$timeout,$cordovaToast,$cordovaCamera, $cordovaCapture,$ionicActionSheet,$cordovaFile){
-	
+	setTimeout(function(){
+		$scope.FileCheckdir();
+	},20);
 	$scope.my = {
 		'image':'',
 		'images':''
