@@ -1,5 +1,5 @@
 //angular.module('besties')
-besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoading,$ionicPopup,$http,profileservice,$timeout,$cordovaToast,$cordovaCamera, $cordovaCapture,$ionicActionSheet){
+besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoading,$ionicPopup,$http,profileservice,$timeout,$cordovaToast,$cordovaCamera, $cordovaCapture,$ionicActionSheet,$cordovaFile){
 	
 	$scope.my = {
 		'image':'',
@@ -150,4 +150,52 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	            alert('can not load image');
 	      });
 	}
+
+
+	$scope.FileCheckdir = function(){
+
+		//create first
+	 	$cordovaFile.checkDir(cordova.file.externalRootDirectory, "Besties")
+	  	.then(function (success) {//cordova.file.dataDirectory
+	    	$scope.filetxt = "already "+JSON.stringify(success);
+	   	 	alert($scope.filetxt);
+	  	}, function (error) {
+	    	$cordovaFile.createDir(cordova.file.externalRootDirectory, "Besties", false)
+	    	.then(function (success) {
+	      		$scope.filetxt = "created directive 1"+JSON.stringify(success);
+	      		alert($scope.filetxt);
+	      		$cordovaFile.checkDir(cordova.file.externalRootDirectory+"Besties", "ProfilePics")
+			  	.then(function (success) {//cordova.file.dataDirectory
+			    	$scope.filetxt = "already11 "+JSON.stringify(success);
+			   	 	alert($scope.filetxt);
+			  	}, function (error) {
+			    	$cordovaFile.createDir(cordova.file.externalRootDirectory+"Besties", "ProfilePics", false)
+			    	.then(function (success) {
+			      		$scope.filetxt = "created directive 11"+JSON.stringify(success);
+			      		alert($scope.filetxt);
+			    	}, function (error) {
+			      		$scope.filetxt = "failed create dir 11"+JSON.stringify(error);
+			      		alert($scope.filetxt);
+			    	});
+			  	});
+
+	    	}, function (error) {
+	      		$scope.filetxt = "failed create dir 1"+JSON.stringify(error);
+	      		alert($scope.filetxt);
+	    	});
+	  	});
+	  	//creatingsubdirectory then 2nd
+	  	/*$cordovaFile.checkDir(cordova.file.externalRootDirectory+"/tabmarch2", "Photos")
+	    	.then(function (success) {//cordova.file.dataDirectory
+		      	$scope.filetxt = "anotheralready "+JSON.stringify(success);
+	    	}, function (error) {
+		      	$scope.filetxt = "failed another dir 1"+JSON.stringify(error);
+		      	$cordovaFile.createDir(cordova.file.externalRootDirectory+"/tabmarch2", "Photos", false)
+		      	.then(function (success) {
+		        	$scope.filetxt = "created directive 1"+JSON.stringify(success);
+		      	}, function (error) {
+		        	$scope.filetxt = "failed create dir 1"+JSON.stringify(error);
+		      	});
+	    	});*/
+	  }
 });
