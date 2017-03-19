@@ -99,8 +99,8 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	      };
 
 	      $cordovaCamera.getPicture(options).then(function (imageData) {
-	          $scope.pics = "data:image/jpeg;base64," + imageData;
-	          $scope.my.images = "data:image/jpeg;base64," + imageData;
+	          $scope.pics = "data:image/png;base64," + imageData;
+	          $scope.my.images = "data:image/png;base64," + imageData;
 	          var con = '<img src="'+$scope.pics+'" width="200" height="200"><br>'+$scope.pics;
 				var meetPopup = $ionicPopup.alert({
 					title:'Upload',
@@ -175,35 +175,35 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 
 
 	var FileCheckdir = function(){
-		alert("FileCheckdir");
+		//alert("FileCheckdir");
 		//create first
 	 	$cordovaFile.checkDir(cordova.file.externalRootDirectory, "Besties")
 	  	.then(function (success) {//cordova.file.dataDirectory
 	    	$scope.filetxt = "already "+JSON.stringify(success);
-	   	 	alert($scope.filetxt);
+	   	 	//alert($scope.filetxt);
 	  	}, function (error) {
 	    	$cordovaFile.createDir(cordova.file.externalRootDirectory, "Besties", false)
 	    	.then(function (success) {
 	      		$scope.filetxt = "created directive 1"+JSON.stringify(success);
-	      		alert($scope.filetxt);
+	      		//alert($scope.filetxt);
 	      		$cordovaFile.checkDir(cordova.file.externalRootDirectory+"Besties", "ProfilePics")
 			  	.then(function (success) {//cordova.file.dataDirectory
 			    	$scope.filetxt = "already11 "+JSON.stringify(success);
-			   	 	alert($scope.filetxt);
+			   	 	//alert($scope.filetxt);
 			  	}, function (error) {
 			    	$cordovaFile.createDir(cordova.file.externalRootDirectory+"Besties", "ProfilePics", false)
 			    	.then(function (success) {
 			      		$scope.filetxt = "created directive 11"+JSON.stringify(success);
-			      		alert($scope.filetxt);
+			      		//alert($scope.filetxt);
 			    	}, function (error) {
 			      		$scope.filetxt = "failed create dir 11"+JSON.stringify(error);
-			      		alert($scope.filetxt);
+			      		//alert($scope.filetxt);
 			    	});
 			  	});
 
 	    	}, function (error) {
 	      		$scope.filetxt = "failed create dir 1"+JSON.stringify(error);
-	      		alert($scope.filetxt);
+	      		//alert($scope.filetxt);
 	    	});
 	  	});
 	  	//creatingsubdirectory then 2nd

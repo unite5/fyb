@@ -114,24 +114,26 @@ besties.factory("profileservice",function($cordovaSQLite){
             });
 		},
         updateProfilePic:function($scope,$ionicLoading,$http){
+            alert("imagedata "+$scope.pics);
             $ionicLoading.show({
                 template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/
                 cssClass:"ionicLoadingCss1",
                 animation: 'fade-in',
                 showBackdrop: false,
-                duration:6000
             });
             var data = {
                 'uid':localStorage.userId,
                 'utoken':localStorage.secret,
                 'ucontact':localStorage.userContact,
-                'image':$scope.my.images
+                'image':$scope.pics
             };
             $http.post(localStorage.myURL+"mobile/my/profile/update/pic",data)
             .success(function(res){
+                $ionicLoading.hide();
                 alert("updated "+JSON.stringify(res));
             })
             .error(function(err){
+                $ionicLoading.hide();
                 alert("can not update "+JSON.stringify(err));
             });
         }
