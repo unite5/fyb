@@ -2,7 +2,8 @@
 besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoading,$ionicPopup,$http,profileservice,$timeout,$cordovaToast,$cordovaCamera, $cordovaCapture,$ionicActionSheet){
 	
 	$scope.my = {
-		'image':''
+		'image':'',
+		'images':''
 	};
 	$scope.profilemodel = {
 		'email':'',
@@ -96,9 +97,9 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	      };
 
 	      $cordovaCamera.getPicture(options).then(function (imageData) {
-	          $scope.pic = "data:image/png;base64," + imageData;
-	          $scope.my.image = "data:image/png;base64," + imageData;
-	          var con = '<img src="{{pic}}" ng-model="my.image" width="100" height="100">';
+	          $scope.pics = "data:image/png;base64," + imageData;
+	          $scope.my.images = "data:image/png;base64," + imageData;
+	          var con = '<img src="'+$scope.pics+'" ng-model="my.image" width="100" height="100">';
 				var meetPopup = $ionicPopup.alert({
 					title:'Upload',
 					cssClass:'profileChoosePopup',
@@ -131,9 +132,9 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	        };
 	       
 	      $cordovaCamera.getPicture(options).then(function (imageData) {
-	            $scope.pic = "data:image/png;base64," + imageData;
-	            $scope.my.image = "data:image/png;base64," + imageData;
-	            var con = '<img src="{{pic}}" ng-model="my.image" width="100" height="100">';
+	            $scope.pics = "data:image/png;base64," + imageData;
+	            $scope.my.images = "data:image/png;base64," + imageData;
+	            var con = '<img src="'+$scope.pics+'" ng-model="my.image" width="100" height="100">';
 				var meetPopup = $ionicPopup.show({
 					title:'Upload',
 					cssClass:'profileChoosePopup',

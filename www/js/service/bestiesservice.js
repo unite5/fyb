@@ -120,6 +120,7 @@ besties.factory("bestiesservice",function(){
                 showBackdrop: false,
                 duration:5000
             });
+            setInterval(function(){ 
 			$http.post(localStorage.myURL+"/mobile/my/invitation/retrieve",datap)
 			.success(function(res){
 				var data = JSON.parse(JSON.stringify(res));
@@ -152,7 +153,7 @@ besties.factory("bestiesservice",function(){
 				console.error(JSON.stringify(err));
 			});
 
-			setInterval(function(){ 
+			
 				var accepted = '0';var pic = "";
 				var query = "SELECT invite.id,invite.friendID,invite.inviteName,invite.inviteDesc,invite.friendContact,invite.address,invite.date,invite.ampm,invite.time,invite.accepted,joinincontacts.uid,joinincontacts.uname,joinincontacts.profilePic,joinincontacts.dummyPic FROM invite INNER JOIN joinincontacts ON invite.friendID = joinincontacts.uid WHERE invite.accepted = ? group by invite.friendID";
 				var invitation = new Array();
