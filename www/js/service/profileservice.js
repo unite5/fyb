@@ -112,6 +112,27 @@ besties.factory("profileservice",function($cordovaSQLite){
                   // error
                 });
             });
-		}
+		},
+        updateProfilePic:function($scope,$ionicLoading,$http){
+            $ionicLoading.show({
+                template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/
+                cssClass:"ionicLoadingCss1",
+                animation: 'fade-in',
+                showBackdrop: false,
+                duration:6000
+            });
+            var data = {
+                'uid':localStorage.userId,
+                'utoken':localStorage.secret,
+                'ucontact':localStorage.userContact
+            };
+            $http.post(localStorage.myURL+"mobile/my/profile/update/pic",data)
+            .success(function(res){
+                alert("updated "+JSON.stringify(res));
+            })
+            .error(function(err){
+                alert("can not update "+JSON.stringify(err));
+            });
+        }
 	}
 });

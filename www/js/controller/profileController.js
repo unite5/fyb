@@ -106,13 +106,23 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 					title:'Upload',
 					cssClass:'profileChoosePopup',
 					content:con,
-					scope:$scope
-				}).then(function(){
+					scope:$scope,
+					buttons: [
+		              { text: 'Cancel',type: 'button-assertive' },
+		              {
+		                text: '<b>Upload</b>',
+		                type: 'button-positive',
+		                onTap: function(e) {
+		                	profileservice.updateProfilePic($scope,$ionicLoading,$http);
+		                }
+		              }
+		            ]
+				});/*.then(function(){
 					setTimeout(function(){
 						meetPopup.close();
 					},5000);
 					console.log("done");
-				});
+				});*/
 	      }, function (err) {
 	          alert('can not load image');
 	      });
@@ -141,13 +151,23 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 					title:'Upload',
 					cssClass:'profileChoosePopup',
 					content:con,
-					scope:$scope
-				}).then(function(){
+					scope:$scope,
+					buttons: [
+		              { text: 'Cancel',type: 'button-assertive' },
+		              {
+		                text: '<b>Upload</b>',
+		                type: 'button-positive',
+		                onTap: function(e) {
+		                	profileservice.updateProfilePic($scope,$ionicLoading,$http);
+		                }
+		              }
+		            ]
+				});/*.then(function(){
 					setTimeout(function(){
 						meetPopup.close();
 					},5000);
 					console.log("done");
-				});
+				});*/
 	        }, function (err) {
 	            alert('can not load image');
 	      });
