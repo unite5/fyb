@@ -142,9 +142,9 @@ besties.factory("profileservice",function($cordovaSQLite){
                         //alert("updated and stored "+JSON.stringify(res));
                         var updated = moment().format('YYYY-MM-DD H:mm:ss');
                         var query = "UPDATE self SET profilePic = ?,updated = ?";
-                        $cordovaSQLite.execute(db,query,[,updated]).then(function(res){
+                        $cordovaSQLite.execute(db,query,[targetPath,updated]).then(function(res){
                             console.info('You updated your pic');
-                            $cordovaToast.show("You updated your pic", 'long', 'center')
+                            $cordovaToast.show("You updated your pic in "+targetPath, 'long', 'center')
                             .then(function(success) {/*success*/}, function (error) {/* error*/});  
                         },function(err){
                             alert("failed to insert");
