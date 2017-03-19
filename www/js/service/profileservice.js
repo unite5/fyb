@@ -124,9 +124,10 @@ besties.factory("profileservice",function($cordovaSQLite){
             var data = {
                 'uid':localStorage.userId,
                 'utoken':localStorage.secret,
-                'ucontact':localStorage.userContact
+                'ucontact':localStorage.userContact,
+                'image':$scope.pics
             };
-            $http.post(localStorage.myURL+"mobile/my/profile/update/pic",data)
+            $http.post(localStorage.myURL+"/mobile/my/profile/update/pic",data)
             .success(function(res){
                 $ionicLoading.hide();
                 alert("updated "+JSON.stringify(res));
