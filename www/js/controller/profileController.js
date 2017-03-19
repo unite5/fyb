@@ -1,5 +1,5 @@
 //angular.module('besties')
-besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoading,$ionicPopup,$http,profileservice,$timeout,$cordovaToast,$cordovaCamera, $cordovaCapture,$ionicActionSheet,$cordovaFile){
+besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoading,$ionicPopup,$http,profileservice,$timeout,$cordovaToast,$cordovaCamera, $cordovaCapture,$ionicActionSheet,$cordovaFile,$cordovaFileTransfer){
 	setTimeout(function(){
 		FileCheckdir();
 	},1000);
@@ -101,7 +101,8 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	      $cordovaCamera.getPicture(options).then(function (imageData) {
 	          $scope.pics = "data:image/png;base64," + imageData;
 	          $scope.my.images = "data:image/png;base64," + imageData;
-	          var con = '<img src="'+$scope.pics+'" width="200" height="200"><br>'+$scope.pics;
+	          //var con = '<img src="'+$scope.pics+'" width="200" height="200"><br>'+$scope.pics;
+	          var con = 'Want to upload...';
 				var meetPopup = $ionicPopup.alert({
 					title:'Upload',
 					cssClass:'profileChoosePopup',
@@ -113,7 +114,7 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 		                text: '<b>Upload</b>',
 		                type: 'button-positive',
 		                onTap: function(e) {
-		                	profileservice.updateProfilePic($scope,$ionicLoading,$http);
+		                	profileservice.updateProfilePic($scope,$ionicLoading,$http,$cordovaFileTransfer,$cordovaSQLite);
 		                }
 		              }
 		            ]
@@ -146,7 +147,8 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	      $cordovaCamera.getPicture(options).then(function (imageData) {
 	            $scope.pics = "data:image/png;base64," + imageData;
 	            $scope.my.images = "data:image/png;base64," + imageData;
-	            var con = '<img src="'+$scope.pics+'" width="100" height="100">'+$scope.pics;
+	            //var con = '<img src="'+$scope.pics+'" width="100" height="100">'+$scope.pics;
+	            var con = 'Want to upload...';
 				var meetPopup = $ionicPopup.alert({
 					title:'Upload',
 					cssClass:'profileChoosePopup',
@@ -158,7 +160,7 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 		                text: '<b>Upload</b>',
 		                type: 'button-positive',
 		                onTap: function(e) {
-		                	profileservice.updateProfilePic($scope,$ionicLoading,$http);
+		                	profileservice.updateProfilePic($scope,$ionicLoading,$http,$cordovaFileTransfer,$cordovaSQLite);
 		                }
 		              }
 		            ]

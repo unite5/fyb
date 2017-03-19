@@ -113,7 +113,7 @@ besties.factory("profileservice",function($cordovaSQLite){
                 });
             });
 		},
-        updateProfilePic:function($scope,$ionicLoading,$http){
+        updateProfilePic:function($scope,$ionicLoading,$http,$cordovaFileTransfer,$cordovaSQLite){
             alert("imagedata "+$scope.pics);
             $ionicLoading.show({
                 template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/
@@ -130,7 +130,34 @@ besties.factory("profileservice",function($cordovaSQLite){
             $http.post(localStorage.myURL+"/mobile/my/profile/update/pic",data)
             .success(function(res){
                 $ionicLoading.hide();
-                alert("updated "+JSON.stringify(res));
+                //alert("updated "+JSON.stringify(res));
+                var result = JSON.parse(JSON.stringify(res));
+                if(result.status == "success"){
+                    //alert("updated "+JSON.stringify(res));
+                    var options = {};
+                    var targetPath = cordova.file.externalRootDirectory+"Besties/ProfilePics/"+result.name;
+                    $cordovaFileTransfer.download(localStorage.myURL+"/"+result.path, targetPath, options, true)
+                      .then(function(result) {
+                        //alert("updated and stored "+JSON.stringify(res));
+                        var updated = moment().format('YYYY-MM-DD H:mm:ss');
+                        var query = "UPDATE self SET profilePic = ?,updated = ?";
+                        $cordovaSQLite.execute(db,query,[,updated]).then(function(res){
+                            console.info('You updated your pic');
+                            $cordovaToast.show("You updated your pic", 'long', 'center')
+                            .then(function(success) {/*success*/}, function (error) {/* error*/});  
+                        },function(err){
+                            alert("failed to insert");
+                        });
+                      }, function(err) {
+                        alert("failed to store "+JSON.stringify(res));
+                      }, function (progress) {
+                        $timeout(function () {
+                          $scope.downloadProgress = (progress.loaded / progress.total) * 100;
+                        });
+                      });
+                }else{
+                   alert("in else failed "+JSON.stringify(res));
+                }
             })
             .error(function(err){
                 $ionicLoading.hide();
