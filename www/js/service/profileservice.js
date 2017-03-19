@@ -15,6 +15,7 @@ besties.factory("profileservice",function($cordovaSQLite){
 				}else if(photo == "" || photo == null){
 					$scope.pic = res.rows.item(0).dummyPic;
 				}else if(photo != "img/profileBoy.png"){
+                    alert("profile pic:"+res.rows.item(0).profilePic);
 					$scope.pic = res.rows.item(0).profilePic;
 				}
 				$scope.last = moment(res.rows.item(0).updated).fromNow();
@@ -113,7 +114,7 @@ besties.factory("profileservice",function($cordovaSQLite){
                 });
             });
 		},
-        updateProfilePic:function($scope,$ionicLoading,$http,$cordovaFileTransfer,$cordovaSQLite){
+        updateProfilePic:function($scope,$ionicLoading,$http,$cordovaFileTransfer,$cordovaSQLite,$cordovaToast){
             alert("imagedata "+$scope.pics);
             $ionicLoading.show({
                 template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/

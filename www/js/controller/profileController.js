@@ -114,7 +114,7 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 		                text: '<b>Upload</b>',
 		                type: 'button-positive',
 		                onTap: function(e) {
-		                	profileservice.updateProfilePic($scope,$ionicLoading,$http,$cordovaFileTransfer,$cordovaSQLite);
+		                	profileservice.updateProfilePic($scope,$ionicLoading,$http,$cordovaFileTransfer,$cordovaSQLite,$cordovaToast);
 		                }
 		              }
 		            ]
@@ -160,7 +160,7 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 		                text: '<b>Upload</b>',
 		                type: 'button-positive',
 		                onTap: function(e) {
-		                	profileservice.updateProfilePic($scope,$ionicLoading,$http,$cordovaFileTransfer,$cordovaSQLite);
+		                	profileservice.updateProfilePic($scope,$ionicLoading,$http,$cordovaFileTransfer,$cordovaSQLite,$cordovaToast);
 		                }
 		              }
 		            ]
