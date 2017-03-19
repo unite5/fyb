@@ -1,8 +1,8 @@
 //angular.module('besties')
 besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoading,$ionicPopup,$http,profileservice,$timeout,$cordovaToast,$cordovaCamera, $cordovaCapture,$ionicActionSheet,$cordovaFile){
 	setTimeout(function(){
-		$scope.FileCheckdir();
-	},20);
+		FileCheckdir();
+	},1000);
 	$scope.my = {
 		'image':'',
 		'images':''
@@ -99,9 +99,9 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	      };
 
 	      $cordovaCamera.getPicture(options).then(function (imageData) {
-	          $scope.pics = "data:image/png;base64," + imageData;
-	          $scope.my.images = "data:image/png;base64," + imageData;
-	          var con = '<img ng-src="'+$scope.pics+'" width="200" height="200"><br>'+$scope.pics;
+	          $scope.pics = "data:image/jpeg;base64," + imageData;
+	          $scope.my.images = "data:image/jpeg;base64," + imageData;
+	          var con = '<img src="'+$scope.pics+'" width="200" height="200"><br>'+$scope.pics;
 				var meetPopup = $ionicPopup.alert({
 					title:'Upload',
 					cssClass:'profileChoosePopup',
@@ -137,7 +137,7 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	            $scope.pics = "data:image/png;base64," + imageData;
 	            $scope.my.images = "data:image/png;base64," + imageData;
 	            var con = '<img src="'+$scope.pics+'" width="100" height="100">'+$scope.pics;
-				var meetPopup = $ionicPopup.show({
+				var meetPopup = $ionicPopup.alert({
 					title:'Upload',
 					cssClass:'profileChoosePopup',
 					content:con,
@@ -154,8 +154,8 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 	}
 
 
-	$scope.FileCheckdir = function(){
-
+	var FileCheckdir = function(){
+		alert("FileCheckdir");
 		//create first
 	 	$cordovaFile.checkDir(cordova.file.externalRootDirectory, "Besties")
 	  	.then(function (success) {//cordova.file.dataDirectory
