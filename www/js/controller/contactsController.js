@@ -1,5 +1,5 @@
 //angular.module('besties')
-besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout,$ionicPopup,callfriends,$http,$ionicModal,$cordovaToast){
+besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout,$ionicPopup,callfriends,$http,$ionicModal,$cordovaToast,availableisOffline){
     
     /*listin joinins*/
     $timeout(function(){

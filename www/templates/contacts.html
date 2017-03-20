@@ -79,8 +79,9 @@
       <div  ng-repeat = "list in listjoins">
         <div class="row">
           <div class="col col-20">
-            <img ng-if="list.opic != ''" src="{{list.pic}}" width="60" height="60">
-            <img ng-if="list.opic == ''" src="{{list.pic}}" width="60" height="60">
+            <!--<img ng-if="list.opic != ''" src="{{list.pic}}" width="60" height="60">
+            <img ng-if="list.opic == ''" src="{{list.pic}}" width="60" height="60">-->
+            <img src="{{list.pic}}" width="60" height="60">
           </div>
           <div class="col col-60">
             <h6>{{list.uname}}</h6>

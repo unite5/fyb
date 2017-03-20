@@ -1,4 +1,4 @@
-besties.factory("callfriends",function(){
+besties.factory("callfriends",function(availableisOffline){
 	var isOffline = 'onLine' in navigator && !navigator.onLine;
 	var popfail = function(msg,$ionicPopup,$scope){
 		var template = "";
@@ -190,11 +190,22 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 	            if(row > 0) {
 	            		var pic = "";
 	            	for(var i=0;i<row;i++){
-	            		if(res.rows.item(i).profilePic == ""){
-	            			pic = res.rows.item(i).dummyPic;
-	            		}else{
-	            			pic = res.rows.item(i).profilePic;
-	            		}
+	            		
+	            		if(availableisOffline.check()){
+                			pic = res.rows.item(i).dummyPic;
+		                	/*if(opic == "" || opic == null){
+		                		pic = res.rows.item(j).dummyPic;
+		                	}else{
+		                		pic = res.rows.item(j).profilePic;
+		                	}*/
+                		}else{
+                			//pic = res.rows.item(j).profilePic;
+                			if(res.rows.item(i).profilePic == "" || res.rows.item(i).profilePic == null){
+		            			pic = res.rows.item(i).dummyPic;
+		            		}else{
+		            			pic = res.rows.item(i).profilePic;
+		            		}
+                		}
 	            		//console.error(pic+" "+res.rows.item(i).dummyPic+" ,"+res.rows.item(i).profilePic);
 	            		data[i] = {
 	            			'id':res.rows.item(i).id,
@@ -202,7 +213,7 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 	            			'uname':res.rows.item(i).uname,
 	            			'contact':res.rows.item(i).contact,
 	            			'opic':res.rows.item(i).profilePic,
-	            			'pic':res.rows.item(i).dummyPic,
+	            			'pic':pic,
 	            			'token':res.rows.item(i).token,
 	            			'listen':res.rows.item(i).listen,
 	            			'accepted':res.rows.item(i).accepted
