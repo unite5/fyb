@@ -245,15 +245,15 @@ besties.factory("trackusers",function(availableisOffline){
 	                	thms = (ttime[1]).split(':');
 	                	if( (l<100) &&  (gl==='m') ){
 		                	
-		                	if(ionic.Platform.isWebView()){
+		                	/*if(ionic.Platform.isWebView()){
 								pic = localStorage.myURL+"/"+res.rows.item(j).profilePic;
-		                	}else{
+		                	}else{*/
 			                	if(opic == "" || opic == null){
 			                		pic = res.rows.item(j).dummyPic;
 			                	}else{
 			                		pic = res.rows.item(j).profilePic;
 			                	}
-		                	}
+		                	//}
 							bestiesbyfound[j] = {
 								"name":res.rows.item(j).uname,
 								"contact":res.rows.item(j).ucontact,
