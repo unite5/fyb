@@ -248,11 +248,21 @@ besties.factory("trackusers",function(availableisOffline){
 		                	/*if(ionic.Platform.isWebView()){
 								pic = localStorage.myURL+"/"+res.rows.item(j).profilePic;
 		                	}else{*/
-			                	if(opic == "" || opic == null){
-			                		pic = res.rows.item(j).dummyPic;
-			                	}else{
-			                		pic = res.rows.item(j).profilePic;
-			                	}
+		                		if(availableisOffline.check()){
+		                			pic = res.rows.item(j).dummyPic;
+				                	/*if(opic == "" || opic == null){
+				                		pic = res.rows.item(j).dummyPic;
+				                	}else{
+				                		pic = res.rows.item(j).profilePic;
+				                	}*/
+		                		}else{
+		                			//pic = res.rows.item(j).profilePic;
+		                			if(opic == "" || opic == null){
+				                		pic = res.rows.item(j).dummyPic;
+				                	}else{
+				                		pic = res.rows.item(j).profilePic;
+				                	}
+		                		}
 		                	//}
 							bestiesbyfound[j] = {
 								"name":res.rows.item(j).uname,
@@ -269,12 +279,22 @@ besties.factory("trackusers",function(availableisOffline){
 							};
 						}
 						if( (l<10.1) &&  (gl==="km") ){
+		                	if(availableisOffline.check()){
+	                			pic = res.rows.item(j).dummyPic;
+			                	/*if(opic == "" || opic == null){
+			                		pic = res.rows.item(j).dummyPic;
+			                	}else{
+			                		pic = res.rows.item(j).profilePic;
+			                	}*/
+	                		}else{
+	                			//pic = res.rows.item(j).profilePic;
+	                			if(opic == "" || opic == null){
+			                		pic = res.rows.item(j).dummyPic;
+			                	}else{
+			                		pic = res.rows.item(j).profilePic;
+			                	}
+	                		}
 		                	
-		                	if(opic == "" || opic == null){
-		                		pic = res.rows.item(j).dummyPic;
-		                	}else{
-		                		pic = res.rows.item(j).profilePic;
-		                	}
 							bestiesbyfound[j] = {
 								"name":res.rows.item(j).uname,
 								"contact":res.rows.item(j).ucontact,
@@ -338,23 +358,25 @@ besties.factory("trackusers",function(availableisOffline){
 							}
 							if(tbprofilePic==null || tbprofilePic==''){
 								tbprofilePic = '';
-							}	
-							console.info("uid:"+tbuid+" "+
-								"uname:"+tbuname+" "+
-								"contact:"+tbcontact+" "+
-								"gender:"+tbgender+" "+
-								"isActive:"+tbisActive+" "+
-								"dob:"+tbdob+" "+
-								"age:"+tbage+" "+
-								"email:"+tbemail+" "+
-								"profilePic:"+tbprofilePic+" "+
-								"dummyPic:"+tbdummyPic+" "+
-								"listen:"+tblisten+" "+
-								"token:"+tbtoken+" "+
-								"accepted:"+tbaccepted+" "+
-								"created:"+tbcreated+" "+
-								"updated:"+tbupdated+" "
-								);
+							}else{
+								tbprofilePic = localStorage.myURL+"/"+tbprofilePic;
+							}
+							// console.info("uid:"+tbuid+" "+
+							// 	"uname:"+tbuname+" "+
+							// 	"contact:"+tbcontact+" "+
+							// 	"gender:"+tbgender+" "+
+							// 	"isActive:"+tbisActive+" "+
+							// 	"dob:"+tbdob+" "+
+							// 	"age:"+tbage+" "+
+							// 	"email:"+tbemail+" "+
+							// 	"profilePic:"+tbprofilePic+" "+
+							// 	"dummyPic:"+tbdummyPic+" "+
+							// 	"listen:"+tblisten+" "+
+							// 	"token:"+tbtoken+" "+
+							// 	"accepted:"+tbaccepted+" "+
+							// 	"created:"+tbcreated+" "+
+							// 	"updated:"+tbupdated+" "
+							// 	);
 
 							var qfind = "SELECT * FROM joinincontacts WHERE uid = ? and contact = ? and isActive = ? and dob = ? and age = ? and email = ? and profilePic = ?"
 							$cordovaSQLite.execute(db, qfind, [tbuid,tbcontact,tbisActive,tbdob,tbage,tbemail,tbprofilePic]).then(function(res) {

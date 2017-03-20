@@ -28,7 +28,11 @@ days = end.diff(now, 'minutes');
             trackusers.trackbestiesnearby($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);/*Background func*/
             }
         },30000); 
-    },10);
+    },500);
+    $timeout(function(){
+        $ionicLoading.hide();
+        trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
+    },6000);
 /*    $scope.showbesties = false;
     $scope.showbestiesview = false;*/
     //here list beeties is will seen on homepage
