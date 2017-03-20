@@ -1,6 +1,6 @@
 besties.factory("trackusers",function(availableisOffline){
 	function inittrack($http){//trackme
-		console.warn("fetching");
+		//console.warn("fetching");
 		/*$http.get("https://freegeoip.net/json/",{
 			phone:"9768431024"
 		})
@@ -116,7 +116,7 @@ besties.factory("trackusers",function(availableisOffline){
 				  template: '<ion-spinner icon="ripple" style="color:#fff"></ion-spinner>',
 				  noBackdrop:true
 				});*/
-				console.log("net is available");
+				//console.log("net is available");
 				var track = 0;
 				var besties = new Array();
 				//$scope.besties = [];
@@ -210,7 +210,7 @@ besties.factory("trackusers",function(availableisOffline){
 					}
 				});*/
 				//$ionicLoading.hide();
-				console.warn(JSON.parse(JSON.stringify(besties)));
+				//console.warn(JSON.parse(JSON.stringify(besties)));
 			}
 		},
 		/*
@@ -245,10 +245,14 @@ besties.factory("trackusers",function(availableisOffline){
 	                	thms = (ttime[1]).split(':');
 	                	if( (l<100) &&  (gl==='m') ){
 		                	
-		                	if(opic == "" || opic == null){
-		                		pic = res.rows.item(j).dummyPic;
+		                	if(ionic.Platform.isWebView()){
+								pic = localStorage.myURL+"/"+res.rows.item(j).profilePic;
 		                	}else{
-		                		pic = res.rows.item(j).profilePic;
+			                	if(opic == "" || opic == null){
+			                		pic = res.rows.item(j).dummyPic;
+			                	}else{
+			                		pic = res.rows.item(j).profilePic;
+			                	}
 		                	}
 							bestiesbyfound[j] = {
 								"name":res.rows.item(j).uname,
@@ -323,33 +327,45 @@ besties.factory("trackusers",function(availableisOffline){
 							//getListFromDBByContact($scope,$cordovaSQLite,value.contact);//just fetching records previously
 							var tbuid = value.uid,tbuname = value.uname,tbcontact = value.contact,tbgender = value.gender,tbisActive = value.isActive,tbdob = value.dob,tbage = value.age,tbemail = value.email,tbprofilePic = value.profilePic,tbdummyPic = value.dummyPic,tblisten = value.listen,tbtoken = value.token,tbaccepted = value.accepted,tbcreated = value.created.date,tbupdated = value.updated.date;
 
-							// console.info("uid:"+tbuid+" "+
-							// 	"uname:"+tbuname+" "+
-							// 	"contact:"+tbcontact+" "+
-							// 	"gender:"+tbgender+" "+
-							// 	"isActive:"+tbisActive+" "+
-							// 	"dob:"+tbdob+" "+
-							// 	"age:"+tbage+" "+
-							// 	"email:"+tbemail+" "+
-							// 	"profilePic:"+tbprofilePic+" "+
-							// 	"dummyPic:"+tbdummyPic+" "+
-							// 	"listen:"+tblisten+" "+
-							// 	"token:"+tbtoken+" "+
-							// 	"accepted:"+tbaccepted+" "+
-							// 	"created:"+tbcreated+" "+
-							// 	"updated:"+tbupdated+" "
-							// 	);
+							if(tbdob==null || tbdob==''){
+								tbdob='';
+							}
+							if(tbage==null || tbage==''){
+								tbage='';
+							}
+							if(tbemail==null || tbemail==''){
+								tbemail='';
+							}
+							if(tbprofilePic==null || tbprofilePic==''){
+								tbprofilePic = '';
+							}	
+							console.info("uid:"+tbuid+" "+
+								"uname:"+tbuname+" "+
+								"contact:"+tbcontact+" "+
+								"gender:"+tbgender+" "+
+								"isActive:"+tbisActive+" "+
+								"dob:"+tbdob+" "+
+								"age:"+tbage+" "+
+								"email:"+tbemail+" "+
+								"profilePic:"+tbprofilePic+" "+
+								"dummyPic:"+tbdummyPic+" "+
+								"listen:"+tblisten+" "+
+								"token:"+tbtoken+" "+
+								"accepted:"+tbaccepted+" "+
+								"created:"+tbcreated+" "+
+								"updated:"+tbupdated+" "
+								);
 
 							var qfind = "SELECT * FROM joinincontacts WHERE uid = ? and contact = ? and isActive = ? and dob = ? and age = ? and email = ? and profilePic = ?"
 							$cordovaSQLite.execute(db, qfind, [tbuid,tbcontact,tbisActive,tbdob,tbage,tbemail,tbprofilePic]).then(function(res) {
 
-								if(res.rows.length === 1){
+								if(res.rows.length == 1){
 									console.error("data is same");
 								}else{
 									var query = "UPDATE joinincontacts SET isActive=?,dob=?,age=?,email=?,profilePic=?,updated=? WHERE uid = ? and contact = ?";
 			                        $cordovaSQLite.execute(db, query, [tbisActive,tbdob,tbage,tbemail,tbprofilePic,tbupdated,tbuid,tbcontact]).then(function(res) {
 			                          //cc++;
-			                          console.log("updated"+JSON.stringify(res));
+			                          console.log("updated "+JSON.stringify(res));
 			                        }, function (err) {
 			                          //alert(err);
 			                          console.error("failed");

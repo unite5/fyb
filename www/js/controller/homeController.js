@@ -32,9 +32,18 @@ days = end.diff(now, 'minutes');
 /*    $scope.showbesties = false;
     $scope.showbestiesview = false;*/
     //here list beeties is will seen on homepage
-    $timeout(function(){
+    /*$timeout(function(){
         trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
-    },1500);
+    },1500);*/
+
+    $scope.initBesties = function(){
+        $timeout(function(){
+            trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
+        },3000);
+    }; 
+    /*if(ionic.Platform.isWebView()){
+        alert("yes");
+    }*/
 
     setInterval(function(){
         trackusers.track($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);//Background func
