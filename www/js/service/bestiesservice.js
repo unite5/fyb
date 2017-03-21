@@ -159,12 +159,12 @@ besties.factory("bestiesservice",function(availableisOffline){
 				console.error(JSON.stringify(err));
 			});
 
-			
+			   setTimeout(function(){
 				var accepted = '0';var pic = "";
-				var quer = "SELECT invite.id,invite.friendID,invite.inviteName,invite.inviteDesc,invite.friendContact,invite.address,invite.date,invite.ampm,invite.time,invite.accepted,joinincontacts.uid,joinincontacts.uname,joinincontacts.profilePic,joinincontacts.dummyPic FROM invite INNER JOIN joinincontacts ON invite.friendID = joinincontacts.uid WHERE invite.accepted = ? group by invite.friendID";
+				var quer = "SELECT invite.id,invite.friendID,invite.inviteName,invite.inviteDesc,invite.friendContact,invite.address,invite.date,invite.ampm,invite.time,invite.accepted,joinincontacts.uid,joinincontacts.uname,joinincontacts.profilePic,joinincontacts.dummyPic FROM invite INNER JOIN joinincontacts ON invite.friendID = joinincontacts.uid WHERE invite.accepted = ? and invite.date=? group by invite.friendID";
 				var invitation = new Array();
 				var date = moment().format('YYYY-MM-DD');
-				$cordovaSQLite.execute(db,quer,[accepted]).then(function(res){
+				$cordovaSQLite.execute(db,quer,[accepted,date]).then(function(res){
 					console.warn("found new invitations" +res.rows.length+" "+JSON.stringify(res.rows));
 
 					if(res.rows.length == 0){
@@ -218,6 +218,7 @@ besties.factory("bestiesservice",function(availableisOffline){
 					$ionicLoading.hide();
 					console.error("failed to find invitations");
 				});
+			   },6000);
 			//},4000);
 		},
 
