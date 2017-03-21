@@ -64,6 +64,7 @@ besties.factory('makedb', function() {
 
 			// $cordovaSQLite.execute(db,"DELETE FROM bestiesnearby WHERE id > ?",['3']).then(function(res){console.info("deleted 1");},function(err){console.error("failed 1");});		    
 			// $cordovaSQLite.execute(db,"DELETE FROM joinincontacts WHERE id > ?",['3']).then(function(res){console.info("deleted 2");},function(err){console.error("failed 2");});		    
+			//$cordovaSQLite.execute(db,"DELETE FROM invite WHERE id >= ?",['6']).then(function(res){console.info("deleted 6");},function(err){console.error("failed 6");});		    
 		    /*var contact = '9768431024';
 			var findu = "SELECT * FROM self WHERE contact = ?";
 		        $cordovaSQLite.execute(db, findu, [contact]).then(function(res) {

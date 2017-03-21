@@ -1,4 +1,4 @@
-besties.factory("bestiesservice",function(){
+besties.factory("bestiesservice",function(availableisOffline){
 	var isOffline = 'onLine' in navigator && !navigator.onLine;
 	var besties = function(id,$cordovaSQLite,$scope){
 		var findu = "SELECT * FROM joinincontacts where uid = ?";
@@ -120,7 +120,7 @@ besties.factory("bestiesservice",function(){
                 showBackdrop: false,
                 duration:5000
             });
-            setInterval(function(){ 
+            //setInterval(function(){ 
 			$http.post(localStorage.myURL+"/mobile/my/invitation/retrieve",datap)
 			.success(function(res){
 				var data = JSON.parse(JSON.stringify(res));
@@ -128,18 +128,24 @@ besties.factory("bestiesservice",function(){
 				if(data.status == "success"){
 					var datas = data.data;
 					angular.forEach(datas,function(value,key){
+						//console.log(datas[key].inviteName);
 						var query = "SELECT * FROM invite WHERE inviteName = ? and inviteDesc = ? and time = ? and friendContact = ?";
-						$cordovaSQLite.execute(db,query,[datas.inviteName,datas.inviteDesc,datas.inviteTime,datas.friendContact]).then(function(res){
+						$cordovaSQLite.execute(db,query,[datas[key].inviteName,datas[key].inviteDesc,datas[key].inviteTime,datas[key].friendContact]).then(function(res){
+							console.error("in invite insert "+res.rows.length);
 							if(res.rows.length == 0){
-								/*var query = "INSERT INTO invite(friendID,friendContact,lat,long,address,inviteName,inviteDesc,date,time,ampm,accepted,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-								$cordovaSQLite.execute(db,query,[datas.friendID,datas.friendContact,datas.lat,datas.lon,datas.address,datas.inviteName,datas.inviteDesc,datas.inviteDate,datas.inviteTime,datas.inviteAMPM,'0',datas.created_at,datas.updated_at]).then(function(res){
-									console.info("Inserted invitation "+res.insertId);    
-								},function(err){
-									console.error("failed to insert");
-								});*/
-								console.log("inside 0 "+JSON.stringify(res));
-							}else{
-								console.error("already invite insert");
+								if( (res.rows.item(0).inviteName != datas[key].inviteName) && (res.rows.item(0).time != datas[key].inviteTime) ){
+									var query = "INSERT INTO invite(friendID,friendContact,lat,long,address,inviteName,inviteDesc,date,time,ampm,accepted,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+									$cordovaSQLite.execute(db,query,[datas[key].uID,datas[key].uContact,datas[key].lat,datas[key].lon,datas[key].address,datas[key].inviteName,datas[key].inviteDesc,datas[key].inviteDate,datas[key].inviteTime,datas[key].inviteAMPM,'0',datas[key].created_at,datas[key].updated_at]).then(function(res){
+										console.info("Inserted invitation "+res.insertId);    
+									},function(err){
+										console.error("failed to insert");
+									});
+									console.log("inside 0 "+JSON.stringify(res));
+								}else{
+									console.error("already invite insert "+res.rows.length);
+								}
+							}else{  
+								console.error("no/already invite insert "+res.rows.length);
 							}
 						},function(err){
 							console.error("failed to insert");
@@ -155,10 +161,11 @@ besties.factory("bestiesservice",function(){
 
 			
 				var accepted = '0';var pic = "";
-				var query = "SELECT invite.id,invite.friendID,invite.inviteName,invite.inviteDesc,invite.friendContact,invite.address,invite.date,invite.ampm,invite.time,invite.accepted,joinincontacts.uid,joinincontacts.uname,joinincontacts.profilePic,joinincontacts.dummyPic FROM invite INNER JOIN joinincontacts ON invite.friendID = joinincontacts.uid WHERE invite.accepted = ? group by invite.friendID";
+				var quer = "SELECT invite.id,invite.friendID,invite.inviteName,invite.inviteDesc,invite.friendContact,invite.address,invite.date,invite.ampm,invite.time,invite.accepted,joinincontacts.uid,joinincontacts.uname,joinincontacts.profilePic,joinincontacts.dummyPic FROM invite INNER JOIN joinincontacts ON invite.friendID = joinincontacts.uid WHERE invite.accepted = ? group by invite.friendID";
 				var invitation = new Array();
-				$cordovaSQLite.execute(db,query,[accepted]).then(function(res){
-					console.warn("found new invitations" +res.rows.length);
+				var date = moment().format('YYYY-MM-DD');
+				$cordovaSQLite.execute(db,quer,[accepted]).then(function(res){
+					console.warn("found new invitations" +res.rows.length+" "+JSON.stringify(res.rows));
 
 					if(res.rows.length == 0){
 						$scope.noInvitation = true;
@@ -166,12 +173,27 @@ besties.factory("bestiesservice",function(){
 						$scope.noInvitation = false;
 					}
 					for(var i=0;i<res.rows.length;i++){
-						pic = res.rows.item(i).profilePic;
+						if(availableisOffline.check()){
+                			pic = res.rows.item(i).dummyPic;
+		                	/*if(opic == "" || opic == null){
+		                		pic = res.rows.item(j).dummyPic;
+		                	}else{
+		                		pic = res.rows.item(j).profilePic;
+		                	}*/
+                		}else{
+                			pic = res.rows.item(i).profilePic;
+                			if(pic == "" || pic == null){
+		                		pic = res.rows.item(i).dummyPic;
+		                	}else{
+		                		pic = res.rows.item(i).profilePic;
+		                	}
+                		}
+						/*pic = res.rows.item(i).profilePic;
 						if(pic == "" || pic == null){
 							pic = res.rows.item(i).dummyPic;
 						}else{
 							pic = res.rows.item(i).profilePic;
-						}
+						}*/
 						invitation[i] = {
 							'iid':res.rows.item(i).id,
 							'friendID':res.rows.item(i).friendID,
@@ -196,7 +218,7 @@ besties.factory("bestiesservice",function(){
 					$ionicLoading.hide();
 					console.error("failed to find invitations");
 				});
-			},4000);
+			//},4000);
 		},
 
 		/*

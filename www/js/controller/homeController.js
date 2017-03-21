@@ -194,24 +194,26 @@ days = end.diff(now, 'minutes');
     }
 
 })
-.controller('homeinvitationController',function($scope,$timeout,$ionicLoading,$cordovaSQLite,bestiesservice,$cordovaToast,$ionicPopup,$http){
+.controller('homeinvitationController',function($scope,$timeout,$ionicLoading,$cordovaSQLite,bestiesservice,$cordovaToast,$ionicPopup,$http,availableisOffline){
     //location.reload();
-    $timeout(function(){
-        /*$ionicLoading.show({
-      template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>',
-      duration: 3000
-    }).then(function(){
-        console.log("done");
-    });*/
-    $ionicLoading.show({
-                template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/
-                cssClass:"ionicLoadingCss1",
-                animation: 'fade-in',
-                showBackdrop: false,
-                duration:6000
-            });
-        bestiesservice.showInvitationInHome($scope,$cordovaSQLite,$ionicLoading,$http);
-    },1000);
+    $scope.findInvitationinit = function(){
+        $timeout(function(){
+            /*$ionicLoading.show({
+          template: '<ion-spinner icon="spiral" style="color:#fff"  class="spinner-positive"></ion-spinner>',
+          duration: 3000
+        }).then(function(){
+            console.log("done");
+        });*/
+        $ionicLoading.show({
+                    template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/
+                    cssClass:"ionicLoadingCss1",
+                    animation: 'fade-in',
+                    showBackdrop: false,
+                    duration:6000
+                });
+            bestiesservice.showInvitationInHome($scope,$cordovaSQLite,$ionicLoading,$http);
+        },1000);
+    };
 
 
         /*Accept invitation*/
