@@ -140,12 +140,12 @@ besties.factory("bestiesservice",function(availableisOffline){
 									},function(err){
 										console.error("failed to insert");
 									});
-									console.log("inside 0 "+JSON.stringify(res));
+									console.log("inside 0 fun fetch"+JSON.stringify(res));
 								/*}else{
 									console.error("already invite insert "+res.rows.length);
 								}*/
 							}else{  
-								console.error("no/already invite insert "+res.rows.length);
+								console.error(" no/already invite insert "+res.rows.length);
 							}
 						},function(err){
 							console.error("failed to insert");
