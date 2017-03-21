@@ -126,14 +126,14 @@ besties.factory("bestiesservice",function(availableisOffline){
 				var data = JSON.parse(JSON.stringify(res));
 				console.log(JSON.stringify(res));
 				if(data.status == "success"){
-					var datas = data.data;
+					var datas = data.data;//JSON.parse(JSON.stringify(data.data));
 					angular.forEach(datas,function(value,key){
-						//console.log(datas[key].inviteName);
+						console.log(datas);
 						var query = "SELECT * FROM invite WHERE inviteName = ? and inviteDesc = ? and time = ? and friendContact = ?";
 						$cordovaSQLite.execute(db,query,[datas[key].inviteName,datas[key].inviteDesc,datas[key].inviteTime,datas[key].friendContact]).then(function(res){
 							console.error("in invite insert "+res.rows.length);
 							if(res.rows.length == 0){
-								if( (res.rows.item(0).inviteName != datas[key].inviteName) && (res.rows.item(0).time != datas[key].inviteTime) ){
+								//if( (res.rows.item(0).inviteName != datas[key].inviteName) && (res.rows.item(0).time != datas[key].inviteTime) ){
 									var query = "INSERT INTO invite(friendID,friendContact,lat,long,address,inviteName,inviteDesc,date,time,ampm,accepted,created,updated) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 									$cordovaSQLite.execute(db,query,[datas[key].uID,datas[key].uContact,datas[key].lat,datas[key].lon,datas[key].address,datas[key].inviteName,datas[key].inviteDesc,datas[key].inviteDate,datas[key].inviteTime,datas[key].inviteAMPM,'0',datas[key].created_at,datas[key].updated_at]).then(function(res){
 										console.info("Inserted invitation "+res.insertId);    
@@ -141,9 +141,9 @@ besties.factory("bestiesservice",function(availableisOffline){
 										console.error("failed to insert");
 									});
 									console.log("inside 0 "+JSON.stringify(res));
-								}else{
+								/*}else{
 									console.error("already invite insert "+res.rows.length);
-								}
+								}*/
 							}else{  
 								console.error("no/already invite insert "+res.rows.length);
 							}
