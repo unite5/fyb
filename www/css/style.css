@@ -694,6 +694,25 @@ input.profiletxt{
   text-decoration-color: #ffffff;
 }
 
+/*CommentsPanel comments.html*/
+.IonContnetCommentsPanel{
+  background-color: #222446;
+}
+div.CommentsPanel{
+  width: 100%;
+  position: relative;
+  color: #ffa;
+  text-align: center;
+  margin-top: 25%;
+  font-weight: 400;
+  word-spacing: 4%;
+  letter-spacing: 4%;
+  font-size: 40px;
+  padding: 5%;
+  line-height: 1.8;
+  letter-spacing: 3px;
+}
+
 /******************************************************************************************
 *
 * ionicLoading
