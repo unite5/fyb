@@ -19,7 +19,7 @@ besties.controller('commentsController',function($scope,$cordovaInAppBrowser,$ti
             var url = localStorage.myURL+"/mobile/app/disqus/comments";
             var defaultOptions = {
                 location: 'no',
-                clearcache: 'no',
+                clearcache: 'yes',
                 toolbar: 'yes'
             };
             document.addEventListener("deviceready", function () {
