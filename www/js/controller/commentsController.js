@@ -20,7 +20,7 @@ besties.controller('commentsController',function($scope,$cordovaInAppBrowser,$ti
             var defaultOptions = {
                 location: 'no',
                 clearcache: 'no',
-                toolbar: 'no'
+                toolbar: 'yes'
             };
             document.addEventListener("deviceready", function () {
                 $cordovaInAppBrowser.open(url, '_blank', defaultOptions)
@@ -38,9 +38,9 @@ besties.controller('commentsController',function($scope,$cordovaInAppBrowser,$ti
         $scope.clicktocomment = function(){
             var url = localStorage.myURL+"/mobile/app/disqus/comments";
             var defaultOptions = {
-                location: 'no',
-                clearcache: 'no',
-                toolbar: 'no'
+                location: 'yes',
+                clearcache: 'yes',
+                toolbar: 'yes'
             };
             document.addEventListener("deviceready", function () {
                 $cordovaInAppBrowser.open(url, '_blank', defaultOptions)
