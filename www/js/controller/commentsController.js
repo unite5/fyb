@@ -1,5 +1,5 @@
 //angular.module('besties')
-besties.controller('commentsController',function($scope,$cordovaInAppBrowser){
+besties.controller('commentsController',function($scope,$cordovaInAppBrowser,$timeout){
 	        /**
         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
@@ -15,20 +15,42 @@ besties.controller('commentsController',function($scope,$cordovaInAppBrowser){
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
         })();*/
-        var url = localStorage.myURL+"/mobile/app/disqus/comments";
-        var defaultOptions = {
-            location: 'no',
-            clearcache: 'no',
-            toolbar: 'no'
-        };
-        document.addEventListener("deviceready", function () {
-            $cordovaInAppBrowser.open(url, '_blank', defaultOptions)
-              .then(function(event) {
-                console.log(event);
-              })
-              .catch(function(event) {
-                console.error(event);
-              });
-            $cordovaInAppBrowser.close();
-        }, false);
+        $timeout(function(){
+            var url = localStorage.myURL+"/mobile/app/disqus/comments";
+            var defaultOptions = {
+                location: 'no',
+                clearcache: 'no',
+                toolbar: 'no'
+            };
+            document.addEventListener("deviceready", function () {
+                $cordovaInAppBrowser.open(url, '_blank', defaultOptions)
+                  .then(function(event) {
+                    console.log(event);
+                  })
+                  .catch(function(event) {
+                    console.error(event);
+                  });
+                $cordovaInAppBrowser.close();
+            }, false);
+        },4000);
+
+
+        $scope.clicktocomment = function(){
+            var url = localStorage.myURL+"/mobile/app/disqus/comments";
+            var defaultOptions = {
+                location: 'no',
+                clearcache: 'no',
+                toolbar: 'no'
+            };
+            document.addEventListener("deviceready", function () {
+                $cordovaInAppBrowser.open(url, '_blank', defaultOptions)
+                  .then(function(event) {
+                    console.log(event);
+                  })
+                  .catch(function(event) {
+                    console.error(event);
+                  });
+                $cordovaInAppBrowser.close();
+            }, false);            
+        }
 });
