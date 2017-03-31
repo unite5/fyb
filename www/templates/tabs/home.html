@@ -1,5 +1,5 @@
-<ion-view view-title="Home" class="animated zoomIn">
-  <ion-content ng-init="initBesties()">
+<ion-view view-title="Home">
+  <ion-content class="contentProfile" ng-init="initBesties()" >
     
     <!-- <div class="list list-inset searchhead">
       <label class="item item-input">
@@ -19,7 +19,7 @@
 
 
       
-  <div ng-show="showbestiesview" ng-repeat="b in showbesties">
+  <div ng-show="showbestiesview" ng-repeat="b in showbesties"  class="animated zoomIn">
     <!-- <ion-refresher
       pulling-text="Finding more besties..."
       on-refresh="doRefresh()" pulling-icon="ion-android-hand" refreshing-icon="ion-android-people"> -->

@@ -1,5 +1,5 @@
 <ion-view view-title="All Contacts">
-  <ion-content>
+  <ion-content class="contentProfile" >
       <div ng-if="emptyJoinedFriends" class="list card">
 
         <div class="item item-avatar">
@@ -31,8 +31,8 @@
             <img src="{{p.pic}}" width="60" height="60" ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)">   
            </div>
            <div class="col col-60">
-             <h6  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)">{{p.uname}}</h6>
-             <p  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)" id="user{{p.uid}}">{{p.contact}}<br>{{'Wants to Join with you'}}</p>
+             <h6 style="color: #fff" ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)">{{p.uname}}</h6>
+             <p  style="color: #fff"  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)" id="user{{p.uid}}">{{p.contact}}<br>{{'Wants to Join with you'}}</p>
            </div>
            <div class="col col-20">
              <i id="userico{{p.uid}}" class="icon ion-android-done-all"  style="float: right;top: 0;right: 0;margin: 12%;font-size:28px;color: red;"  ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)"></i>
@@ -84,8 +84,8 @@
             <img src="{{list.pic}}" width="60" height="60">
           </div>
           <div class="col col-60">
-            <h6>{{list.uname}}</h6>
-            <p><span class="icon ion-android-call"></span> {{list.contact}}</p>
+            <h6  style="color: #fff" >{{list.uname}}</h6>
+            <p  style="color: #fff" ><span class="icon ion-android-call"></span> {{list.contact}}</p>
           </div>
           <div class="col col-20">
             <i class="icon ion-ios-color-filter" style="float: right;top: 0;right: 0;margin: 12%;font-size:28px;color: green;"></i>

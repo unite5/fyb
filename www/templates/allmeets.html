@@ -1,5 +1,5 @@
 <ion-view view-title="My Meets">
-  	<ion-content>
+  	<ion-content class="contentProfile" >
     	
     	<div class="list divimageerror" style="display: block;" ng-show="noLastMeet">
 	      <img src="img/error2.png" class="error2 animated fadeInUp rubbferBand">
@@ -8,7 +8,7 @@
 
 	    <ion-list>
 	      <div ng-repeat = "i in lastmeet">
-	        <ion-item class="item item-avatar item-icon-right" ng-click="seeBesties('{{i.friendID}}','{{i.friendContact}}','{{i.name}}','{{i.iid}}')">
+	        <ion-item class="item item-avatar item-icon-right allmeets" ng-click="seeBesties('{{i.friendID}}','{{i.friendContact}}','{{i.name}}','{{i.iid}}')">
 	          
 	          <img src="{{i.pic}}" width="30" height="30">
 	          {{i.name}}<br>

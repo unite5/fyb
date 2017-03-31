@@ -453,7 +453,19 @@ div.cardnotmeet{
   width: 100%;
   padding-bottom: 10%;
 }
+.chattextbox2{
+ width: 100%;
+  /*padding-bottom: 10%; */
+  padding-left: 5%;
+  border-radius: 5%;
+}
 .chatbtn{
+  background: none;
+  border-radius: 20px;
+  padding-bottom: 10%;
+  margin-bottom: 10%;
+}
+.chatbtn2{
   background: none;
   border-radius: 20px;
   padding-bottom: 10%;
@@ -468,9 +480,86 @@ img.sendchatbtn{
   margin-bottom: 20px;
   padding-bottom: 5%;
 }
+.sendchatbtn2{
+  color: #fff;
+  margin-bottom: 20px;
+  padding-bottom: 5%;
+}
 button.button.chatbtn{
   background:none;
   background-color: none;
+}
+
+/*tab*/
+.tab-nav.tabs {
+    background-color: #323569;
+}
+.tabs-striped.tabs-color-royal .tab-item.tab-item-active, .tabs-striped.tabs-color-royal .tab-item.active, .tabs-striped.tabs-color-royal .tab-item.activated {
+color: #fff;
+}
+
+/*contactlist*/
+.bar-positive.modelbar{
+  background-color: #323569;
+}
+
+
+/*allmeets html*/
+ion-item.item.item-avatar.item-icon-right.allmeets.ng-binding {
+    background: transparent;
+    border: transparent;
+    color: #fff;
+}
+/*allmeets model html*/
+b.allmeetsmodelb.ng-binding {
+    color: #fff;
+}
+p.allmeetsmodelp1.ng-binding {
+    color: aquamarine;
+}
+.col.allmeetsmodeldivrownamadd.ng-binding {
+    color: #fff;
+}
+h5.allmeetsmodelcontact2.ng-binding {
+    color: cadetblue;
+}
+h6.allmeetsmodelcontact3.ng-binding {
+    color: burlywood;
+}
+
+/*search html*/
+h2.title.text-center {
+    color: #fff;
+}
+
+
+/*viewbesties profile from home*/
+b.viewbestiesnameb.ng-binding {
+    color: #fff;
+}
+p.viewbestiesnameplast.ng-binding {
+    color: antiquewhite;
+}
+.col.col-25.mediabanner {
+    color: bisque;
+}
+a.viewbestieschatanchor {
+    color: bisque;
+}
+.col.viewbestiesnamediv.ng-binding {
+    color: #fff;
+}
+.col.viewbestiesnamedivadd.ng-binding {
+    color: aliceblue;
+}
+
+
+/*about page*/
+h6.abouth6 {
+    color: antiquewhite;
+}
+p.aboutp {
+    color: #fff;
 }
 
 /*privacy*/
@@ -488,6 +577,16 @@ button.button.chatbtn{
   text-align: justify;
   text-justify: inter-word;
 }
+p.privacyp1 {
+    color: #fff;
+}
+h3.privacyterms {
+    color: aquamarine;
+}
+p.privacyp2 {
+    color: #fff;
+}
+
 
 /*viewbestieschatanchor*/
 a.viewbestieschatanchor{
@@ -505,6 +604,12 @@ a{
 }
 a:hover{
   text-decoration: none;
+}
+
+/*sidemenu click background color*/
+a.item.a1, a.item.a2, a.item.a3, a.item.a4, a.item.a5, a.item.a6, a.item.a7, a.item.a8, a.item.a9, a.item.a10, a.item.a11, a.item.a12 {
+    background-color: transparent;
+    border: transparent;
 }
 
 

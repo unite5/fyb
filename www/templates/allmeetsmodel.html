@@ -2,7 +2,7 @@
     <!-- <ion-header-bar class="constColor">
       <h1 class="title">My Modal title</h1>
     </ion-header-bar> -->
-    <ion-content>
+    <ion-content class="contentProfile" >
     	<div class="meetmodelarrow"  ng-click="closeModal()"><i class="icon ion-arrow-left-c" ng-click="closeModal()"></i></div>
     	<img src="{{pic}}" class="animated fadeIn meetmodelimage"  ng-click="alert('dsf')" style="width: 100%;height: 80%;text-align: center;">
       	<!-- <div class="row">
@@ -12,8 +12,8 @@
 	    </div> -->
 	    <div class="row">
 	    	<div class="col colviewbestiesnamemodel">
-	        	<h2><b>{{uname}}</b> </h2>
-	            <p>{{created}}</p>
+	        	<h2><b class="allmeetsmodelb">{{uname}}</b> </h2>
+	            <p class="allmeetsmodelp1">{{created}}</p>
 	            <!-- <h3><span class="icon ion-location navigatelocationview animated fadeIn"></span></h3> -->
 	        </div>
 	    </div>
@@ -26,7 +26,7 @@
 	      </div>
 	    </div>
 	    <div class="row">
-	      <div class="col">
+	      <div class="col allmeetsmodeldivrownamadd">
 	        {{uname}}<br>
 	        Member Since, {{created}}
 	      </div>
@@ -34,10 +34,10 @@
 	    
 	    <div class="list">
 	      <div class="item item-divider">
-	        <p><b>Contact Detail</b></p>
+	        <p><b  class="allmeetsmodelcontact1">Contact Detail</b></p>
 	      </div>
-	      <h5>{{ucontact}}</h5><br>
-	      <h6>{{email}}</h6>
+	      <h5 class="allmeetsmodelcontact2">{{ucontact}}</h5><br>
+	      <h6 class="allmeetsmodelcontact3">{{email}}</h6>
 	    </div>
 	    <div>
 	    	<button class="button"  ng-click="closeModal()">OK</button>

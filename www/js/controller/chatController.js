@@ -110,6 +110,11 @@ besties.controller('chatController',function($scope,$log,$stateParams,$cordovaSQ
       var msg = snapshot.val().title;
       console.info(msg);
     });*/
+
+    $scope.trash = function(id){
+    	Message.delete(id);
+    	console.log("id:"+id);
+    }
 });
 besties.factory('Message', ['$firebaseArray',function($firebaseArray,$http) {
         //var messages = firebase.database().ref().child('messages').$asArray();
@@ -141,8 +146,8 @@ besties.factory('Message', ['$firebaseArray',function($firebaseArray,$http) {
       get: function (messageId) {
         return $firebase(ref.child('messages').child(messageId)).$asObject();
       },
-      delete: function (message) {
-        return messages.$remove(message);
+      delete: function (id) {
+        return messages.$remove(id);
       }
     };
     //console.log("Message: "+JSON.stringify(messages));
