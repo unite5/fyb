@@ -503,6 +503,12 @@ color: #fff;
   background-color: #323569;
 }
 
+/*home html */
+.item.item-divider.homecarddiv {
+    color: #fff;
+    background: #323569;
+}
+
 
 /*allmeets html*/
 ion-item.item.item-avatar.item-icon-right.allmeets.ng-binding {
@@ -609,6 +615,18 @@ a:hover{
 /*sidemenu click background color*/
 a.item.a1, a.item.a2, a.item.a3, a.item.a4, a.item.a5, a.item.a6, a.item.a7, a.item.a8, a.item.a9, a.item.a10, a.item.a11, a.item.a12 {
     background-color: transparent;
+    border: transparent;
+}
+
+/*lastmeet html home*/
+ion-item#lastmeetdivid {
+    color: #fff;
+    background: transparent;
+    border: transparent;
+}
+ion-item#invitedivid {
+    color: #fff;
+    background: transparent;
     border: transparent;
 }
 

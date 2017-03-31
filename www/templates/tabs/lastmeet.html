@@ -12,16 +12,16 @@
       <img src="img/error1.png" class="error1 animated fadeIn">
     </div>
 
-    <ion-list>
-      <div ng-repeat = "i in lastmeet">
-        <ion-item class="item item-avatar item-icon-right" ng-click="acceptInvitation('{{i.friendID}}','{{i.friendContact}}','{{i.name}}','{{i.iid}}')">
+    <ion-list class="lastmeetlist">
+      <!-- <div class="lastmeetdiv"> -->
+        <ion-item id="lastmeetdivid" ng-repeat = "i in lastmeet" class="item item-avatar item-icon-right lastmeet" ng-click="acceptInvitation('{{i.friendID}}','{{i.friendContact}}','{{i.name}}','{{i.iid}}')">
           
           <img src="{{i.pic}}" width="30" height="30">
           {{i.name}}<br>
-          <p> {{i.eventName}} {{i.at}}</p>
+          <p class="lastmeetp"> {{i.eventName}} {{i.at}}</p>
           <i class="icon ion-android-happy"></i>
         </ion-item>
-      </div>
+      <!-- </div> -->
     </ion-list>
 </ion-content>
 </ion-view>

@@ -12,15 +12,15 @@
     </div>
               <!-- List of Invitations -->
     
-    <ion-list>
-      <div ng-repeat = "i in invitations">
-        <ion-item class="item item-avatar item-icon-right" ng-click="acceptInvitation('{{i.friendID}}','{{i.friendContact}}','{{i.name}}','{{i.iid}}')">
+    <ion-list class="invitelist">
+      <!-- <div > -->
+        <ion-item id="invitedivid"  ng-repeat = "i in invitations" class="item item-avatar item-icon-right" ng-click="acceptInvitation('{{i.friendID}}','{{i.friendContact}}','{{i.name}}','{{i.iid}}')">
           
           <img src="{{i.pic}}" width="30" height="30">
           {{i.name}}
           <i class="icon ion-shuffle"></i>
         </ion-item>
-      </div>
+      <!-- </div> -->
     </ion-list>
 </ion-content>
 </ion-view>

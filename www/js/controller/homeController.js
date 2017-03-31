@@ -11,6 +11,25 @@ end = moment("2017-02-28 23:24:38"),
 days = end.diff(now, 'minutes');
     var dddd = moment.duration().subtract("2017-02-28 23:24:38");//moment.duration("2017-02-28 23:24:38").minutes();
     console.log("difference is:"+days);*/
+    $scope.options = {
+      loop: false,
+      effect: 'fade',
+      speed: 500,
+    }
+    $scope.$on("$ionicSlides.sliderInitialized", function(event, data){
+      // data.slider is the instance of Swiper
+      $scope.slider = data.slider;
+    });
+
+    $scope.$on("$ionicSlides.slideChangeStart", function(event, data){
+      console.log('Slide change is beginning');
+    });
+
+    $scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
+      // note: the indexes are 0-based
+      $scope.activeIndex = data.slider.activeIndex;
+      $scope.previousIndex = data.slider.previousIndex;
+    });
     $timeout(function(){
         
         $ionicLoading.show({
