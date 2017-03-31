@@ -19,7 +19,7 @@ besties.controller('commentsController',function($scope,$cordovaInAppBrowser,$ti
             var url = localStorage.myURL+"/mobile/app/disqus/comments";
             var defaultOptions = {
                 location: 'no',
-                clearcache: 'yes',
+                clearcache: 'no',
                 toolbar: 'yes'
             };
             document.addEventListener("deviceready", function () {
@@ -30,7 +30,7 @@ besties.controller('commentsController',function($scope,$cordovaInAppBrowser,$ti
                   .catch(function(event) {
                     console.error(event);
                   });
-                $cordovaInAppBrowser.close();
+                //$cordovaInAppBrowser.close();
             }, false);
         },4000);
 
