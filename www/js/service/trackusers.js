@@ -45,7 +45,9 @@ besties.factory("trackusers",function(availableisOffline){
         console.log(error.message);
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
-        var latt = 19.235234, longg = 73.1275884;
+        //var latt = 19.235234, longg = 73.1275884;
+        var latt = localStorage.registeredLatitude;
+		var longg = localStorage.registeredLongitude;
         localStorage.currentlatitude = latt;
         localStorage.currentlongitude = longg;
     }
