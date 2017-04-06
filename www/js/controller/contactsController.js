@@ -356,7 +356,8 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
   return function (items, query) {
   var filtered = [];
   var letterMatch = new RegExp(query, 'i');
-  console.log(items+"////////////"+items.length);
+  //console.log(items+"////////////"+items.length);
+  if(items){
   if(items.length>0){
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
@@ -371,6 +372,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
         filtered.push(item);
       }
     }
+  }
   }
   return filtered;
   };

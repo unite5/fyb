@@ -93,14 +93,14 @@ besties.factory("trackusers",function(availableisOffline){
 				//console.log("from res $http "+JSON.stringify(res));
 			})
 			.error(function(err){
-				$ionicPopup.alert({
+				/*$ionicPopup.alert({
 			            title: "Unauthentified Request",
 			            cssClass:'alertLoginPopup',
 			            content: 'Server can not understood your query. Try Again!'
 			          }).then(function(res) {
 			            //console.info('Thanks');
-			    	});
-				console.log("from err $http "+JSON.stringify(err));
+			    	});*/
+				console.log("from err $http ");
 			});
 			
 			//console.log("trackusers");

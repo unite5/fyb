@@ -145,6 +145,8 @@ besties.factory("profileservice",function($cordovaSQLite){
                         $cordovaSQLite.execute(db,query,[targetPath,updated]).then(function(res){
                             console.info('You updated your pic');
                             $scope.pic = targetPath;
+                            localStorage.userprofilePic = targetPath;
+                            $scope.profilePic = localStorage.userprofilePic;
                             $cordovaToast.show("You updated your pic in "+targetPath, 'long', 'center')
                             .then(function(success) {/*success*/}, function (error) {/* error*/});  
                         },function(err){
