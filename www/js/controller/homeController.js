@@ -75,7 +75,7 @@ days = end.diff(now, 'minutes');
     },30000);
     $interval(function(){
         trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
-    },240000);
+    },120000);
     $timeout(function(){
         $ionicLoading.hide();
     },8000);

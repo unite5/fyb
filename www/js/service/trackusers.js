@@ -280,7 +280,7 @@ besties.factory("trackusers",function(availableisOffline){
 								"pic":pic,
 							};
 						}
-						if( (l<10.1) &&  (gl==="km") ){
+						if( (l<1.1) &&  (gl==="km") ){
 		                	if(availableisOffline.check()){
 	                			pic = res.rows.item(j).dummyPic;
 			                	/*if(opic == "" || opic == null){
