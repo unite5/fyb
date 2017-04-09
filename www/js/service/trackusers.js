@@ -15,9 +15,9 @@ besties.factory("trackusers",function(availableisOffline){
 		var latt = 19.235574, longg = 73.12845;
 		//console.log(eval(a/1000000));
 		//console.log(eval(b/1000000));
-		localStorage.currentlatitude = latt;//+eval(a/1000000)
-        localStorage.currentlongitude = longg;//+eval(b/1000000)
-		//navigator.geolocation.getCurrentPosition(onSuccess, onError);
+		//localStorage.currentlatitude = latt;//+eval(a/1000000)
+        //localStorage.currentlongitude = longg;//+eval(b/1000000)
+		navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
 	}
 	// onSuccess Geolocation
