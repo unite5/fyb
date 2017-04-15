@@ -392,7 +392,7 @@ besties.factory('makedb', function() {
 		      for (var i = 0; i < result.length; i++) {
 		        if ((result[i].displayName != "" && result[i].displayName != " ")
 		        && (result[i].phoneNumbers != null)) {        
-		            if (result[i].phoneNumbers != null)
+		            if (result[i].phoneNumbers != null && (result[i].phoneNumbers).length > 10){
 	                    var tel = result[i].phoneNumbers[0].value;
 	                    var tell = tel.replace(/[a-zA-Z ()-+]/g,'');//tel.replace(/[a-zA-Z ()-+]/g,'');
 	                    var name = result[i].displayName;
@@ -404,10 +404,11 @@ besties.factory('makedb', function() {
                         }, function (err) {
                           //alert(err);
                         });
+                    }
 		        }
 		      }
 		      localStorage.DoneInfoAndContact = "Y";
-		      //alert("cc:"+cc);
+		      alert("countc:"+result.length+" "+cc);
 
 		    };
 

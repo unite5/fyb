@@ -596,13 +596,28 @@ p.privacyp2 {
 
 /*viewbestieschatanchor*/
 a.viewbestieschatanchor{
-  color: #000;
+  color: bisque;
   text-decoration: none;
 }
 a.hover{
   text-decoration: none;
   color: #000;
 }
+/*ion-content.contentProfile div.list div.item */
+/*div.viewbestiesdiv{
+    background-color: darkslateblue;
+    color: #fff;
+    border: 0px;
+}*/
+/*ion-content.contentProfile div.list div.item p*/ 
+p.viewbestiesdivp{
+    color: #fff;
+}
+div.list.viewbestiesdiv .item.item-divider {
+    background-color: darkslateblue;
+    border: 0px;
+}
+
 
 /*anchor tag*/
 a{

@@ -13,8 +13,8 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
       /**/
       callfriends.loadRequestedContacts($cordovaSQLite,$http,$scope,$ionicLoading,$ionicPopup);
       callfriends.listjoinin($scope,$cordovaSQLite);
-    },100);
-    $scope.listfriendlength = 25;
+    },10);
+    $scope.listfriendlength = 50;
     $scope.loadMorelist = function(){
     if (!$scope.listjoins){//joinin contacts list
       $scope.$broadcast('scroll.infiniteScrollComplete');
