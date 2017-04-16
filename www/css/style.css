@@ -761,6 +761,9 @@ ion-side-menu.menu.menu-left.active {
 
 img.profileLogo {
     /*margin: 10%;*/
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
 }
 
 
