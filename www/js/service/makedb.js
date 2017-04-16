@@ -147,22 +147,23 @@ besties.factory('makedb', function() {
 		              	});
 		              	//alert(res.rows.item[i].contact+" "+res.rows.item[i].uname);
 		              	$scope.mydc = JSON.stringify(res.rows.item(i));
-		            	$scope.phoneContacts.push(res.rows.item(i));
+		            	$scope.phoneContacts.push(res.rows.item(i));*/
 		            	ds.push({ 
-			                id: id, 
-			                name: name,
-			                contact:contact,
-			                created:created
-		              	});*/
+			                id: res.rows.item(i).id, 
+			                name: res.rows.item(i).uname,
+			                contact:res.rows.item(i).contact,
+			                created:res.rows.item(i).created
+		              	});
 	            	}
 	            	$scope.showContactitems = true;
-	            	$scope.Contactitems = JSON.parse(JSON.stringify(dataC));
+	            	$scope.hhdd = dataC;
+	            	$scope.Contactitems = JSON.parse(JSON.stringify(ds));
 	            	
 	            	//console.info(($scope.Contactitems));
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
 	            	// $scope.arrcc = ds;
-	                alert("length:"+res.length+" "+JSON.stringify(res.rows));
+	                alert("length:"+res.rows.length+" "+JSON.stringify(res.rows));
 	            } else {
 	            	$scope.showContactitems = false;
 	            	 $scope.arrc = "err"; 
