@@ -163,7 +163,7 @@ besties.factory('makedb', function() {
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
 	            	// $scope.arrcc = ds;
-	                alert("length:"+res.rows.length+" "+JSON.stringify(res.rows));
+	                //alert("length:"+res.rows.length+" "+JSON.stringify(res.rows));
 	            } else {
 	            	$scope.showContactitems = false;
 	            	 $scope.arrc = "err"; 
