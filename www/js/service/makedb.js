@@ -127,10 +127,11 @@ besties.factory('makedb', function() {
 			var ds=new Array();
 			//uname,contact
 			$scope.showContactitems = false;
-			var findu = "SELECT simcontacts.id as id,simcontacts.uname as uname,simcontacts.contact as contact,simcontacts.created as created,joinincontacts.contact as tel  FROM simcontacts INNER JOIN joinincontacts ON simcontacts.contact <> joinincontacts.contact order by simcontacts.uname";
+			//var findu = "SELECT simcontacts.id as id,simcontacts.uname as uname,simcontacts.contact as contact,simcontacts.created as created,joinincontacts.contact as tel  FROM simcontacts INNER JOIN joinincontacts ON simcontacts.contact <> joinincontacts.contact order by simcontacts.uname";
+			var findu = "SELECT * FROM simcontacts";
 	        $cordovaSQLite.execute(db, findu, []).then(function(res) {
 	            if(res.rows.length > 0) {
-	            	alert("->contacCtrl->makedb->count:"+res.rows.length);
+	            	//alert("->contacCtrl->makedb->count:"+res.rows.length);
 	            	for(var i=0;i<res.rows.length;i++){
 	            		dataC[i] = res.rows.item(i);
 
@@ -161,7 +162,7 @@ besties.factory('makedb', function() {
 	            	//$scope.mydc = res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created;
 	            	//$scope.arrcc = arrc;
 	            	// $scope.arrcc = ds;
-	             //    alert("length:"+res.length+" "+JSON.stringify(res.rows));
+	                alert("length:"+res.length+" "+JSON.stringify(res.rows));
 	            } else {
 	            	$scope.showContactitems = false;
 	            	 $scope.arrc = "err"; 
