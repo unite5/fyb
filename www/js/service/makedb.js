@@ -150,7 +150,7 @@ besties.factory('makedb', function() {
 		            	$scope.phoneContacts.push(res.rows.item(i));*/
 		            	ds.push({ 
 			                id: res.rows.item(i).id, 
-			                name: res.rows.item(i).uname,
+			                uname: res.rows.item(i).uname,
 			                contact:res.rows.item(i).contact,
 			                created:res.rows.item(i).created
 		              	});
