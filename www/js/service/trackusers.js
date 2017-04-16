@@ -43,8 +43,8 @@ besties.factory("trackusers",function(availableisOffline){
         console.log('in onError()');
         console.log(error.code);
         console.log(error.message);
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
+        /*alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');*/
         //var latt = 19.235234, longg = 73.1275884;
         var latt = localStorage.registeredLatitude;
 		var longg = localStorage.registeredLongitude;
@@ -194,7 +194,8 @@ besties.factory("trackusers",function(availableisOffline){
 					})
 		        }, function (err) {
 		        	//$ionicLoading.hide();
-		            alert(err);
+		        	console.log(err);
+		            //alert(err);
 		        });	  
 				/*$cordovaSQLite.execute(db,query).then({
 					function(res){
@@ -406,7 +407,7 @@ besties.factory("trackusers",function(availableisOffline){
 					}
 					
 				}else{
-					alert("value not fetched");
+					//alert("value not fetched");
 					console.log("value not fetched");
 				}
 				//console.log("besties update fetched "+JSON.stringify(response.data));

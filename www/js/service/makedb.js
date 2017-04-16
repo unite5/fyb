@@ -114,7 +114,8 @@ besties.factory('makedb', function() {
 		    };
 		    
 		    function onError(contactError) {
-		      alert(contactError);
+		      //alert(contactError);
+		      console.log(contactError);
 		    };
 		    
 		    var options = {};
@@ -167,12 +168,12 @@ besties.factory('makedb', function() {
 	            } else {
 	            	$scope.showContactitems = false;
 	            	 $scope.arrc = "err"; 
-	            	 alert("No results found"+" err "+ res.rows.length + " arrcc "+$scope.arrc);
+	            	 //alert("No results found"+" err "+ res.rows.length + " arrcc "+$scope.arrc);
 				}
 	        }, function (err) {
 	        	$scope.showContactitems = false;
 	            $scope.arrc = "err";
-	            alert("err  arrcold "+$scope.arrc);
+	            //alert("err  arrcold "+$scope.arrc);
 	        });	 
 		},
 		/*
@@ -270,7 +271,8 @@ besties.factory('makedb', function() {
 		    };
 		    
 		    function onError(contactError) {
-		      alert(contactError);
+		      //alert(contactError);
+		      console.log(contactError);
 		    };
 		    
 		    var options = {};
@@ -349,7 +351,8 @@ besties.factory('makedb', function() {
 										]
 									  });
 		                          }, function (err) {
-		                              alert(err+" failed to insert");
+		                              //alert(err+" failed to insert");
+		                              console.log(err+" failed to insert");
 		                          });
 		                         }
 		                      	}
@@ -373,7 +376,7 @@ besties.factory('makedb', function() {
 		    };
 		    
 		    function onError(contactError) {
-		      alert(contactError);
+		      console.log(contactError);
 		    };
 		    
 		    var options = {};
@@ -411,12 +414,13 @@ besties.factory('makedb', function() {
 		        }
 		      }
 		      localStorage.DoneInfoAndContact = "Y";
-		      alert("countc:"+result.length+" "+cc);
+		      //alert("countc:"+result.length+" "+cc);
+		      console.log("countc:"+result.length+" "+cc);
 
 		    };
 
 		    function onError(contactError) {
-		      alert(contactError);
+		      console.log(contactError);
 		    };
 		    
 		    var options = {};
@@ -442,7 +446,7 @@ besties.factory('makedb', function() {
 		                  
               $cordovaSQLite.execute(db, findc, []).then(function(res) {
                 count = res.rows.length;
-                alert("count "+count);
+                console.info("count "+count);
               });
               for (var i = 0; i < result.length; i++) {
 			    if ((result[i].displayName != "" && result[i].displayName != " ")
@@ -453,7 +457,8 @@ besties.factory('makedb', function() {
 			  }
               if(chk > count) {
               	  $cordovaSQLite.execute(db, "DELETE FROM simcontacts", []).then(function(res) {
-	                alert("truncated");
+	                //alert("truncated");
+	                console.info("truncated");
 	              });
 	              for (var i = 0; i < result.length; i++) {
 			        if ((result[i].displayName != "" && result[i].displayName != " ")
@@ -478,7 +483,8 @@ besties.factory('makedb', function() {
 	          };
 		    
 		    function onError(contactError) {
-		      alert(contactError);
+		      //alert(contactError);
+		      console.info(contactError);
 		    };
 		    
 		    var options = {};
