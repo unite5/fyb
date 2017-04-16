@@ -11,7 +11,10 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
       },function(er){console.error("err")});
     },6000);*/
       /**/
+
+      //request user
       callfriends.loadRequestedContacts($cordovaSQLite,$http,$scope,$ionicLoading,$ionicPopup);
+      //
       callfriends.listjoinin($scope,$cordovaSQLite);
     },10);
     $scope.listfriendlength = 50;

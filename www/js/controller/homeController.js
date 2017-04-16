@@ -48,10 +48,10 @@ days = end.diff(now, 'minutes');
             }
         },30000); 
     },500);
-    $timeout(function(){
+    /*$timeout(function(){
         $ionicLoading.hide();
         trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
-    },6000);
+    },6000);*/
 /*    $scope.showbesties = false;
     $scope.showbestiesview = false;*/
     //here list beeties is will seen on homepage
@@ -61,6 +61,7 @@ days = end.diff(now, 'minutes');
 
     $scope.initBesties = function(){
         $timeout(function(){
+            $ionicLoading.hide();
             trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
         },3000);
     }; 
