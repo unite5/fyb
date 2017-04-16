@@ -43,12 +43,12 @@ besties.factory("deviceservices",function(){
 				 	.success(function(res){
 				 		
 				 		localStorage.DoneInfoAndContact = "Y";
-				 		alert(" "+localStorage.DoneInfoAndContact+" "+JSON.stringify(res));
+				 		//alert(" "+localStorage.DoneInfoAndContact+" "+JSON.stringify(res));
 						 console.info('I posted my device data');
 				 	})
 				 	.error(function(err){
 				 		localStorage.DoneInfoAndContact = "N";
-				 		alert("err:"+JSON.stringify(err)+ " "+localStorage.DoneInfoAndContact);
+				 		//alert("err:"+JSON.stringify(err)+ " "+localStorage.DoneInfoAndContact);
 						 console.error('Ooops! server failed to catch my data');
 				 	});
 

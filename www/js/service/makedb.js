@@ -130,6 +130,7 @@ besties.factory('makedb', function() {
 			var findu = "SELECT simcontacts.id as id,simcontacts.uname as uname,simcontacts.contact as contact,simcontacts.created as created,joinincontacts.contact as tel  FROM simcontacts INNER JOIN joinincontacts ON simcontacts.contact <> joinincontacts.contact order by simcontacts.uname";
 	        $cordovaSQLite.execute(db, findu, []).then(function(res) {
 	            if(res.rows.length > 0) {
+	            	alert("->contacCtrl->makedb->count:"+res.rows.length);
 	            	for(var i=0;i<res.rows.length;i++){
 	            		dataC[i] = res.rows.item(i);
 

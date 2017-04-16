@@ -263,13 +263,23 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 					angular.forEach(ang,function(value,key){
 						//getListFromDBByContact($scope,$cordovaSQLite,value.contact);//just fetching records previously
 						var tbuid = value.uid,tbuname = value.uname,tbcontact = value.contact,tbgender = value.gender,tbisActive = value.isActive,tbdob = value.dob,tbage = value.age,tbemail = value.email,tbprofilePic = value.profilePic,tbdummyPic = value.dummyPic,tblisten = value.listen,tbtoken = value.token,tbaccepted = value.accepted,tbcreated = value.created.date,tbupdated = value.updated.date;
-						pic = tbprofilePic;
-						if(pic == null || pic == ""){
+						
+						if(availableisOffline.check()){
+                			pic = tbdummyPic;
+                		}else{
+                			//pic = res.rows.item(j).profilePic;
+                			if(pic == null || pic == ""){
+								pic = tbdummyPic;
+							}else{
+								pic = tbprofilePic;
+							}
+                		}
+						/*if(pic == null || pic == ""){
 							pic = tbdummyPic;
 						}else{
 							pic = tbprofilePic;
-						}
-						console.info("uid:"+tbuid+" "+
+						}*/
+						/*console.info("uid:"+tbuid+" "+
 							"uname:"+tbuname+" "+
 							"contact:"+tbcontact+" "+
 							"gender:"+tbgender+" "+
@@ -284,7 +294,7 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 							"accepted:"+tbaccepted+" "+
 							"created:"+tbcreated+" "+
 							"updated:"+tbupdated+" "
-							);
+							);*/
 						results[key] = {
 							"uid":tbuid,
 							"uname":tbuname,
