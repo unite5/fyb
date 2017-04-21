@@ -248,7 +248,7 @@ besties.factory("trackusers",function(availableisOffline){
 	                	tymd = (ttime[0]).split('-');
 	                	thms = (ttime[1]).split(':');
 	                	if( (l<100) &&  (gl==='m') ){
-		                	
+		                //if( (l==100) &&  (gl==='m') ){	
 		                	/*if(ionic.Platform.isWebView()){
 								pic = localStorage.myURL+"/"+res.rows.item(j).profilePic;
 		                	}else{*/
@@ -283,13 +283,10 @@ besties.factory("trackusers",function(availableisOffline){
 							};
 						}
 						if( (l<1.1) &&  (gl==="km") ){
+						//if( (l==1.1) &&  (gl==="km") ){
 		                	if(availableisOffline.check()){
 	                			pic = res.rows.item(j).dummyPic;
-			                	/*if(opic == "" || opic == null){
-			                		pic = res.rows.item(j).dummyPic;
-			                	}else{
-			                		pic = res.rows.item(j).profilePic;
-			                	}*/
+			                	
 	                		}else{
 	                			//pic = res.rows.item(j).profilePic;
 	                			if(opic == "" || opic == null){
@@ -317,6 +314,10 @@ besties.factory("trackusers",function(availableisOffline){
 					$scope.showbestiese = false;
 					$scope.showbestiesview = true;
 					$scope.showbesties = JSON.parse(JSON.stringify(bestiesbyfound));
+					if($scope.showbesties.length == 0){
+						$scope.showbestiese = true;
+						$scope.showbestiesview = false;
+					}
 					console.info(JSON.parse(JSON.stringify(bestiesbyfound)));
 				}
 				$ionicLoading.hide();

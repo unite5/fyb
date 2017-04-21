@@ -225,17 +225,17 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 	            	$scope.listjoins = JSON.parse(JSON.stringify(data));
 	            	
 	                //alert((res.rows.length+" makedb first:"+JSON.stringify(res.rows.item(0))+" "+res.rows.item(0).contact));
-	                console.warn($scope.listjoins+" * "+res.rows.length+" makedb first:"+JSON.stringify(res.rows.item(0))+" "+res.rows.item(0).contact);
+	                //console.warn($scope.listjoins+" * "+res.rows.length+" makedb first:"+JSON.stringify(res.rows.item(0))+" "+res.rows.item(0).contact);
 	                //alert(res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
 	            } else {
 	                $scope.nonemptyJoinedFriends = false;
 	            	$scope.emptyJoinedFriends = true;
-	            	alert("err "+ res.rows.length);
+	            	//alert("err "+ res.rows.length);
 		        }
 	        }, function (err) {
 	        	$scope.nonemptyJoinedFriends = false;
 	            	$scope.emptyJoinedFriends = true;
-	            alert(err);
+	            //alert(err);
 	        });
 		},
 		deletejoinins:function($cordovaSQLite){

@@ -67,6 +67,7 @@ besties.run(function($ionicPlatform,$cordovaStatusbar,$ionicHistory,$location,$t
       }*/
       else if($location.path() === "/app/searchfriends" || 
                $location.path() === "/app/contacts" || 
+               $location.path() === "/app/chatview" || 
                $location.path() === "/app/nearby" || 
                $location.path() === "/app/about" || 
                $location.path() === "/app/allmeets" || 

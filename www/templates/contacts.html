@@ -28,7 +28,7 @@
 
          <div class="row" ng-repeat="p in pendingbesties">
            <div class="col col-20">
-            <img src="{{p.pic}}" width="60" height="60" ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)">   
+            <img src="{{p.pic}}" width="60" height="60" class="chatviewimg" ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)">   
            </div>
            <div class="col col-60">
              <h6 style="color: #fff" ng-click="joinpendingbesties(p.uname,p.uid,p.contact,p.token)">{{p.uname}}</h6>
@@ -81,7 +81,7 @@
           <div class="col col-20">
             <!--<img ng-if="list.opic != ''" src="{{list.pic}}" width="60" height="60">
             <img ng-if="list.opic == ''" src="{{list.pic}}" width="60" height="60">-->
-            <img src="{{list.pic}}" width="60" height="60">
+            <img src="{{list.pic}}" width="60" height="60" class="chatviewimg">
           </div>
           <div class="col col-60">
             <h6  style="color: #fff" >{{list.uname}}</h6>

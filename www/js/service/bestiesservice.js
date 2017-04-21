@@ -356,6 +356,7 @@ besties.factory("bestiesservice",function(availableisOffline){
 			var query = "SELECT meet.id,meet.friendID,meet.eventName,meet.eventDesc,meet.friendContact,meet.address,meet.created,meet.date,meet.ampm,meet.time,meet.accepted,joinincontacts.uid,joinincontacts.uname,joinincontacts.profilePic,joinincontacts.dummyPic FROM meet INNER JOIN joinincontacts ON meet.friendID = joinincontacts.uid WHERE meet.accepted = ?";//group by meet.friendID
 			var lastmeets = new Array();
 			$cordovaSQLite.execute(db,query,[accepted]).then(function(res){
+				$ionicLoading.hide();
 				console.warn("found new lastmeet" +res.rows.length);
 				if(res.rows.length == 0){
 					$scope.noLastMeet = true;

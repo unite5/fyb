@@ -25,7 +25,7 @@
   <ion-side-menu side="left" style="background-color: transparent; "><!-- background-color:#222446 -->
     <ion-content>
       <div class="img-circular">
-          <img src="{{profilePic}}" width="160" height="160" class="profileLogo">
+          <img src="{{profilePic}}" on-error-src="person.png" width="160" height="160" class="profileLogo">
       </div>
       <p style="margin-left: 20%;font-size: 18px;margin-top: 12px;color: #ffffcc"><b>{{username}}</b></p>
       <ul class="list"><!-- constColor -->
@@ -39,6 +39,7 @@
         <a href="#/app/searchfriends" class="item constColor a2" style="color: #ffffff" menu-close><span class="icon ion-ios-search-strong"></span>&nbsp;&nbsp;Search Friends</a>
         <!-- <a href="#/app/nearby" class="item constColor" style="color: #ffffff" menu-close><span class="icon ion-android-people"></span>&nbsp;&nbsp;Near By Friends</a> -->
         <a href="#/app/contacts" class="item constColor a3" style="color: #ffffff" menu-close><span class="icon ion-android-list"></span>&nbsp;&nbsp;Contacts</a>
+        <a href="#/app/chatview" class="item constColor a3" style="color: #ffffff" menu-close><span class="icon ion-chatbox-working"></span>&nbsp;&nbsp;Chats</a>
         <a href="#/app/allmeets" class="item constColor a4" style="color: #ffffff" menu-close><span class="icon ion-social-freebsd-devil"></span>&nbsp;&nbsp;All Meets</a>
         <a href="#/app/profile" class="item constColor a5" style="color: #ffffff" menu-close><span class="icon ion-person"></span>&nbsp;&nbsp;Me</a>
         <!-- <a href="#/event/attendees" class="item constColor a6" style="color: #ffffff" menu-close><span class="icon ion-android-globe"></span>&nbsp;&nbsp;Contact Us</a> -->

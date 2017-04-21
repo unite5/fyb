@@ -1,4 +1,4 @@
-<ion-view view-title="Chat @ {{name}}">
+<ion-view view-title="Chat {{name}}">
   	<ion-content class="contentProfile">
     	<div class="chatdiv">
     		<div class="chattexts">
@@ -14,6 +14,7 @@
                     <small>{{timeby(m.timestamp)}}<!-- &nbsp;<i class="icon ion-trash-a" ng-click="trash(m.$id)"></i> --></small>
     			</div>
     			<div class="chatto"  ng-if="ucontact == m.sendby && me == m.receivedby">
+                    <b>{{name}}</b>
     				<p>{{m.text}}</p>
                     <small>{{timeby(m.timestamp)}}<!-- &nbsp;<i class="icon ion-trash-a" ng-click="trash(m.$id)"></i> --></small>
     			</div>

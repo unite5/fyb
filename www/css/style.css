@@ -300,6 +300,37 @@ hr#ionviewbestiesdivider{
   margin-right: 6%;
 }
 
+/*header border*/
+ion-header-bar.bar.constColor2.bar-header {
+    background-color: #323569;
+}
+
+/*chat footer*/
+ion-footer-bar.bar.bar-footer {
+    background-position: inherit;
+    background: transparent;
+}
+/*chat view back btn*/
+i.icon.ion-android-arrow-back {
+    color: #fff;
+}
+/*chat view image */
+img.chatviewimg {
+    border-radius: 50%;
+}
+/*chat view name*/
+h3.chatviewh3.ng-binding {
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+/*profile view image*/
+img.animated.fadeIn.profileviewimage {
+    border-radius: 50%;
+}
+
+
 /*google map*/
 /*#map {
   width: 100%;

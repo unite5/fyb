@@ -1,5 +1,16 @@
 //angular.module('besties')
-besties.controller('chatController',function($scope,$log,$stateParams,$cordovaSQLite,$http,$ionicLoading,$ionicPopup,$cordovaToast,$firebase,$firebaseArray,Message){
+besties.controller('chatViewController',function($scope,$state,$log,$stateParams,$cordovaSQLite,$http,$ionicLoading,$ionicPopup,$cordovaToast,$firebase,$firebaseArray,callfriends){
+	console.log("called");
+	callfriends.listjoinin($scope,$cordovaSQLite);
+
+	$scope.callchat = function(id,contact){
+		$state.go('app.chat',{
+			id:id,
+			contact:contact
+		});
+	}
+})
+.controller('chatController',function($scope,$log,$stateParams,$cordovaSQLite,$http,$ionicLoading,$ionicPopup,$cordovaToast,$firebase,$firebaseArray,Message){
 	$log.info("chatController " +$stateParams.id);
 	$scope.name = '';$scope.contact = '';
 	localStorage.chatWith = $stateParams.contact;	

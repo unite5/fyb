@@ -1,0 +1,34 @@
+<ion-view view-title="Chat with besties">
+  	<ion-content class="contentProfile">
+    	
+        <div  ng-repeat = "list in listjoins">
+        <div class="row" ng-click="callchat('{{list.uid}}','{{list.contact}}')">
+          <div class="col col-20">
+            <!--<img ng-if="list.opic != ''" src="{{list.pic}}" width="60" height="60">
+            <img ng-if="list.opic == ''" src="{{list.pic}}" width="60" height="60">-->
+            <img src="{{list.pic}}" width="60" height="60" class="chatviewimg">
+          </div>
+          <div class="col col-60 chatviewcol">
+            <h3 class="chatviewh3" style="color: #fff" >{{list.uname}}</h3>
+            <!-- <p  style="color: #fff" ><span class="icon ion-android-call"></span> {{list.contact}}</p> -->
+          </div>
+          <div class="col col-20">
+            <i class="icon ion-chatbox-working" style="float: right;top: 0;right: 0;margin: 12%;font-size:28px;color: azure;"></i>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col col-20">
+            <img src="img/profileGirl.png" width="60" height="60">
+          </div>
+          <div class="col col-60">
+            <h6>Venkman T</h6>
+            <p>Back off, man. I'm a scientists.</p>
+          </div>
+          <div class="col col-20">
+            <i class="icon ion-ios-color-filter" style="float: right;top: 0;right: 0;margin: 10%;font-size:26px;color: green;"></i>
+          </div>
+        </div> -->
+      </div>
+
+    </ion-content>
+</ion-view>

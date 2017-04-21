@@ -3,7 +3,7 @@
     
     <div class="row">
         <div class="col colviewbestiesimage">
-            <img src="{{pic}}" class=" animated fadeIn" width="100" height="100">
+            <img src="{{pic}}" class=" animated fadeIn profileviewimage" width="100" height="100">
         </div>
         <div class="col colviewbestiesname">
         	<h2><b class="viewbestiesnameb">{{name}}</b></h2>
@@ -16,7 +16,7 @@
     <div class="row">
       <div class="col col-25 mediabanner" ng-click="bestiescall()"><img src="img/phone.png" width="50" height="50"><br>Call</div>
       <div class="col col-25 mediabanner" ng-click="bestiessms()"><img src="img/sms.png" width="50" height="50"><br>SMS</div>
-      <div class="col col-25 mediabanner"><a class="viewbestieschatanchor" ng-href="#/app/chat/{{id}}"><img src="img/chat.png" width="50" height="50"><br>Chat</a></div>
+      <div class="col col-25 mediabanner"><a class="viewbestieschatanchor" ng-href="#/app/chat/{{id}}/{{contact}}"><img src="img/chat.png" width="50" height="50"><br>Chat</a></div>
       <div class="col col-25 mediabanner" ng-click="bestieswhatsapp()"><img src="img/whatsapp.png" width="50" height="50"><br>Whatsapp</div>
     </div>
 
@@ -27,7 +27,7 @@
     </div>
     <div class="row">
       <div class="col viewbestiesnamediv">
-        {{name}}<br>
+        {{name}} {{contact}}<br>
         Member Since, {{created}}
       </div>
     </div>

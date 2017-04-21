@@ -81,6 +81,18 @@ besties.controller('menuController',function($scope,$log,$cordovaToast,$cordovaS
       });
     $log.warn("shareapp called");*/
   };
+})
+
+.directive('onErrorSrc', function() {
+    return {
+        link: function(scope, element, attrs) {
+          element.bind('error', function() {
+            if (attrs.src != attrs.onErrorSrc) {
+              attrs.$set('src', attrs.onErrorSrc);
+            }
+          });
+        }
+    }
 });
 
 

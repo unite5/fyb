@@ -151,6 +151,16 @@ besties.config(function($stateProvider,$urlRouterProvider,$ionicConfigProvider){
     }
   })
 
+  .state('app.chatview',{
+    url:'/chatview',
+    views:{
+      'menuContent':{
+        templateUrl:'templates/chatview.html',
+        controller:'chatViewController'
+      }
+    }
+  })
+
   .state('app.chat',{
     url:'/chat/:id/:contact',
     views:{
@@ -204,9 +214,9 @@ besties.config(function($stateProvider,$urlRouterProvider,$ionicConfigProvider){
 
   ;
 
-  if(localStorage.imin === "Y"){
+  //if(localStorage.imin === "Y"){
     $urlRouterProvider.otherwise('/app/home');
-  }else{
-    $urlRouterProvider.otherwise('/login');
-  }
+  // }else{
+  //   $urlRouterProvider.otherwise('/login');
+  // }
 });
