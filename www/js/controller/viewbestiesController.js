@@ -43,12 +43,14 @@ besties.controller('viewbestiesController',function($scope,$log,$timeout,$ionicP
 
 	}
 
-	$scope.bestieswhatsapp = function(){
+	$scope.bestieswhatsapp = function(n){
     //https://codepen.io/rossmartin/pen/XJmpQr
-    $scope.data = {};
-
+    //$scope.data = {};
+    alert(n);
+    console.log(n);
+    cordova.plugins.Whatsapp.send(n);
     // An elaborate, custom popup
-    var myPopup = $ionicPopup.show({
+    /*var myPopup = $ionicPopup.show({
       template: '<input type="text" ng-model="data.msg">',
       title: 'Your message...',
       subTitle: 'Please use your words!',
@@ -97,6 +99,6 @@ besties.controller('viewbestiesController',function($scope,$log,$timeout,$ionicP
         //location.href="whatsapp://send?text="+res+"&abid=9768431024";
       }
       //alert(res);
-    });
+    });*/
 	}
 });
