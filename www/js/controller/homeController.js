@@ -43,7 +43,8 @@ days = end.diff(now, 'minutes');
             //notify.scheduleTest($ionicPlatform,$scope,$cordovaLocalNotification,$cordovaSQLite);
             if(availableisOffline.check()){console.log('tracker isnt available')}
             else{
-            trackusers.track($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);/*Background func*/
+            //trackusers.track($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);/*Background func*/
+            trackusers.trackeverymoment($scope,$timeout,$ionicLoading,$http);
             trackusers.trackbestiesnearby($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);/*Background func*/
             }
         },30000); 
@@ -71,12 +72,12 @@ days = end.diff(now, 'minutes');
 
     setInterval(function(){
         trackusers.track($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);//Background func
-        trackusers.trackbestiesnearby($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);//Background func
+        //trackusers.trackbestiesnearby($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);//Background func
         trackusers.updatedailybesties($cordovaSQLite,$http,$scope);
-    },30000);
+    },61000);
     $interval(function(){
         trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
-    },120000);
+    },30000);
     $timeout(function(){
         $ionicLoading.hide();
     },8000);

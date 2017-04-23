@@ -32,13 +32,13 @@ besties.controller('menuController',function($scope,$log,$cordovaToast,$cordovaS
     .share(message, "Share", image, link1) // Share via native share sheet
     .then(function(result) {
       // Success!
-      $cordovaToast
+      /*$cordovaToast
             .show('Shared with social', 'long', 'bottom')
             .then(function(success) {
               // success
             }, function (error) {
               // error
-            });
+            });*/
     }, function(err) {
       // An error occured. Show a message to the user
     });

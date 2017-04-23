@@ -51,6 +51,9 @@ besties.factory("trackusers",function(availableisOffline){
         localStorage.currentlatitude = latt;
         localStorage.currentlongitude = longg;
     }
+    var tracknsendtoserver = function($http,$cordovaSQLite,$ionicPopup){
+
+    };
 	return {
 		track: function($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite){
 			//trackme http://localhost:8000/mobile/me/trackme

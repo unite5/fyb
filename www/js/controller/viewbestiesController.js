@@ -30,15 +30,21 @@ besties.controller('viewbestiesController',function($scope,$log,$timeout,$ionicP
       .send($scope.contact, 'Hello Ionic From JP', options)
       .then(function() {
         // Success! SMS was sent
-        $cordovaToast
+        /*$cordovaToast
             .show('Success! SMS was sending...', 'long', 'bottom')
             .then(function(success) {
               // success
             }, function (error) {
               // error
-            });
+            });*/
       }, function(error) {
-        // An error occurred
+        /*$cordovaToast
+            .show('SMS is not able to send text message', 'long', 'bottom')
+            .then(function(success) {
+              // success
+            }, function (error) {
+              // error
+            });*/
       });
 
 	}
@@ -46,7 +52,7 @@ besties.controller('viewbestiesController',function($scope,$log,$timeout,$ionicP
 	$scope.bestieswhatsapp = function(n){
     //https://codepen.io/rossmartin/pen/XJmpQr
     //$scope.data = {};
-    alert(n);
+    //alert(n);
     console.log(n);
     cordova.plugins.Whatsapp.send(n);
     // An elaborate, custom popup
