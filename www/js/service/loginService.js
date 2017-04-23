@@ -49,8 +49,8 @@ besties.factory("meloginfact",function($cordovaSQLite,notify){
         console.log('in onError()');
         console.log(error.code);
         console.log(error.message);
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
+        // alert('code: '    + error.code    + '\n' +
+        //       'message: ' + error.message + '\n');
         var latt = 19.235234, longg = 73.1275884;
         localStorage.registeredLatitude = latt;
         localStorage.registeredLongitude = longg;

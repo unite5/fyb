@@ -38,10 +38,10 @@ besties.factory("bestiesservice",function(availableisOffline){
                 });
                 console.log($scope.name+" "+$scope.contact+" "+$scope.age);
             } else {
-              alert("err "+ res.rows.length);
+              //alert("err "+ res.rows.length);
         	}
         }, function (err) {
-            alert(err);
+            //alert(err);
         });
 	};
 	return {

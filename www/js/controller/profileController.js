@@ -125,7 +125,7 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 					console.log("done");
 				});*/
 	      }, function (err) {
-	          alert('can not load image');
+	          //alert('can not load image');
 	      });
 	}
 
@@ -171,7 +171,7 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 					console.log("done");
 				});*/
 	        }, function (err) {
-	            alert('can not load image');
+	            //alert('can not load image');
 	      });
 	}
 

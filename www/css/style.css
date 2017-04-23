@@ -330,6 +330,11 @@ img.animated.fadeIn.profileviewimage {
     border-radius: 50%;
 }
 
+/*profile view page*/
+img.animated.fadeIn.profilepagepic.ng-pristine.ng-untouched.ng-valid.ng-empty {
+    border-radius: 50%;
+}
+
 
 /*google map*/
 /*#map {

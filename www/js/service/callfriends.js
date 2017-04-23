@@ -52,10 +52,10 @@ besties.factory("callfriends",function(availableisOffline){
                 console.warn(res.rows.length+" getListFromDBByContact first:"+JSON.stringify(res.rows.item(0))+" "+res.rows.item(0)['contact']);
                 //alert(res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
             } else {
-              alert("err sql "+ res.rows.length);
+              //alert("err sql "+ res.rows.length);
         	}
         }, function (err) {
-            alert(err+" in getListFromDBByContact");
+            //alert(err+" in getListFromDBByContact");
         });
 	};
 	var insertInJoin = function($cordovaSQLite){
@@ -340,7 +340,7 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 			$cordovaSQLite.execute(db,"SELECT uid FROM joinincontacts where uid = ?",[id])
 			.then(function(rin){
 				if(rin.rows.length == 1){
-					alert("You already connected with "+name+" besties");
+					//alert("You already connected with "+name+" besties");
 					$ionicLoading.hide();
 					$cordovaToast.show("You already connected with "+name+" besties", 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
 				}else{
@@ -406,7 +406,7 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 					})
 					.error(function(err){
 						$ionicLoading.hide();
-						alert("error "+JSON.stringify(err));
+						//alert("error "+JSON.stringify(err));
 						$cordovaToast
 		                .show("Sorry write your are unable to join with "+name, 'long', 'center')
 		                .then(function(success) {
@@ -418,7 +418,7 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 				}
 			},function(rout){
 				$ionicLoading.hide();
-				alert("You already connected with "+name+" besties");
+				//alert("You already connected with "+name+" besties");
 				$cordovaToast.show("You already connected with "+name+" besties", 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
 			});
 		}

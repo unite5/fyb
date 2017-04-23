@@ -15,7 +15,7 @@ besties.factory("profileservice",function($cordovaSQLite){
 				}else if(photo == "" || photo == null){
 					$scope.pic = res.rows.item(0).dummyPic;
 				}else if(photo != "img/profileBoy.png"){
-                    alert("profile pic:"+res.rows.item(0).profilePic);
+                    //alert("profile pic:"+res.rows.item(0).profilePic);
 					$scope.pic = res.rows.item(0).profilePic;
 				}
 				$scope.last = moment(res.rows.item(0).updated).fromNow();
@@ -115,7 +115,7 @@ besties.factory("profileservice",function($cordovaSQLite){
             });
 		},
         updateProfilePic:function($scope,$ionicLoading,$http,$cordovaFileTransfer,$cordovaSQLite,$cordovaToast){
-            alert("imagedata "+$scope.pics);
+            //alert("imagedata "+$scope.pics);
             $ionicLoading.show({
                 template:"<div class='uil-ball-css' style='-webkit-transform:scale(0.6)'><div></div></div>",/*templates/css/loader.html*/
                 cssClass:"ionicLoadingCss1",
@@ -150,22 +150,22 @@ besties.factory("profileservice",function($cordovaSQLite){
                             $cordovaToast.show("You updated your pic in "+targetPath, 'long', 'center')
                             .then(function(success) {/*success*/}, function (error) {/* error*/});  
                         },function(err){
-                            alert("failed to insert");
+                            //alert("failed to insert");
                         });
                       }, function(err) {
-                        alert("failed to store "+JSON.stringify(res));
+                        //alert("failed to store "+JSON.stringify(res));
                       }, function (progress) {
                         $timeout(function () {
                           $scope.downloadProgress = (progress.loaded / progress.total) * 100;
                         });
                       });
                 }else{
-                   alert("in else failed "+JSON.stringify(res));
+                   //alert("in else failed "+JSON.stringify(res));
                 }
             })
             .error(function(err){
                 $ionicLoading.hide();
-                alert("can not update "+JSON.stringify(err));
+                //alert("can not update "+JSON.stringify(err));
             });
         }
 	}
