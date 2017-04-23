@@ -389,44 +389,58 @@ besties.factory('makedb', function() {
 		* Store contact first load
 		*/
 		loadContactsFirstInDB:function($cordovaSQLite,$scope,$timeout,$cordovaContacts){
-			//fetch
-		    $scope.phoneContacts = [];
-		    var cc=0;
-		    function onSuccess(contacts) {
-		      var result = contacts;
-		      var arr = [];
-		      for (var i = 0; i < result.length; i++) {
-		        if ((result[i].displayName != "" && result[i].displayName != " ")
-		        && (result[i].phoneNumbers != null)) {        
-		            if (result[i].phoneNumbers != null && (result[i].phoneNumbers).length > 10){
-	                    var tel = result[i].phoneNumbers[0].value;
-	                    var tell = tel.replace(/[a-zA-Z ()-+]/g,'');//tel.replace(/[a-zA-Z ()-+]/g,'');
-	                    var name = result[i].displayName;
-	                    var created = moment().format("YYYY-MM-DD HH:mm:SS");
-                        var updated = moment().format("YYYY-MM-DD HH:mm:SS");
-                        var query = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
-                        $cordovaSQLite.execute(db, query, [name, tell, created, updated]).then(function(res) {
-                          cc++;
-                        }, function (err) {
-                          //alert(err);
-                        });
-                    }
-		        }
-		      }
-		      localStorage.DoneInfoAndContact = "Y";
-		      //alert("countc:"+result.length+" "+cc);
-		      console.log("countc:"+result.length+" "+cc);
+			cordova.plugins.diagnostic.requestContactsAuthorization(function(status){
+              if(status === cordova.plugins.diagnostic.permissionStatus.GRANTED){
+                //alert("Contacts use is authorized");
+              
+                //fetch
+			    $scope.phoneContacts = [];
+			    var cc=0;
+			    function onSuccess(contacts) {
+			      var result = contacts;
+			      var arr = [];
+			      for (var i = 0; i < result.length; i++) {
+			        if ((result[i].displayName != "" && result[i].displayName != " ")
+			        && (result[i].phoneNumbers != null)) {        
+			            if (result[i].phoneNumbers != null && (result[i].phoneNumbers).length > 10){
+		                    var tel = result[i].phoneNumbers[0].value;
+		                    var tell = tel.replace(/[a-zA-Z ()-+]/g,'');//tel.replace(/[a-zA-Z ()-+]/g,'');
+		                    var name = result[i].displayName;
+		                    var created = moment().format("YYYY-MM-DD HH:mm:SS");
+	                        var updated = moment().format("YYYY-MM-DD HH:mm:SS");
+	                        var query = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
+	                        $cordovaSQLite.execute(db, query, [name, tell, created, updated]).then(function(res) {
+	                          cc++;
+	                        }, function (err) {
+	                          //alert(err);
+	                        });
+	                    }
+			        }
+			      }
+			      localStorage.DoneInfoAndContact = "Y";
+			      //alert("countc:"+result.length+" "+cc);
+			      console.log("countc:"+result.length+" "+cc);
 
-		    };
+			    };
 
-		    function onError(contactError) {
-		      console.log(contactError);
-		    };
-		    
-		    var options = {};
-		    options.multiple = true;
-		    
-		    $cordovaContacts.find(options).then(onSuccess, onError);
+			    function onError(contactError) {
+			      console.log(contactError);
+			    };
+			    
+			    var options = {};
+			    options.multiple = true;
+			    
+			    $cordovaContacts.find(options).then(onSuccess, onError);
+			    ///////
+
+
+              }else{
+                alert("contact is not authorized");
+              }
+            }, function(error){
+                alert(error);
+            });
+			
 		},
 
 		/*
