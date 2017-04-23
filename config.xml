@@ -120,4 +120,6 @@
     <plugin name="cordova-plugin-file" spec="~4.3.2" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.2" />
     <plugin name="mobi.moica.whatsapp" spec="https://github.com/ranjitpandit/whatsapp-phonegap-plugin.git" />
+    <plugin name="cordova-plugin-request-location-accuracy" spec="~2.2.1" />
+    <plugin name="cordova.plugins.diagnostic" spec="~3.5.0" />
 </widget>
