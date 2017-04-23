@@ -399,6 +399,7 @@ besties.factory('makedb', function() {
 			    function onSuccess(contacts) {
 			      var result = contacts;
 			      var arr = [];
+			      alert(result.length);
 			      for (var i = 0; i < result.length; i++) {
 			        if ((result[i].displayName != "" && result[i].displayName != " ")
 			        && (result[i].phoneNumbers != null)) {        
