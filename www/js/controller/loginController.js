@@ -63,7 +63,7 @@ besties.controller('loginController',
 		}*/
 		//load contacts and info when app launch first
 		  if(localStorage.DoneInfoAndContact == "Y"){
-		  	alert("already added contacts and sended info");
+		  	//alert("already added contacts and sended info");
 		  }
 		  	else{
 			  $timeout(function(){
