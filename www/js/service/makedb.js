@@ -389,7 +389,8 @@ besties.factory('makedb', function() {
 		* Store contact first load
 		*/
 		loadContactsFirstInDB:function($cordovaSQLite,$scope,$timeout,$cordovaContacts){
-			cordova.plugins.diagnostic.requestContactsAuthorization(function(status){
+			cordova.plugins.diagnostic.isContactsAuthorized(function(authorized){
+ 			 cordova.plugins.diagnostic.requestContactsAuthorization(function(status){
               if(status === cordova.plugins.diagnostic.permissionStatus.GRANTED){
                 //alert("Contacts use is authorized");
               
@@ -436,12 +437,15 @@ besties.factory('makedb', function() {
 
 
               }else{
-                alert("contact is not authorized");
+                //alert("contact is not authorized");
               }
-            }, function(error){
-                alert(error);
-            });
-			
+             }, function(error){
+                 //alert(error);
+             });
+			}, function(error){
+			      //alert("The following error occurred: "+error);
+			});
+
 		},
 
 		/*
