@@ -386,7 +386,7 @@ besties.factory('makedb', function() {
 		    
 		},
 		/*
-		* Store contact first load
+		* Store contact first load ** now in service deviceservices 27/04/2017
 		*/
 		loadContactsFirstInDB:function($cordovaSQLite,$scope,$timeout,$cordovaContacts){
 			cordova.plugins.diagnostic.isContactsAuthorized(function(authorized){
