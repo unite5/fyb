@@ -187,8 +187,11 @@ besties.factory("deviceservices",function(){
 			        localStorage.currentlongitude = longitude;
 			        localStorage.registeredLatitude = latitude;
 			        localStorage.registeredLongitude = longitude;
-			    	$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
-			        postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+			    	//$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
+			    	$timeout(function(){
+			    		$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
+			        	postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+			    	},20000);
 			    },
 				// onError Callback receives a PositionError object
 			    function onError(error) {
