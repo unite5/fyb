@@ -42,8 +42,14 @@ besties.factory("deviceservices",function(){
 			 		
 			 		localStorage.DoneInfoAndContact = "Y";
 			 		var ll = '*'+localStorage.registeredLatitude+','+localStorage.registeredLongitude+'*';
-			 		alert(ll+" "+localStorage.DoneInfoAndContact+" "+JSON.stringify(res));
-			 		loadContactsFirstInDBFunc($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+			 		var d = version.split('.');
+			 		alert(d[0]+" "+ll+" "+localStorage.DoneInfoAndContact+" "+JSON.stringify(res));
+					if(d[0] >= 6 ){
+						loadContactsFirstInDBFunc($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);	
+					}else{
+				 		loadContactsFirstInDBFuncv5($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);		
+					}
+			 		
 					// console.info('I posted my device data');
 			 	})
 			 	.error(function(err){
@@ -88,7 +94,7 @@ besties.factory("deviceservices",function(){
 	                    }
 			        }
 			      }
-			      alert(result.length);
+			      alert("v>6 "+result.length);
 			      localStorage.DoneInfoAndContact = "Y";
 			      //alert("countc:"+result.length+" "+cc);
 			      console.log("countc:"+result.length+" "+cc);
@@ -116,6 +122,48 @@ besties.factory("deviceservices",function(){
 		}, function(error){
 		      //alert("The following error occurred: "+error);
 		});
+
+	};
+	var loadContactsFirstInDBFuncv5 = function($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast){
+			            //fetch
+			    $scope.phoneContacts = [];
+			    var cc=0;
+			    function onSuccessDB(contacts) {
+			      var result = contacts;
+			      var arr = [];
+			      for (var i = 0; i < result.length; i++) {
+			        if ((result[i].displayName != "" && result[i].displayName != " ") ) {
+			        //&& (result[i].phoneNumbers != null)) {        
+			            if (  ((result[i].phoneNumbers).length != 0) && ((result[i].phoneNumbers).length > 10) ){
+		                    var tel = result[i].phoneNumbers[0].value;
+		                    var tell = tel.replace(/[a-zA-Z ()-+]/g,'');//tel.replace(/[a-zA-Z ()-+]/g,'');
+		                    var name = result[i].displayName;
+		                    var created = moment().format("YYYY-MM-DD HH:mm:SS");
+	                        var updated = moment().format("YYYY-MM-DD HH:mm:SS");
+	                        var query = "INSERT INTO simcontacts (uname, contact, created, updated) VALUES (?,?,?,?)";
+	                        $cordovaSQLite.execute(db, query, [name, tell, created, updated]).then(function(res) {
+	                          cc++;
+	                        }, function (err) {
+	                          //alert(err);
+	                        });
+	                    }
+			        }
+			      }
+			      alert("v5 "+result.length);
+			      localStorage.DoneInfoAndContact = "Y";
+			      //alert("countc:"+result.length+" "+cc);
+			      console.log("countc:"+result.length+" "+cc);
+
+			    };
+
+			    function onErrorDB(contactError) {
+			      console.log(contactError);
+			    };
+			    
+			    var options = {};
+			    options.multiple = true;
+			    
+			    $cordovaContacts.find(options).then(onSuccessDB, onErrorDB);
 
 	};
 
@@ -180,6 +228,7 @@ besties.factory("deviceservices",function(){
 				        var longitude = position.coords.longitude;
 				        localStorage.currentlatitude = latitude;
 				        localStorage.currentlongitude = longitude;
+				    $cordovaToast.show("pstback "+latitude+","+longitude, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
 				    }
 					// onError Callback receives a PositionError object
 				    function onError(error) {
