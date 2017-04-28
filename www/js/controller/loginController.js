@@ -132,6 +132,8 @@ besties.controller('loginController',
 		}else{
 			meloginfact.registerforOtp(phone,$scope,$http,$timeout,$ionicPopup,$ionicLoading);
 		}
+		//for sending analytic & save contact detail
+		deviceservices.callwhenLatlonDefined($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
 	  }
 	  $scope.call3 = function(){
 	    // $scope.open4 = false;//div show
@@ -151,7 +153,7 @@ besties.controller('loginController',
 	  }
 	  $scope.call5 = function(){
 	    $scope.open5 = true;//div hide
-	    alert("Welcome");
+	    //alert("Welcome");
 	    //$scope.open1 = false;//div show
 	    // location.href="index.html";
 	    // localStorage.imin = "Y";

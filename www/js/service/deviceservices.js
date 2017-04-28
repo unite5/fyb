@@ -187,11 +187,11 @@ besties.factory("deviceservices",function(){
 			        localStorage.currentlongitude = longitude;
 			        localStorage.registeredLatitude = latitude;
 			        localStorage.registeredLongitude = longitude;
-			    	//$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
-			    	$timeout(function(){
-			    		$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
-			        	postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
-			    	},20000);
+			    	$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
+			    	// $timeout(function(){
+			    	// 	//$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {success}, function (error) {/* error*/});
+			     //    	postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+			    	// },20000);
 			    },
 				// onError Callback receives a PositionError object
 			    function onError(error) {
@@ -215,6 +215,7 @@ besties.factory("deviceservices",function(){
             if(error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED){
                 if(confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")){
                     cordova.plugins.diagnostic.switchToLocationSettings();
+                    findLocIsAvailble($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
                 }
             }
         }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
@@ -223,6 +224,9 @@ besties.factory("deviceservices",function(){
 	return {
 		sendDeviceDetailWhenFirstInstallToWeb:function($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast){
 			findLocIsAvailble($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+		},
+		callwhenLatlonDefined:function($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast){
+			postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
 		},
 		postBackInLoginOnlyEnableLoc:function($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast){
 			cordova.plugins.locationAccuracy.request(function (success){
