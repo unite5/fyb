@@ -1,7 +1,7 @@
 //angular.module('besties')
 besties.controller('loginController',
 	//['$scope',"$ionicPopup","$log","$state","$timeout","$ionicLoading","meloginfact","$http",
-	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice,$cordovaSQLite,$cordovaContacts,makedb,deviceservices,notify,$ionicPlatform,$cordovaLocalNotification,countries){
+	function($scope,$ionicPopup,$log,$state,$timeout,$ionicLoading,meloginfact,$http,$cordovaDevice,$cordovaSQLite,$cordovaContacts,makedb,deviceservices,notify,$ionicPlatform,$cordovaLocalNotification,countries,$cordovaToast){
 		//scheduleTest:function($ionicPlatform,$scope,$cordovaLocalNotification)
 		//scheduleTest:function($ionicPlatform,$scope,$cordovaLocalNotification);
 	  //alert("inn;loginController");
@@ -64,13 +64,14 @@ besties.controller('loginController',
 		//load contacts and info when app launch first
 		  if(localStorage.DoneInfoAndContact == "Y"){
 		  	//alert("already added contacts and sended info");
+		  	deviceservices.postBackInLoginOnlyEnableLoc($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
 		  }
 		  	else{
 			  $timeout(function(){
-			  	deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http);
-			  	$timeout(function(){
+			  	deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+			  	/*$timeout(function(){
 			  		makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
-			  	},2000);
+			  	},2000);*/
 			  },2000);
 		  }
 	  },8000);
