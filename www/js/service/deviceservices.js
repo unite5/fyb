@@ -175,10 +175,11 @@ besties.factory("deviceservices",function(){
             
             /*cordova.plugins.diagnostic.requestContactsAuthorization(function(status){
               if(status === cordova.plugins.diagnostic.permissionStatus.GRANTED){*/
-                navigator.geolocation.getCurrentPosition(onSuccess, onError);
-            	$cordovaToast.show("In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
+                //navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            	
 				// onSuccess Geolocation
-			    function onSuccess(position) {
+				navigator.geolocation.getCurrentPosition(
+				function onSuccess(position) {
 			        //console.log('in onSuccess()');
 			        var latitude = position.coords.latitude;
 			        var longitude = position.coords.longitude;
@@ -186,8 +187,9 @@ besties.factory("deviceservices",function(){
 			        localStorage.currentlongitude = longitude;
 			        localStorage.registeredLatitude = latitude;
 			        localStorage.registeredLongitude = longitude;
+			    	$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
 			        postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
-			    }
+			    },
 				// onError Callback receives a PositionError object
 			    function onError(error) {
 			        var latt = 0.0;
@@ -196,7 +198,9 @@ besties.factory("deviceservices",function(){
 			        localStorage.currentlongitude = longg;
 			        localStorage.registeredLatitude = latt;
 			        localStorage.registeredLongitude = longg;
-			    }
+			    }	
+					);
+			    
               /*}else{
                 //alert("contact is not authorized");
               }
