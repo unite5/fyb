@@ -133,7 +133,7 @@ besties.controller('loginController',
 			meloginfact.registerforOtp(phone,$scope,$http,$timeout,$ionicPopup,$ionicLoading);
 		}
 		//for sending analytic & save contact detail
-		deviceservices.callwhenLatlonDefined($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+		//deviceservices.callwhenLatlonDefined($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
 	  }
 	  $scope.call3 = function(){
 	    // $scope.open4 = false;//div show

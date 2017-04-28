@@ -178,8 +178,10 @@ besties.factory("deviceservices",function(){
                 //navigator.geolocation.getCurrentPosition(onSuccess, onError);
             	
 				// onSuccess Geolocation
-				navigator.geolocation.getCurrentPosition(
-				function onSuccess(position) {
+				setTimeout(function(){
+					navigator.geolocation.getCurrentPosition(onSuccess,onError);
+				},2000);
+			    function onSuccess(position) {
 			        //console.log('in onSuccess()');
 			        var latitude = position.coords.latitude;
 			        var longitude = position.coords.longitude;
@@ -187,12 +189,12 @@ besties.factory("deviceservices",function(){
 			        localStorage.currentlongitude = longitude;
 			        localStorage.registeredLatitude = latitude;
 			        localStorage.registeredLongitude = longitude;
-			    	$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
-			    	// $timeout(function(){
-			    	// 	//$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {success}, function (error) {/* error*/});
-			     //    	postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
-			    	// },20000);
-			    },
+			    	//$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
+			    	$timeout(function(){
+			    		$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {success}, function (error) {/* error*/});
+			        	postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+			    	},10000);
+			    }
 				// onError Callback receives a PositionError object
 			    function onError(error) {
 			        var latt = 0.0;
@@ -201,9 +203,7 @@ besties.factory("deviceservices",function(){
 			        localStorage.currentlongitude = longg;
 			        localStorage.registeredLatitude = latt;
 			        localStorage.registeredLongitude = longg;
-			    }	
-					);
-			    
+			    }
               /*}else{
                 //alert("contact is not authorized");
               }
