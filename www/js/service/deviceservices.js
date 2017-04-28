@@ -122,10 +122,11 @@ besties.factory("deviceservices",function(){
 	var findLocIsAvailble = function($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast){
 	    cordova.plugins.locationAccuracy.request(function (success){
             //alert("Successfully requested high accuracy location mode: "+success.message);
-            $cordovaToast.show("Contact is not authorized", 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
-            cordova.plugins.diagnostic.requestContactsAuthorization(function(status){
-              if(status === cordova.plugins.diagnostic.permissionStatus.GRANTED){
+            
+            /*cordova.plugins.diagnostic.requestContactsAuthorization(function(status){
+              if(status === cordova.plugins.diagnostic.permissionStatus.GRANTED){*/
                 navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            	$cordovaToast.show("In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
 				// onSuccess Geolocation
 			    function onSuccess(position) {
 			        //console.log('in onSuccess()');
@@ -133,21 +134,25 @@ besties.factory("deviceservices",function(){
 			        var longitude = position.coords.longitude;
 			        localStorage.currentlatitude = latitude;
 			        localStorage.currentlongitude = longitude;
+			        localStorage.registeredLatitude = latitude;
+			        localStorage.registeredLongitude = longitude;
 			        postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
 			    }
 				// onError Callback receives a PositionError object
 			    function onError(error) {
-			        var latt = localStorage.registeredLatitude;
-					var longg = localStorage.registeredLongitude;
+			        var latt = 0.0;
+					var longg = 0.0;
 			        localStorage.currentlatitude = latt;
 			        localStorage.currentlongitude = longg;
+			        localStorage.registeredLatitude = latt;
+			        localStorage.registeredLongitude = longg;
 			    }
-              }else{
+              /*}else{
                 //alert("contact is not authorized");
               }
             }, function(error){
                 //alert(error);
-            });
+            });*/
         }, function onRequestFailure(error){
             //alert("Accuracy request failed: error code="+error.code+"; error message="+error.message);
             if(error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED){

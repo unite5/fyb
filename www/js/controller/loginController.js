@@ -67,12 +67,12 @@ besties.controller('loginController',
 		  	deviceservices.postBackInLoginOnlyEnableLoc($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
 		  }
 		  	else{
-			  $timeout(function(){
+			  //$timeout(function(){
 			  	deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
 			  	/*$timeout(function(){
 			  		makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
 			  	},2000);*/
-			  },2000);
+			  //},2000);
 		  }
 	  },8000);
 
