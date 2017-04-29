@@ -10,11 +10,16 @@ besties.factory("profileservice",function($cordovaSQLite){
 			if(res.rows.length != 0){
 				$scope.name = res.rows.item(0).name;
 				var photo = res.rows.item(0).profilePic;
-				if(photo == "img/profileBoy.png"){
+				if(photo == "img/profileBoy.png" || photo == "img/profileGirl.png"){
 					$scope.pic = res.rows.item(0).dummyPic;
 				}else if(photo == "" || photo == null){
-					$scope.pic = res.rows.item(0).dummyPic;
-				}else if(photo != "img/profileBoy.png"){
+					//$scope.pic = res.rows.item(0).dummyPic;
+                    if(res.rows.item(0).gender == "Male"){
+                        $scope.pic = "img/profileBoy.png";
+                    }else{
+                        $scope.pic = "img/profileGirl.png";
+                    }
+				}else if(photo != "img/profileBoy.png" || photo != "img/profileGirl.png"){
                     //alert("profile pic:"+res.rows.item(0).profilePic);
 					$scope.pic = res.rows.item(0).profilePic;
 				}

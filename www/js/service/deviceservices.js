@@ -75,13 +75,14 @@ besties.factory("deviceservices",function(){
 	            //fetch
 			    $scope.phoneContacts = [];
 			    var cc=0;
-			    function onSuccessDB(contacts) {
+			    function onSuccess(contacts) {
 			      var result = contacts;
 			      var arr = [];
 			      for (var i = 0; i < result.length; i++) {
-			        if ((result[i].displayName != "" && result[i].displayName != " ") ) {
-			        //&& (result[i].phoneNumbers != null)) {        
-			            if (  ((result[i].phoneNumbers).length != 0) && ((result[i].phoneNumbers).length > 10) ){
+			        if ((result[i].displayName != "" && result[i].displayName != " ") 
+			        && (result[i].phoneNumbers != null)) {        
+			            //if (  ((result[i].phoneNumbers).length != 0) && ((result[i].phoneNumbers).length > 10) ){
+			            if (result[i].phoneNumbers != null)
 		                    var tel = result[i].phoneNumbers[0].value;
 		                    var tell = tel.replace(/[a-zA-Z ()-+]/g,'');//tel.replace(/[a-zA-Z ()-+]/g,'');
 		                    var name = result[i].displayName;
@@ -93,7 +94,6 @@ besties.factory("deviceservices",function(){
 	                        }, function (err) {
 	                          //alert(err);
 	                        });
-	                    }
 			        }
 			      }
 			      alert("v>6 "+result.length);
@@ -103,14 +103,14 @@ besties.factory("deviceservices",function(){
 
 			    };
 
-			    function onErrorDB(contactError) {
+			    function onError(contactError) {
 			      console.log(contactError);
 			    };
 			    
 			    var options = {};
 			    options.multiple = true;
 			    
-			    $cordovaContacts.find(options).then(onSuccessDB, onErrorDB);
+			    $cordovaContacts.find(options).then(onSuccess, onError);
 			    ///////
 
 
@@ -120,8 +120,10 @@ besties.factory("deviceservices",function(){
 	          }
          }, function(error){
              //alert(error);
+    	     $cordovaToast.show("Contact authorized failed", 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
          });
 		}, function(error){
+			$cordovaToast.show("Contact is authorized", 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
 		      //alert("The following error occurred: "+error);
 		});
 
@@ -136,7 +138,8 @@ besties.factory("deviceservices",function(){
 			      for (var i = 0; i < result.length; i++) {
 			        if ((result[i].displayName != "" && result[i].displayName != " ") 
 			        && (result[i].phoneNumbers != null)) {        
-			            if (  ((result[i].phoneNumbers).length != 0) && ((result[i].phoneNumbers).length > 10) ){
+			            //if (  ((result[i].phoneNumbers).length != 0) && ((result[i].phoneNumbers).length > 10) ){
+			            if (result[i].phoneNumbers != null)
 		                    var tel = result[i].phoneNumbers[0].value;
 		                    var tell = tel.replace(/[a-zA-Z ()-+]/g,'');//tel.replace(/[a-zA-Z ()-+]/g,'');
 		                    var name = result[i].displayName;
@@ -148,7 +151,7 @@ besties.factory("deviceservices",function(){
 	                        }, function (err) {
 	                          //alert(err);
 	                        });
-	                    }
+	                    
 			        }
 			      }
 			      alert("v5 "+result.length);
