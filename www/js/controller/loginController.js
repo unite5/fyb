@@ -69,9 +69,10 @@ besties.controller('loginController',
 		  	else{
 			  //$timeout(function(){
 			  	deviceservices.sendDeviceDetailWhenFirstInstallToWeb($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
-			  	/*$timeout(function(){
-			  		makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
-			  	},2000);*/
+			  	$timeout(function(){
+			  		//makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
+			  		deviceservices.callwhenLatlonDefined($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+			  	},60000);
 			  //},2000);
 		  }
 	  },8000);

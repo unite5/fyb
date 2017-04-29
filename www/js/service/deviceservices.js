@@ -178,9 +178,52 @@ besties.factory("deviceservices",function(){
                 //navigator.geolocation.getCurrentPosition(onSuccess, onError);
             	
 				// onSuccess Geolocation
-				setTimeout(function(){
+				//setTimeout(function(){
 					navigator.geolocation.getCurrentPosition(onSuccess,onError);
-				},2000);
+				//},2000);
+			    function onSuccess(position) {
+			        //console.log('in onSuccess()');
+			        var latitude = position.coords.latitude;
+			        var longitude = position.coords.longitude;
+			        localStorage.currentlatitude = latitude;
+			        localStorage.currentlongitude = longitude;
+			        localStorage.registeredLatitude = latitude;
+			        localStorage.registeredLongitude = longitude;
+			        alert("done for loc "+latitude+","+longitude);
+			    	//$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
+			    	// $timeout(function(){
+			    	// 	$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {success}, function (error) {/* error*/});
+			     //    	postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+			    	// },10000);
+			    }
+				// onError Callback receives a PositionError object
+			    function onError(error) {
+			        var latt = 0.0;
+					var longg = 0.0;
+			        localStorage.currentlatitude = latt;
+			        localStorage.currentlongitude = longg;
+			        localStorage.registeredLatitude = latt;
+			        localStorage.registeredLongitude = longg;
+			    }
+              /*}else{
+                //alert("contact is not authorized");
+              }
+            }, function(error){
+                //alert(error);
+            });*/
+        }, function onRequestFailure(error){
+            //alert("Accuracy request failed: error code="+error.code+"; error message="+error.message);
+            if(error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED){
+                if(confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")){
+                    cordova.plugins.diagnostic.switchToLocationSettings();
+                    findLocIsAvailble($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+                }
+            }
+        }, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+	};
+	var findLocIsAvailble2nd = function($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast){
+	    cordova.plugins.locationAccuracy.request(function (success){
+				navigator.geolocation.getCurrentPosition(onSuccess,onError);
 			    function onSuccess(position) {
 			        //console.log('in onSuccess()');
 			        var latitude = position.coords.latitude;
@@ -190,10 +233,10 @@ besties.factory("deviceservices",function(){
 			        localStorage.registeredLatitude = latitude;
 			        localStorage.registeredLongitude = longitude;
 			    	//$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
-			    	$timeout(function(){
-			    		$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {success}, function (error) {/* error*/});
+			    	//$timeout(function(){
+			    		//$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {success}, function (error) {/* error*/});
 			        	postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
-			    	},10000);
+			    	//},10000);
 			    }
 				// onError Callback receives a PositionError object
 			    function onError(error) {
