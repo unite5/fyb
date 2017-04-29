@@ -84,13 +84,13 @@ days = end.diff(now, 'minutes');
 
 
 
-    /*$timeout(function(){
+    $timeout(function(){
     var findu = "SELECT * FROM simcontacts";
         //dummies.loadInContacts($cordovaSQLite,$scope);
             $cordovaSQLite.execute(db, findu, []).then(function(res) {
                 if(res.rows.length > 0) {
                     //alert("Home SELECTED -> " + res.rows.length);
-                    //alert("Home SELECTED -> " + res.rows.length+" makedb first:"+JSON.stringify(res.rows.item(0))+" "+res.rows.item(0)['contact']);
+                    alert("Home SELECTED -> " + res.rows.length+" makedb first:"+JSON.stringify(res.rows.item(0))+" "+res.rows.item(0)['contact']);
                     //alert(res.rows.item[0].id+" "+res.rows.item[0].contact+" "+res.rows.item[0].uname+" "+res.rows.item[0].created);
                 } else {
                   alert("err "+ res.rows.length);
@@ -98,7 +98,7 @@ days = end.diff(now, 'minutes');
             }, function (err) {
                 alert(err);
             });
-    },8000);*/
+    },8000);
     
     console.log("available:"+availableisOffline.check());
     
