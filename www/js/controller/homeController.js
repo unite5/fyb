@@ -80,7 +80,7 @@ days = end.diff(now, 'minutes');
     },30000);
     $timeout(function(){
         $ionicLoading.hide();
-    },8000);
+    },5000);
 
 
 

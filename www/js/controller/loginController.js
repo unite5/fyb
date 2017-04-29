@@ -72,7 +72,7 @@ besties.controller('loginController',
 			  	$timeout(function(){
 			  		//makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
 			  		deviceservices.callwhenLatlonDefined($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
-			  	},60000);
+			  	},10000);
 			  //},2000);
 		  }
 	  },8000);

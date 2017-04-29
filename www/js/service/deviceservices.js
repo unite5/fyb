@@ -45,10 +45,10 @@ besties.factory("deviceservices",function(){
 			 		var d = version.split('.');
 			 		
 					if(d[0] >= 6 ){
-						alert(d[0]+" "+ll+" "+localStorage.DoneInfoAndContact+" "+JSON.stringify(res));
+						//alert(d[0]+" "+ll+" "+localStorage.DoneInfoAndContact+" "+JSON.stringify(res));
 						loadContactsFirstInDBFunc($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);	
 					}else{
-						alert(d[0]+" "+ll+" "+localStorage.DoneInfoAndContact+" "+JSON.stringify(res));
+						//alert(d[0]+" "+ll+" "+localStorage.DoneInfoAndContact+" "+JSON.stringify(res));
 				 		loadContactsFirstInDBFuncv5($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);		
 					}
 			 		//localStorage.DoneInfoAndContact = "Y";
@@ -96,7 +96,7 @@ besties.factory("deviceservices",function(){
 	                        });
 			        }
 			      }
-			      alert("v>6 "+result.length);
+			      //alert("v>6 "+result.length);
 			      localStorage.DoneInfoAndContact = "Y";
 			      //alert("countc:"+result.length+" "+cc);
 			      console.log("countc:"+result.length+" "+cc);
@@ -192,7 +192,7 @@ besties.factory("deviceservices",function(){
 			        localStorage.currentlongitude = longitude;
 			        localStorage.registeredLatitude = latitude;
 			        localStorage.registeredLongitude = longitude;
-			        alert("done for loc "+latitude+","+longitude);
+			        //alert("done for loc "+latitude+","+longitude);
 			    	//$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {/*success*/}, function (error) {/* error*/});
 			    	// $timeout(function(){
 			    	// 	$cordovaToast.show("1 In Loc Successfully requested high accuracy location mode: "+success.message, 'long', 'center').then(function(success) {success}, function (error) {/* error*/});

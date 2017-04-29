@@ -40,9 +40,9 @@ besties.factory("trackusers",function(availableisOffline){
 
     // onError Callback receives a PositionError object
     function onError(error) {
-        console.log('in onError()');
-        console.log(error.code);
-        console.log(error.message);
+        //console.log('in onError()');
+        //console.log(error.code);
+        //console.log(error.message);
         /*alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');*/
         //var latt = 19.235234, longg = 73.1275884;
