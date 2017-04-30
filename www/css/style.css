@@ -529,6 +529,7 @@ button.button.chatbtn{
 /*tab*/
 .tab-nav.tabs {
     background-color: #323569;
+    border-color: #323569;
 }
 .tabs-striped.tabs-color-royal .tab-item.tab-item-active, .tabs-striped.tabs-color-royal .tab-item.active, .tabs-striped.tabs-color-royal .tab-item.activated {
 color: #fff;

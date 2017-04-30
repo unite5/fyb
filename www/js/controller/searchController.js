@@ -1,4 +1,4 @@
-besties.controller('searchController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,$timeout,$ionicPopup,$http,$ionicModal,bestiesservice){
+besties.controller('searchController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,$timeout,$ionicPopup,$http,$ionicModal,bestiesservice,$state){
 	console.log("call sc");
 	$scope.search = {
 		'item':''
@@ -14,8 +14,15 @@ besties.controller('searchController',function($scope,$cordovaContacts,$ionicPla
 			bestiesservice.searchbesties($cordovaSQLite,$scope,$ionicLoading,$ionicPopup);
 		}
 	};
-	$scope.showsearchuser = function(rowid,name,contact,gender){
-		var sPopup = $ionicPopup.alert({
+
+	
+	$scope.showsearchuser = function(rowid,name,contact,gender,uid){
+		//#/app/viewbesties/{{b.uid}}
+		$state.go('app.viewbesties',{
+			id:uid
+		});
+		//not used since 30042017
+		/*var sPopup = $ionicPopup.alert({
 			title:''+name,
 			cssClass:'searchPopup',
 			content:''+contact+"<br>"+gender
@@ -24,6 +31,6 @@ besties.controller('searchController',function($scope,$cordovaContacts,$ionicPla
 				sPopup.close();
 			},2500);
 			console.log("done");
-		});
+		});*/
 	};
 });

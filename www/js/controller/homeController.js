@@ -44,7 +44,7 @@ days = end.diff(now, 'minutes');
             if(availableisOffline.check()){console.log('tracker isnt available')}
             else{
             //trackusers.track($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);/*Background func*/
-            trackusers.trackeverymoment($scope,$timeout,$ionicLoading,$http);
+            //trackusers.trackeverymoment($scope,$timeout,$ionicLoading,$http);
             trackusers.trackbestiesnearby($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);/*Background func*/
             }
         },30000); 
@@ -62,9 +62,9 @@ days = end.diff(now, 'minutes');
 
     $scope.initBesties = function(){
         $timeout(function(){
-            $ionicLoading.hide();
+            //$ionicLoading.hide();
             trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
-        },3000);
+        },1000);
     }; 
     /*if(ionic.Platform.isWebView()){
         alert("yes");

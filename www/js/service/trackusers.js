@@ -90,6 +90,10 @@ besties.factory("trackusers",function(availableisOffline){
 			
 			//console.log("trackusers");
 		},
+
+		/*
+		* not used 30042017
+		*/
 		trackeverymoment: function($scope,$timeout,$ionicLoading,$http){
 			inittrack($http);
 		},
@@ -302,6 +306,9 @@ besties.factory("trackusers",function(availableisOffline){
 						$scope.showbestiesview = false;
 					}
 					console.info(JSON.parse(JSON.stringify(bestiesbyfound)));
+				}else{
+					$scope.showbestiese = true;
+					$scope.showbestiesview = false;
 				}
 				$ionicLoading.hide();
 			},function(err){

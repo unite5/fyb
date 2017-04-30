@@ -9,14 +9,14 @@
     </div> 
 
     <div class="card" ng-hide="nobesties">
-	    <div class="item item-text-wrap cardnotmeet">
-	      No besties founded.
-	    </div>
-	</div>   
+	      <div class="item item-text-wrap cardnotmeet">
+	       No besties founded.
+  	    </div>
+  	</div>   
 
 	<ion-list ng-hide="besties">
       <div ng-repeat = "i in bestiesdata">
-        <ion-item class="item item-avatar item-icon-right" ng-click="showsearchuser('{{i.rowid}}','{{i.uname}}','{{i.contact}}','{{i.gender}}')">
+        <ion-item class="item item-avatar item-icon-right" ng-click="showsearchuser('{{i.rowid}}','{{i.uname}}','{{i.contact}}','{{i.gender}}','{{i.uid}}')">
           
           <img src="{{i.pic}}" width="30" height="30">
           {{i.uname}}<br>
