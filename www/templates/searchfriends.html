@@ -1,6 +1,6 @@
 <ion-view view-title="Search Besties">
   <ion-content scroll="false" class="contentProfile" >
-    <h2 class="title text-center" style="margin-top: 3%">Find Your Besties</h2>
+    <!-- <h2 class="title text-center" style="margin-top: 3%">Find Your Besties</h2> -->
     <div class="list list-inset searchhead">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
@@ -10,7 +10,7 @@
 
     <div class="card" ng-hide="nobesties">
 	      <div class="item item-text-wrap cardnotmeet">
-	       No besties founded.
+	       {{searchtxt}}
   	    </div>
   	</div>   
 

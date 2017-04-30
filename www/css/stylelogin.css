@@ -15,6 +15,14 @@
   right: 20%;
   padding-bottom: 25%; 
 }
+.col.col-100.text-center.fybprowgif {
+    background-color: #323569;
+    background: transparent;
+}
+.row.fybprow {
+    background-color: #323569;
+    background: transparent;
+}
 button.button.DivM2buttonElement,.DivM3buttonEle,.DivM4buttonEle,.DivM5buttonEle {
     border: none;
     background-image: url('../img/ionic.png');
@@ -88,6 +96,7 @@ p.fybplast.myweb{
 .worldimagelogin{
   color: #323569;
   background-color: #323569;
+  background: transparent;
   border-color: #323569;
   margin-top: 10%;
   width: 250px;

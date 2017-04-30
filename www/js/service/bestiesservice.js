@@ -457,6 +457,7 @@ besties.factory("bestiesservice",function(availableisOffline){
 				}else{
 					$scope.nobesties = false;
 					$scope.besties = true;
+					$scope.searchtxt = "No besties found.";
 				}
 			},function(err){
 				$scope.nobesties = false;

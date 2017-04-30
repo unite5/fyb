@@ -1,5 +1,5 @@
 //angular.module('besties')
-besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout,$ionicPopup,callfriends,$http,$ionicModal,$cordovaToast,availableisOffline){
+besties.controller('contactsController',function($scope,$cordovaContacts,$ionicPlatform,$cordovaSQLite,$ionicLoading,makedb,$timeout,$ionicPopup,callfriends,$http,$ionicModal,$cordovaToast,availableisOffline,$state){
     
     /*listin joinins*/
     $timeout(function(){
@@ -31,6 +31,12 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
 
 
     $scope.mybesties = 4;
+
+    $scope.seebestiesfromcontact = function(uid){
+      $state.go('app.viewbesties',{
+        id:uid
+      });
+    }
     //makedb.loadInContacts($cordovaSQLite,$scope);
     //makedb.AddContactInPhone2($cordovaSQLite,$scope,$timeout,$cordovaContacts);
     /*$ionicLoading.show({

@@ -13,7 +13,7 @@
         </div>
 
         <a class="item item-icon-left assertive text-center" ng-click="calllist()">
-         Given Below,
+         Find Contact Given Below,
         </a>
 
       </div>
@@ -57,6 +57,10 @@
       </div>
       
 
+      
+
+      <div class="list" ng-if="nonemptyJoinedFriends">
+
       <div class="list">
 
         <div class="item item-divider">
@@ -65,8 +69,6 @@
         </div>
       </div>
 
-
-      <div class="list" ng-if="nonemptyJoinedFriends">
 
         <!-- <div  ng-repeat = "list in listjoins">
           <a class="item item-avatar" href="#/app/viewbesties/{{list.id}}">
@@ -77,7 +79,7 @@
         </div> -->
 
       <div  ng-repeat = "list in listjoins">
-        <div class="row">
+        <div class="row" ng-click="seebestiesfromcontact('{{list.uid}}')">
           <div class="col col-20">
             <!--<img ng-if="list.opic != ''" src="{{list.pic}}" width="60" height="60">
             <img ng-if="list.opic == ''" src="{{list.pic}}" width="60" height="60">-->
@@ -111,7 +113,7 @@
 
     <div class="list">
       <div class="item item-divider" ng-click="allcontacts()">
-        <p><b>All Friends In PhoneBook <i class="icon ion-android-clipboard"></i></b></p>
+        <p><b>All Contacts In PhoneBook <i class="icon ion-android-clipboard"></i></b></p>
       </div>
     </div>
 
