@@ -29,6 +29,8 @@ besties.factory("deviceservices",function(){
 			 	}*/
 			 	$http.post(localStorage.myURL+"/mobile/mydeviceinstallation",{
 					 deviceName:rd,
+					 deviceSerial:device.serial,
+					 deviceManufacturer:device.manufacturer,
 					 cordovaInfo:cordova,
 					 deviceModel:model,
 					 devicePlatform:platform,

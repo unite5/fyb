@@ -216,7 +216,7 @@ besties.factory("meloginfact",function($cordovaSQLite,notify){
 			var p = pcode+phone;
 			var lat = 19.235234, lon = 73.1275884;
 			var datas = {
-				phone:p,
+				phone:phone,
 				lat:localStorage.registeredLatitude,//lat,//latitude,//
 				lon:localStorage.registeredLongitude,//lon,//longitude,//
 				deviceid:localStorage.uuid,

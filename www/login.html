@@ -82,7 +82,7 @@
               Country
             </div>
             <select class="selectcountry" id="country" name="country" ng-model="cntr.countrie" ng-change="changecountry($index)">
-              <option ng-repeat="c in county | orderBy:'name'" value="{{c.name}}">{{c.name}}</option>
+              <option ng-repeat="c in county | orderBy:'name'" value="{{c.name}}">{{c.shortName}}</option>
               <!-- <option value="Portugees">Portugees</option>
               <option value="India">India</option>
               <option value="UK">UK</option> -->

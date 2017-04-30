@@ -8,7 +8,9 @@ besties.controller('loginController',
 
 	  /*country*/
 	  $scope.cntr = {'countrie':''};
-	  $scope.county = countries.country;
+	  setTimeout(function(){countries.country($http,$scope);},100);
+	  //$scope.county = countries.country;
+	  //console.warn(countries.country);
 	  //console.log($scope.county);
 	  $scope.countryshown = true;
 	  $scope.changecountry = function(el){
