@@ -1,5 +1,5 @@
 besties.factory("trackusers",function(availableisOffline){
-	function inittrack($http){//trackme
+	function inittrack($http,$cordovaSQLite){//trackme
 		//console.warn("fetching");
 		/*$http.get("https://freegeoip.net/json/",{
 			phone:"9768431024"
@@ -18,47 +18,42 @@ besties.factory("trackusers",function(availableisOffline){
 		// localStorage.currentlatitude = latt;//+eval(a/1000000)
   //       localStorage.currentlongitude = longg;//+eval(b/1000000)
 		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+		// onSuccess Geolocation
+	    function onSuccess(position) {
+	        //console.log('in onSuccess()');
+	        var latitude = position.coords.latitude;
+	        var longitude = position.coords.longitude;
+	        localStorage.currentlatitude = latitude;
+	        localStorage.currentlongitude = longitude;
+	        //var element = document.getElementById('geolocation');
+	        /*alert('Latitude: '           + position.coords.latitude              + '<br />' +
+	                            'Longitude: '          + position.coords.longitude             + '<br />' +
+	                            'Altitude: '           + position.coords.altitude              + '<br />' +
+	                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+	                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+	                            'Heading: '            + position.coords.heading               + '<br />' +
+	                            'Speed: '              + position.coords.speed                 + '<br />' +
+	                            'Timestamp: '          + position.timestamp                    + '<br />');*/
+	        tracknsendtoserver($http,$cordovaSQLite);
+	    }
 
+	    // onError Callback receives a PositionError object
+	    function onError(error) {
+	        //console.log('in onError()');
+	        //console.log(error.code);
+	        //console.log(error.message);
+	        /*alert('code: '    + error.code    + '\n' +
+	              'message: ' + error.message + '\n');*/
+	        //var latt = 19.235234, longg = 73.1275884;
+	        var latt = localStorage.registeredLatitude;
+			var longg = localStorage.registeredLongitude;
+	        localStorage.currentlatitude = latt;
+	        localStorage.currentlongitude = longg;
+	    }
 	}
-	// onSuccess Geolocation
-    function onSuccess(position) {
-        //console.log('in onSuccess()');
-        var latitude = position.coords.latitude;
-        var longitude = position.coords.longitude;
-        localStorage.currentlatitude = latitude;
-        localStorage.currentlongitude = longitude;
-        //var element = document.getElementById('geolocation');
-        /*alert('Latitude: '           + position.coords.latitude              + '<br />' +
-                            'Longitude: '          + position.coords.longitude             + '<br />' +
-                            'Altitude: '           + position.coords.altitude              + '<br />' +
-                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
-                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-                            'Heading: '            + position.coords.heading               + '<br />' +
-                            'Speed: '              + position.coords.speed                 + '<br />' +
-                            'Timestamp: '          + position.timestamp                    + '<br />');*/
-    }
-
-    // onError Callback receives a PositionError object
-    function onError(error) {
-        //console.log('in onError()');
-        //console.log(error.code);
-        //console.log(error.message);
-        /*alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');*/
-        //var latt = 19.235234, longg = 73.1275884;
-        var latt = localStorage.registeredLatitude;
-		var longg = localStorage.registeredLongitude;
-        localStorage.currentlatitude = latt;
-        localStorage.currentlongitude = longg;
-    }
-    var tracknsendtoserver = function($http,$cordovaSQLite,$ionicPopup){
-
-    };
-	return {
-		track: function($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite){
-			//trackme http://localhost:8000/mobile/me/trackme
-			inittrack($http);
-			$http.post(localStorage.myURL+"/mobile/me/trackme",{
+	
+    var tracknsendtoserver = function($http,$cordovaSQLite){
+    	$http.post(localStorage.myURL+"/mobile/me/trackme",{
 				phone:localStorage.userContact,
 				token:localStorage.secret,
 				latitude:localStorage.currentlatitude,
@@ -77,36 +72,21 @@ besties.factory("trackusers",function(availableisOffline){
 						function(err){console.error("error to track you");}
 						);
 				}else if(status == "FailToUpdateLocation"){
-					/*$ionicPopup.alert({
-			            title: status,
-			            cssClass:'alertLoginPopup',
-			            content: 'Server can not understood your query. Try Again!'
-			          }).then(function(res) {
-			            //console.info('Thanks');
-			    	});*/
-			          console.info('Server can not understood your query. else if Try Again!'+d.Message);
+					  console.info('Server can not understood your query. else if Try Again!'+d.Message);
 				}else{
-					/*$ionicPopup.alert({
-			            title: status,
-			            cssClass:'alertLoginPopup',
-			            content: 'Server can not understood your query. Try Again!'
-			          }).then(function(res) {
-			            //console.info('Thanks');
-			    	});*/
 			          console.info('Server can not understood your query. Try Again!');
 				}
 				//console.log("from res $http "+JSON.stringify(res));
 			})
 			.error(function(err){
-				/*$ionicPopup.alert({
-			            title: "Unauthentified Request",
-			            cssClass:'alertLoginPopup',
-			            content: 'Server can not understood your query. Try Again!'
-			          }).then(function(res) {
-			            //console.info('Thanks');
-			    	});*/
 				console.log("from err $http ");
 			});
+    };
+	return {
+		track: function($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite){
+			//trackme http://localhost:8000/mobile/me/trackme
+			inittrack($http,$cordovaSQLite);
+			//here post is called previously
 			
 			//console.log("trackusers");
 		},
@@ -137,7 +117,7 @@ besties.factory("trackusers",function(availableisOffline){
 								'token':res.rows.item(j).token
 							};
 						}
-						console.warn((JSON.stringify(besties)));
+						//console.warn((JSON.stringify(besties)));
 		            } else {
 		            	//alert("err in trackbestiesnearby "+ res.rows.length);
 		            	console.log("err in trackbestiesnearby "+ res.rows.length);
@@ -185,7 +165,7 @@ besties.factory("trackusers",function(availableisOffline){
 								//console.log(bestiesfound.length+bestiesfound[j].lat);
 								//$ionicLoading.hide();
 							}	
-							console.log(bestiesfound);
+							//console.log(bestiesfound);
 						}else{ 
 							//$ionicLoading.hide();
 							console.error("failed to load");
@@ -332,6 +312,9 @@ besties.factory("trackusers",function(availableisOffline){
 			});
 			$ionicLoading.hide();
 		},
+		/*
+		* updatefriends profile based on click	
+		*/
 		updatedailybesties:function($cordovaSQLite,$http,$scope){
 			var posts = {
 			phone: localStorage.userContact,//'9768431024',//

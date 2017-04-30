@@ -73,18 +73,19 @@ days = end.diff(now, 'minutes');
     setInterval(function(){
         trackusers.track($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);//Background func
         //trackusers.trackbestiesnearby($scope,$timeout,$ionicLoading,$http,$ionicPopup,$cordovaSQLite);//Background func
-        trackusers.updatedailybesties($cordovaSQLite,$http,$scope);
-    },61000);
+        //trackusers.updatedailybesties($cordovaSQLite,$http,$scope);
+    },31000);
     $interval(function(){
         trackusers.gettrackedbesties($scope,$cordovaSQLite,$ionicLoading);
-    },30000);
+    },60000);
     $timeout(function(){
         $ionicLoading.hide();
+        trackusers.updatedailybesties($cordovaSQLite,$http,$scope);
     },5000);
 
 
 
-    $timeout(function(){
+    /*$timeout(function(){
     var findu = "SELECT * FROM simcontacts";
         //dummies.loadInContacts($cordovaSQLite,$scope);
             $cordovaSQLite.execute(db, findu, []).then(function(res) {
@@ -98,7 +99,7 @@ days = end.diff(now, 'minutes');
             }, function (err) {
                 alert(err);
             });
-    },8000);
+    },8000);*/
     
     console.log("available:"+availableisOffline.check());
     

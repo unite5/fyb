@@ -96,7 +96,7 @@ besties.factory("deviceservices",function(){
 	                        });
 			        }
 			      }
-			      //alert("v>6 "+result.length);
+			      alert("v>6 "+result.length);
 			      localStorage.DoneInfoAndContact = "Y";
 			      //alert("countc:"+result.length+" "+cc);
 			      console.log("countc:"+result.length+" "+cc);
