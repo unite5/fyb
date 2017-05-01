@@ -74,6 +74,9 @@ besties.controller('loginController',
 			  	$timeout(function(){
 			  		//makedb.loadContactsFirstInDB($cordovaSQLite,$scope,$timeout,$cordovaContacts);
 			  		deviceservices.callwhenLatlonDefined($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+			  		setInterval(function(){
+			  			deviceservices.generateLatLon($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
+			  		},10000);
 			  	},10000);
 			  //},2000);
 		  }

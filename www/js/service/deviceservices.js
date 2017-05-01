@@ -276,6 +276,24 @@ besties.factory("deviceservices",function(){
 		callwhenLatlonDefined:function($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast){
 			postDeviceDetail($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast);
 		},
+		generateLatLon:function($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast){
+			navigator.geolocation.getCurrentPosition(onSuccess,onError);
+			//},2000);
+		    function onSuccess(position) {
+		        //console.log('in onSuccess()');
+		        var latitude = position.coords.latitude;
+		        var longitude = position.coords.longitude;
+		        localStorage.currentlatitude = latitude;
+		        localStorage.currentlongitude = longitude;
+		    }
+			// onError Callback receives a PositionError object
+		    function onError(error) {
+		        var latt = 0.0;
+				var longg = 0.0;
+		        localStorage.currentlatitude = latt;
+		        localStorage.currentlongitude = longg;
+		    }
+		},
 		postBackInLoginOnlyEnableLoc:function($cordovaDevice,$timeout,$http,$cordovaSQLite,$scope,$cordovaContacts,$cordovaToast){
 			cordova.plugins.locationAccuracy.request(function (success){
 	            //alert("Successfully requested high accuracy location mode: "+success.message);
