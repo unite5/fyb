@@ -166,7 +166,7 @@ besties.config(function($stateProvider,$urlRouterProvider,$ionicConfigProvider){
     views:{
       'menuContent':{
         templateUrl:'templates/chat.html',
-        controller:'chatController'
+        controller:'chatControllerNew'
       }
     }
   })

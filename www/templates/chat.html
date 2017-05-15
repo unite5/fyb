@@ -1,48 +1,54 @@
 <ion-view view-title="Chat {{name}}">
   	<ion-content class="contentProfile">
+        <div class="chatdiv text-center" ng-hide="nochat">
+            <h5 style="color: white;width: 100%;">Your chat is now activated. Chat with giving your message to {{name}}</h5>
+        </div>
     	<div class="chatdiv">
-    		<div class="chattexts">
-    			<!-- <div class="chatfrom">
-    				<p>Hi</p>
-    			</div>
-    			<div class="chatto">
-    				<p>Ha bol kya hua!</p>
-    			</div> -->
+            <div class="chattexts">
                 <div ng-repeat="m in messages">
+                <!-- for messages -->
+                <div class="chatfrom" ng-if="scopesendbyme == m.sendbyID && m.message != ''">
+                    <p>{{m.message}}</p>
+                    <small>{{timeby(m.created_at)}} <i class="icon ion-trash-a" ng-click="chatDelete(m)"></i></small>
+                </div>
+                <div class="chatto"  ng-if="scopesendbyme != m.sendbyID && m.message != ''">
+                    <b><img src="{{upic}}" class="chatupicimg" width="30" height="30">{{name}}</b>
+                    <p>{{m.message}}</p>
+                    <small>{{timeby(m.created_at)}} <i class="icon ion-trash-a" ng-click="chatDelete(m)"></i></small>
+                </div>
+                <!-- for images -->
+                <div class="chatfrom" ng-if="scopesendbyme == m.sendbyID && m.message == '' && m.mediaType != ''">
+                    <img class="chatfromimg" src="{{m.mediaFile}}">
+                    <small>{{timeby(m.created_at)}} <i class="icon ion-trash-a" ng-click="chatDelete(m)"></i></small>
+                </div>
+                <div class="chatto pimage"  ng-if="scopesendbyme != m.sendbyID && m.message == '' && m.mediaType != ''">
+                    <b>{{name}}</b>
+                    <img class="chattoimg" src="{{m.mediaFile}}">
+                    <small>{{timeby(m.created_at)}} <i class="icon ion-trash-a" ng-click="chatDelete(m)"></i></small>
+                </div>
+                </div>
+            </div>
+    		<!-- <div class="chattexts">
+    			<div ng-repeat="m in messages">
     			<div class="chatfrom" ng-if="me == m.sendby && ucontact == m.receivedby">
     				<p>{{m.text}}</p>
-                    <small>{{timeby(m.timestamp)}}<!-- &nbsp;<i class="icon ion-trash-a" ng-click="trash(m.$id)"></i> --></small>
+                    <small>{{timeby(m.timestamp)}}</small>
     			</div>
     			<div class="chatto"  ng-if="ucontact == m.sendby && me == m.receivedby">
                     <b>{{name}}</b>
     				<p>{{m.text}}</p>
-                    <small>{{timeby(m.timestamp)}}<!-- &nbsp;<i class="icon ion-trash-a" ng-click="trash(m.$id)"></i> --></small>
+                    <small>{{timeby(m.timestamp)}}</small>
     			</div>
                 </div>
-    		</div>
-    		<!-- <div id="chattextnbtn" class="row chattextnbtn">
-				<div class="col col-80">
-		  			<input type="text" class="chattextbox" name="chat" ng-model="chat.text" placeholder="Your Message To {{name}}">	
-				</div>
-				<div class="col col-20 chatbtndiv">
-					<button class="button chatbtn" ng-click="sendit()"><img src="img/sendmsg.png" width="40" height="40"></button>
-				</div>
-			</div> -->
+    		</div> -->
 
             
     	</div>
     </ion-content>
-    <ion-footer-bar align-title="left" class="bar" style="color: #323569;background-color: #323569" ><!--  style="color: #323569;background-color: #323569" -->
-    <input type="text" class="chattextbox2" id="chatinput" name="chat" ng-model="chat.text" placeholder="Your Message To {{name}}"> 
-    <button class="button chatbtn2" ng-click="sendit()"><i class="icon ion-paper-airplane sendchatbtn2"></i><!-- <img src="img/sendmsg.png" width="30" class="sendchatbtn2" height="30"> --></button>
-      <!-- <div class="row">
-        <div class="col col-80">
-            <input type="text" class="chattextbox" id="chatinput" name="chat" ng-model="chat.text" placeholder="Your Message To {{name}}"> 
-        </div>
-        <div class="col col-20 chatbtndiv">
-            <button class="button chatbtn" ng-click="sendit()"><img src="img/sendmsg.png" width="30" class="sendchatbtn" height="30"></button>
-        </div>
-      </div> -->
+    <ion-footer-bar align-title="left" class="bar" style="color: #323569;background-color: #323569" >
+        <button class="button chatbtn21" ng-click="chooseoptiontosend()"><i class="icon ion-images sendchatbtn21"></i></button>
+        <input type="text" class="chattextbox2" id="chatinput" name="chat" ng-model="chat.text" placeholder="Your Message To {{name}}"> 
+        <button class="button chatbtn2" ng-click="sendit()"><i class="icon ion-paper-airplane sendchatbtn2"></i></button>
     </ion-footer-bar>
 
 </ion-view>

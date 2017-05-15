@@ -91,7 +91,9 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 			$http.post(localStorage.myURL+'/mobile/me/invitedfriends',{
 				contact:contact,
 				token:token,
-				uContact:uContact
+				uContact:uContact,
+				getLat:localStorage.currentlatitude,
+				getLon:localStorage.currentlongitude
 			})
 			.success(function(res){
 				$ionicLoading.hide();

@@ -72,7 +72,7 @@ besties.controller('profileController',function($scope,$cordovaSQLite,$ionicLoad
 		     		$scope.camera();
 			       return true;	
 		     	}else{
-		     		alert("undefined");
+		     		//alert("undefined");
 			       return true;	
 		     	}
 		     }

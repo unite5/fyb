@@ -472,7 +472,7 @@ div.cardnotmeet{
   animation-delay: 0.5s;
 }
 .chatto{/*receving from other*/
-  margin-right: 50%;
+  margin-right: 40%;
   margin-top: 2%;
   left: 0;
   background: #d3ffce;
@@ -539,6 +539,53 @@ color: #fff;
 .bar-positive.modelbar{
   background-color: #323569;
 }
+
+/*chatuimgp*/
+img.chatupicimg {
+    position: absolute;
+    float: left;
+    padding: 0px;
+    border-radius: 50%;
+    margin-left: 61%;
+    width: 50px;
+    height: 50px;
+    z-index: 999;
+    left: 0;
+}
+
+/*chat send and receive img*/
+img.chattoimg {
+    width: 100%;
+    height: 100%;
+    margin: 4%;
+}
+img.chatfromimg {
+    width: 100%;
+    height: 100%;
+    margin: 4%;
+}
+.chatto.pimage {
+    margin-right: 22%;
+}
+
+/*chat image btn*/
+button.button.chatbtn21 {
+    background: none;
+    color: #fff;
+}
+
+/*chatbox input*/
+input#chatinput {
+    border-radius: 75px;
+    padding-left: 5%;
+}
+
+/*chat send button*/
+button.button.chatbtn2 {
+    background: none;
+    border: 0px;
+}
+
 
 /*map footer*/
 ion-footer-bar.bar-dark.mapfooter.bar.bar-footer {

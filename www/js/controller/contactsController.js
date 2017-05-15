@@ -185,7 +185,7 @@ besties.controller('contactsController',function($scope,$cordovaContacts,$ionicP
 
 
 
-    $scope.listlength = 25;
+    $scope.listlength = 50;
     $scope.loadMore = function(){
     if (!$scope.Contactitems){//contacts list
       $scope.$broadcast('scroll.infiniteScrollComplete');
