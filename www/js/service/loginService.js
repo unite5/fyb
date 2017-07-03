@@ -213,7 +213,7 @@ besties.factory("meloginfact",function($cordovaSQLite,notify){
 				  template: '<ion-spinner icon="spiral" style="color:#fff" class="spinner-positive"></ion-spinner>'
 			});
 			var pcode = $scope.countrycode;
-			var p = pcode+phone;
+			var p = phone;//pcode+phone;
 			var lat = 19.235234, lon = 73.1275884;
 			var datas = {
 				phone:phone,

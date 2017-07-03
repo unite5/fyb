@@ -34,6 +34,12 @@ besties.factory("profileservice",function($cordovaSQLite){
 				//name = res.rows.item(0).name;
 				//return JSON.parse(JSON.stringify(data));
 			}else{
+                $scope.name = localStorage.userName;
+                if(localStorage.userGender == "Male"){
+                    $scope.pic = "img/profileBoy.png";
+                }else{
+                    $scope.pic = "img/profileGirl.png";
+                }
 				name = " null";
 			}
 		},function(err){

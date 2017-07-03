@@ -135,8 +135,8 @@ var created = "2017-02-08 01:02:01.000000",updated="2017-02-08 01:02:23.000000";
 
 		/*load connected accepted contacts*/
 		loadConnectedContacts:function($cordovaSQLite,$http,$scope,$ionicLoading,$ionicPopup){
-			var contact = "9768431024";//localStorage.userContact;//"9768431024";//
-			var token = "Iif5NdKxsWQN4xAHIzO69VZiGi1zjB";//localStorage.secret;//
+			var contact = localStorage.userContact;//"9768431024";//"9768431024";//
+			var token = localStorage.secret;//"Iif5NdKxsWQN4xAHIzO69VZiGi1zjB";//
 			$http.post(localStorage.myURL+'/mobile/my/acceptedcontacts',{
 				contact:contact,
 				token:token
